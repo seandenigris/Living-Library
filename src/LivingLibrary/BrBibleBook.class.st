@@ -1,0 +1,71 @@
+Class {
+	#name : #BrBibleBook,
+	#superclass : #Object,
+	#instVars : [
+		'title',
+		'abbreviation',
+		'chapters'
+	],
+	#category : #'LivingLibrary-Bible'
+}
+
+{ #category : #accessing }
+BrBibleBook >> abbreviation [
+	^ abbreviation
+]
+
+{ #category : #accessing }
+BrBibleBook >> abbreviation: anObject [
+	abbreviation := anObject
+]
+
+{ #category : #converting }
+BrBibleBook >> brAsBook [
+	^ self
+]
+
+{ #category : #'accessingas yet unclassified' }
+BrBibleBook >> chapters [
+	^ chapters ifNil: [ chapters := Dictionary new ]
+]
+
+{ #category : #'magritte-accessing' }
+BrBibleBook >> descriptionTitle [
+	<magritteDescription>
+	^ MAStringDescription new
+		accessor: #title;
+		yourself
+]
+
+{ #category : #'as yet unclassified' }
+BrBibleBook >> import: versesString asChapter: anInteger [
+	"versesString - 'Brethren, ...
+
+2 Bear ye ..."
+
+	| verseLines verseLinesWithoutNumbers verses |
+	verseLines := versesString lines reject: #isEmpty.
+	verseLinesWithoutNumbers := {verseLines first}
+		, (verseLines allButFirst collect: [ :e | e copyAfter: $  ]).
+	verses := verseLinesWithoutNumbers
+		collect: [ :e | 
+			BrBibleVerse new
+				at: 'KJV' put: e;
+				yourself ].
+	self at: anInteger put: verses
+]
+
+{ #category : #printing }
+BrBibleBook >> printOn: aStream [
+	aStream nextPutAll: self title
+]
+
+{ #category : #accessing }
+BrBibleBook >> title [
+	^ self maLazyFrom: self descriptionTitle
+]
+
+{ #category : #accessing }
+BrBibleBook >> title: anObject [
+	title := anObject
+]
