@@ -31,7 +31,7 @@ BaselineOfLivingLibrary >> baseline: spec [
 			baseline: 'SimplePersistence' with: [
 				spec repository: 'github://seandenigris/Simple-Persistence' ].
 		spec package: 'LivingLibrary' with: [
-			spec requires: #('Magritte' 'Mocketry' 'MyPeople' 'PharoEnhancements' 'ResourcesLive' 'SimplePersistence') ] ]
+			spec requires: #('Magritte' 'Mocketry' 'MyPeople' 'PharoEnhancements' 'ResourcesLive' 'SimplePersistence') ] ].
 				
 	spec for: #notGToolkit do: [
 		spec baseline: 'XPath' with: [
