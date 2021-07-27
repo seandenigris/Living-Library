@@ -23,7 +23,7 @@ BaselineOfLivingLibrary >> baseline: spec [
 			baseline: 'Mocketry' with: [
 				spec repository: 'github://dionisiydk/Mocketry' ];
 			baseline: 'MyPeople' with: [
-				spec repository: 'gitlab://seandenigris/My-People' ];
+				spec repository: 'github://seandenigris/My-People' ];
 			baseline: 'PharoEnhancements' with: [
 				spec repository: 'github://seandenigris/Pharo-Enhancements' ];
 			baseline: 'ResourcesLive' with: [
