@@ -27,7 +27,7 @@ BaselineOfLivingLibrary >> baseline: spec [
 			baseline: 'PharoEnhancements' with: [
 				spec repository: 'github://seandenigris/Pharo-Enhancements' ];
 			baseline: 'ResourcesLive' with: [
-				spec repository: 'github://seandenigris/ResourcesLive' ];
+				spec repository: 'github://seandenigris/Resources-Live' ];
 			baseline: 'SimplePersistence' with: [
 				spec repository: 'github://seandenigris/Simple-Persistence' ].
 		spec package: 'LivingLibrary' with: [
