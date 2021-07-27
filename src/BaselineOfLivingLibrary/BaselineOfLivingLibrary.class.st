@@ -13,7 +13,7 @@ Class {
 { #category : #baseline }
 BaselineOfLivingLibrary >> baseline: spec [
 	<baseline>
-
+	
 	spec for: #'common' do: [
 		spec 
 			baseline: 'Magritte' with: [
@@ -29,10 +29,26 @@ BaselineOfLivingLibrary >> baseline: spec [
 			baseline: 'ResourcesLive' with: [
 				spec repository: 'github://seandenigris/ResourcesLive' ];
 			baseline: 'SimplePersistence' with: [
-				spec repository: 'github://seandenigris/Simple-Persistence' ];
-			baseline: 'XPath' with: [
-				spec repository: 'github://seandenigris/XML-XPath' ].
+				spec repository: 'github://seandenigris/Simple-Persistence' ].
 		spec package: 'LivingLibrary' with: [
-				spec requires: #('Magritte' 'Mocketry' 'MyPeople' 'PharoEnhancements' 'ResourcesLive' 'SimplePersistence' 'XPath' "for bible data"). ]. ].
+			spec requires: #('Magritte' 'Mocketry' 'MyPeople' 'PharoEnhancements' 'ResourcesLive' 'SimplePersistence') ] ]
+				
+	spec for: #notGToolkit do: [
+		spec baseline: 'XPath' with: [
+			spec repository: 'github://seandenigris/XML-XPath' ].
+		spec 
+			package: 'LivingLibrary' with: [ 
+				spec requires: 'XPath' "needed for bible stuff" ] ]
+]
 
+{ #category : #accessing }
+BaselineOfLivingLibrary >> customProjectAttributes [
+	^ self isGTImage
+			ifFalse: [ #(notGToolkit) ]
+			ifTrue: [ #(GToolkit) ]
+]
+
+{ #category : #accessing }
+BaselineOfLivingLibrary >> isGTImage [
+	^ RPackageOrganizer default packageNames anySatisfy: [ :pn | pn beginsWith: 'GToolkit-' ]
 ]
