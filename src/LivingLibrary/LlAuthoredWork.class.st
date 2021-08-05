@@ -319,6 +319,21 @@ LlAuthoredWork >> printOn: aStream [
 		separatedBy: [ aStream nextPutAll: ', ' ]
 ]
 
+{ #category : #actions }
+LlAuthoredWork >> searchWebForCopies [
+
+	"Vendors listed in reverse order of moral value because the last tab opened will be on top"	
+	'https://www.amazon.com/s?i=stripbooks' asUrl
+		queryAt: #k put: self title;
+		open.
+	'https://www.thriftbooks.com/browse/' asUrl
+		queryAt: 'b.search' put: self title;
+		open.
+	'https://www.betterworldbooks.com/search/results' asUrl
+		queryAt: #q put: self title;
+		open
+]
+
 { #category : #private }
 LlAuthoredWork >> setTitle: titleString author: authorString [
 
