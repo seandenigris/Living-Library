@@ -206,7 +206,7 @@ LlLibrary >> view: aWrittenWork [
 
 { #category : #accessing }
 LlLibrary >> works [
-	^ self catalog keys
+	^ self catalog keys sort: (#fullTitle collatedBy: #asLowercase)
 ]
 
 { #category : #'magritte-accessing' }
