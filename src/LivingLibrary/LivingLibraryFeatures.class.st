@@ -6,12 +6,12 @@ Scenario: E-Book
 	I have an ebook that I downloaded from the internet. I want it, and the information I derive from it, to be modelled. The intention is a little fuzzy because, like always, I don't know exactly how it will be used.
 "
 Class {
-	#name : #LivingLibraryFeatures,
-	#superclass : #TestCase,
-	#category : #'LivingLibrary-Features'
+	#name : 'LivingLibraryFeatures',
+	#superclass : 'TestCase',
+	#category : 'LivingLibrary-Features'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LivingLibraryFeatures >> testImportAcademicPaper [
 
 	| library author title paper |
@@ -25,7 +25,7 @@ LivingLibraryFeatures >> testImportAcademicPaper [
 	(library hasCardFor: paper) should beTrue
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LivingLibraryFeatures >> testImportEBookIntoSystem [
 
 	| library author1 author2 title ebook |
@@ -41,7 +41,7 @@ LivingLibraryFeatures >> testImportEBookIntoSystem [
 	(library hasCardFor: ebook) should beTrue
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LivingLibraryFeatures >> testImportElectronicWrittenWork [
 	"Use case: I find an electronic document online. Now I find a quote in it that I want to remember. The important pieces to encode are the quote info (in this case author and content), and where I found it; namely this document, possibly including a page number.
 	
@@ -64,7 +64,7 @@ comes to getting better with women.
 		There's a hole in the theory here. Ideally, everything I do would be experienced at the logical level, not the application implementation level. So the fact that I'm in a browser, dealing with a pdf is why so much work has to be done. So let me table this for a moment until I find another document. Although, I could just assume that"
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LivingLibraryFeatures >> testImportPDF [
 
 	| pdfFile copy library work |
@@ -79,7 +79,7 @@ LivingLibraryFeatures >> testImportPDF [
 	(library catalog at: work) size should equal: 1.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LivingLibraryFeatures >> testRetrievePdf [
 
 	| pdfFile |
@@ -92,7 +92,7 @@ LivingLibraryFeatures >> testRetrievePdf [
 	pdfFile exists should beTrue"
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LivingLibraryFeatures >> testTalebUseCase [
 	"Use case: I find an electronic document online. Now I find a quote in it that I want to remember. The important pieces to encode are the quote info (in this case author and content), and where I found it; namely this document, possibly including a page number.
 	

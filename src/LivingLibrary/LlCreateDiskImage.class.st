@@ -1,6 +1,6 @@
 Class {
-	#name : #LlCreateDiskImage,
-	#superclass : #Object,
+	#name : 'LlCreateDiskImage',
+	#superclass : 'Object',
 	#instVars : [
 		'completionPercentage',
 		'statusSubscriber',
@@ -10,10 +10,10 @@ Class {
 		'target',
 		'cancelBlock'
 	],
-	#category : #'LivingLibrary-Support'
+	#category : 'LivingLibrary-Support'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LlCreateDiskImage class >> from: deviceFile to: target updating: anObject [
 	"deviceFile - an FSReference to e.g. /dev/disk3
 	 target - an FSReference where the image will be created
@@ -22,7 +22,7 @@ LlCreateDiskImage class >> from: deviceFile to: target updating: anObject [
 	^ self new setDeviceFile: deviceFile target: target subscriber: anObject.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LlCreateDiskImage class >> from: deviceFile to: target updating: aBlock cancelIf: cancelPredicate [
 	"deviceFile - an FSReference to e.g. /dev/disk3
 	 target - an FSReference where the image will be created
@@ -31,7 +31,7 @@ LlCreateDiskImage class >> from: deviceFile to: target updating: aBlock cancelIf
 	^ self new setDeviceFile: deviceFile target: target subscriber: aBlock cancelPredicate: cancelPredicate.
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 LlCreateDiskImage >> execute [
 
 	hdiutil := Hdiutil createImageOf: deviceFile at: target.
@@ -44,7 +44,7 @@ LlCreateDiskImage >> execute [
 		(Delay forSeconds: 1) wait ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 LlCreateDiskImage >> setDeviceFile: sourceReference target: targetReference subscriber: anObject [
 
 	completionPercentage := 0.
@@ -55,7 +55,7 @@ LlCreateDiskImage >> setDeviceFile: sourceReference target: targetReference subs
 	^ self.
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 LlCreateDiskImage >> setDeviceFile: sourceReference target: targetReferene subscriber: aBlock cancelPredicate: cancelPredicate [
 
 	completionPercentage := 0.
@@ -67,13 +67,13 @@ LlCreateDiskImage >> setDeviceFile: sourceReference target: targetReferene subsc
 	^ self.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LlCreateDiskImage >> shouldCancel [
 
 	^ updateBlock shouldCancel.
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 LlCreateDiskImage >> updateStatus [
 
 	Transcript show: hdiutil completionPercentage; cr.

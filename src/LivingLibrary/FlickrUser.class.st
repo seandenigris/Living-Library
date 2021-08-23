@@ -1,14 +1,14 @@
 Class {
-	#name : #FlickrUser,
-	#superclass : #Object,
+	#name : 'FlickrUser',
+	#superclass : 'Object',
 	#instVars : [
 		'name',
 		'id'
 	],
-	#category : #'LivingLibrary-Flickr'
+	#category : 'LivingLibrary-Flickr'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FlickrUser class >> fromUrl: aUrl [
 
 	| response |
@@ -21,7 +21,7 @@ FlickrUser class >> fromUrl: aUrl [
 		name: (((response data at: 'user') at: 'username') at: '_content').
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FlickrUser class >> named: aString [
 
 	^ self new
@@ -29,7 +29,7 @@ FlickrUser class >> named: aString [
 		yourself
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FlickrUser >> id [
 
 	| response |
@@ -41,18 +41,18 @@ FlickrUser >> id [
 	^ id := (response data at: 'user') at: 'id'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FlickrUser >> id: aString [
 	
 	id := aString
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 FlickrUser >> name [
 	^ name
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 FlickrUser >> name: aString [ 
 	name := aString
 ]

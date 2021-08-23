@@ -6,8 +6,8 @@ VideoClip allInstances collect: [ :e |
 	e instVarNamed: 'backgroundProcess' ]
 "
 Class {
-	#name : #LlVideoClip,
-	#superclass : #Object,
+	#name : 'LlVideoClip',
+	#superclass : 'Object',
 	#traits : 'RlTPlayable',
 	#classTraits : 'RlTPlayable classTrait',
 	#instVars : [
@@ -17,16 +17,16 @@ Class {
 		'backgroundProcess',
 		'subtitle'
 	],
-	#category : #'LivingLibrary-Core'
+	#category : 'LivingLibrary-Core'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 LlVideoClip class >> from: aVideo startingAt: startString andEndingAt: endString [ 
 
 	^ self new setCD: aVideo startTime: startString endTime: endString.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LlVideoClip >> asMorph [
 	
 	| morph playButton builder pauseButton controls |
@@ -41,26 +41,26 @@ LlVideoClip >> asMorph [
 	^ morph.
 ]
 
-{ #category : #playing }
+{ #category : 'playing' }
 LlVideoClip >> backgroundProcess: aProcess [
 
 	backgroundProcess ifNotNil: [ :process | process terminate ].
 	backgroundProcess := aProcess.
 ]
 
-{ #category : #playing }
+{ #category : 'playing' }
 LlVideoClip >> isPlaying [
 
 	^ backgroundProcess isNil not and: [ backgroundProcess isTerminated not ].
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LlVideoClip >> open [
 
 	self asMorph openInWorld.
 ]
 
-{ #category : #playing }
+{ #category : 'playing' }
 LlVideoClip >> play [
 	"I think this should ultimately be delegated to the player. It's only necessary to fork with either QT or DVDPlayer (I forget which, but I guess DVD Player since that's what we're dealing with - although this could've been a cut and paste job. This again points to the need for executable documentation of assumptions) because you can't specify a fractional second (although we should check the underlying Cocoa framework at some point, which may expose more functionality).
 	The whole thing would become:
@@ -78,13 +78,13 @@ LlVideoClip >> play [
 		backgroundProcess := nil ] fork.
 ]
 
-{ #category : #playing }
+{ #category : 'playing' }
 LlVideoClip >> player [
 
 	^ video.
 ]
 
-{ #category : #playing }
+{ #category : 'playing' }
 LlVideoClip >> printOn: aStream [
 
 	| prettyStartTime prettyEndTime |
@@ -94,7 +94,7 @@ LlVideoClip >> printOn: aStream [
 	video printOn: aStream.
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 LlVideoClip >> setCD: aCD startTime: startString endTime: endString [
 
 	video := aCD.
@@ -104,13 +104,13 @@ LlVideoClip >> setCD: aCD startTime: startString endTime: endString [
 	^ self.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LlVideoClip >> subtitle [
 
 	^ subtitle.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LlVideoClip >> subtitle: aString [
 
 	subtitle := aString.

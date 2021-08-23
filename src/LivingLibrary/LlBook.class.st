@@ -1,5 +1,5 @@
 Class {
-	#name : #LlBook,
-	#superclass : #LlAuthoredWork,
-	#category : #'LivingLibrary-Core'
+	#name : 'LlBook',
+	#superclass : 'LlAuthoredWork',
+	#category : 'LivingLibrary-Core'
 }

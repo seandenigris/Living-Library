@@ -1,17 +1,17 @@
 Class {
-	#name : #LiveTalkMorph,
-	#superclass : #Object,
+	#name : 'LiveTalkMorph',
+	#superclass : 'Object',
 	#category : 'LivingLibrary-UI'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LiveTalkMorph class >> open [
 	"self open"
 
 	^ self new open.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LiveTalkMorph >> open [
 	"self open"
 

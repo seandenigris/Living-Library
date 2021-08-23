@@ -1,5 +1,5 @@
 Class {
-	#name : #LlKindleItem,
-	#superclass : #LlLibraryItem,
-	#category : #'LivingLibrary-Core'
+	#name : 'LlKindleItem',
+	#superclass : 'LlLibraryItem',
+	#category : 'LivingLibrary-Core'
 }

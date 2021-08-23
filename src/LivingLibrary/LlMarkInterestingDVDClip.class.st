@@ -2,43 +2,43 @@
 This was the precursor to TakeNote, which adds notetaking methods. I'm not sure where things are headed yet, so I'm keeping everything around.
 "
 Class {
-	#name : #LlMarkInterestingDVDClip,
-	#superclass : #Object,
+	#name : 'LlMarkInterestingDVDClip',
+	#superclass : 'Object',
 	#instVars : [
 		'startTime',
 		'endTime',
 		'dvd'
 	],
-	#category : #'LivingLibrary-Support'
+	#category : 'LivingLibrary-Support'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 LlMarkInterestingDVDClip class >> from: aDVD [
 	
 	^ self new setDVD: aDVD.
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 LlMarkInterestingDVDClip >> createClip [
 
 	^ LlVideoClip from: dvd startingAt: startTime andEndingAt: endTime.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlMarkInterestingDVDClip >> defaultSecondsToSkip [
 	"This will depend on what users find most useful.  In testing, 3 seconds seemed to work well."
 
 	^ 3.
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 LlMarkInterestingDVDClip >> endHere [
 
 	endTime := dvd position.
 	self playClip.
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 LlMarkInterestingDVDClip >> endLaterBy: aNumberOfSeconds [
 
 	endTime := endTime + aNumberOfSeconds.
@@ -46,7 +46,7 @@ LlMarkInterestingDVDClip >> endLaterBy: aNumberOfSeconds [
 	self playRestOfClip.
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 LlMarkInterestingDVDClip >> execute [
 
 "	dvd
@@ -55,7 +55,7 @@ LlMarkInterestingDVDClip >> execute [
 		position: originalTime."
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 LlMarkInterestingDVDClip >> playClip [
 
 	dvd position: startTime.
@@ -64,7 +64,7 @@ LlMarkInterestingDVDClip >> playClip [
 	  dvd pause ] fork.
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 LlMarkInterestingDVDClip >> playRestOfClip [
 
 	dvd play.
@@ -72,13 +72,13 @@ LlMarkInterestingDVDClip >> playRestOfClip [
 	  dvd pause ] fork.
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 LlMarkInterestingDVDClip >> playUntilUserMarksEnd [
 
 	dvd play.
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 LlMarkInterestingDVDClip >> setDVD: aDVD [ 
 
 	dvd := aDVD.
@@ -86,7 +86,7 @@ LlMarkInterestingDVDClip >> setDVD: aDVD [
 	^ self.
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 LlMarkInterestingDVDClip >> startEarlierBy: aNumberOfSeconds [
 
 	startTime := startTime - aNumberOfSeconds.

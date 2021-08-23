@@ -2,15 +2,15 @@
 Is a Flickr Photo a library item? Or a copy/item source? Flickr seems to typically serve [several formats/resolutions](https://www.flickr.com/photos/nickefford/6446227373/sizes/o/), although we could just consider the [original](https://live.staticflickr.com/7001/6446227373_67346a63fe_o.jpg) for now for simplicity sake.
 "
 Class {
-	#name : #LlFlickrPhoto,
-	#superclass : #LlWebResource,
+	#name : 'LlFlickrPhoto',
+	#superclass : 'LlWebResource',
 	#instVars : [
 		'id'
 	],
-	#category : #'LivingLibrary-Flickr'
+	#category : 'LivingLibrary-Flickr'
 }
 
-{ #category : #examples }
+{ #category : 'examples' }
 LlFlickrPhoto class >> example [
 	<gtExample>
 	^ self new
@@ -20,27 +20,27 @@ LlFlickrPhoto class >> example [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlFlickrPhoto >> asElement [
 	^ BlUrlImageElement url: self downloadURL
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlFlickrPhoto >> author [
 	^ self work author
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlFlickrPhoto >> author: person [
 	^ self work author: person
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlFlickrPhoto >> authors [
 	^ self work authors
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlFlickrPhoto >> ccAuthorMarkup [
 	^ String streamContents: [ :str |
 		self authors
@@ -52,12 +52,12 @@ LlFlickrPhoto >> ccAuthorMarkup [
 			separatedBy: [ str space ] ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlFlickrPhoto >> ccTitleMarkup [
 	^ '*', self title, '>', url asString, '*'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlFlickrPhoto >> downloadURL [
 	| response sizes original |
 	response := Flickr new
@@ -69,7 +69,7 @@ LlFlickrPhoto >> downloadURL [
 	^ (original at: 'source') asUrl
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlFlickrPhoto >> gtPreviewOn: aView [
 	<gtView>
 	^ aView pannable
@@ -83,37 +83,37 @@ LlFlickrPhoto >> gtPreviewOn: aView [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlFlickrPhoto >> id [
 	^ id
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlFlickrPhoto >> id: anObject [
 	id := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlFlickrPhoto >> licenseAttribution [
 	^ self work license attributionFor: self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlFlickrPhoto >> title [
 	^ self work title
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlFlickrPhoto >> title: aString [
 	self work title: aString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlFlickrPhoto >> work [
 	^ work ifNil: [ work := LlAuthoredWork new ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlFlickrPhoto >> work: aWork [
 	work := aWork
 ]

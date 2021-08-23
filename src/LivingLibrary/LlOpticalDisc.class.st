@@ -27,22 +27,22 @@ Jumping around in a disc:
 	We choose to use ""skipBack:"" & ""skipAhead:"" instead of ""rewind"" and ""fast forward"" because the latter imply a gradual advance from point A to point B, where here, we're jumping right to the requested relative position.
 "
 Class {
-	#name : #LlOpticalDisc,
-	#superclass : #LlPhysicalResource,
+	#name : 'LlOpticalDisc',
+	#superclass : 'LlPhysicalResource',
 	#instVars : [
 		'diskName'
 	],
-	#category : #'LivingLibrary-Core'
+	#category : 'LivingLibrary-Core'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LlOpticalDisc class >> drive [
 
 	"Couldn't find any properties that were optical-drive-specific, but ejectable works for now."
 	Applescript doIt: 'tell application "Finder" to get first disk whose ejectable is true'.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LlOpticalDisc class >> eject [
 
 	Applescript doIt: '
@@ -51,7 +51,7 @@ LlOpticalDisc class >> eject [
 		end tell'.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LlOpticalDisc class >> nameOfDiskInDrive [
 
 	| dvdDrive |
@@ -59,7 +59,7 @@ LlOpticalDisc class >> nameOfDiskInDrive [
 	^ dvdDrive diskName.
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LlOpticalDisc >> isAvailable [
 
 	^ MacSystem local disks anySatisfy: [ :disk | disk diskName = diskName ].

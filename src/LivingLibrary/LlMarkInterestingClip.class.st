@@ -1,28 +1,28 @@
 Class {
-	#name : #LlMarkInterestingClip,
-	#superclass : #Object,
+	#name : 'LlMarkInterestingClip',
+	#superclass : 'Object',
 	#instVars : [
 		'startTime',
 		'endTime',
 		'dvd',
 		'subtitleControl'
 	],
-	#category : #'LivingLibrary-Support'
+	#category : 'LivingLibrary-Support'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 LlMarkInterestingClip class >> from: aDVD [
 	
 	^ self new setDVD: aDVD.
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 LlMarkInterestingClip class >> in: aDVD [
 	
 	^ self new setDVD: aDVD.
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 LlMarkInterestingClip >> createClip [
 
 	| clip |
@@ -32,21 +32,21 @@ LlMarkInterestingClip >> createClip [
 			yourself.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlMarkInterestingClip >> defaultSecondsToSkip [
 	"This will depend on what users find most useful.  In testing, 3 seconds seemed to work well."
 
 	^ 3.
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 LlMarkInterestingClip >> endHere [
 
 	endTime := dvd position.
 	self playClip.
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 LlMarkInterestingClip >> endLaterBy: aNumberOfSeconds [
 
 	endTime := endTime + aNumberOfSeconds.
@@ -54,7 +54,7 @@ LlMarkInterestingClip >> endLaterBy: aNumberOfSeconds [
 	self playRestOfClip.
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 LlMarkInterestingClip >> execute [
 
 "	dvd
@@ -63,7 +63,7 @@ LlMarkInterestingClip >> execute [
 		position: originalTime."
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LlMarkInterestingClip >> morph [
 
 	| builder contents window |
@@ -83,7 +83,7 @@ LlMarkInterestingClip >> morph [
 	^ window.
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 LlMarkInterestingClip >> playClip [
 
 	dvd position: startTime.
@@ -92,7 +92,7 @@ LlMarkInterestingClip >> playClip [
 	  dvd pause ] fork.
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 LlMarkInterestingClip >> playRestOfClip [
 
 	dvd play.
@@ -100,19 +100,19 @@ LlMarkInterestingClip >> playRestOfClip [
 	  dvd pause ] fork.
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 LlMarkInterestingClip >> playUntilUserMarksEnd [
 
 	dvd play.
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 LlMarkInterestingClip >> saveClip [
 
 	dvd addClip: self createClip.
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 LlMarkInterestingClip >> setDVD: aDVD [ 
 
 	dvd := aDVD.
@@ -120,7 +120,7 @@ LlMarkInterestingClip >> setDVD: aDVD [
 	^ self.
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 LlMarkInterestingClip >> startEarlierBy: aNumberOfSeconds [
 
 	startTime := startTime - aNumberOfSeconds.
@@ -128,7 +128,7 @@ LlMarkInterestingClip >> startEarlierBy: aNumberOfSeconds [
 	self playUntilUserMarksEnd.
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 LlMarkInterestingClip >> startHere [
 
 	startTime := dvd position.

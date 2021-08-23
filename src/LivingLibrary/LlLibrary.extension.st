@@ -1,6 +1,6 @@
-Extension { #name : #LlLibrary }
+Extension { #name : 'LlLibrary' }
 
-{ #category : #'*LivingLibrary-Features' }
+{ #category : '*LivingLibrary-Features' }
 LlLibrary >> collection [
 
 	^ self catalog keys.

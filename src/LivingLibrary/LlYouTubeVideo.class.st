@@ -3,15 +3,15 @@ Creating:
 video := YouTubeVideo of: 'Melissa Etheridge & Joss Stone - Janis Joplin Tribute' at: 'http://www.youtube.com/watch?v=ef-f-l2Pbn8&sns=tw'.
 "
 Class {
-	#name : #LlYouTubeVideo,
-	#superclass : #LlLibraryItem,
+	#name : 'LlYouTubeVideo',
+	#superclass : 'LlLibraryItem',
 	#instVars : [
 		'id'
 	],
-	#category : #'LivingLibrary-Core'
+	#category : 'LivingLibrary-Core'
 }
 
-{ #category : #example }
+{ #category : 'example' }
 LlYouTubeVideo class >> example [
 	<gtExample>
 	^ self
@@ -20,21 +20,21 @@ LlYouTubeVideo class >> example [
 		then: [ :inst | inst url should equal: 'https://www.youtube.com/watch?v=PA-j7uyju_8' asUrl ]
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 LlYouTubeVideo class >> fromLinkString: aString [
 	^ self new
 		id: (aString findTokens: '/=') last;
 		yourself
 ]
 
-{ #category : #example }
+{ #category : 'example' }
 LlYouTubeVideo class >> fromLinkStringExample [
 	<gtExample>
 	self fromLinkStringExampleInput: 'https://youtu.be/A0TafHXszg' shouldSetID: 'A0TafHXszg'.
 	^ self fromLinkStringExampleInput: 'https://www.youtube.com/watch?v=QOe3FA4wJcQ' shouldSetID: 'QOe3FA4wJcQ'
 ]
 
-{ #category : #'private-examples' }
+{ #category : 'private-examples' }
 LlYouTubeVideo class >> fromLinkStringExampleInput: urlString shouldSetID: idString [
 	<gtExample>
 	^ self
@@ -43,14 +43,14 @@ LlYouTubeVideo class >> fromLinkStringExampleInput: urlString shouldSetID: idStr
 		then: [ :video | video id should equal: idString ] 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlYouTubeVideo >> displayStringOn: aStream [
 	aStream
 		nextPutAll: 'YouTube Video: ';
 		print: self work
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 LlYouTubeVideo >> download [
 
 	YouTubeVideoDownloader new download: self.
@@ -95,17 +95,17 @@ http%3A%2F%2Fv7.lscache6.c.youtube.com%2Fvideoplayback%3Fip%3D0.0.0.0%26sparams%
 rv.2.rating=4.8801843318"
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlYouTubeVideo >> id [
 	^ id
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlYouTubeVideo >> id: aString [
 	id := aString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlYouTubeVideo >> play [
 
 	CwSafari reference
@@ -113,13 +113,13 @@ LlYouTubeVideo >> play [
 		activate.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlYouTubeVideo >> title [
 	"We'd like to get from API"
 	self shouldBeImplemented
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlYouTubeVideo >> url [
 	^ 'https://www.youtube.com/watch' asUrl ? (#v -> self id)
 ]

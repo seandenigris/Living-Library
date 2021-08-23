@@ -7,27 +7,27 @@ Say we have a CD. It's not a work itself, but a copy of that work - say an audio
 {{gtExample:LivingLibrary class>>#exampleAddDigitalItem}}
 "
 Class {
-	#name : #LlLibrary,
-	#superclass : #Object,
+	#name : 'LlLibrary',
+	#superclass : 'Object',
 	#instVars : [
 		'catalog'
 	],
 	#classInstVars : [
 		'uniqueInstance'
 	],
-	#category : #'LivingLibrary-Core'
+	#category : 'LivingLibrary-Core'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlLibrary class >> example [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlLibrary class >> exampleAdd [
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlLibrary class >> exampleAddDigitalItem [
 	<gtExample>
 	| pdfFile copy lib work |
@@ -44,7 +44,7 @@ LlLibrary class >> exampleAddDigitalItem [
 	^ lib
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlLibrary class >> exampleAddPhysicalItem [
 	<gtExample>
 	| copy work lib |
@@ -60,42 +60,44 @@ LlLibrary class >> exampleAddPhysicalItem [
 	(lib where copiesOf: work) should include: copy.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlLibrary class >> exampleAddSeries [
 	<gtExample>
 	^ self
 		given: [ LlLibrary new ]
 		when: [ :lib |
-			lib beAwareOf: LlAuthoredWork exampleStarWarsSeries ]
-		then: [ :a :b | Halt now ]
+			lib 
+				beAwareOf: LlAuthoredWork exampleStarWarsSeries;
+			yourself ]
+		then: [ :a :b | ]
 ]
 
-{ #category : #persisting }
+{ #category : 'persisting' }
 LlLibrary class >> restoreFrom: aLivingLibrary [
 
 	self uniqueInstance: aLivingLibrary.
 
 ]
 
-{ #category : #persisting }
+{ #category : 'persisting' }
 LlLibrary class >> spData [
 
 	^ self uniqueInstance
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlLibrary class >> uniqueInstance [
 
 	^ uniqueInstance ifNil: [ uniqueInstance := self new ].
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlLibrary class >> uniqueInstance: aLivingLibrary [
 	uniqueInstance := aLivingLibrary
 
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 LlLibrary >> addCopy: copy of: work [
 	| copies |
 	copy work: work.
@@ -103,35 +105,35 @@ LlLibrary >> addCopy: copy of: work [
 	copies add: copy.
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 LlLibrary >> beAwareOf: work [
 	^ self ensureCardFor: work
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlLibrary >> catalog [
 	^ catalog ifNil: [ catalog := Dictionary new ].
 ]
 
-{ #category : #'*LivingLibrary-Features' }
+{ #category : '*LivingLibrary-Features' }
 LlLibrary >> collection [
 
 	^ self catalog keys.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlLibrary >> copiesOf: aWrittenWork [
 
 	^ catalog at: aWrittenWork ifAbsent: [ #() ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 LlLibrary >> ensureCardFor: work [
 	work family do: [ :e | self catalog at: e ifAbsentPut: [ Bag new ] ].
 	^ self catalog at: work
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlLibrary >> gtGtSpotterFor: aStep [
 	<gtSearch>
 	^ aStep listProcessor
@@ -144,7 +146,7 @@ LlLibrary >> gtGtSpotterFor: aStep [
 		send: [ :work | (self copiesOf: work) ifEmpty: [ work ] ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlLibrary >> gtSpotterNewWorkFor: aStep [
 	<gtSearch>
 	aStep listProcessor
@@ -167,7 +169,7 @@ LlLibrary >> gtSpotterNewWorkFor: aStep [
 			work ]
 ]
 
-{ #category : #views }
+{ #category : 'views' }
 LlLibrary >> gtViewWorksOn: aView [
 	<gtView>
 
@@ -184,17 +186,17 @@ LlLibrary >> gtViewWorksOn: aView [
 		actionUpdateButtonTooltip: 'Update'.
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LlLibrary >> hasCardFor: aWork [
 	^ self catalog includesKey: aWork
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 LlLibrary >> receive: aCopy [
 	self addCopy: aCopy of: aCopy work
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 LlLibrary >> view: aWrittenWork [
 
 	| copies |
@@ -204,12 +206,12 @@ LlLibrary >> view: aWrittenWork [
 	copies atRandom view
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlLibrary >> works [
 	^ self catalog keys sort: (#fullTitle collatedBy: #asLowercase)
 ]
 
-{ #category : #'magritte-accessing' }
+{ #category : 'magritte-accessing' }
 LlLibrary >> worksDescription [
 	<magritteDescription>
 	^ MAToManyRelationDescription new

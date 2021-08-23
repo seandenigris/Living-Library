@@ -1,31 +1,31 @@
 Class {
-	#name : #LlWebResource,
-	#superclass : #LlLibraryItem,
+	#name : 'LlWebResource',
+	#superclass : 'LlLibraryItem',
 	#instVars : [
 		'url',
 		'description'
 	],
-	#category : #'LivingLibrary-Core'
+	#category : 'LivingLibrary-Core'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlWebResource >> citation [
 	^ QuWebCitation new
 		source: self url
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlWebResource >> description [
 	^ self maLazyInstVarUsing: self descriptionDescription
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlWebResource >> description: anObject [
 	description := anObject
 ]
 
-{ #category : #Magritte }
+{ #category : 'Magritte' }
 LlWebResource >> descriptionDescription [
 	<magritteDescription>
 	^ MAStringDescription new
@@ -37,7 +37,7 @@ LlWebResource >> descriptionDescription [
 			yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlWebResource >> printOn: aStream [
 	aStream
 		nextPutAll: self description;
@@ -45,12 +45,12 @@ LlWebResource >> printOn: aStream [
 		print: self url
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlWebResource >> url [
 	^ url
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlWebResource >> url: anObject [
 	url := anObject
 ]

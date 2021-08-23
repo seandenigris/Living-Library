@@ -1,18 +1,18 @@
-Extension { #name : #RlResource }
+Extension { #name : 'RlResource' }
 
-{ #category : #'*LivingLibrary' }
+{ #category : '*LivingLibrary' }
 RlResource >> newWork [
 	^ LlAuthoredWork new
 		title: self file base;
 		yourself
 ]
 
-{ #category : #'*LivingLibrary' }
+{ #category : '*LivingLibrary' }
 RlResource >> work [
 	^ self propertyAt: #llWork ifAbsent: [ nil ]
 ]
 
-{ #category : #'*LivingLibrary' }
+{ #category : '*LivingLibrary' }
 RlResource >> work: anLlAuthoredWork [
 	self propertyAt: #llWork put: anLlAuthoredWork
 ]

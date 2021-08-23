@@ -1,6 +1,6 @@
 Class {
-	#name : #BrBible,
-	#superclass : #Object,
+	#name : 'BrBible',
+	#superclass : 'Object',
 	#instVars : [
 		'books',
 		'version',
@@ -9,10 +9,10 @@ Class {
 	#classInstVars : [
 		'versions'
 	],
-	#category : #'LivingLibrary-Bible'
+	#category : 'LivingLibrary-Bible'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BrBible class >> exampleImportVersion [
 	<sampleInstance>
 	"To add to DB: `BrBible versions add: self exampleImportVersion`"
@@ -47,27 +47,27 @@ BrBible class >> exampleImportVersion [
 	^ bible
 ]
 
-{ #category : #persisting }
+{ #category : 'persisting' }
 BrBible class >> restoreFrom: aCollection [
 	versions := aCollection
 ]
 
-{ #category : #persisting }
+{ #category : 'persisting' }
 BrBible class >> spData [
 	^ versions
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BrBible class >> versions [
 	^ versions ifNil: [ versions := Bag new ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BrBible >> books [
 	^ books ifNil: [ books := Bag new ]
 ]
 
-{ #category : #'magritte-accessing' }
+{ #category : 'magritte-accessing' }
 BrBible >> descriptionVersion [
 	<magritteDescription>
 	^ MAStringDescription new
@@ -75,7 +75,7 @@ BrBible >> descriptionVersion [
 		yourself
 ]
 
-{ #category : #'magritte-accessing' }
+{ #category : 'magritte-accessing' }
 BrBible >> descriptionVersionCode [
 	<magritteDescription>
 	^ MAStringDescription new
@@ -83,7 +83,7 @@ BrBible >> descriptionVersionCode [
 		yourself
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 BrBible >> printOn: aStream [
 	aStream
 		nextPutAll: self version;
@@ -92,22 +92,22 @@ BrBible >> printOn: aStream [
 		nextPut: $)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BrBible >> version [
 	^ self maLazyFrom: self descriptionVersion
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BrBible >> version: anObject [
 	version := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BrBible >> versionCode [
 	^ self maLazyFrom: self descriptionVersionCode
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BrBible >> versionCode: anObject [
 	versionCode := anObject
 ]
