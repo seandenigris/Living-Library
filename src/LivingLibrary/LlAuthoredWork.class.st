@@ -317,6 +317,9 @@ LlAuthoredWork >> searchWebForCopies [
 	'https://www.thriftbooks.com/browse/' asUrl
 		queryAt: 'b.search' put: self title;
 		open.
+	'https://www.worldofbooks.com/en-us/category/all' asUrl
+		queryAt: 'search' put: self title;
+		open.
 	'https://www.betterworldbooks.com/search/results' asUrl
 		queryAt: #q put: self title;
 		open
