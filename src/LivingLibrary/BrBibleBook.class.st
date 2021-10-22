@@ -1,6 +1,6 @@
 Class {
-	#name : 'BrBibleBook',
-	#superclass : 'Object',
+	#name : #BrBibleBook,
+	#superclass : #Object,
 	#instVars : [
 		'title',
 		'abbreviation',
@@ -9,27 +9,27 @@ Class {
 	#category : 'LivingLibrary-Bible'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 BrBibleBook >> abbreviation [
 	^ abbreviation
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 BrBibleBook >> abbreviation: anObject [
 	abbreviation := anObject
 ]
 
-{ #category : 'converting' }
+{ #category : #converting }
 BrBibleBook >> brAsBook [
 	^ self
 ]
 
-{ #category : 'accessingas yet unclassified' }
+{ #category : #'accessingas yet unclassified' }
 BrBibleBook >> chapters [
 	^ chapters ifNil: [ chapters := Dictionary new ]
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 BrBibleBook >> import: versesString asChapter: anInteger [
 	"versesString - 'Brethren, ...
 
@@ -47,22 +47,22 @@ BrBibleBook >> import: versesString asChapter: anInteger [
 	self at: anInteger put: verses
 ]
 
-{ #category : 'printing' }
+{ #category : #printing }
 BrBibleBook >> printOn: aStream [
 	aStream nextPutAll: self title
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 BrBibleBook >> title [
 	^ self maLazyFrom: self titleDescription
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 BrBibleBook >> title: anObject [
 	title := anObject
 ]
 
-{ #category : 'magritte-accessing' }
+{ #category : #'magritte-accessing' }
 BrBibleBook >> titleDescription [
 	<magritteDescription>
 	^ MAStringDescription new

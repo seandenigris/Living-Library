@@ -1,10 +1,10 @@
 Class {
-	#name : 'LlNoDiskImage',
-	#superclass : 'Object',
+	#name : #LlNoDiskImage,
+	#superclass : #Object,
 	#category : 'LivingLibrary-Support'
 }
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 LlNoDiskImage >> diskutilInfo [
 
 	^ LlUnknownDiskInfo new.

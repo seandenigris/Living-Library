@@ -1,10 +1,10 @@
 Class {
-	#name : 'WrittenWorkSpecification',
-	#superclass : 'TestCase',
+	#name : #WrittenWorkSpecification,
+	#superclass : #TestCase,
 	#category : 'LivingLibrary-Specifications'
 }
 
-{ #category : 'tests' }
+{ #category : #tests }
 WrittenWorkSpecification >> testAddEdition [
 
 	| work edition |
@@ -14,7 +14,7 @@ WrittenWorkSpecification >> testAddEdition [
 	work editions first should equal: edition.
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 WrittenWorkSpecification >> testCreation [
 
 	| author title work |
@@ -26,7 +26,7 @@ WrittenWorkSpecification >> testCreation [
 	^ work
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 WrittenWorkSpecification >> testLibraryControl [
 	| work library |
 	work := self given: #testCreation.
@@ -36,7 +36,7 @@ WrittenWorkSpecification >> testLibraryControl [
 	library works should include: work
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 WrittenWorkSpecification >> testNoAuthor [
 
 	| title work |
@@ -48,7 +48,7 @@ WrittenWorkSpecification >> testNoAuthor [
 		
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 WrittenWorkSpecification >> testPdfCopy [
 
 	| title work library |
@@ -63,7 +63,7 @@ WrittenWorkSpecification >> testPdfCopy [
 		
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 WrittenWorkSpecification >> testPrinting [
 
 	| work |

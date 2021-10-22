@@ -15,8 +15,8 @@ Flickr new
 (FlickrUser fromUrl: 'https://www.flickr.com/photos/rebelshea/4975793876' asUrl) id.
 "
 Class {
-	#name : 'Flickr',
-	#superclass : 'Object',
+	#name : #Flickr,
+	#superclass : #Object,
 	#instVars : [
 		'userID',
 		'apiKey',
@@ -31,49 +31,49 @@ Class {
 	#category : 'LivingLibrary-Flickr'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 Flickr class >> apiKey [
 	^ apiKey
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 Flickr class >> apiKey: anObject [
 	apiKey := anObject
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 Flickr class >> userID [
 	^ userID
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 Flickr class >> userID: anObject [
 	userID := anObject
 ]
 
-{ #category : 'private' }
+{ #category : #private }
 Flickr >> arguments [
 
 	^ arguments ifNil: [ arguments := Dictionary new ]
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 Flickr >> baseUrl [
 
 	^ 'https://api.flickr.com/services/rest/?' asUrl
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 Flickr >> format [
 	^ format ifNil: [ format := 'json' ]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 Flickr >> format: anObject [
 	format := anObject
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 Flickr >> get: methodString [ 
 
 	| url jsonString |
@@ -92,7 +92,7 @@ Flickr >> get: methodString [
 	^ (NeoJSONReader on: jsonString readStream) nextAs: FlickrApiResponse
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 Flickr >> methods [
 
 	| response |
@@ -100,7 +100,7 @@ Flickr >> methods [
 	^ ((response data at: 'methods') at: 'method') collect: [ :e | FlickrApiMethod named: (e at: '_content') ]
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 Flickr >> set: keyString to: valueString [
 
 	self arguments at: keyString put: valueString

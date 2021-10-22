@@ -1,6 +1,6 @@
 Class {
-	#name : 'LlInterview',
-	#superclass : 'Object',
+	#name : #LlInterview,
+	#superclass : #Object,
 	#traits : 'TMagritteBootstrap',
 	#classTraits : 'TMagritteBootstrap classTrait',
 	#instVars : [
@@ -10,7 +10,7 @@ Class {
 	#category : 'LivingLibrary-Core'
 }
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 LlInterview >> descriptionSubjects [
 	<magritteDescription>
 	
@@ -23,14 +23,14 @@ LlInterview >> descriptionSubjects [
 		yourself
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 LlInterview >> printOn: aStream [
 	title
 		ifNotNil: [ aStream nextPutAll: title ]
 		ifNil: [ super printOn: aStream ]
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 LlInterview >> titleDescription [
 	<magritteDescription>
 	

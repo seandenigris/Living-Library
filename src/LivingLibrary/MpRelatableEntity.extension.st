@@ -1,6 +1,6 @@
-Extension { #name : 'MpRelatableEntity' }
+Extension { #name : #MpRelatableEntity }
 
-{ #category : '*LivingLibrary' }
+{ #category : #'*LivingLibrary' }
 MpRelatableEntity >> llAsCollection [
 	^ { self }
 ]

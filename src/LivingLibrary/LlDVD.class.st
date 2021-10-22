@@ -17,8 +17,8 @@ Per [winxdvd](https://www.winxdvd.com/resource/best-handbrake-settings-for-dvd-t
 
 "
 Class {
-	#name : 'LlDVD',
-	#superclass : 'LlOpticalDisc',
+	#name : #LlDVD,
+	#superclass : #LlOpticalDisc,
 	#instVars : [
 		'videoFile',
 		'diskImage',
@@ -31,7 +31,7 @@ Class {
 	#category : 'LivingLibrary-Core'
 }
 
-{ #category : 'utility' }
+{ #category : #utility }
 LlDVD class >> currentDVD [
 	"How do we know which disk is the DVD drive?  Some options (not suer how workable):
 		* disktool fsType = udf
@@ -41,25 +41,25 @@ LlDVD class >> currentDVD [
 	^ self fromDiskName: diskName.
 ]
 
-{ #category : 'instance creation' }
+{ #category : #'instance creation' }
 LlDVD class >> currentlyInDrive [
 
 	^ self new setInfoFromCurrentDisc.
 ]
 
-{ #category : 'instance creation' }
+{ #category : #'instance creation' }
 LlDVD class >> fromDiskImage: anFSReference [
 
 	^ self new setDiskImage: anFSReference.
 ]
 
-{ #category : 'instance creation' }
+{ #category : #'instance creation' }
 LlDVD class >> fromDiskName: aString [ 
 
 	^ self new setTitle: '' diskName: aString.
 ]
 
-{ #category : 'playing' }
+{ #category : #playing }
 LlDVD class >> play: titleString for: aMind [ 
 
 	^ (self titled: titleString)
@@ -67,7 +67,7 @@ LlDVD class >> play: titleString for: aMind [
 		yourself.
 ]
 
-{ #category : 'playing' }
+{ #category : #playing }
 LlDVD class >> playCurrent [
 
 	^ self currentDVD
@@ -75,19 +75,19 @@ LlDVD class >> playCurrent [
 		yourself.
 ]
 
-{ #category : 'instance creation' }
+{ #category : #'instance creation' }
 LlDVD class >> rippedTo: aDirectoryEntryFile [
 
 "	^ self new localImage: aDirectoryEntryFile"
 ]
 
-{ #category : 'mind' }
+{ #category : #mind }
 LlDVD >> beObservedBy: aMind [ 
 
 	observers add: aMind.
 ]
 
-{ #category : 'playing' }
+{ #category : #playing }
 LlDVD >> bestFormat [
 
 	videoFile ifNotNil: [ :f | ^ f ].
@@ -97,19 +97,19 @@ LlDVD >> bestFormat [
 		ifFalse: [ self error: 'Disk not in drive' ].
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 LlDVD >> cacheUpdating: anObject [
 
 	self createDiskImageUpdating: anObject.
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 LlDVD >> cacheUpdating: aBlock cancelIf: cancelPredicate [
 
 	self createDiskImageUpdating: aBlock cancelIf: cancelPredicate.
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 LlDVD >> createDiskImageUpdating: anObject [
 	"anObject will be sent status updates"
 
@@ -123,7 +123,7 @@ LlDVD >> createDiskImageUpdating: anObject [
 		diskImage := fileReference ].
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 LlDVD >> createDiskImageUpdating: aBlock cancelIf: cancelPredicate [
 
 	| imageFileName |
@@ -137,44 +137,44 @@ LlDVD >> createDiskImageUpdating: aBlock cancelIf: cancelPredicate [
 		diskImage := fileReference ].
 ]
 
-{ #category : 'private' }
+{ #category : #private }
 LlDVD >> deviceFile [
 
 	self isMounted ifFalse: [ self error: 'DVD has no device file becuase it''s not mounted' ].
 	^ self diskutilInfo deviceFile.
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 LlDVD >> discPrintOn: aStream [
 
 	aStream nextPutAll: self diskName.
 ]
 
-{ #category : 'private' }
+{ #category : #private }
 LlDVD >> diskName [
 
 	^ diskName ifNil: [ diskName := self diskutilInfo volumeName ].
 ]
 
-{ #category : 'private' }
+{ #category : #private }
 LlDVD >> diskutilInfo [
 
 	^ diskutilInfo ifUnknown: [ diskutilInfo := diskImage diskutilInfo ].
 ]
 
-{ #category : 'private' }
+{ #category : #private }
 LlDVD >> drutilDiscinfo [
 
 	^ drutilDiscinfo.
 ]
 
-{ #category : 'private' }
+{ #category : #private }
 LlDVD >> drutilStatus [
 
 	^ drutilStatus.
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 LlDVD >> initialize [
 
 	diskutilInfo := LlUnknownDiskInfo new.
@@ -184,7 +184,7 @@ LlDVD >> initialize [
 	^ self.
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 LlDVD >> initializer [
 
 	observers := OrderedCollection  new.
@@ -192,95 +192,95 @@ LlDVD >> initializer [
 	notes := Note note: 'Notes on ', self title near: 0.
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 LlDVD >> isMounted [
 
 	^ diskImage isMounted or: [ self isInDrive ].
 ]
 
-{ #category : 'making clips' }
+{ #category : #'making clips' }
 LlDVD >> markInterestingClip [
 
 	self pause.
 	^ LlMarkInterestingDVDClip from: self.
 ]
 
-{ #category : 'making clips' }
+{ #category : #'making clips' }
 LlDVD >> markStartOfSection [
 
 	self pause.
 	^ MarkStartOfOpticalDiscSection from: self.
 ]
 
-{ #category : 'private' }
+{ #category : #private }
 LlDVD >> note: aString [ 
 
 	notes note: aString near: self position.
 ]
 
-{ #category : 'mind' }
+{ #category : #mind }
 LlDVD >> note: informationString asA: typeString [
 
 	self pause.
 	self observer consider: informationString asA: typeString.
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 LlDVD >> notes [
 
 	^ notes.
 ]
 
-{ #category : 'mind' }
+{ #category : #mind }
 LlDVD >> observer [
 
 	^ Mind ofSean.
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 LlDVD >> onDiskImageStatusUpdateDo: aBlock [
 
 	self announcer on: LlDiskImageStatus do: aBlock.
 ]
 
-{ #category : 'mind' }
+{ #category : #mind }
 LlDVD >> playFor: aPerson [
 
 	aPerson lookAt: self.
 	self play.
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 LlDVD >> playLength [
 
 	^ self player dvdPlayLength.
 ]
 
-{ #category : 'private' }
+{ #category : #private }
 LlDVD >> player [
 
 	^ self bestFormat player.
 ]
 
-{ #category : 'playing' }
+{ #category : #playing }
 LlDVD >> position [
 
 	^ self player position.
 ]
 
-{ #category : 'playing' }
+{ #category : #playing }
 LlDVD >> position: aDuration [
 
 	self player position: aDuration.
 ]
 
-{ #category : 'private' }
+{ #category : #private }
 LlDVD >> realDiskutilInfo [
 
 	^ diskutilInfo ifUnknown: [ diskutilInfo := diskImage diskutilInfo ].
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 LlDVD >> rip [
 	
 	self inform: 'See ', self className, '''s class comment, "Ripping" section'.
@@ -288,13 +288,13 @@ LlDVD >> rip [
 	"Implementation (or lack thereof) note: I could spend a lot of time programmatizing this, but at the end of the day, will it be worth the effort? How much faster/easier will it be vs. just following the fairly simple directions?"
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 LlDVD >> ripper [
 
 	^ LlRipDVD on: self.
 ]
 
-{ #category : 'private' }
+{ #category : #private }
 LlDVD >> section: aTitleString startsAt: aNumberOfSeconds [
 
 	
@@ -304,13 +304,13 @@ LlDVD >> section: aTitleString startsAt: aNumberOfSeconds [
 					andEndingAt: self playLength).
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 LlDVD >> sections [
 
 	^ sections copy.
 ]
 
-{ #category : 'private' }
+{ #category : #private }
 LlDVD >> setDiskImage: anFSReference [ 
 
 	diskImage := LlVideoDVDImage on: anFSReference.
@@ -318,7 +318,7 @@ LlDVD >> setDiskImage: anFSReference [
 	^ self.
 ]
 
-{ #category : 'private' }
+{ #category : #private }
 LlDVD >> setInfoFromCurrentDisc [
 	"We have no idea what uniquely identifies a disc, so just save everything and we'll parse/filter/whatever when the need arises"
 	
@@ -328,7 +328,7 @@ LlDVD >> setInfoFromCurrentDisc [
 	^ self.
 ]
 
-{ #category : 'private' }
+{ #category : #private }
 LlDVD >> setTitle: titleString diskName: nameString [
 
 	title := titleString.
@@ -336,32 +336,32 @@ LlDVD >> setTitle: titleString diskName: nameString [
 	^ self.
 ]
 
-{ #category : 'copying' }
+{ #category : #copying }
 LlDVD >> size [
 
 	^ self diskutilInfo size.
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 LlDVD >> state [
 
 	^ DVDPlayer reference dvdState.
 ]
 
-{ #category : 'mind' }
+{ #category : #mind }
 LlDVD >> takeNote [
 
 	self pause.
 	^ TakeNote on: self.
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 LlDVD >> timeRemaining [
 
 	^ self player timeRemaining.
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 LlDVD >> togglePlayAndPause [
 
 	| file |
@@ -371,7 +371,7 @@ LlDVD >> togglePlayAndPause [
 		ifFalse: [ file play ].
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 LlDVD >> unsubscribe: anObject [
 
 	self announcer unsubscribe: anObject.

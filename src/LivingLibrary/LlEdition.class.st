@@ -1,6 +1,6 @@
 Class {
-	#name : 'LlEdition',
-	#superclass : 'Object',
+	#name : #LlEdition,
+	#superclass : #Object,
 	#traits : 'LlTLibraryItem',
 	#classTraits : 'LlTLibraryItem classTrait',
 	#instVars : [
@@ -10,17 +10,17 @@ Class {
 	#category : 'LivingLibrary-Core'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 LlEdition >> description [
 	^ self maLazyFrom: self descriptionDescription
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 LlEdition >> description: anObject [
 	description := anObject
 ]
 
-{ #category : 'magritte-accessing' }
+{ #category : #'magritte-accessing' }
 LlEdition >> descriptionDescription [
 	<magritteDescription>
 	^ MAStringDescription new
@@ -28,7 +28,7 @@ LlEdition >> descriptionDescription [
 		yourself
 ]
 
-{ #category : 'magritte-accessing' }
+{ #category : #'magritte-accessing' }
 LlEdition >> descriptionWork [
 	<magritteDescription>
 	^ MAToOneRelationDescription new
@@ -37,7 +37,7 @@ LlEdition >> descriptionWork [
 		yourself
 ]
 
-{ #category : 'printing' }
+{ #category : #printing }
 LlEdition >> printOn: aStream [
 
 	aStream
@@ -46,12 +46,12 @@ LlEdition >> printOn: aStream [
 		nextPutAll: description
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 LlEdition >> work [
 	^ self maLazyFrom: self descriptionWork
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 LlEdition >> work: anObject [
 	work := anObject
 ]

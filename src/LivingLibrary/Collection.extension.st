@@ -1,6 +1,6 @@
-Extension { #name : 'Collection' }
+Extension { #name : #Collection }
 
-{ #category : '*LivingLibrary' }
+{ #category : #'*LivingLibrary' }
 Collection >> llAsAuthorCollection [
 	^ self
 ]

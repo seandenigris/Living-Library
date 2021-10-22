@@ -1,6 +1,6 @@
 Class {
-	#name : 'FlickrApiResponse',
-	#superclass : 'Object',
+	#name : #FlickrApiResponse,
+	#superclass : #Object,
 	#instVars : [
 		'status',
 		'data'
@@ -8,7 +8,7 @@ Class {
 	#category : 'LivingLibrary-Flickr'
 }
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 FlickrApiResponse class >> neoJsonMapping: mapper [
 	mapper for: self customDo: [ :mapping |
 		mapping decoder: [ :dict | | dataDict |
@@ -20,22 +20,22 @@ FlickrApiResponse class >> neoJsonMapping: mapper [
 				yourself ] ]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 FlickrApiResponse >> data [
 	^ data
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 FlickrApiResponse >> data: anObject [
 	data := anObject
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 FlickrApiResponse >> status [
 	^ status
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 FlickrApiResponse >> status: anObject [
 	status := anObject
 ]

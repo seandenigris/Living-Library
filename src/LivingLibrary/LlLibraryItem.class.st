@@ -1,18 +1,18 @@
 Class {
-	#name : 'LlLibraryItem',
-	#superclass : 'MAObject',
+	#name : #LlLibraryItem,
+	#superclass : #MAObject,
 	#instVars : [
 		'work'
 	],
 	#category : 'LivingLibrary-Core'
 }
 
-{ #category : 'testing' }
+{ #category : #testing }
 LlLibraryItem class >> isAbstract [
 	^ false
 ]
 
-{ #category : 'magritte-accessing' }
+{ #category : #'magritte-accessing' }
 LlLibraryItem >> descriptionWork [
 	<magritteDescription>
 	^ MAToOneRelationDescription new
@@ -21,12 +21,12 @@ LlLibraryItem >> descriptionWork [
 		yourself
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 LlLibraryItem >> work [
 	^ self maLazyInstVarUsing: self descriptionWork
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 LlLibraryItem >> work: anObject [
 	work := anObject
 ]

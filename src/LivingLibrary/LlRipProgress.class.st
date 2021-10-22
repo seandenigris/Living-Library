@@ -1,5 +1,5 @@
 Class {
-	#name : 'LlRipProgress',
-	#superclass : 'Announcement',
+	#name : #LlRipProgress,
+	#superclass : #Announcement,
 	#category : 'LivingLibrary-Support'
 }

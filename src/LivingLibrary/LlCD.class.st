@@ -12,8 +12,8 @@ This is what I want to happen.
 3. Enter the info
 "
 Class {
-	#name : 'LlCD',
-	#superclass : 'LlOpticalDisc',
+	#name : #LlCD,
+	#superclass : #LlOpticalDisc,
 	#instVars : [
 		'player'
 	],
@@ -23,25 +23,25 @@ Class {
 	#category : 'LivingLibrary-Core'
 }
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 LlCD class >> initialize [
 
 	CDs := OrderedCollection  new.
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 LlCD class >> nameOfDiskInDrive [
 
 	^ ITunes reference nameOfCDInDrive.
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 LlCD class >> titled: aString [ 
 
 	^ CD new setTitle: aString.
 ]
 
-{ #category : 'instance creation' }
+{ #category : #'instance creation' }
 LlCD class >> titled: titleString onDiskNamed: diskNameString [
 
 	^ CDs
@@ -49,13 +49,13 @@ LlCD class >> titled: titleString onDiskNamed: diskNameString [
 		ifNone: [ CDs add: (self new setTitle: titleString diskName: diskNameString) ].
 ]
 
-{ #category : 'initialize-release' }
+{ #category : #'initialize-release' }
 LlCD >> initialize [
 
 	player := CwQuickTime reference.
 ]
 
-{ #category : 'private' }
+{ #category : #private }
 LlCD >> markReleventClip [
 
 	"I'm experimenting with the practice of all objects are valid, which tells me to have a different class to create the 'note' while I'm setting it up."
@@ -63,7 +63,7 @@ LlCD >> markReleventClip [
 	^ CDClipCreator createClipFrom: self. "AndWhenCompleteSend: #clipped."
 ]
 
-{ #category : 'note-taking' }
+{ #category : #'note-taking' }
 LlCD >> note: aString [ 
 
 	self pause.
@@ -71,31 +71,31 @@ LlCD >> note: aString [
 	"self enterInformation."
 ]
 
-{ #category : 'playing' }
+{ #category : #playing }
 LlCD >> pause [
 
 	player pause.
 ]
 
-{ #category : 'playing' }
+{ #category : #playing }
 LlCD >> play [
 
 	player playCD.
 ]
 
-{ #category : 'playing' }
+{ #category : #playing }
 LlCD >> position [
 
 	^ Duration seconds: player position.
 ]
 
-{ #category : 'playing' }
+{ #category : #playing }
 LlCD >> position: aDuration [
 
 	player position: aDuration.
 ]
 
-{ #category : 'private' }
+{ #category : #private }
 LlCD >> setTitle: titleString diskName: diskNameString [ 
 
 	title := titleString.
@@ -103,19 +103,19 @@ LlCD >> setTitle: titleString diskName: diskNameString [
 	^ self.
 ]
 
-{ #category : 'playing' }
+{ #category : #playing }
 LlCD >> skipAhead: aDuration [
 
 	player skipAhead: aDuration.
 ]
 
-{ #category : 'playing' }
+{ #category : #playing }
 LlCD >> skipBack: aDuration [
 
 	player skipBack: aDuration.
 ]
 
-{ #category : 'note-taking' }
+{ #category : #'note-taking' }
 LlCD >> takeNote [
 
 	"Motivation: In the case of listening casually to a CD, I want to pause the CD when I decide to take a note because, if the note is directly sourced from the CD, it is probably near the current position.  Also, I don't want to listen and note at the same time.  I also don't necessarily know what it is that I'm noting exactly.  I'll probably take a second to fully form it."
