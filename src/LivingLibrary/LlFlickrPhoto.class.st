@@ -7,7 +7,7 @@ Class {
 	#instVars : [
 		'id'
 	],
-	#category : 'LivingLibrary-Flickr'
+	#category : #'LivingLibrary-Flickr'
 }
 
 { #category : #examples }
@@ -23,21 +23,6 @@ LlFlickrPhoto class >> example [
 { #category : #accessing }
 LlFlickrPhoto >> asElement [
 	^ BlUrlImageElement url: self downloadURL
-]
-
-{ #category : #accessing }
-LlFlickrPhoto >> author [
-	^ self work author
-]
-
-{ #category : #accessing }
-LlFlickrPhoto >> author: person [
-	^ self work author: person
-]
-
-{ #category : #accessing }
-LlFlickrPhoto >> authors [
-	^ self work authors
 ]
 
 { #category : #accessing }
@@ -69,7 +54,7 @@ LlFlickrPhoto >> downloadURL [
 	^ (original at: 'source') asUrl
 ]
 
-{ #category : #accessing }
+{ #category : #views }
 LlFlickrPhoto >> gtPreviewOn: aView [
 	<gtView>
 	^ aView pannable
@@ -96,24 +81,4 @@ LlFlickrPhoto >> id: anObject [
 { #category : #accessing }
 LlFlickrPhoto >> licenseAttribution [
 	^ self work license attributionFor: self
-]
-
-{ #category : #accessing }
-LlFlickrPhoto >> title [
-	^ self work title
-]
-
-{ #category : #accessing }
-LlFlickrPhoto >> title: aString [
-	self work title: aString
-]
-
-{ #category : #accessing }
-LlFlickrPhoto >> work [
-	^ work ifNil: [ work := LlAuthoredWork new ]
-]
-
-{ #category : #accessing }
-LlFlickrPhoto >> work: aWork [
-	work := aWork
 ]

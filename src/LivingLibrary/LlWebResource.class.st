@@ -5,8 +5,23 @@ Class {
 		'url',
 		'description'
 	],
-	#category : 'LivingLibrary-Core'
+	#category : #'LivingLibrary-Core'
 }
+
+{ #category : #accessing }
+LlWebResource >> author [
+	^ self work author
+]
+
+{ #category : #accessing }
+LlWebResource >> author: person [
+	^ self work author: person
+]
+
+{ #category : #accessing }
+LlWebResource >> authors [
+	^ self work authors
+]
 
 { #category : #accessing }
 LlWebResource >> citation [
@@ -46,6 +61,16 @@ LlWebResource >> printOn: aStream [
 ]
 
 { #category : #accessing }
+LlWebResource >> title [
+	^ self work title
+]
+
+{ #category : #accessing }
+LlWebResource >> title: aString [
+	self work title: aString
+]
+
+{ #category : #accessing }
 LlWebResource >> url [
 	^ url
 ]
@@ -53,4 +78,14 @@ LlWebResource >> url [
 { #category : #accessing }
 LlWebResource >> url: anObject [
 	url := anObject
+]
+
+{ #category : #accessing }
+LlWebResource >> view [
+	self url open
+]
+
+{ #category : #accessing }
+LlWebResource >> work [
+	^ work ifNil: [ work := LlAuthoredWork new ]
 ]

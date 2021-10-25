@@ -4,11 +4,11 @@ video := YouTubeVideo of: 'Melissa Etheridge & Joss Stone - Janis Joplin Tribute
 "
 Class {
 	#name : #LlYouTubeVideo,
-	#superclass : #LlLibraryItem,
+	#superclass : #LlWebResource,
 	#instVars : [
 		'id'
 	],
-	#category : 'LivingLibrary-Core'
+	#category : #'LivingLibrary-Core'
 }
 
 { #category : #example }

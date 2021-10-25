@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'work'
 	],
-	#category : 'LivingLibrary-Core'
+	#category : #'LivingLibrary-Core'
 }
 
 { #category : #testing }
@@ -27,6 +27,6 @@ LlLibraryItem >> work [
 ]
 
 { #category : #accessing }
-LlLibraryItem >> work: anObject [
-	work := anObject
+LlLibraryItem >> work: aWork [
+	work := aWork
 ]
