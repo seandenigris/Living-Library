@@ -86,6 +86,15 @@ LlWebResource >> view [
 ]
 
 { #category : #accessing }
+LlWebResource >> viewDescription [
+	<magritteActionDescription>
+	^ MAActionDescription new
+		gtIcon: BrGlamorousVectorIcons playinspect;
+		action: #view;
+		yourself
+]
+
+{ #category : #accessing }
 LlWebResource >> work [
 	^ work ifNil: [ work := LlAuthoredWork new ]
 ]
