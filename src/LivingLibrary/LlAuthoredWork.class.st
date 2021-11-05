@@ -1,6 +1,24 @@
 "
 This is the most general level at which we discuss a creation. We might say `Alice in Wonderland`, which includes ""all versions, printings, and translations"" ([ref](https://www.w3.org/2001/sw/wiki/Library_terminology_informally_explained))
 
+# Examples
+
+## Series, Adding to
+
+```smalltalk
+(FileLocator home / 'Documents' filesMatching: '*.docx') allButFirst collect: [ :e |
+	| r w | 
+	r := e asRlResource.
+	RlResourceLibrary uniqueInstance importer
+	resourceable: r;
+	strategy: RlInPlaceImportStrategy;
+	execute.
+	w := LlAuthoredWork titled: 'Issue ', e base squeezeOutNumber asString by: PeGtSpotterResult.
+	w parent: self.
+	self library beAwareOf: w.
+	w addToLibraryCopy: r ]
+```
+
 #Implementation Note:
 The ""type"" is currently like a tag. While we started with a class per type ((e.g. book vs. magazine), it seems like there's little benefit until we can justify differing behavior.
 "
@@ -145,6 +163,19 @@ LlAuthoredWork >> authors: aCollection [
 	authors := aCollection
 ]
 
+{ #category : #magritte }
+LlAuthoredWork >> authorsDescription [
+	<magritteDescription>
+	
+	^ MAMultipleOptionDescription new
+		accessor: #authors;
+		label: 'Authors';
+		priority: 200;
+		default: {};
+		options: MpAddressBook default people; 
+		yourself
+]
+
 { #category : #accessing }
 LlAuthoredWork >> ccAuthorMarkup [
 	^ String streamContents: [ :str |
@@ -163,49 +194,24 @@ LlAuthoredWork >> copies [
 	^ self library copiesOf: self
 ]
 
-{ #category : #magritte }
-LlAuthoredWork >> descriptionAuthors [
-	<magritteDescription>
-	
-	^ MAMultipleOptionDescription new
-		accessor: #authors;
-		label: 'Authors';
-		priority: 200;
-		default: {};
-		options: MpAddressBook default people; 
-		yourself
+{ #category : #accessing }
+LlAuthoredWork >> editions [
+	^ self maLazyInstVarUsing: self editionsDescription
+]
+
+{ #category : #accessing }
+LlAuthoredWork >> editions: anObject [
+	editions := anObject
 ]
 
 { #category : #'magritte-accessing' }
-LlAuthoredWork >> descriptionEditions [
+LlAuthoredWork >> editionsDescription [
 	<magritteDescription>
 	^ MAToManyRelationDescription new
 		accessor: #editions;
 		classes: { LlEdition };
 		default: OrderedCollection new;
 		yourself
-]
-
-{ #category : #magritte }
-LlAuthoredWork >> descriptionType [
-    ^ MASingleOptionDescription new
-        accessor: #type;
-        label: 'Type' ; 
-        priority: 50;
-        options: self class types;
-        beSorted;
-"        beRequired; "
-        yourself
-]
-
-{ #category : #accessing }
-LlAuthoredWork >> editions [
-	^ self maLazyInstVarUsing: self descriptionEditions
-]
-
-{ #category : #accessing }
-LlAuthoredWork >> editions: anObject [
-	editions := anObject
 ]
 
 { #category : #accessing }
@@ -373,6 +379,18 @@ LlAuthoredWork >> type [
 { #category : #accessing }
 LlAuthoredWork >> type: aString [ 
 	type := aString.
+]
+
+{ #category : #magritte }
+LlAuthoredWork >> typeDescription [
+    ^ MASingleOptionDescription new
+        accessor: #type;
+        label: 'Type' ; 
+        priority: 50;
+        options: self class types;
+        beSorted;
+"        beRequired; "
+        yourself
 ]
 
 { #category : #accessing }
