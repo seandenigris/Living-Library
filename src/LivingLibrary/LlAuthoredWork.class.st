@@ -371,6 +371,14 @@ LlAuthoredWork >> titleDescription [
 ]
 
 { #category : #accessing }
+LlAuthoredWork >> titleForAlphabetization [
+	^ #('A' 'An' 'The') 
+		detect: [ :article | self fullTitle beginsWith: article ] 
+		ifFound: [ :art | self fullTitle asUppercase allButFirst: art size + 1 ] 
+		ifNone: [ self fullTitle asUppercase ]
+]
+
+{ #category : #accessing }
 LlAuthoredWork >> type [
 
 	^ type.

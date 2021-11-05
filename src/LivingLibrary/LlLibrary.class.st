@@ -15,7 +15,7 @@ Class {
 	#classInstVars : [
 		'uniqueInstance'
 	],
-	#category : 'LivingLibrary-Core'
+	#category : #'LivingLibrary-Core'
 }
 
 { #category : #accessing }
@@ -208,7 +208,7 @@ LlLibrary >> view: aWrittenWork [
 
 { #category : #accessing }
 LlLibrary >> works [
-	^ self catalog keys sort: (#fullTitle collatedBy: #asLowercase)
+	^ self catalog keys sort: #titleForAlphabetization ascending
 ]
 
 { #category : #'magritte-accessing' }
