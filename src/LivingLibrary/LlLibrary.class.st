@@ -1,10 +1,12 @@
 "
 #Adding Items
+There are two methods to add a copy of a work. Send {{gtMethod:LlLibrary>>receive:}} if the copy already ""knows"" its work. Otherwise, you can send {{gtMethod:LlLibrary>>addCopy:of:}} and the library will associate them. NB the former returns `self` and the lattre returns the copy.
+
 ##Physical Items
 Say we have a CD. It's not a work itself, but a copy of that work - say an audiobook. Other copies might be Blueray, VHS, or streaming.
-{{gtExample:LivingLibrary class>>#exampleAddPhysicalItem}}
+{{gtExample:LlLibrary class>>#exampleAddPhysicalItem}}
 ##Digital Items
-{{gtExample:LivingLibrary class>>#exampleAddDigitalItem}}
+{{gtExample:LlLibrary class>>#exampleAddDigitalItem}}
 "
 Class {
 	#name : #LlLibrary,
@@ -97,12 +99,12 @@ LlLibrary class >> uniqueInstance: aLivingLibrary [
 
 ]
 
-{ #category : #private }
+{ #category : #'copies - adding' }
 LlLibrary >> addCopy: copy of: work [
 	| copies |
 	copy work: work.
 	copies := self ensureCardFor: work.
-	copies add: copy.
+	^ copies add: copy.
 ]
 
 { #category : #actions }
@@ -129,7 +131,12 @@ LlLibrary >> copiesOf: aWrittenWork [
 
 { #category : #private }
 LlLibrary >> ensureCardFor: work [
-	work family do: [ :e | self catalog at: e ifAbsentPut: [ Bag new ] ].
+	work family do: [ :e | 
+		self catalog 
+			at: e 
+			ifAbsentPut: [ 
+				e library: self.
+				Bag new ] ].
 	^ self catalog at: work
 ]
 
@@ -191,7 +198,7 @@ LlLibrary >> hasCardFor: aWork [
 	^ self catalog includesKey: aWork
 ]
 
-{ #category : #actions }
+{ #category : #'copies - adding' }
 LlLibrary >> receive: aCopy [
 	self addCopy: aCopy of: aCopy work
 ]

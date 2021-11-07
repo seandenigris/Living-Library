@@ -59,7 +59,7 @@ LlAuthoredWork class >> exampleHamlet [
 	<gtExample>
 	| result |
 	result := self titled: 'Hamlet' by: 'William Shakespeare'.
-	self assert: result title = 'Hamlet'.
+	result title should equal: 'Hamlet'.
 	^ result
 ]
 
@@ -135,6 +135,12 @@ LlAuthoredWork class >> types [
 { #category : #comparing }
 LlAuthoredWork >> = rhs [
 	^ self == rhs
+]
+
+{ #category : #accessing }
+LlAuthoredWork >> addChild: aWork [
+	self syncLibraryWith: aWork.	
+	self children add: aWork. "Children currently a set so don't worry about duplicate adding"
 ]
 
 { #category : #accessing }
@@ -252,8 +258,8 @@ LlAuthoredWork >> isSameAs: rhs [
 
 { #category : #private }
 LlAuthoredWork >> library [
-
-	^ library ifNil: [ LlLibrary uniqueInstance ]
+	^ library
+	"Implementation Note: This used to be lazily initialized to the Living Library singleton. It is not currently, because in the domain to logically to have a library means the work has been added to that library. So the appropriate place to set this is during that addition. Returning a non-nil before that is logically wrong"
 ]
 
 { #category : #debugging }
@@ -294,8 +300,8 @@ LlAuthoredWork >> parent [
 
 { #category : #accessing }
 LlAuthoredWork >> parent: aWork [
+	aWork addChild: self. "Add child first because it will attempt to sync libraries and signal error if impossible"
 	parent := aWork.
-	aWork children add: self
 ]
 
 { #category : #accessing }
@@ -343,6 +349,22 @@ LlAuthoredWork >> setTitle: titleString author: authorString [
 	title := titleString.
 	self author: authorString.
 	^ self.
+]
+
+{ #category : #accessing }
+LlAuthoredWork >> syncLibraryWith: aWork [ 
+	| isLibraryConflict |
+	"If both nil, nothing to set; if both non-nil equal, no action needed"
+	aWork library = self library ifTrue: [ ^ self ].
+	
+	"If we get here, the libraries are not equal"
+	isLibraryConflict := aWork library isNotNil and: [ self library  isNotNil ].
+	isLibraryConflict ifTrue: [ ^ self error: 'Child and parent work libraries conflict' ].
+	
+	"If we get here, one library is nil"
+	aWork library 
+		ifNil: [ self library beAwareOf: aWork ]
+		ifNotNil: [ aWork library beAwareOf: self ].
 ]
 
 { #category : #accessing }
