@@ -14,8 +14,7 @@ This is the most general level at which we discuss a creation. We might say `Ali
 	strategy: RlInPlaceImportStrategy;
 	execute.
 	w := LlAuthoredWork titled: 'Issue ', e base squeezeOutNumber asString by: PeGtSpotterResult.
-	w parent: self.
-	self library beAwareOf: w.
+	w parent: self
 	w addToLibraryCopy: r ]
 ```
 
@@ -372,9 +371,9 @@ LlAuthoredWork >> titleDescription [
 
 { #category : #accessing }
 LlAuthoredWork >> titleForAlphabetization [
-	^ #('A' 'An' 'The') 
+	^ #('A ' 'An ' 'The ') 
 		detect: [ :article | self fullTitle beginsWith: article ] 
-		ifFound: [ :art | self fullTitle asUppercase allButFirst: art size + 1 ] 
+		ifFound: [ :art | self fullTitle asUppercase allButFirst: art size ] 
 		ifNone: [ self fullTitle asUppercase ]
 ]
 
