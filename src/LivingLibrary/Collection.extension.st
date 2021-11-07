@@ -4,3 +4,8 @@ Extension { #name : #Collection }
 Collection >> llAsAuthorCollection [
 	^ self
 ]
+
+{ #category : #'*LivingLibrary' }
+Collection >> llAsCollection [
+	^ self flatCollect: #llAsCollection
+]
