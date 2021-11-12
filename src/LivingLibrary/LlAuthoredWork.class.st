@@ -246,6 +246,19 @@ LlAuthoredWork >> getCopy [
 ]
 
 { #category : #accessing }
+LlAuthoredWork >> gtViewCopiesOn: aView [
+	<gtView>
+
+	(self library isNil or: [ self copies isEmpty ]) ifTrue: [ ^ aView empty ].
+	
+	^ aView list
+		title: 'Copies' translated;
+		priority: 60;
+		items: [ self copies asOrderedCollection ];
+		actionUpdateButtonTooltip: 'Update'.
+]
+
+{ #category : #accessing }
 LlAuthoredWork >> hash [
 	^ self identityHash
 ]
