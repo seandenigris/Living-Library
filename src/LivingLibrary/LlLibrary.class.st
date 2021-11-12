@@ -215,7 +215,7 @@ LlLibrary >> view: aWrittenWork [
 
 { #category : #accessing }
 LlLibrary >> works [
-	^ self catalog keys sort: #titleForAlphabetization ascending
+	^ self catalog keys sort: #nameForAlphabetization ascending
 ]
 
 { #category : #'magritte-accessing' }

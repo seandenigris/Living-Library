@@ -24,8 +24,8 @@ The ""type"" is currently like a tag. While we started with a class per type ((e
 Class {
 	#name : #LlAuthoredWork,
 	#superclass : #MAObject,
-	#traits : 'LlTLibraryItem',
-	#classTraits : 'LlTLibraryItem classTrait',
+	#traits : 'LlTLibraryItem + MpTAlphabetizable',
+	#classTraits : 'LlTLibraryItem classTrait + MpTAlphabetizable classTrait',
 	#instVars : [
 		'title',
 		'type',
@@ -65,6 +65,7 @@ LlAuthoredWork class >> exampleHamlet [
 
 { #category : #accessing }
 LlAuthoredWork class >> exampleParentChild [
+	"What should happen here? If a child is addd to parent or vice versa, it seems to make sense to make sure they're both added to the library as well. However, then we can't lazily initialize the default library because there's no way to tell if the work has been added to a library or if it's just the default. In fact, a library isn't the work's library until it has been added. What if the libraries are different?"
 ]
 
 { #category : #accessing }
@@ -224,6 +225,12 @@ LlAuthoredWork >> family [
 	^ OrderedCollection streamContents: [ :str |
 		str nextPutAll: self withAncestors.
 		self children do: [ :child | str nextPutAll: child withOffspring ] ]
+]
+
+{ #category : #private }
+LlAuthoredWork >> fullName [
+	"Trait compatibility"
+	^ self fullTitle
 ]
 
 { #category : #accessing }
@@ -389,14 +396,6 @@ LlAuthoredWork >> titleDescription [
 		default: '';
 		priority: 100;
 		yourself
-]
-
-{ #category : #accessing }
-LlAuthoredWork >> titleForAlphabetization [
-	^ #('A ' 'An ' 'The ') 
-		detect: [ :article | self fullTitle beginsWith: article ] 
-		ifFound: [ :art | self fullTitle asUppercase allButFirst: art size ] 
-		ifNone: [ self fullTitle asUppercase ]
 ]
 
 { #category : #accessing }
