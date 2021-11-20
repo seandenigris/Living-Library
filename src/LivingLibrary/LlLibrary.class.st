@@ -149,8 +149,7 @@ LlLibrary >> gtGtSpotterFor: aStep [
 		allCandidates: [ self works ];
 		filter: GtFilterSubstrings;
 		candidatesLimit: 7;
-		itemName: #fullTitle;
-		send: [ :work | (self copiesOf: work) ifEmpty: [ work ] ]
+		itemName: #fullTitle
 ]
 
 { #category : #accessing }
