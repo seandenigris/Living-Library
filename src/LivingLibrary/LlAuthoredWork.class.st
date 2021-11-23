@@ -435,6 +435,20 @@ LlAuthoredWork >> typeDescription [
 ]
 
 { #category : #accessing }
+LlAuthoredWork >> view [
+	self copies atRandom open
+]
+
+{ #category : #accessing }
+LlAuthoredWork >> viewDescription [
+	<magritteActionDescription>
+	^ MAActionDescription new
+		gtIcon: BrGlamorousVectorIcons playinspect;
+		action: #view;
+		yourself
+]
+
+{ #category : #accessing }
 LlAuthoredWork >> withAncestors [
 	^ OrderedCollection streamContents: [ :str |
 		str nextPut: self.
