@@ -53,6 +53,12 @@ LlWebResource >> descriptionDescription [
 ]
 
 { #category : #accessing }
+LlWebResource >> open [
+	"RlResource compatibility"
+	^ self view
+]
+
+{ #category : #accessing }
 LlWebResource >> printOn: aStream [
 	aStream
 		nextPutAll: self description;
