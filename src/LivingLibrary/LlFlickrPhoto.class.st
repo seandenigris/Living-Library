@@ -22,7 +22,7 @@ LlFlickrPhoto class >> example [
 
 { #category : #accessing }
 LlFlickrPhoto >> asElement [
-	^ BlUrlImageElement url: self downloadURL
+	^ BlUrlImageElement url: self downloadUrl
 ]
 
 { #category : #accessing }
@@ -43,7 +43,7 @@ LlFlickrPhoto >> ccTitleMarkup [
 ]
 
 { #category : #accessing }
-LlFlickrPhoto >> downloadURL [
+LlFlickrPhoto >> downloadUrl [
 	| response sizes original |
 	response := Flickr new
 		set: 'photo_id' to: self id;
