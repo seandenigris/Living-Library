@@ -246,6 +246,20 @@ LlAuthoredWork >> getCopy [
 ]
 
 { #category : #accessing }
+LlAuthoredWork >> gtViewChildrenOn: aView [
+
+	<gtView>
+	self children ifEmpty: [ ^ aView empty ].
+
+	^ aView list
+		  title: 'Children' translated;
+		  priority: 70;
+		  items: [ self children asOrderedCollection ];
+		  itemText: [ :w | w title ];
+		  actionUpdateButtonTooltip: 'Update'
+]
+
+{ #category : #accessing }
 LlAuthoredWork >> gtViewCopiesOn: aView [
 	<gtView>
 
