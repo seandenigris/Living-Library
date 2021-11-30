@@ -14,11 +14,12 @@ LlGooglePlayBook class >> example [
 		given: []
 		when: [ 
 			self new
-				title: 'Antifragile';
-				author: MpPerson exampleNassimTaleb;
+				work: LlAuthoredWork exampleAntifragile;
 				id: '5fqbz_qGi0AC';
 				yourself ]
-		then: [ :book | book url asString should equal: 'https://play.google.com/books/reader?id=5fqbz_qGi0AC' ]
+		then: [ :book | 
+			book url asString should equal: 'https://play.google.com/books/reader?id=5fqbz_qGi0AC'.
+			book title should equal: LlAuthoredWork exampleAntifragile title ]
 ]
 
 { #category : #examples }
