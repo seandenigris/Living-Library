@@ -1,3 +1,5 @@
+TLDR: A reimagination of what a library can be once freed from a being a physical building housing (only) physical items
+	
 # Overview
 	
 NB. This section is an export of the class comment of `BaselineOfLivingLibrary`. When viewed from inside the system, it is live, dynamic and beautiful. "Just the markdown" only gives you a taste. We suggest you dive in and view the documentation as it was intended as quickly as possible - it will be more enjoyable and productive!
