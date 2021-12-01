@@ -1,12 +1,22 @@
 "
+#Choosing a library
+
+A default library, likely the only one you will need, is provided:
+
+```smalltalk
+LlLibrary uniqueInstance
+```
+
 #Adding Items
-There are two methods to add a copy of a work. Send {{gtMethod:LlLibrary>>receive:}} if the copy already ""knows"" its work. Otherwise, you can send {{gtMethod:LlLibrary>>addCopy:of:}} and the library will associate them. NB the former returns `self` and the lattre returns the copy.
+There are two methods to add a copy of a work. Send {{gtMethod:LlLibrary>>receive:}} if the copy already ""knows"" its work. Otherwise, you can send {{gtMethod:LlLibrary>>addCopy:of:}} and the library will associate them. NB the former returns `self` and the latter returns the copy.
 
 ##Physical Items
 Say we have a CD. It's not a work itself, but a copy of that work - say an audiobook. Other copies might be Blueray, VHS, or streaming.
 {{gtExample:LlLibrary class>>#exampleAddPhysicalItem}}
 ##Digital Items
 {{gtExample:LlLibrary class>>#exampleAddDigitalItem}}
+##Items you don't have any copies of
+If there is a work that you want to remain aware of, before you actually have a copy yourself, you can do it like this: {{gtExample:LlLibrary class>>exampleAddSeries}}
 "
 Class {
 	#name : #LlLibrary,
