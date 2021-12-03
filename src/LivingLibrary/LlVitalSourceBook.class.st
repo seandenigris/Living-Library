@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'id'
 	],
-	#category : #'LivingLibrary-Flickr'
+	#category : #'LivingLibrary-Core'
 }
 
 { #category : #examples }
