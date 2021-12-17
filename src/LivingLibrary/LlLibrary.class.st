@@ -219,6 +219,15 @@ LlLibrary >> hasCardFor: aWork [
 	^ self catalog includesKey: aWork
 ]
 
+{ #category : #accessing }
+LlLibrary >> importAllFrom: aLibrary [
+	aLibrary catalog keysAndValuesDo: [ :work :rhsCopies |
+		self catalog
+			at: work
+			ifPresent: [ :myCopies | myCopies addAll: rhsCopies ]
+			ifAbsentPut: [ rhsCopies ] ].
+]
+
 { #category : #'copies - adding' }
 LlLibrary >> receive: aCopy [
 	self addCopy: aCopy of: aCopy work
