@@ -1,7 +1,9 @@
 "
 #Choosing a library
 
-A default library, likely the only one you will need, is provided:
+A default library is likely the only one you will need. If you're just starting out, it will be empty, and thus less interesting, so you can check out this example library: {{gtExample:LlLibrary class>>example}}
+
+When you're ready to get to work, the default library can be accessed like this:
 
 ```smalltalk
 LlLibrary uniqueInstance
@@ -32,7 +34,16 @@ Class {
 
 { #category : #accessing }
 LlLibrary class >> example [
-
+	<gtExample>
+	^ self
+		given: [ LlLibrary new ]
+		when: [ :lib |
+			lib 
+				importAllFrom: self exampleAddDigitalItem;
+				importAllFrom: self exampleAddPhysicalItem;
+				importAllFrom: self exampleAddSeries;
+				yourself ]
+		then: [ :lib | lib works should haveSize: 5 ]
 ]
 
 { #category : #accessing }
@@ -70,6 +81,7 @@ LlLibrary class >> exampleAddPhysicalItem [
 		yourself.
 	(lib where copiesOf: work) should haveSize: 1.
 	(lib where copiesOf: work) should include: copy.
+	^ lib
 ]
 
 { #category : #accessing }
