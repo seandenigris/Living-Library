@@ -17,13 +17,20 @@ LlYouTubeVideo class >> example [
 	^ self
 		given: []
 		when: [ self new id: 'PA-j7uyju_8'; yourself ]
-		then: [ :inst | inst url should equal: 'https://www.youtube.com/watch?v=PA-j7uyju_8' asUrl ]
+		then: [ :inst | 
+			inst url printString should equal: 'https://www.youtube.com/watch?v=PA-j7uyju_8'.
+			inst url id should equal: 'PA-j7uyju_8' ]
 ]
 
 { #category : #'instance creation' }
 LlYouTubeVideo class >> fromLinkString: aString [
+	| url id |
+	url := aString asUrl.
+	id := url pathSegments first = 'embed' 
+		ifTrue: [ url file ]
+		ifFalse: [ (aString findTokens: '/=') last ].
 	^ self new
-		id: (aString findTokens: '/=') last;
+		id: id;
 		yourself
 ]
 
@@ -31,6 +38,7 @@ LlYouTubeVideo class >> fromLinkString: aString [
 LlYouTubeVideo class >> fromLinkStringExample [
 	<gtExample>
 	self fromLinkStringExampleInput: 'https://youtu.be/A0TafHXszg' shouldSetID: 'A0TafHXszg'.
+	self fromLinkStringExampleInput: 'https://youtube.com/embed/A0TafHXszg?loop=1' shouldSetID: 'A0TafHXszg'.
 	^ self fromLinkStringExampleInput: 'https://www.youtube.com/watch?v=QOe3FA4wJcQ' shouldSetID: 'QOe3FA4wJcQ'
 ]
 
@@ -121,5 +129,5 @@ LlYouTubeVideo >> title [
 
 { #category : #accessing }
 LlYouTubeVideo >> url [
-	^ 'https://www.youtube.com/watch' asUrl ? (#v -> self id)
+	^ (LlYouTubeUrl fromString: 'https://www.youtube.com/watch') ? (#v -> self id)
 ]
