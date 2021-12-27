@@ -221,6 +221,14 @@ LlAuthoredWork >> editionsDescription [
 ]
 
 { #category : #accessing }
+LlAuthoredWork >> ensureUUID [
+
+	 ^ self 
+	 	propertyAt: #uuid
+	 	ifAbsentPut: [ UUIDGenerator next ]
+]
+
+{ #category : #accessing }
 LlAuthoredWork >> family [
 	^ OrderedCollection streamContents: [ :str |
 		str nextPutAll: self withAncestors.
@@ -446,6 +454,12 @@ LlAuthoredWork >> typeDescription [
         beSorted;
 "        beRequired; "
         yourself
+]
+
+{ #category : #accessing }
+LlAuthoredWork >> uuid [
+
+	 ^ self propertyAt: #uuid ifAbsent: nil
 ]
 
 { #category : #accessing }
