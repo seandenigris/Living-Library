@@ -1,6 +1,8 @@
 Class {
 	#name : #LlLibraryItem,
-	#superclass : #MAObject,
+	#superclass : #Object,
+	#traits : 'MATPropertyOwner',
+	#classTraits : 'MATPropertyOwner classTrait',
 	#instVars : [
 		'work'
 	],
