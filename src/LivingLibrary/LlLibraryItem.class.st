@@ -9,11 +9,6 @@ Class {
 	#category : #'LivingLibrary-Core'
 }
 
-{ #category : #testing }
-LlLibraryItem class >> isAbstract [
-	^ false
-]
-
 { #category : #'magritte-accessing' }
 LlLibraryItem >> descriptionWork [
 	<magritteDescription>
