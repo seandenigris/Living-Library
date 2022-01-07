@@ -47,10 +47,6 @@ LlLibrary class >> example [
 ]
 
 { #category : #accessing }
-LlLibrary class >> exampleAdd [
-]
-
-{ #category : #accessing }
 LlLibrary class >> exampleAddDigitalItem [
 	<gtExample>
 	| pdfFile copy lib work |
