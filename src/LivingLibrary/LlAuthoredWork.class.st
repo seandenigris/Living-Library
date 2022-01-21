@@ -89,6 +89,16 @@ LlAuthoredWork class >> exampleStarWarsSeries [
 	^ series
 ]
 
+{ #category : #example }
+LlAuthoredWork class >> exampleStopDrawingDeadFish [
+	<gtExample>
+	"Companion is LlYouTubeVideo exampleStopDrawingDeadFish"
+	| result |
+	result := self titled: 'Stop Drawing Dead Fish' by: MpPerson exampleBrettVictor.
+	result title should equal: 'Stop Drawing Dead Fish'.
+	^ result
+]
+
 { #category : #testing }
 LlAuthoredWork class >> isAbstract [
 	^ false

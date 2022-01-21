@@ -92,6 +92,24 @@ LlLibrary class >> exampleAddSeries [
 		then: [ :a :b | ]
 ]
 
+{ #category : #accessing }
+LlLibrary class >> exampleAddYouTubeVideo [
+	<gtExample>
+	| pdfFile copy lib work |
+	work := LlAuthoredWork new 
+		title: 'Stop Drawing Dead Fish';
+		author: MpPerson exampleBrettVictor.
+	copy := LlYouTubeVideo exampleStopDrawingDeadFish.
+	
+	lib := LlLibrary new 
+		addCopy: copy of: work;
+		yourself.
+	lib should be hasCardFor: work.
+	(lib where copiesOf: work) should haveSize: 1.
+	(lib where copiesOf: work) should include: copy.
+	^ lib
+]
+
 { #category : #persisting }
 LlLibrary class >> restoreFrom: aLivingLibrary [
 

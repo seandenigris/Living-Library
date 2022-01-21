@@ -12,14 +12,15 @@ Class {
 }
 
 { #category : #example }
-LlYouTubeVideo class >> example [
+LlYouTubeVideo class >> exampleStopDrawingDeadFish [
 	<gtExample>
+	"Bret Victor - Stop Drawing Dead Fish"
 	^ self
 		given: []
-		when: [ self new id: 'PA-j7uyju_8'; yourself ]
+		when: [ self new id: 'ZfytHvgHybA'; yourself ]
 		then: [ :inst | 
-			inst url printString should equal: 'https://www.youtube.com/watch?v=PA-j7uyju_8'.
-			inst url id should equal: 'PA-j7uyju_8' ]
+			inst url printString should equal: 'https://www.youtube.com/watch?v=ZfytHvgHybA'.
+			inst url id should equal: 'ZfytHvgHybA' ]
 ]
 
 { #category : #'instance creation' }
