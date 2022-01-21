@@ -348,6 +348,11 @@ LlAuthoredWork >> parent: aWork [
 	parent := aWork.
 ]
 
+{ #category : #transcript }
+LlAuthoredWork >> participants [
+	^ self authors
+]
+
 { #category : #accessing }
 LlAuthoredWork >> pathString [
 	^ parent ifNotNil: [ :p | p fullTitle ] ifNil: [ '' ]
@@ -367,6 +372,30 @@ LlAuthoredWork >> printOn: aStream [
 	authors
 		do: [ :e | aStream nextPutAll: e fullName ]
 		separatedBy: [ aStream nextPutAll: ', ' ]
+]
+
+{ #category : #quotation }
+LlAuthoredWork >> quote: aString onPage: aNumber [
+	| citation quote |
+	citation := QuPageCitation new
+			source: self;
+			page: aNumber;
+			yourself.
+	quote := QuQuote new
+		content: aString;
+		citation: citation;
+		yourself.
+	self quoteDb add: quote
+]
+
+{ #category : #quotation }
+LlAuthoredWork >> quoteDb [
+	^ QuQuote db
+]
+
+{ #category : #quotation }
+LlAuthoredWork >> quotes [
+	^ self quoteDb select: [ :e | e citation source = self ]
 ]
 
 { #category : #actions }
@@ -433,6 +462,13 @@ LlAuthoredWork >> titleDescription [
 		default: '';
 		priority: 100;
 		yourself
+]
+
+{ #category : #accessing }
+LlAuthoredWork >> transcript [
+	^ self 
+		propertyAt: #transcript
+		ifAbsentPut: [ SortedCollection sortUsing: #position ascending undefinedFirst ]
 ]
 
 { #category : #accessing }

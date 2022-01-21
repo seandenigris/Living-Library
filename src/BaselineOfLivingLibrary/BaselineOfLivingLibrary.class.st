@@ -40,12 +40,14 @@ BaselineOfLivingLibrary >> baseline: spec [
 				spec repository: 'github://seandenigris/My-People' ];
 			baseline: 'PharoEnhancements' with: [
 				spec repository: 'github://seandenigris/Pharo-Enhancements' ];
+			baseline: 'QuoteMe' with: [
+				spec repository: 'github://seandenigris/Quote-Me' ];
 			baseline: 'ResourcesLive' with: [
 				spec repository: 'github://seandenigris/Resources-Live' ];
 			baseline: 'SimplePersistence' with: [
 				spec repository: 'github://seandenigris/Simple-Persistence' ].
 		spec package: 'LivingLibrary' with: [
-			spec requires: #('Magritte' 'Mocketry' 'MyPeople' 'PharoEnhancements' 'ResourcesLive' 'SimplePersistence') ] ].
+			spec requires: #('Magritte' 'Mocketry' 'MyPeople' 'PharoEnhancements' 'QuoteMe' 'ResourcesLive' 'SimplePersistence') ] ].
 				
 	spec for: #notGToolkit do: [
 		spec baseline: 'XPath' with: [
