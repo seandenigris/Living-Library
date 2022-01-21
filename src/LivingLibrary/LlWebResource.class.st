@@ -95,8 +95,10 @@ LlWebResource >> view [
 LlWebResource >> viewDescription [
 	<magritteActionDescription>
 	^ MAActionDescription new
-		gtIcon: BrGlamorousVectorIcons playinspect;
+		gtIcon: BrGlamorousIcons go;
+		comment: 'Browse on web';
 		action: #view;
+		isLabelVisible: false;
 		yourself
 ]
 
