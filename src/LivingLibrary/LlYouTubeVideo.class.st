@@ -114,6 +114,16 @@ LlYouTubeVideo >> id: aString [
 ]
 
 { #category : #accessing }
+LlYouTubeVideo >> jsPlayer [
+	^ 'var player = document.getElementById(''movie_player'');'
+]
+
+{ #category : #accessing }
+LlYouTubeVideo >> jsPlayerGetCurrentTime [
+	^ self jsPlayer, 'player.getCurrentTime();'
+]
+
+{ #category : #accessing }
 LlYouTubeVideo >> play [
 
 	CwSafari reference
