@@ -458,6 +458,8 @@ LlAuthoredWork >> viewDescription [
 	<magritteActionDescription>
 	^ MAActionDescription new
 		gtIcon: BrGlamorousVectorIcons playinspect;
+		isLabelVisible: true;
+		enableBlock: [ false ];
 		action: #view;
 		yourself
 ]
