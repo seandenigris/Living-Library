@@ -99,6 +99,24 @@ LlAuthoredWork class >> exampleStopDrawingDeadFish [
 	^ result
 ]
 
+{ #category : #examples }
+LlAuthoredWork class >> exampleTranscriptEmptyPage [
+	<gtExample>
+	^ self
+		given: [ LlLibrary example ]
+		when: [ :lib |
+			| page work |
+				work := lib works first.
+				page := LePage quTranscriptOwner: work.
+				LeDatabase new addPage: page.
+				page type stub modelReference willReturn: (MADummyObjectUIDReferenceForTesting new
+					source: lib works;
+					uid: work uuid;
+					yourself).
+					page ]
+		then: [ :page | page "children should haveSize: 1" ]
+]
+
 { #category : #testing }
 LlAuthoredWork class >> isAbstract [
 	^ false
@@ -468,7 +486,12 @@ LlAuthoredWork >> titleDescription [
 LlAuthoredWork >> transcript [
 	^ self 
 		propertyAt: #transcript
-		ifAbsentPut: [ SortedCollection sortUsing: #position ascending undefinedFirst ]
+		ifAbsentPut: [ QuTranscript new ]
+]
+
+{ #category : #accessing }
+LlAuthoredWork >> transcriptLepiterPage [
+	^ LePage quTranscriptOwner: self.
 ]
 
 { #category : #accessing }
