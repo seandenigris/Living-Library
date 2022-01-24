@@ -486,12 +486,10 @@ LlAuthoredWork >> titleDescription [
 LlAuthoredWork >> transcript [
 	^ self 
 		propertyAt: #transcript
-		ifAbsentPut: [ QuTranscript new ]
-]
-
-{ #category : #accessing }
-LlAuthoredWork >> transcriptLepiterPage [
-	^ LePage quTranscriptOwner: self.
+		ifAbsentPut: [ 
+			QuTranscript new
+				model: self;
+				yourself ]
 ]
 
 { #category : #accessing }
