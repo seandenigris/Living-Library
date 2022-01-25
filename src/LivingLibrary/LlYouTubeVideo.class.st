@@ -27,9 +27,12 @@ LlYouTubeVideo class >> exampleStopDrawingDeadFish [
 LlYouTubeVideo class >> fromLinkString: aString [
 	| url id |
 	url := aString asUrl.
-	id := url pathSegments first = 'embed' 
-		ifTrue: [ url file ]
-		ifFalse: [ (aString findTokens: '/=') last ].
+	id := url pathSegments first = 'embed' "embedded"
+		ifTrue: [ id := url file ]
+		ifFalse: [ 
+			url host = 'youtu.be' "shortened"
+				ifTrue: [ id := url pathSegments first ]
+				ifFalse: [ url queryAt: #v "normal" ] ].
 	^ self new
 		id: id;
 		yourself
