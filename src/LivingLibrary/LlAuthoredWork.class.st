@@ -312,6 +312,11 @@ LlAuthoredWork >> initialize [
 	type := #unknown.
 ]
 
+{ #category : #testing }
+LlAuthoredWork >> isPlayable [
+	^ self copies isNotEmpty
+]
+
 { #category : #comparing }
 LlAuthoredWork >> isSameAs: rhs [
 	self species = rhs species ifFalse: [ ^ false ].
@@ -353,6 +358,11 @@ LlAuthoredWork >> licenseDescription [
 		priority: 200;
 		options: CcLicense all; 
 		yourself
+]
+
+{ #category : #accessing }
+LlAuthoredWork >> newPlayer [
+	^ LlMediaPlayer on: self copies atRandom
 ]
 
 { #category : #accessing }
@@ -517,7 +527,9 @@ LlAuthoredWork >> typeDescription [
 
 { #category : #accessing }
 LlAuthoredWork >> view [
-	self copies atRandom open
+	self copies 
+		ifNotEmpty: [ :col | col atRandom open ]
+		ifEmpty: [ self error: 'No copies to view!' ]
 ]
 
 { #category : #accessing }
