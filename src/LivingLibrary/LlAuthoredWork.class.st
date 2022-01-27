@@ -274,7 +274,7 @@ LlAuthoredWork >> getCopy [
 ]
 
 { #category : #accessing }
-LlAuthoredWork >> gtViewChildrenOn: aView [
+LlAuthoredWork >> gtViewChildrenFor: aView [
 
 	<gtView>
 	self children ifEmpty: [ ^ aView empty ].
@@ -288,7 +288,7 @@ LlAuthoredWork >> gtViewChildrenOn: aView [
 ]
 
 { #category : #accessing }
-LlAuthoredWork >> gtViewCopiesOn: aView [
+LlAuthoredWork >> gtViewCopiesFor: aView [
 	<gtView>
 
 	(self library isNil or: [ self copies isEmpty ]) ifTrue: [ ^ aView empty ].
@@ -297,6 +297,20 @@ LlAuthoredWork >> gtViewCopiesOn: aView [
 		title: 'Copies' translated;
 		priority: 60;
 		items: [ self copies asOrderedCollection ];
+		actionUpdateButtonTooltip: 'Update'.
+]
+
+{ #category : #transcript }
+LlAuthoredWork >> gtViewTranscriptFor: aView [
+	<gtView>
+
+	(self hasProperty: #transcript) ifFalse: [ ^ aView empty ].
+	
+	^ aView forward
+		title: 'Transcript' translated;
+		priority: 65;
+		object: [ self transcript ];
+		view: #gtViewLinesFor:;
 		actionUpdateButtonTooltip: 'Update'.
 ]
 
