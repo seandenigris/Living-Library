@@ -32,7 +32,11 @@ LlMediaPlayer class >> on: anObject [
 
 { #category : #accessing }
 LlMediaPlayer >> currentTime [
-	^ (CwSafari new doJavascript: LlYouTubeVideo new jsPlayerGetCurrentTime) seconds
+	| asResult |
+	asResult := CwSafari new doJavascript: LlYouTubeVideo new jsPlayerGetCurrentTime.
+	^ asResult isNumber
+		ifTrue: [ asResult seconds ]
+		ifFalse: [ nil ]
 ]
 
 { #category : #accessing }
