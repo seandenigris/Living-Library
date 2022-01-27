@@ -36,6 +36,11 @@ LlMediaPlayer >> currentTime [
 ]
 
 { #category : #accessing }
+LlMediaPlayer >> currentTime: aDuration [
+	^ CwSafari new doJavascript: (LlYouTubeVideo new jsPlayerSeekTo: aDuration)
+]
+
+{ #category : #accessing }
 LlMediaPlayer >> media [
 
 	^ media
@@ -47,7 +52,7 @@ LlMediaPlayer >> media: anObject [
 	media := anObject
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #actions }
 LlMediaPlayer >> play [
 	self media view.
 ]
