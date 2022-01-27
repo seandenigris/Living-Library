@@ -31,6 +31,18 @@ LlMediaPlayer class >> on: anObject [
 ]
 
 { #category : #accessing }
+LlMediaPlayer >> currentPosition [
+	"Compatibility with other types of players - position may not always be a duration"
+	^ self currentTime
+]
+
+{ #category : #accessing }
+LlMediaPlayer >> currentPosition: aDuration [
+	"Compatibility with other types of players - position may not always be a duration"
+	^ self currentTime: aDuration
+]
+
+{ #category : #accessing }
 LlMediaPlayer >> currentTime [
 	| asResult |
 	asResult := CwSafari new doJavascript: LlYouTubeVideo new jsPlayerGetCurrentTime.
