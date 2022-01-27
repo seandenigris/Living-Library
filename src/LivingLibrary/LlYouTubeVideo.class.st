@@ -128,6 +128,11 @@ LlYouTubeVideo >> jsPlayerGetCurrentTime [
 ]
 
 { #category : #accessing }
+LlYouTubeVideo >> jsPlayerSeekTo: aDuration [
+	^ self jsPlayer, 'player.seekTo(', aDuration asSeconds printString, ');'
+]
+
+{ #category : #accessing }
 LlYouTubeVideo >> play [
 
 	CwSafari reference
