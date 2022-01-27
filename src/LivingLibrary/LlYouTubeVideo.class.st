@@ -130,6 +130,8 @@ LlYouTubeVideo >> jsPlayerGetCurrentTime [
 { #category : #accessing }
 LlYouTubeVideo >> jsPlayerSeekTo: aDuration [
 	^ self jsPlayer, 'player.seekTo(', aDuration asSeconds printString, ');'
+	
+	"Adapted from https://stackoverflow.com/a/23656455"
 ]
 
 { #category : #accessing }
