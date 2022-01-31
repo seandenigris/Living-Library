@@ -242,6 +242,20 @@ LlLibrary >> importAllFrom: aLibrary [
 			ifAbsentPut: [ rhsCopies ] ].
 ]
 
+{ #category : #accessing }
+LlLibrary >> printOn: aStream [
+	
+	| numCopies |
+	numCopies := self works 
+		inject: 0 
+		into: [ :sum :w | sum + (self copiesOf: w) size ].
+	aStream
+		print: numCopies;
+		nextPutAll: ' copies of ';
+		print: self works size;
+		nextPutAll: ' works'
+]
+
 { #category : #'copies - adding' }
 LlLibrary >> receive: aCopy [
 	self addCopy: aCopy of: aCopy work
