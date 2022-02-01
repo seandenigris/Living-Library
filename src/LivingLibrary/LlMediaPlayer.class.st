@@ -69,6 +69,26 @@ LlMediaPlayer >> media: anObject [
 ]
 
 { #category : #actions }
+LlMediaPlayer >> pause [
+	| js |
+	js := SuJSScript htmlVideos + SuJSScript videoPause
+		argumentAt: #video put: 'videos[0]';
+		argumentAt: #videosVarName put: 'videos'.
+	
+	CwSafari new doJavascript: js
+]
+
+{ #category : #actions }
 LlMediaPlayer >> play [
+	| js |
+	js := SuJSScript htmlVideos + SuJSScript videoPlay
+		argumentAt: #video put: 'videos[0]';
+		argumentAt: #videosVarName put: 'videos'.
+	
+	CwSafari new doJavascript: js
+]
+
+{ #category : #actions }
+LlMediaPlayer >> view [
 	self media view.
 ]
