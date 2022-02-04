@@ -4,7 +4,7 @@ video := YouTubeVideo of: 'Melissa Etheridge & Joss Stone - Janis Joplin Tribute
 "
 Class {
 	#name : #LlYouTubeVideo,
-	#superclass : #LlWebResource,
+	#superclass : #LlWebVideo,
 	#instVars : [
 		'id'
 	],
@@ -132,6 +132,10 @@ LlYouTubeVideo >> jsPlayerSeekTo: aDuration [
 	^ self jsPlayer, 'player.seekTo(', aDuration asSeconds printString, ');'
 	
 	"Adapted from https://stackoverflow.com/a/23656455"
+]
+
+{ #category : #accessing }
+LlYouTubeVideo >> newPlayer [
 ]
 
 { #category : #accessing }
