@@ -403,8 +403,8 @@ LlAuthoredWork >> pathString [
 { #category : #printing }
 LlAuthoredWork >> printOn: aStream [
 
-	title 
-		ifNotNil: [ 
+	self title 
+		isEmptyOrNil ifFalse: [ 
 			aStream
 				nextPut: $";
 				nextPutAll: self fullTitle;
