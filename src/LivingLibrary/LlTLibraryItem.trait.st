@@ -1,10 +1,10 @@
 Trait {
 	#name : #LlTLibraryItem,
-	#category : 'LivingLibrary-Support'
+	#category : #'LivingLibrary-Support'
 }
 
 { #category : #adding }
-LlTLibraryItem >> addToLibraryCopy: anObject [
+LlTLibraryItem >> libraryAddCopy: anObject [
 	anObject work: self.
 	^ self library addCopy: anObject of: self
 ]
