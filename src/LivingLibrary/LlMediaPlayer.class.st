@@ -1,18 +1,19 @@
 "
-I am the intersection of a player mode (what you can do) and a service (how you do it).
+I am the intersection of a player `mode` (what you can do) and a `service` (how you do it).
 
-Modes:
+##Modes
 - Live - ongoing event. For example, you can get the currentTime, but can't fastforward
 - Historical - we don't know when each thing happenned exactly. We are piecing together after the fact and can only give relative positions
 - Recorded - has all the actions you would commonly expect from a player - play/pause, rewind, fast forward
 
-Service
+##Services
 The underlying app we use to present the media. Examples might include:
 - Safari
 - Chrome
 - Quicktime
 - VLC
-
+ 
+ So far, we have Safari via AppleEvents and Playwright. In both cases, there are two points of variability - how you find page/frame where the video element lives, and how you find the video element itself. It might make sense to put this information declaratively/generically in the media and have the player use that.
 "
 Class {
 	#name : #LlMediaPlayer,
@@ -70,12 +71,8 @@ LlMediaPlayer >> media: anObject [
 
 { #category : #actions }
 LlMediaPlayer >> pause [
-	| js |
-	js := SuJSScript htmlVideos + SuJSScript videoPause
-		argumentAt: #video put: 'videos[0]';
-		argumentAt: #videosVarName put: 'videos'.
-	
-	CwSafari new doJavascript: js
+	self shouldBeImplemented
+	"self driver doJavascript: js"
 ]
 
 { #category : #actions }

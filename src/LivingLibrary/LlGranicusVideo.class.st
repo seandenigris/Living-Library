@@ -22,8 +22,9 @@ LlGranicusVideo >> id: anObject [
 
 { #category : #accessing }
 LlGranicusVideo >> newPlayer [
-	LlMediaPlayer new
-		service: 1
+	^ LlMediaPlayer new
+		driver: LlPlaywright new;
+		yourself
 ]
 
 { #category : #accessing }
