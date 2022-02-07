@@ -4,7 +4,7 @@ Class {
 	#classVars : [
 		'PythonInstance'
 	],
-	#category : #'LivingLibrary-Core'
+	#category : #'LivingLibrary-Playwright'
 }
 
 { #category : #initialization }
@@ -56,6 +56,12 @@ LlPlaywright >> gtDirFor: aView [
 		view: #gtDirFor:
 ]
 
+{ #category : #accessing }
+LlPlaywright >> initialize [
+	super initialize.
+	self class start.
+]
+
 { #category : #convenience }
 LlPlaywright >> launch: browser isHeadless: aBoolean [
 	"browser - e.g. firefox, chromium, webkit"
@@ -92,4 +98,21 @@ locator.evaluate("node => node.play()")'.
 LlPlaywright >> pythonInstance [
 	PythonInstance ifNil: [ self class start ].
 	^ PythonInstance
+]
+
+{ #category : #accessing }
+LlPlaywright >> show: media [
+
+	| browserProxy pageProxy browser |
+	browserProxy := self pythonInstance newCommandFactory
+		<< (P3GCall target: self pythonInstance => #firefox => #launch keywordArguments: { #headless -> false } asDictionary);
+		sendAndWait.
+	pageProxy := browserProxy newCommandFactory
+		<< (P3GCall target: browserProxy => #new_page);
+		sendAndWait.
+	pageProxy newCommandFactory
+		<< (P3GCall target: pageProxy => #goto positionalArguments: { media url asString });
+		sendAndWait.
+	browser := LlPlaywrightBrowser on: browserProxy.
+	^ LlPlaywrightPage on: pageProxy inBrowser: browser.
 ]

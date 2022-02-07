@@ -19,7 +19,9 @@ Class {
 	#name : #LlMediaPlayer,
 	#superclass : #Object,
 	#instVars : [
-		'media'
+		'media',
+		'driver',
+		'mediaContainer'
 	],
 	#category : #'LivingLibrary-Core'
 }
@@ -54,7 +56,19 @@ LlMediaPlayer >> currentTime [
 
 { #category : #accessing }
 LlMediaPlayer >> currentTime: aDuration [
-	^ CwSafari new doJavascript: (LlYouTubeVideo new jsPlayerSeekTo: aDuration)
+	^ self media seekTo: aDuration in: self mediaContainer
+]
+
+{ #category : #accessing }
+LlMediaPlayer >> driver [
+
+	^ driver
+]
+
+{ #category : #accessing }
+LlMediaPlayer >> driver: anObject [
+
+	driver := anObject
 ]
 
 { #category : #accessing }
@@ -70,22 +84,21 @@ LlMediaPlayer >> media: anObject [
 ]
 
 { #category : #actions }
+LlMediaPlayer >> mediaContainer [
+	^ mediaContainer
+]
+
+{ #category : #actions }
 LlMediaPlayer >> pause [
-	self shouldBeImplemented
-	"self driver doJavascript: js"
+	self media pauseIn: self mediaContainer
 ]
 
 { #category : #actions }
 LlMediaPlayer >> play [
-	| js |
-	js := SuJSScript htmlVideos + SuJSScript videoPlay
-		argumentAt: #video put: 'videos[0]';
-		argumentAt: #videosVarName put: 'videos'.
-	
-	CwSafari new doJavascript: js
+	self media playIn: self mediaContainer
 ]
 
 { #category : #actions }
 LlMediaPlayer >> view [
-	self media view.
+	mediaContainer := self driver show: self media
 ]

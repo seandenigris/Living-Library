@@ -1,10 +1,7 @@
 Class {
 	#name : #LlPlaywrightBrowser,
-	#superclass : #Object,
-	#instVars : [
-		'model'
-	],
-	#category : #'LivingLibrary-Core'
+	#superclass : #LlPlaywrightObject,
+	#category : #'LivingLibrary-Playwright'
 }
 
 { #category : #'instance creation' }
@@ -12,6 +9,19 @@ LlPlaywrightBrowser class >> on: proxy [
 	^ self new
 		model: proxy;
 		yourself
+]
+
+{ #category : #accessing }
+LlPlaywrightBrowser >> close [
+	^ self model newCommandFactory
+		<< (P3GCall target: self model => #close positionalArguments: { });
+		sendAndWait.
+]
+
+{ #category : #accessing }
+LlPlaywrightBrowser >> model [
+
+	^ model
 ]
 
 { #category : #accessing }
