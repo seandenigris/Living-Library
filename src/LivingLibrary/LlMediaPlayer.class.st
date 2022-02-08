@@ -35,14 +35,12 @@ LlMediaPlayer class >> on: anObject [
 
 { #category : #accessing }
 LlMediaPlayer >> currentPosition [
-	"Compatibility with other types of players - position may not always be a duration"
-	^ self currentTime
+	^ self media currentPositionIn: self mediaContainer
 ]
 
 { #category : #accessing }
-LlMediaPlayer >> currentPosition: aDuration [
-	"Compatibility with other types of players - position may not always be a duration"
-	^ self currentTime: aDuration
+LlMediaPlayer >> currentPosition: anObject [
+	self media currentPosition: anObject in: self mediaContainer
 ]
 
 { #category : #accessing }
