@@ -75,3 +75,11 @@ LlPlaywrightPage >> model: anObject [
 
 	model := anObject
 ]
+
+{ #category : #accessing }
+LlPlaywrightPage >> url: aUrl [
+	
+	self model newCommandFactory
+		<< (P3GCall target: self model => #goto positionalArguments: { aUrl asString });
+		sendAndWait
+]
