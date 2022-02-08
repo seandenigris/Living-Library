@@ -16,7 +16,7 @@ LlPlaywright class >> initialize [
 LlPlaywright class >> shutDown: quitting [
 	quitting ifFalse: [ ^ self ].
 
-	[ PythonInstance stop ] on: Error do: [].
+	PythonInstance stop
 ]
 
 { #category : #accessing }
@@ -37,7 +37,7 @@ LlPlaywright class >> start [
 LlPlaywright class >> stop [
 	PythonInstance ifNil: [ ^ self ].
 	
-	PythonInstance send: #stop.  
+	[ PythonInstance send: #stop ] on: PBPythonError do: [].
 	PythonInstance := nil
 ]
 
