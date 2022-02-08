@@ -47,11 +47,7 @@ LlMediaPlayer >> currentPosition: aDuration [
 
 { #category : #accessing }
 LlMediaPlayer >> currentTime [
-	| asResult |
-	asResult := CwSafari new doJavascript: LlYouTubeVideo new jsPlayerGetCurrentTime.
-	^ asResult isNumber
-		ifTrue: [ asResult seconds ]
-		ifFalse: [ nil ]
+	^ self media currentTimeIn: self mediaContainer
 ]
 
 { #category : #accessing }

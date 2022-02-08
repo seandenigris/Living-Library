@@ -56,6 +56,12 @@ LlYouTubeVideo class >> fromLinkStringExampleInput: urlString shouldSetID: idStr
 ]
 
 { #category : #accessing }
+LlYouTubeVideo >> currentTimeIn: page [
+
+	^ self playerIn: page doJavaScript: 'getCurrentTime()'
+]
+
+{ #category : #accessing }
 LlYouTubeVideo >> displayStringOn: aStream [
 	aStream
 		nextPutAll: 'YouTube Video: ';
@@ -118,32 +124,33 @@ LlYouTubeVideo >> id: aString [
 ]
 
 { #category : #accessing }
-LlYouTubeVideo >> jsPlayer [
-	^ 'var player = document.getElementById(''movie_player'');'
+LlYouTubeVideo >> pauseIn: page [ 
+	^ self playerIn: page doJavaScript: 'pauseVideo()'.
 ]
 
 { #category : #accessing }
-LlYouTubeVideo >> jsPlayerGetCurrentTime [
-	^ self jsPlayer, 'player.getCurrentTime();'
+LlYouTubeVideo >> playIn: page [
+	^ self playerIn: page doJavaScript: 'playVideo()'.
 ]
 
 { #category : #accessing }
-LlYouTubeVideo >> jsPlayerSeekTo: aDuration [
-	^ self jsPlayer, 'player.seekTo(', aDuration asSeconds printString, ');'
+LlYouTubeVideo >> playerIn: page doJavaScript: aString [
+	"Player API Reference: https://developers.google.com/youtube/iframe_api_reference"
+
+	| playerElement |
+	playerElement := page elementReferenceFromSelector: '#movie_player'.
+	^ playerElement selfEvaluate: aString.
+]
+
+{ #category : #accessing }
+LlYouTubeVideo >> seekTo: aDuration in: page [
 	
-	"Adapted from https://stackoverflow.com/a/23656455"
-]
-
-{ #category : #accessing }
-LlYouTubeVideo >> newPlayer [
-]
-
-{ #category : #accessing }
-LlYouTubeVideo >> play [
-
-	CwSafari reference
-		openInNewWindow: self url;
-		activate.
+	| template js |
+	template := 'seekTo({seconds}, {allowSeekAhead})'.
+	js := template format: { 
+		#seconds -> aDuration asSeconds. 
+		#allowSeekAhead -> true } asDictionary.
+	^ self playerIn: page doJavaScript: js.
 ]
 
 { #category : #accessing }

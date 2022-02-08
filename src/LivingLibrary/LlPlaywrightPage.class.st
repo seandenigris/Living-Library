@@ -32,6 +32,12 @@ LlPlaywrightPage >> browser: anObject [
 	browser := anObject
 ]
 
+{ #category : #'player API' }
+LlPlaywrightPage >> elementReferenceFromSelector: aString [
+	
+	^ self locator: aString
+]
+
 { #category : #API }
 LlPlaywrightPage >> frameLocator: selectorString [
 	"selectorString - any valid CSS selector, plus some custom Playwright additions
@@ -47,6 +53,15 @@ LlPlaywrightPage >> frameLocator: selectorString [
 LlPlaywrightPage >> frameReferenceFromSelector: selectorString [
 
 	^ self frameLocator: selectorString
+]
+
+{ #category : #accessing }
+LlPlaywrightPage >> locator: aString [
+	
+	^ self 
+		returnA: LlPlaywrightLocator
+		fromScript: [ :factory |
+				factory << (P3GCall target: self model => #locator positionalArguments: { aString }) ]
 ]
 
 { #category : #accessing }
