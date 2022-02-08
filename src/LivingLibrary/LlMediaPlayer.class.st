@@ -82,6 +82,11 @@ LlMediaPlayer >> mediaContainer [
 	^ mediaContainer
 ]
 
+{ #category : #accessing }
+LlMediaPlayer >> nextSection [
+	^ self media nextSectionIn: self mediaContainer
+]
+
 { #category : #actions }
 LlMediaPlayer >> pause [
 	self media pauseIn: self mediaContainer
@@ -90,6 +95,11 @@ LlMediaPlayer >> pause [
 { #category : #actions }
 LlMediaPlayer >> play [
 	self media playIn: self mediaContainer
+]
+
+{ #category : #accessing }
+LlMediaPlayer >> previousSection [
+	^ self media previousSectionIn: self mediaContainer
 ]
 
 { #category : #actions }
