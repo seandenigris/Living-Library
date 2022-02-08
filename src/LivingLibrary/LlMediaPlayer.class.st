@@ -50,7 +50,7 @@ LlMediaPlayer >> currentTime [
 
 { #category : #accessing }
 LlMediaPlayer >> currentTime: aDuration [
-	^ self media seekTo: aDuration in: self mediaContainer
+	self media seekTo: aDuration in: self mediaContainer
 ]
 
 { #category : #accessing }
@@ -63,6 +63,11 @@ LlMediaPlayer >> driver [
 LlMediaPlayer >> driver: anObject [
 
 	driver := anObject
+]
+
+{ #category : #accessing }
+LlMediaPlayer >> isPlaying [
+	^ self media isPlayingIn: self mediaContainer
 ]
 
 { #category : #'as yet unclassified' }
@@ -84,7 +89,7 @@ LlMediaPlayer >> media: anObject [
 
 { #category : #actions }
 LlMediaPlayer >> mediaContainer [
-	mediaContainer ifNil: [ self view ].
+	mediaContainer ifNil: [ self show ].
 	
 	^ mediaContainer
 ]
@@ -109,7 +114,37 @@ LlMediaPlayer >> previousSection [
 	^ self media previousSectionIn: self mediaContainer
 ]
 
+{ #category : #accessing }
+LlMediaPlayer >> quit [
+	self reset
+]
+
+{ #category : #accessing }
+LlMediaPlayer >> reset [
+	mediaContainer ifNil: [ ^ self ].
+	mediaContainer onQuit.
+	mediaContainer := nil.
+]
+
 { #category : #actions }
-LlMediaPlayer >> view [
-	mediaContainer := self driver show: self media
+LlMediaPlayer >> show [
+	self flag: 'possibly need to self media showWith: self driver to account for login, but maybe there is another solution. Leaning more and more towards custom Player classes'.
+	mediaContainer := self driver show: self media.
+]
+
+{ #category : #accessing }
+LlMediaPlayer >> speed [
+	^ self media playbackSpeedIn: self mediaContainer
+]
+
+{ #category : #accessing }
+LlMediaPlayer >> speed: aNumber [
+	self media playbackSpeed: aNumber in: self mediaContainer
+]
+
+{ #category : #accessing }
+LlMediaPlayer >> togglePlayPause [
+	self isPlaying
+		ifTrue: [ self pause ]
+		ifFalse: [ self play ]
 ]

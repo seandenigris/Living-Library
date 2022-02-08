@@ -4,19 +4,19 @@ Class {
 	#category : #'LivingLibrary-Core'
 }
 
-{ #category : #accessing }
+{ #category : #'player-media' }
 LlWebVideo >> currentPosition: aDuration in: page [
 	"Subclasses may override if e.g. video has seekable chapters, slides, etc"
 	self seekTo: aDuration in: page
 ]
 
-{ #category : #accessing }
+{ #category : #'player-media' }
 LlWebVideo >> currentPositionIn: page [
 	"Subclasses may override if e.g. video has seekable chapters, slides, etc"
 	^ self currentTimeIn: page
 ]
 
-{ #category : #accessing }
+{ #category : #'player-media' }
 LlWebVideo >> currentTimeIn: page [
 
 	^ self videoIn: page doJavaScript: 'currentTime'
@@ -29,12 +29,17 @@ LlWebVideo >> element: selectorString in: page doJavaScript: jsString [
 	^ element selfEvaluate: jsString.
 ]
 
+{ #category : #playing }
+LlWebVideo >> isPlayingIn: page [
+	^ (self videoIn: page doJavaScript: 'paused') not.
+]
+
 { #category : #accessing }
 LlWebVideo >> newPlayer [
 	^ LlMediaPlayer on: self
 ]
 
-{ #category : #playing }
+{ #category : #'player-media' }
 LlWebVideo >> pauseIn: page [
 	self videoIn: page doJavaScript: 'pause()'.
 ]
@@ -44,7 +49,17 @@ LlWebVideo >> playIn: page [
 	self videoIn: page doJavaScript: 'play()'.
 ]
 
-{ #category : #playing }
+{ #category : #'player-media' }
+LlWebVideo >> playbackSpeed: aNumber in: page [
+	self videoIn: page doJavaScript: 'playbackRate=', aNumber asString.
+]
+
+{ #category : #'player-media' }
+LlWebVideo >> playbackSpeedIn: page [
+	^ self videoIn: page doJavaScript: 'playbackRate'.
+]
+
+{ #category : #'player-media' }
 LlWebVideo >> seekTo: aDuration in: page [
 	self videoIn: page doJavaScript: 'currentTime = ', aDuration asSeconds asString.
 ]

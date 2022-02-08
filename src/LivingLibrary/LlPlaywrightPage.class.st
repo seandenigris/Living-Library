@@ -77,6 +77,11 @@ LlPlaywrightPage >> model: anObject [
 ]
 
 { #category : #accessing }
+LlPlaywrightPage >> onQuit [
+	self browser close
+]
+
+{ #category : #accessing }
 LlPlaywrightPage >> url: aUrl [
 	
 	self model newCommandFactory
