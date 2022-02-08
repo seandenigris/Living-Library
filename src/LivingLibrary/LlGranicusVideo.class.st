@@ -43,30 +43,6 @@ LlGranicusVideo >> id: anObject [
 	id := anObject
 ]
 
-{ #category : #playing }
-LlGranicusVideo >> pauseIn: page [
-	| frame element |
-	frame := page frameReferenceFromSelector: '[src*=', self videosBaseUrl asString surroundedByDoubleQuotes, ']'.
-	element := frame elementReferenceFromSelector: 'video'.
-	element selfEvaluate: 'pause()'.
-]
-
-{ #category : #playing }
-LlGranicusVideo >> playIn: page [
-	| frame element |
-	frame := page frameReferenceFromSelector: '[src*=', self videosBaseUrl asString surroundedByDoubleQuotes, ']'.
-	element := frame elementReferenceFromSelector: 'video'.
-	element selfEvaluate: 'play()'.
-]
-
-{ #category : #playing }
-LlGranicusVideo >> seekTo: aDuration in: page [
-	| frame element |
-	frame := page frameReferenceFromSelector: '[src*=', self videosBaseUrl asString surroundedByDoubleQuotes, ']'.
-	element := frame elementReferenceFromSelector: 'video'.
-	element selfEvaluate: 'currentTime = ', aDuration asSeconds asString.
-]
-
 { #category : #accessing }
 LlGranicusVideo >> subdomain [
 
@@ -88,6 +64,14 @@ LlGranicusVideo >> url [
 		#subdomain -> self subdomain.
 		#id -> self id } asDictionary.
 	^ string asUrl
+]
+
+{ #category : #playing }
+LlGranicusVideo >> videoIn: page doJavaScript: aString [
+	| frame element |
+	frame := page frameReferenceFromSelector: '[src*=', self videosBaseUrl asString surroundedByDoubleQuotes, ']'.
+	element := frame elementReferenceFromSelector: 'video'.
+	^ element selfEvaluate: aString.
 ]
 
 { #category : #accessing }
