@@ -79,6 +79,8 @@ LlMediaPlayer >> media: anObject [
 
 { #category : #actions }
 LlMediaPlayer >> mediaContainer [
+	mediaContainer ifNil: [ self view ].
+	
 	^ mediaContainer
 ]
 
