@@ -56,13 +56,18 @@ LlMediaPlayer >> currentTime: aDuration [
 { #category : #accessing }
 LlMediaPlayer >> driver [
 
-	^ driver
+	^ driver ifNil: [ driver := LlPlaywright new ]
 ]
 
 { #category : #accessing }
 LlMediaPlayer >> driver: anObject [
 
 	driver := anObject
+]
+
+{ #category : #'as yet unclassified' }
+LlMediaPlayer >> isRunning [
+	^ mediaContainer isNil
 ]
 
 { #category : #accessing }

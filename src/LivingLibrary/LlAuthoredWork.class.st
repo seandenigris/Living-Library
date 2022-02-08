@@ -376,7 +376,7 @@ LlAuthoredWork >> licenseDescription [
 
 { #category : #accessing }
 LlAuthoredWork >> newPlayer [
-	^ LlMediaPlayer on: self copies atRandom
+	^ self copies atRandom newPlayer
 ]
 
 { #category : #accessing }

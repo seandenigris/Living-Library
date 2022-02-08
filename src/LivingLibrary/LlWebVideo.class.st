@@ -31,10 +31,7 @@ LlWebVideo >> element: selectorString in: page doJavaScript: jsString [
 
 { #category : #accessing }
 LlWebVideo >> newPlayer [
-	^ LlMediaPlayer new
-		driver: LlPlaywright new;
-		media: self;
-		yourself
+	^ LlMediaPlayer on: self
 ]
 
 { #category : #playing }
