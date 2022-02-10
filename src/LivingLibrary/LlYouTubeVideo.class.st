@@ -58,7 +58,9 @@ LlYouTubeVideo class >> fromLinkStringExampleInput: urlString shouldSetID: idStr
 { #category : #accessing }
 LlYouTubeVideo >> currentTimeIn: page [
 
-	^ self playerIn: page doJavaScript: 'getCurrentTime()'
+	| secondsString |
+	secondsString := self playerIn: page doJavaScript: 'getCurrentTime()'.
+	^ secondsString asNumber seconds
 ]
 
 { #category : #accessing }

@@ -19,7 +19,9 @@ LlWebVideo >> currentPositionIn: page [
 { #category : #'player-media' }
 LlWebVideo >> currentTimeIn: page [
 
-	^ self videoIn: page doJavaScript: 'currentTime'
+	| secondsString |
+	secondsString := self videoIn: page doJavaScript: 'currentTime'.
+	^ secondsString asNumber seconds
 ]
 
 { #category : #accessing }
