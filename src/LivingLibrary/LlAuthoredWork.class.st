@@ -109,7 +109,7 @@ LlAuthoredWork class >> exampleTranscriptEmptyPage [
 				work := lib works first.
 				page := LePage quTranscriptOwner: work.
 				LeDatabase new addPage: page.
-				page type stub modelReference willReturn: (MADummyObjectUIDReferenceForTesting new
+				page type stub subjectModelReference willReturn: (MADummyObjectUIDReferenceForTesting new
 					source: lib works;
 					uid: work uuid;
 					yourself).
@@ -508,12 +508,19 @@ LlAuthoredWork >> titleDescription [
 
 { #category : #accessing }
 LlAuthoredWork >> transcript [
+
 	^ self 
 		propertyAt: #transcript
 		ifAbsentPut: [ 
-			QuTranscript new
-				model: self;
-				yourself ]
+			self copies 
+				ifNotEmpty: [ :cps | 
+					cps atRandom transcript
+						titleSource: self;
+						yourself ]
+				ifEmpty: [ 
+					QuTranscript new
+						model: self;
+						yourself ] ]
 ]
 
 { #category : #accessing }
