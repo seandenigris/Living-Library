@@ -70,7 +70,7 @@ LlGranicusVideo >> url [
 LlGranicusVideo >> videoIn: page doJavaScript: aString [
 	| frame element |
 	frame := page frameReferenceFromSelector: '[src*=', self videosBaseUrl asString surroundedByDoubleQuotes, ']'.
-	element := frame elementReferenceFromSelector: 'video'.
+	element := frame elementLocatorFromSelector: 'video'.
 	^ element selfEvaluate: aString.
 ]
 

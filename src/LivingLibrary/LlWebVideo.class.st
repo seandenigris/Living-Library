@@ -27,7 +27,7 @@ LlWebVideo >> currentTimeIn: page [
 { #category : #accessing }
 LlWebVideo >> element: selectorString in: page doJavaScript: jsString [
 	| element |
-	element := page elementReferenceFromSelector: selectorString.
+	element := page elementLocatorFromSelector: selectorString.
 	^ element selfEvaluate: jsString.
 ]
 

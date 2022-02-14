@@ -144,6 +144,13 @@ LlYouTubeVideo >> id: aString [
 ]
 
 { #category : #accessing }
+LlYouTubeVideo >> newPlayer [
+	^ super newPlayer
+		driver: LlApplescriptMediaDriver new;
+		yourself
+]
+
+{ #category : #accessing }
 LlYouTubeVideo >> pauseIn: page [ 
 	^ self playerIn: page doJavaScript: 'pauseVideo()'.
 ]
@@ -158,7 +165,7 @@ LlYouTubeVideo >> playerIn: page doJavaScript: aString [
 	"Player API Reference: https://developers.google.com/youtube/iframe_api_reference"
 
 	| playerElement |
-	playerElement := page elementReferenceFromSelector: '#movie_player'.
+	playerElement := page elementLocatorFromSelector: '#movie_player'.
 	^ playerElement selfEvaluate: aString.
 ]
 

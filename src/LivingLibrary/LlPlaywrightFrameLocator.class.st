@@ -17,7 +17,7 @@ LlPlaywrightFrameLocator class >> on: proxy [
 ]
 
 { #category : #'player API' }
-LlPlaywrightFrameLocator >> elementReferenceFromSelector: aString [
+LlPlaywrightFrameLocator >> elementLocatorFromSelector: aString [
 	
 	^ self locator: aString
 ]
