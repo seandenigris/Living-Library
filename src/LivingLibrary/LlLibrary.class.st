@@ -42,6 +42,7 @@ LlLibrary class >> example [
 				importAllFrom: self exampleAddDigitalItem;
 				importAllFrom: self exampleAddPhysicalItem;
 				importAllFrom: self exampleAddSeries;
+				importAllFrom: self exampleAddYouTubeVideo;
 				yourself ]
 		then: [ :lib | lib works should haveSize: 5 ]
 ]

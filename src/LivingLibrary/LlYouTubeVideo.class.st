@@ -24,6 +24,24 @@ LlYouTubeVideo class >> exampleStopDrawingDeadFish [
 ]
 
 { #category : #'instance creation' }
+LlYouTubeVideo class >> exampleTranscriptEmptyPage [
+	<gtExample>
+	^ self
+		given: [ LlLibrary exampleAddYouTubeVideo ]
+		when: [ :lib |
+			| page work |
+				work := lib works first.
+				page := LePage quTranscriptOwner: work.
+				LeDatabase new addPage: page.
+				page type stub modelReference willReturn: (MADummyObjectUIDReferenceForTesting new
+					source: lib works;
+					uid: work uuid;
+					yourself).
+					page ]
+		then: [ :page | page "children should haveSize: 1" ]
+]
+
+{ #category : #'instance creation' }
 LlYouTubeVideo class >> fromLinkString: aString [
 	| url id |
 	url := aString asUrl.
