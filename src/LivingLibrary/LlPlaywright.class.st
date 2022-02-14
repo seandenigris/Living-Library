@@ -72,28 +72,6 @@ LlPlaywright >> launch: browser isHeadless: aBoolean [
 	^ LlPlaywrightBrowser on: proxy
 ]
 
-{ #category : #actions }
-LlPlaywright >> play: video [
-
-	| template |
-	template := 'from playwright.sync_api import sync_playwright
-
-playwright = sync_playwright().start()
-browser = playwright.{browser}.launch(headless=False)
-page = browser.new_page()
-page.goto("url")
-frame = page.frame(url=r''*https://newrochelle.granicus.com/videos/*'') #this does give us a frame
-locator = frame.locator(''video'')
-locator.evaluate("node => node.play()")'.
-
-	^ PBApplication uniqueInstance newCommandStringFactory
-    addAllBindings: { 
-        #url -> video url asString } asDictionary;
-    script: template;
-    resultExpression: '[ playwright, browser ]';
-    sendAndWait.
-]
-
 { #category : #convenience }
 LlPlaywright >> pythonInstance [
 	PythonInstance ifNil: [ self class start ].
