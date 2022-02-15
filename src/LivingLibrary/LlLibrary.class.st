@@ -161,6 +161,12 @@ LlLibrary >> collection [
 ]
 
 { #category : #accessing }
+LlLibrary >> copies [
+
+	^ self catalog flatCollect: #yourself
+]
+
+{ #category : #accessing }
 LlLibrary >> copiesOf: aWrittenWork [
 
 	^ catalog at: aWrittenWork ifAbsent: [ #() ]

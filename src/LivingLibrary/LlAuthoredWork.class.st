@@ -311,6 +311,9 @@ LlAuthoredWork >> gtViewTranscriptFor: aView [
 		priority: 65;
 		object: [ self transcript ];
 		view: #gtViewLinesFor:;
+		actionButtonIcon: LeIcons lepiterIcon
+			tooltip: 'Lepiter Page (Inspect)'
+			action: [ :aButton :aTab | aButton phlow spawnObject: self transcript lepiterPage ];
 		actionUpdateButtonTooltip: 'Update'.
 ]
 
@@ -376,7 +379,9 @@ LlAuthoredWork >> licenseDescription [
 
 { #category : #accessing }
 LlAuthoredWork >> newPlayer [
-	^ self copies atRandom newPlayer
+	^ self copies
+		ifNotEmpty: [ :cps | cps atRandom newPlayer ]
+		ifEmpty: [ self shouldBeImplemented ]
 ]
 
 { #category : #accessing }
@@ -512,15 +517,9 @@ LlAuthoredWork >> transcript [
 	^ self 
 		propertyAt: #transcript
 		ifAbsentPut: [ 
-			self copies 
-				ifNotEmpty: [ :cps | 
-					cps atRandom transcript
-						titleSource: self;
-						yourself ]
-				ifEmpty: [ 
-					QuTranscript new
-						model: self;
-						yourself ] ]
+			QuTranscript new
+				subjectModel: self;
+				yourself ]
 ]
 
 { #category : #accessing }
