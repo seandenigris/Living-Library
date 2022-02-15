@@ -19,17 +19,6 @@ LlLibraryItem >> descriptionWork [
 ]
 
 { #category : #accessing }
-LlLibraryItem >> transcript [
-
-	^ self 
-		propertyAt: #transcript
-		ifAbsentPut: [ 
-			QuTranscript new
-				subjectModel: self;
-				yourself ]
-]
-
-{ #category : #accessing }
 LlLibraryItem >> work [
 	^ self maLazyInstVarUsing: self descriptionWork
 ]
