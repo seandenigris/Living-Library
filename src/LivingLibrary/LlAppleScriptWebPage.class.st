@@ -2,7 +2,8 @@ Class {
 	#name : #LlAppleScriptWebPage,
 	#superclass : #Object,
 	#instVars : [
-		'url'
+		'url',
+		'browser'
 	],
 	#category : #LivingLibrary
 }
@@ -11,12 +12,45 @@ Class {
 LlAppleScriptWebPage class >> atUrl: aUrl in: browser [
 	^ self new
 		url: aUrl;
+		browser: browser;
 		yourself
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
+LlAppleScriptWebPage >> browser [
+
+	^ browser
+]
+
+{ #category : #accessing }
+LlAppleScriptWebPage >> browser: anObject [
+
+	browser := anObject
+]
+
+{ #category : #accessing }
 LlAppleScriptWebPage >> elementLocatorFromSelector: aString [ 
-	^ LlAppleScriptHtmlElementLocator selector: aString
+	^ LlAppleScriptHtmlElementLocator selector: aString in: self
+]
+
+{ #category : #accessing }
+LlAppleScriptWebPage >> onQuit [
+	| template script |
+	template := 'repeat with t in tabs of windows
+		tell t
+			if URL is "{url}" then
+				close
+				exit repeat
+			end if
+		end tell
+	end repeat'.
+	script := template format: { #url -> self url asString } asDictionary.
+	self browser tellApplicationTo: script
+]
+
+{ #category : #accessing }
+LlAppleScriptWebPage >> url [
+	^ url
 ]
 
 { #category : #accessing }

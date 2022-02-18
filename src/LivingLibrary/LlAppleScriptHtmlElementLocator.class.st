@@ -2,16 +2,30 @@ Class {
 	#name : #LlAppleScriptHtmlElementLocator,
 	#superclass : #Object,
 	#instVars : [
-		'selector'
+		'selector',
+		'page'
 	],
 	#category : #LivingLibrary
 }
 
 { #category : #accessing }
-LlAppleScriptHtmlElementLocator class >> selector: aString [ 
+LlAppleScriptHtmlElementLocator class >> selector: aString in: page [
 	^ self new
 		selector: aString;
+		page: page;
 		yourself
+]
+
+{ #category : #accessing }
+LlAppleScriptHtmlElementLocator >> page [
+
+	^ page
+]
+
+{ #category : #accessing }
+LlAppleScriptHtmlElementLocator >> page: anObject [
+
+	page := anObject
 ]
 
 { #category : #accessing }
@@ -30,5 +44,7 @@ LlAppleScriptHtmlElementLocator >> selfEvaluate: aString [
 	js := (SuJSScript queryingSelector -> aString)
 		argumentAt: #selectors put: self selector surroundedByDoubleQuotes;
 		yourself.
-	^ CwSafari reference doJavascript: js
+		
+	self flag: 'assumes active tab'.
+	^ self page browser doJavascript: js
 ]
