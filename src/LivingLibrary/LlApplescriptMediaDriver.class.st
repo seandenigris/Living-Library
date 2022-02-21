@@ -11,6 +11,16 @@ LlApplescriptMediaDriver >> browser [
 ]
 
 { #category : #accessing }
+LlApplescriptMediaDriver >> initialize [
+
+	| somethingFromJS |
+	super initialize.
+	
+	somethingFromJS := self browser  doJavascript: '1'.
+	somethingFromJS = 1 ifFalse: [ self error: 'Can''t doJavaScript in ', self browser class name, ' browser. You probably need to enable "Allow JavaScript from Apple Events" in the "Develop" menu' ].
+]
+
+{ #category : #accessing }
 LlApplescriptMediaDriver >> show: media [
 
 	self browser
