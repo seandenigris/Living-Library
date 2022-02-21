@@ -99,7 +99,7 @@ LlLibrary class >> exampleAddYouTubeVideo [
 	| pdfFile copy lib work |
 	work := LlAuthoredWork new 
 		title: 'Stop Drawing Dead Fish';
-		author: MpPerson exampleBrettVictor.
+		author: MpPerson exampleBretVictor.
 	copy := LlYouTubeVideo exampleStopDrawingDeadFish.
 	
 	lib := LlLibrary new 

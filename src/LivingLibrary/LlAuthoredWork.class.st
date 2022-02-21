@@ -94,7 +94,7 @@ LlAuthoredWork class >> exampleStopDrawingDeadFish [
 	<gtExample>
 	"Companion is LlYouTubeVideo exampleStopDrawingDeadFish"
 	| result |
-	result := self titled: 'Stop Drawing Dead Fish' by: MpPerson exampleBrettVictor.
+	result := self titled: 'Stop Drawing Dead Fish' by: MpPerson exampleBretVictor.
 	result title should equal: 'Stop Drawing Dead Fish'.
 	^ result
 ]
