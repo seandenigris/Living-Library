@@ -44,7 +44,7 @@ LlLibrary class >> example [
 				importAllFrom: self exampleAddSeries;
 				importAllFrom: self exampleAddYouTubeVideo;
 				yourself ]
-		then: [ :lib | lib works should haveSize: 5 ]
+		then: [ :lib | lib works should haveSize: 6 ]
 ]
 
 { #category : #accessing }
