@@ -17,6 +17,16 @@ LlAppleScriptHtmlElementLocator class >> selector: aString in: page [
 ]
 
 { #category : #accessing }
+LlAppleScriptHtmlElementLocator >> exists [
+	| js |
+	js := (SuJSScript queryingSelector + ' !== null')
+		argumentAt: #selectors put: self selector surroundedByDoubleQuotes;
+		yourself.
+
+	^ self page browser doJavascript: js in: self page documentIdString
+]
+
+{ #category : #accessing }
 LlAppleScriptHtmlElementLocator >> page [
 
 	^ page
@@ -44,7 +54,6 @@ LlAppleScriptHtmlElementLocator >> selfEvaluate: aString [
 	js := (SuJSScript queryingSelector -> aString)
 		argumentAt: #selectors put: self selector surroundedByDoubleQuotes;
 		yourself.
-		
-	self flag: 'assumes active tab'.
-	^ self page browser doJavascript: js
+
+	^ self page browser doJavascript: js in: self page documentIdString
 ]
