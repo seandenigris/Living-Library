@@ -96,7 +96,11 @@ LlMediaPlayer >> mediaContainer [
 
 { #category : #accessing }
 LlMediaPlayer >> nextSection [
-	^ self media nextSectionIn: self mediaContainer
+	| speed |
+	speed := self speed.
+	self media nextSectionIn: self mediaContainer.
+	self play.
+	self speed: speed
 ]
 
 { #category : #actions }
