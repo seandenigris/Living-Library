@@ -309,11 +309,14 @@ LlAuthoredWork >> gtViewTranscriptFor: aView [
 	^ aView forward
 		title: 'Transcript' translated;
 		priority: 65;
-		object: [ self transcript ];
-		view: #gtViewLinesFor:;
+		object: [ self transcript lepiterPage ];
+		view: #gtLiveFor:;
 		actionButtonIcon: LeIcons lepiterIcon
 			tooltip: 'Lepiter Page (Inspect)'
 			action: [ :aButton :aTab | aButton phlow spawnObject: self transcript lepiterPage ];
+		actionButtonIcon: BrGlamorousVectorIcons inspect
+			tooltip: 'Inspect Transcript'
+			action: [ :aButton :aTab | aButton phlow spawnObject: self transcript ];
 		actionUpdateButtonTooltip: 'Update'.
 ]
 
