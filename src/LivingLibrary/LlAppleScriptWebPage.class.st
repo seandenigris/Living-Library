@@ -11,9 +11,14 @@ Class {
 { #category : #accessing }
 LlAppleScriptWebPage class >> atUrl: aUrl in: browser [
 	^ self new
-		url: aUrl;
+		basicUrl: aUrl;
 		browser: browser;
 		yourself
+]
+
+{ #category : #'as yet unclassified' }
+LlAppleScriptWebPage >> basicUrl: aUrl [ 
+	url := aUrl
 ]
 
 { #category : #accessing }
