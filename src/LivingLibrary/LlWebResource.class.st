@@ -8,6 +8,19 @@ Class {
 	#category : #'LivingLibrary-Core'
 }
 
+{ #category : #'instance creation' }
+LlWebResource class >> cachingUrl: aUrl [
+
+	| result |
+	result := self new
+		url: aUrl;
+		yourself.
+	
+	result resourceLibrary import: result cached.
+	
+	^ result
+]
+
 { #category : #accessing }
 LlWebResource >> author [
 	^ self work author
@@ -21,6 +34,20 @@ LlWebResource >> author: person [
 { #category : #accessing }
 LlWebResource >> authors [
 	^ self work authors
+]
+
+{ #category : #caching }
+LlWebResource >> cached [
+	| file result |
+	self propertyAt: #cache ifPresent: [ :c | ^ c ].
+	file := Tempfile named: self url rlFilename.
+	file parent ensureCreateDirectory.
+	self url saveContentsToFile: file.
+	result := file asRlResource
+		source: self url;
+		yourself.
+	self propertyAt: #cache put: result.
+	^ result
 ]
 
 { #category : #accessing }
@@ -64,6 +91,11 @@ LlWebResource >> printOn: aStream [
 		nextPutAll: self description;
 		nextPutAll: ' @ ';
 		print: self url
+]
+
+{ #category : #accessing }
+LlWebResource >> resourceLibrary [
+	^ self propertyAt: #resourceLibrary ifAbsent: [ RlResourceLibrary uniqueInstance ]
 ]
 
 { #category : #accessing }
