@@ -527,13 +527,7 @@ LlAuthoredWork >> transcript [
 
 { #category : #accessing }
 LlAuthoredWork >> transcript: aQuTranscript [
-	| key |
-	key := #transcript.
-	(aQuTranscript isNil and: [ self hasProperty: key ])
-		ifTrue: [ 
-			self properties removeKey: key.
-			^ self ].
-	^ self propertyAt: key put: aQuTranscript
+	self propertyAt: #transcript putRemovingNil: aQuTranscript
 ]
 
 { #category : #accessing }
