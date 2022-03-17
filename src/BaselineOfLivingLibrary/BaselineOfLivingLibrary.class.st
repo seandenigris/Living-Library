@@ -50,11 +50,14 @@ BaselineOfLivingLibrary >> baseline: spec [
 			spec requires: #('Magritte' 'Mocketry' 'MyPeople' 'PharoEnhancements' 'QuoteMe' 'ResourcesLive' 'SimplePersistence') ] ].
 				
 	spec for: #notGToolkit do: [
-		spec baseline: 'XPath' with: [
+		spec 
+			baseline: 'ObjectiveLepiter' with: [
+				spec repository: 'github://seandenigris/Objective-Lepiter' ];
+			baseline: 'XPath' with: [
 			spec repository: 'github://seandenigris/XML-XPath' ].
 		spec 
 			package: 'LivingLibrary' with: [ 
-				spec requires: 'XPath' "needed for bible stuff" ] ]
+				spec requires: #(ObjectiveLepiter 'XPath' "needed for bible stuff") ] ]
 ]
 
 { #category : #accessing }

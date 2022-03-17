@@ -109,7 +109,7 @@ LlAuthoredWork class >> exampleTranscriptEmptyPage [
 				work := lib works first.
 				page := LePage quTranscriptOwner: work.
 				LeDatabase new addPage: page.
-				page type stub subjectModelReference willReturn: (MADummyObjectUIDReferenceForTesting new
+				page type stub subjectModelReference willReturn: (OlDummyObjectUIDReferenceForTesting new
 					source: lib works;
 					uid: work uuid;
 					yourself).
