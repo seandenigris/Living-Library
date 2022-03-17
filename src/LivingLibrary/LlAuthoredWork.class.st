@@ -24,8 +24,8 @@ The ""type"" is currently like a tag. While we started with a class per type ((e
 Class {
 	#name : #LlAuthoredWork,
 	#superclass : #Object,
-	#traits : 'LlTLibraryItem + MATPropertyOwner + MpTAlphabetizable',
-	#classTraits : 'LlTLibraryItem classTrait + MATPropertyOwner classTrait + MpTAlphabetizable classTrait',
+	#traits : 'LlTLibraryItem + MATPropertyOwner + MpTAlphabetizable + QuTTranscriptable',
+	#classTraits : 'LlTLibraryItem classTrait + MATPropertyOwner classTrait + MpTAlphabetizable classTrait + QuTTranscriptable classTrait',
 	#instVars : [
 		'title',
 		'type',
@@ -512,22 +512,6 @@ LlAuthoredWork >> titleDescription [
 		default: '';
 		priority: 100;
 		yourself
-]
-
-{ #category : #accessing }
-LlAuthoredWork >> transcript [
-
-	^ self 
-		propertyAt: #transcript
-		ifAbsentPut: [ 
-			QuTranscript new
-				subjectModel: self;
-				yourself ]
-]
-
-{ #category : #accessing }
-LlAuthoredWork >> transcript: aQuTranscript [
-	self propertyAt: #transcript putRemovingNil: aQuTranscript
 ]
 
 { #category : #accessing }
