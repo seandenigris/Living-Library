@@ -44,6 +44,21 @@ LlAppleScriptWebPage >> elementLocatorFromSelector: aString [
 ]
 
 { #category : #accessing }
+LlAppleScriptWebPage >> exists [
+	^ self browser applescriptTell: 'exists (', self documentIdString, ')'
+]
+
+{ #category : #accessing }
+LlAppleScriptWebPage >> isDocumentComplete [
+
+	^ self browser 
+		doJavascript: 'document.readyState == "complete"'
+		in: self documentIdString.
+		
+	"Reference: https://developer.mozilla.org/en-US/docs/Web/API/Document/readyState via https://codereview.stackexchange.com/a/91967"
+]
+
+{ #category : #accessing }
 LlAppleScriptWebPage >> onQuit [
 	| template script |
 	template := 'repeat with t in tabs of windows
@@ -56,6 +71,16 @@ LlAppleScriptWebPage >> onQuit [
 	end repeat'.
 	script := template format: { #url -> self url asString } asDictionary.
 	self browser tellApplicationTo: script
+]
+
+{ #category : #accessing }
+LlAppleScriptWebPage >> printOn: aStream [
+
+	aStream
+		nextPutAll: self documentIdString;
+		nextPutAll: ' ('.
+	super printOn: aStream.
+	aStream nextPut: $)
 ]
 
 { #category : #accessing }
@@ -77,24 +102,8 @@ LlAppleScriptWebPage >> url: aUrl [
 
 { #category : #accessing }
 LlAppleScriptWebPage >> waitForDocumentToLoad [
-	
-	| isReadyTest testGuardedIfTooEarly |
-	isReadyTest := [ 
-		self browser 
-			doJavascript: 'document.readyState == "complete"'
-			in: self documentIdString.
-		"Reference: https://developer.mozilla.org/en-US/docs/Web/API/Document/readyState
-		via https://codereview.stackexchange.com/a/91967" ].
 			
-	"testGuardedIfTooEarly := [ 
-		isReadyTest
-			on: MessageNotUnderstood
-			do: [ :ex | 
-				(ex signaler isKindOf: ApplescriptReference)
-					ifTrue: [ ex return: false ]
-					ifFalse: [ ex pass ] ] ]."
-			
-	[ isReadyTest whileFalse: [ 0.2 seconds wait ] ]
+	[ [ self exists and: [  self isDocumentComplete ] ] whileFalse: [ 0.2 seconds wait ] ]
 		valueWithin: 10 seconds
 		onTimeout: [].
 ]
