@@ -226,10 +226,10 @@ LlLibrary >> gtViewWorksOn: aView [
 	^ aView tree
 		title: 'Works' translated;
 		priority: 25;
-		items: [ self works ];
+		items: [ self rootWorks ];
 		children: [ :each | 
 			(each isKindOf: LlAuthoredWork)
-				ifTrue: [ self catalog at: each ]
+				ifTrue: [ each treeChildren ]
 				ifFalse: [ #() ] ];
 		itemText: #displayString;
 		actionUpdateButtonTooltip: 'Update'.
@@ -266,6 +266,11 @@ LlLibrary >> printOn: aStream [
 { #category : #'copies - adding' }
 LlLibrary >> receive: aCopy [
 	self addCopy: aCopy of: aCopy work
+]
+
+{ #category : #accessing }
+LlLibrary >> rootWorks [
+	^ self works select: [ :e | e parent isNil ]
 ]
 
 { #category : #actions }

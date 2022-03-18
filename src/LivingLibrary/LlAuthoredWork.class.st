@@ -515,6 +515,11 @@ LlAuthoredWork >> titleDescription [
 ]
 
 { #category : #accessing }
+LlAuthoredWork >> treeChildren [
+	^ self copies, self children
+]
+
+{ #category : #accessing }
 LlAuthoredWork >> type [
 
 	^ type.
