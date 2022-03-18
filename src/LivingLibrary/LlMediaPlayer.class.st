@@ -40,7 +40,10 @@ LlMediaPlayer >> currentPosition [
 
 { #category : #accessing }
 LlMediaPlayer >> currentPosition: anObject [
-	self media currentPosition: anObject in: self mediaContainer
+	self restorePlayStateAfter: [
+		self media 
+			currentPosition: anObject 
+			in: self mediaContainer ]
 ]
 
 { #category : #accessing }
@@ -50,7 +53,10 @@ LlMediaPlayer >> currentTime [
 
 { #category : #accessing }
 LlMediaPlayer >> currentTime: aDuration [
-	self media seekTo: aDuration in: self mediaContainer
+	self restorePlayStateAfter: [
+		self media 
+			seekTo: aDuration 
+			in: self mediaContainer ]
 ]
 
 { #category : #accessing }
@@ -68,6 +74,14 @@ LlMediaPlayer >> driver: anObject [
 { #category : #accessing }
 LlMediaPlayer >> isPlaying [
 	^ self media isPlayingIn: self mediaContainer
+]
+
+{ #category : #accessing }
+LlMediaPlayer >> isPlaying: aBoolean [
+	
+	aBoolean
+		ifTrue: [ self play ]
+		ifFalse: [ self pause ]
 ]
 
 { #category : #'as yet unclassified' }
@@ -128,6 +142,16 @@ LlMediaPlayer >> reset [
 	mediaContainer ifNil: [ ^ self ].
 	mediaContainer onQuit.
 	mediaContainer := nil.
+]
+
+{ #category : #accessing }
+LlMediaPlayer >> restorePlayStateAfter: aBlock [
+	| playState |
+	playState := self isPlaying.
+	aBlock value.
+	self isPlaying: playState
+	
+	"Note: this was first needed because it seemed that seeking via Playwright driver plays the video even if it wasn't already"
 ]
 
 { #category : #actions }
