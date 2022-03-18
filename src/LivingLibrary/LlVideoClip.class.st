@@ -8,22 +8,18 @@ VideoClip allInstances collect: [ :e |
 Class {
 	#name : #LlVideoClip,
 	#superclass : #Object,
-	#traits : 'RlTPlayable',
-	#classTraits : 'RlTPlayable classTrait',
 	#instVars : [
 		'startTime',
 		'endTime',
-		'video',
-		'backgroundProcess',
-		'subtitle'
+		'video'
 	],
-	#category : 'LivingLibrary-Core'
+	#category : #'LivingLibrary-Core'
 }
 
 { #category : #'instance creation' }
 LlVideoClip class >> from: aVideo startingAt: startString andEndingAt: endString [ 
 
-	^ self new setCD: aVideo startTime: startString endTime: endString.
+	^ self new setVideo: aVideo startTime: startString endTime: endString.
 ]
 
 { #category : #'as yet unclassified' }
@@ -41,27 +37,30 @@ LlVideoClip >> asMorph [
 	^ morph.
 ]
 
-{ #category : #playing }
-LlVideoClip >> backgroundProcess: aProcess [
-
-	backgroundProcess ifNotNil: [ :process | process terminate ].
-	backgroundProcess := aProcess.
+{ #category : #accessing }
+LlVideoClip >> doesNotUnderstand: aMessage [
+	^ (self video respondsTo: aMessage selector)
+		ifTrue: [ aMessage sendTo: self video ]
+		ifFalse: [ super doesNotUnderstand: aMessage ]
 ]
 
 { #category : #playing }
-LlVideoClip >> isPlaying [
+LlVideoClip >> newPlayer [
 
-	^ backgroundProcess isNil not and: [ backgroundProcess isTerminated not ].
-]
-
-{ #category : #'as yet unclassified' }
-LlVideoClip >> open [
-
-	self asMorph openInWorld.
+	^ self video newPlayer
+		media: self;
+		currentPosition: self startPosition;
+		yourself
 ]
 
 { #category : #playing }
-LlVideoClip >> play [
+LlVideoClip >> player [
+
+	^ video.
+]
+
+{ #category : #playing }
+LlVideoClip >> playold [
 	"I think this should ultimately be delegated to the player. It's only necessary to fork with either QT or DVDPlayer (I forget which, but I guess DVD Player since that's what we're dealing with - although this could've been a cut and paste job. This again points to the need for executable documentation of assumptions) because you can't specify a fractional second (although we should check the underlying Cocoa framework at some point, which may expose more functionality).
 	The whole thing would become:
 		disc playFrom: startTime to: endTime"
@@ -72,16 +71,10 @@ LlVideoClip >> play [
 	originalPosition := video position.
 	video position: startTime.
 	self isPlaying ifTrue: [ ^ self ].
-	self backgroundProcess: [ [ video position < endTime ] whileTrue: [ (Delay forMilliseconds: 100) wait ].
+	"self backgroundProcess: [ [ video position < endTime ] whileTrue: [ (Delay forMilliseconds: 100) wait ].
 		video pause.
 		video position: originalPosition.
-		backgroundProcess := nil ] fork.
-]
-
-{ #category : #playing }
-LlVideoClip >> player [
-
-	^ video.
+		backgroundProcess := nil ] fork."
 ]
 
 { #category : #playing }
@@ -95,23 +88,25 @@ LlVideoClip >> printOn: aStream [
 ]
 
 { #category : #private }
-LlVideoClip >> setCD: aCD startTime: startString endTime: endString [
+LlVideoClip >> setVideo: aVideo startTime: startPosition endTime: endPosition [
 
-	video := aCD.
-	startTime := startString.
-	endTime := endString.
-	subtitle := ''.
+	video := aVideo.
+	startTime := startPosition.
+	endTime := endPosition.
 	^ self.
 ]
 
-{ #category : #'as yet unclassified' }
-LlVideoClip >> subtitle [
-
-	^ subtitle.
+{ #category : #playing }
+LlVideoClip >> startPosition [
+	^ startTime
 ]
 
-{ #category : #'as yet unclassified' }
-LlVideoClip >> subtitle: aString [
+{ #category : #accessing }
+LlVideoClip >> startPosition: position [
+	startTime := position
+]
 
-	subtitle := aString.
+{ #category : #playing }
+LlVideoClip >> video [
+	^ video
 ]
