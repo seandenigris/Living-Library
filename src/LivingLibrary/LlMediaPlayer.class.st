@@ -154,6 +154,13 @@ LlMediaPlayer >> restorePlayStateAfter: aBlock [
 	"Note: this was first needed because it seemed that seeking via Playwright driver plays the video even if it wasn't already"
 ]
 
+{ #category : #accessing }
+LlMediaPlayer >> seekBy: aDuration [
+	| target |
+	target := self currentTime + aDuration max: 0 seconds.
+	self currentTime: target
+]
+
 { #category : #actions }
 LlMediaPlayer >> show [
 	self flag: 'possibly need to self media showWith: self driver to account for login, but maybe there is another solution. Leaning more and more towards custom Player classes'.
