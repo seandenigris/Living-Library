@@ -25,6 +25,11 @@ LlWebVideo >> currentTimeIn: page [
 ]
 
 { #category : #accessing }
+LlWebVideo >> defaultDriver: anObject [
+	self propertyAt: #defaultDriver put: anObject
+]
+
+{ #category : #accessing }
 LlWebVideo >> element: selectorString in: page doJavaScript: jsString [
 	| element |
 	element := page elementLocatorFromSelector: selectorString.
@@ -38,7 +43,12 @@ LlWebVideo >> isPlayingIn: page [
 
 { #category : #accessing }
 LlWebVideo >> newPlayer [
-	^ LlMediaPlayer on: self
+	| result |
+	result := LlMediaPlayer on: self.
+	self 
+		propertyAt: #defaultDriver 
+		ifPresent: [ :driver | result driver: driver ].
+	^ result
 ]
 
 { #category : #'player-media' }
