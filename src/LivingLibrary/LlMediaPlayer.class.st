@@ -21,7 +21,8 @@ Class {
 	#instVars : [
 		'media',
 		'driver',
-		'mediaContainer'
+		'mediaContainer',
+		'requestedSpeed'
 	],
 	#category : #'LivingLibrary-Core'
 }
@@ -110,11 +111,9 @@ LlMediaPlayer >> mediaContainer [
 
 { #category : #accessing }
 LlMediaPlayer >> nextSection [
-	| speed |
-	speed := self speed.
 	self media nextSectionIn: self mediaContainer.
 	self play.
-	self speed: speed
+	self requestedSpeed ifNotNil: [ :spd | self speed: spd ]
 ]
 
 { #category : #actions }
@@ -129,12 +128,26 @@ LlMediaPlayer >> play [
 
 { #category : #accessing }
 LlMediaPlayer >> previousSection [
-	^ self media previousSectionIn: self mediaContainer
+	self media previousSectionIn: self mediaContainer.
+	self play.
+	self requestedSpeed ifNotNil: [ :spd | self speed: spd ]
 ]
 
 { #category : #accessing }
 LlMediaPlayer >> quit [
 	self reset
+]
+
+{ #category : #accessing }
+LlMediaPlayer >> requestedSpeed [
+
+	^ requestedSpeed
+]
+
+{ #category : #accessing }
+LlMediaPlayer >> requestedSpeed: aNumber [
+
+	requestedSpeed := aNumber
 ]
 
 { #category : #accessing }
@@ -174,6 +187,8 @@ LlMediaPlayer >> speed [
 
 { #category : #accessing }
 LlMediaPlayer >> speed: aNumber [
+
+	self requestedSpeed: aNumber.
 	self media playbackSpeed: aNumber in: self mediaContainer
 ]
 
