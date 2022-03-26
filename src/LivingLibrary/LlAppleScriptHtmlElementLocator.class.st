@@ -27,6 +27,11 @@ LlAppleScriptHtmlElementLocator >> exists [
 ]
 
 { #category : #accessing }
+LlAppleScriptHtmlElementLocator >> getAttribute: aString [
+	^ self selfEvaluate: 'getAttribute(', aString surroundedBySingleQuotes, ')'
+]
+
+{ #category : #accessing }
 LlAppleScriptHtmlElementLocator >> page [
 
 	^ page
