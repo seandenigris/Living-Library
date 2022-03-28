@@ -5,7 +5,7 @@ Class {
 		'description',
 		'location'
 	],
-	#category : 'LivingLibrary-Core'
+	#category : #'LivingLibrary-Core'
 }
 
 { #category : #accessing }
@@ -30,18 +30,6 @@ LlPhysicalResource >> descriptionDescription [
 			yourself
 ]
 
-{ #category : #Magritte }
-LlPhysicalResource >> descriptionLocation [
-	<magritteDescription>
-	^ MAStringDescription new
-			accessor: #location;
-			label: 'Location';
-			priority: 200;
-			default: '';
-			beRequired;
-			yourself
-]
-
 { #category : #accessing }
 LlPhysicalResource >> location [
 	^ location
@@ -50,6 +38,18 @@ LlPhysicalResource >> location [
 { #category : #accessing }
 LlPhysicalResource >> location: anObject [
 	location := anObject
+]
+
+{ #category : #Magritte }
+LlPhysicalResource >> locationDescription [
+	<magritteDescription>
+	^ MAStringDescription new
+			accessor: #location;
+			label: 'Location';
+			priority: 200;
+			default: '';
+			beRequired;
+			yourself
 ]
 
 { #category : #printing }
