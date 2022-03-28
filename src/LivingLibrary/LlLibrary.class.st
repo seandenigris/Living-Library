@@ -192,7 +192,7 @@ LlLibrary >> gtGtSpotterFor: aStep [
 		allCandidates: [ self works ];
 		filter: GtFilterSubstrings;
 		candidatesLimit: 7;
-		itemName: #fullTitle
+		itemName: #displayString
 ]
 
 { #category : #accessing }
