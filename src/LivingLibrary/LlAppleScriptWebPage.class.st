@@ -34,6 +34,11 @@ LlAppleScriptWebPage >> browser: anObject [
 ]
 
 { #category : #accessing }
+LlAppleScriptWebPage >> doJavascript: script [
+	^ self browser doJavascript: script in: self documentIdString
+]
+
+{ #category : #accessing }
 LlAppleScriptWebPage >> documentIdString [
 	^ 'first document where URL begins with ', self url asString surroundedByDoubleQuotes
 ]

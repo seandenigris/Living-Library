@@ -23,7 +23,7 @@ LlAppleScriptHtmlElementLocator >> exists [
 		argumentAt: #selectors put: self selector surroundedByDoubleQuotes;
 		yourself.
 
-	^ self page browser doJavascript: js in: self page documentIdString
+	^ self page doJavascript: js
 ]
 
 { #category : #accessing }
@@ -60,5 +60,5 @@ LlAppleScriptHtmlElementLocator >> selfEvaluate: aString [
 		argumentAt: #selectors put: self selector surroundedByDoubleQuotes;
 		yourself.
 
-	^ self page browser doJavascript: js in: self page documentIdString
+	^ self page doJavascript: js
 ]
