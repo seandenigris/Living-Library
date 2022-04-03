@@ -63,7 +63,7 @@ LlMediaPlayer >> currentTime: aDuration [
 { #category : #accessing }
 LlMediaPlayer >> driver [
 
-	^ driver ifNil: [ driver := LlPlaywright new ]
+	^ driver ifNil: [ driver := LlPlaywright uniqueInstance ]
 ]
 
 { #category : #accessing }

@@ -23,7 +23,7 @@ LlPlaywright class >> shutDown: quitting [
 LlPlaywright class >> start [
 	| template |
 	
-	PythonInstance ifNotNil: [ ^ PythonInstance ].
+	PythonInstance ifNotNil: [ ^ self ].
 	
 	template := 'from playwright.sync_api import sync_playwright'.
 
