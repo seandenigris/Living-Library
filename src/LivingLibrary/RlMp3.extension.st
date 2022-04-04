@@ -9,5 +9,5 @@ RlMp3 >> newPlayer [
 
 { #category : #'*LivingLibrary' }
 RlMp3 >> playIn: container [
-	container play: self file
+	container play
 ]
