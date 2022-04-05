@@ -36,18 +36,18 @@ LlPythonMpv >> onQuit [
 	self terminate
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 LlPythonMpv >> pause [
 	self pythonMpv newCommandFactory
 		<< (self pythonMpv => #pause <- true);
-		sendAndWait
+		send
 ]
 
 { #category : #accessing }
 LlPythonMpv >> play [
 	self pythonMpv newCommandFactory
 		<< (self pythonMpv => #pause <- false);
-		sendAndWait
+		send
 ]
 
 { #category : #accessing }
@@ -81,6 +81,20 @@ LlPythonMpv >> show: media [
 		sendAndWait.
 	self pause.
 	^ self "I am the container because I don't have e.g. tabs"
+]
+
+{ #category : #accessing }
+LlPythonMpv >> speed [
+	^ self pythonMpv newCommandFactory
+		<< (self pythonMpv => #speed);
+		sendAndWait
+]
+
+{ #category : #accessing }
+LlPythonMpv >> speed: aNumber [
+	self pythonMpv newCommandFactory
+		<< (self pythonMpv => #speed <- aNumber);
+		send
 ]
 
 { #category : #accessing }
