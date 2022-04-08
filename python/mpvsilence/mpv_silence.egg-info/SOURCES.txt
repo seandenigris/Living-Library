@@ -1,0 +1,9 @@
+mpvsilence.py
+pyproject.toml
+setup.cfg
+setup.py
+mpv_silence.egg-info/PKG-INFO
+mpv_silence.egg-info/SOURCES.txt
+mpv_silence.egg-info/dependency_links.txt
+mpv_silence.egg-info/requires.txt
+mpv_silence.egg-info/top_level.txt

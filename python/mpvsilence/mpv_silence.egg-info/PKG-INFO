@@ -1,0 +1,14 @@
+Metadata-Version: 2.1
+Name: mpv-silence
+Version: 0.1.4
+Summary: Adds silence skipping to python-mpv
+Home-page: https://github.com/seandenigris/Living-Library
+Author: Sean DeNigris
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+
+UNKNOWN
+
