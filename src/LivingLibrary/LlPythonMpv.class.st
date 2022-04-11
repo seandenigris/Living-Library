@@ -56,6 +56,7 @@ LlPythonMpv >> pythonMpv [
 	
 	^ pythonMpv := PBApplication uniqueInstance 
 		sendSource: 'import mpv
+import mpvsilence
 mpv.MPV()' 
 		withBindings: {}
 ]
@@ -81,6 +82,18 @@ LlPythonMpv >> show: media [
 		sendAndWait.
 	self pause.
 	^ self "I am the container because I don't have e.g. tabs"
+]
+
+{ #category : #accessing }
+LlPythonMpv >> skipSilence [
+	PBApplication uniqueInstance newCommandFactory
+		<< (P3GCall 
+				target: self pythonMpv => #skip_silence
+				positionalArguments: nil 
+				keywordArguments: { 
+					#noise -> -40.
+					#duration -> 1 } asDictionary);
+		sendAndWait.
 ]
 
 { #category : #accessing }
