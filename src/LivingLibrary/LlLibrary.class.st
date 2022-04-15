@@ -268,6 +268,11 @@ LlLibrary >> receive: aCopy [
 	self addCopy: aCopy of: aCopy work
 ]
 
+{ #category : #private }
+LlLibrary >> removeCardFor: work [
+	self catalog removeKey: work
+]
+
 { #category : #accessing }
 LlLibrary >> rootWorks [
 	^ self works select: [ :e | e parent isNil ]

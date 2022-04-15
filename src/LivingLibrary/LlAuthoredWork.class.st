@@ -229,6 +229,13 @@ LlAuthoredWork >> copies [
 ]
 
 { #category : #accessing }
+LlAuthoredWork >> deleteAll [
+	self copies do: [ :e | e delete ].
+	self library removeCardFor: self.
+	self library: nil.
+]
+
+{ #category : #accessing }
 LlAuthoredWork >> editions [
 	^ self maLazyInstVarUsing: self editionsDescription
 ]
