@@ -11,14 +11,10 @@ Class {
 { #category : #'instance creation' }
 LlWebResource class >> cachingUrl: aUrl [
 
-	| result |
-	result := self new
+	^ self new
 		url: aUrl;
-		yourself.
-	
-	result resourceLibrary import: result cached.
-	
-	^ result
+		saveCache;
+		yourself
 ]
 
 { #category : #accessing }
@@ -96,6 +92,11 @@ LlWebResource >> printOn: aStream [
 { #category : #accessing }
 LlWebResource >> resourceLibrary [
 	^ self propertyAt: #resourceLibrary ifAbsent: [ RlResourceLibrary uniqueInstance ]
+]
+
+{ #category : #'instance creation' }
+LlWebResource >> saveCache [
+	self resourceLibrary import: self cached
 ]
 
 { #category : #accessing }
