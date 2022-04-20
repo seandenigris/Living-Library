@@ -206,7 +206,7 @@ LlAuthoredWork >> authorsDescription [
 		label: 'Authors';
 		priority: 200;
 		default: {};
-		options: MpAddressBook default people; 
+		options: MpAddressBook uniqueInstance contacts; 
 		yourself
 ]
 
