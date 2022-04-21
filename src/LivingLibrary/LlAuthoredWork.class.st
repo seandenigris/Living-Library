@@ -168,8 +168,9 @@ LlAuthoredWork >> = rhs [
 
 { #category : #accessing }
 LlAuthoredWork >> addChild: aWork [
-	self syncLibraryWith: aWork.	
+	self syncLibraryWith: aWork.
 	self children add: aWork. "Children currently a set so don't worry about duplicate adding"
+	aWork parent ifNil: [ aWork parent: self ]
 ]
 
 { #category : #accessing }
@@ -401,8 +402,9 @@ LlAuthoredWork >> parent [
 
 { #category : #accessing }
 LlAuthoredWork >> parent: aWork [
-	aWork addChild: self. "Add child first because it will attempt to sync libraries and signal error if impossible"
+	self syncLibraryWith: aWork.
 	parent := aWork.
+	aWork addChild: self.
 ]
 
 { #category : #transcript }
