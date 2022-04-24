@@ -1,7 +1,7 @@
 Class {
 	#name : #WrittenWorkSpecification,
 	#superclass : #TestCase,
-	#category : 'LivingLibrary-Specifications'
+	#category : #'LivingLibrary-Specifications'
 }
 
 { #category : #tests }
@@ -59,7 +59,7 @@ WrittenWorkSpecification >> testPdfCopy [
 		library: library;
 		yourself.
 	library should receive: #copyOf:; with: work.
-	work getCopy.
+	work anyCopy.
 		
 ]
 

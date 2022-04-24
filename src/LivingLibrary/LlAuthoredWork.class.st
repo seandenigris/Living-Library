@@ -173,6 +173,11 @@ LlAuthoredWork >> addChild: aWork [
 	aWork parent ifNil: [ aWork parent: self ]
 ]
 
+{ #category : #'library access' }
+LlAuthoredWork >> anyCopy [
+	^ self copies ifNotEmpty: [ :col | col atRandom ] ifEmpty: [ nil ].
+]
+
 { #category : #accessing }
 LlAuthoredWork >> author [
 
@@ -274,11 +279,6 @@ LlAuthoredWork >> fullTitle [
 	^ self pathString 
 		ifEmpty: [ self title ]
 		ifNotEmpty: [ :p | p, ': ', self title ]
-]
-
-{ #category : #'library access' }
-LlAuthoredWork >> getCopy [
-	^ self copies ifNotEmpty: [ :col | col atRandom ] ifEmpty: [ nil ].
 ]
 
 { #category : #accessing }
