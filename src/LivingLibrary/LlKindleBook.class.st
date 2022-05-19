@@ -48,6 +48,13 @@ LlKindleBook >> id: anObject [
 	id := anObject
 ]
 
+{ #category : #'as yet unclassified' }
+LlKindleBook >> newPlayer [
+	^ (LlMediaPlayer on: self)
+		driver: LlApplescriptMediaDriver new;
+		yourself
+]
+
 { #category : #accessing }
 LlKindleBook >> url [
 	^ 'https://read.amazon.com' asUrl ? (#asin -> self id)
