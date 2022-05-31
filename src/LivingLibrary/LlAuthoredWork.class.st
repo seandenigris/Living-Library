@@ -50,6 +50,7 @@ LlAuthoredWork class >> exampleAntifragile [
 	<gtExample>
 	| result |
 	result := self titled: 'Antifragile' by: MpPerson exampleNassimTaleb.
+	result addressBook: MpAddressBook example.
 	result title should equal: 'Antifragile'.
 	^ result
 ]
@@ -171,6 +172,18 @@ LlAuthoredWork >> addChild: aWork [
 	self syncLibraryWith: aWork.
 	self children add: aWork. "Children currently a set so don't worry about duplicate adding"
 	aWork parent ifNil: [ aWork parent: self ]
+]
+
+{ #category : #accessing }
+LlAuthoredWork >> addressBook [
+
+	^ self propertyAt: #addressBook ifAbsent: [ MpAddressBook uniqueInstance ]
+]
+
+{ #category : #accessing }
+LlAuthoredWork >> addressBook: anMpAddressBook [
+
+	^ self propertyAt: #addressBook put: anMpAddressBook
 ]
 
 { #category : #'library access' }
