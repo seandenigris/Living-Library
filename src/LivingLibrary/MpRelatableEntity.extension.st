@@ -17,5 +17,5 @@ MpRelatableEntity >> gtViewWorksOn: aView [
 
 { #category : #'*LivingLibrary' }
 MpRelatableEntity >> llAsCollection [
-	^ { self }
+	^ OrderedCollection with: self
 ]
