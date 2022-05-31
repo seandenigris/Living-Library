@@ -220,12 +220,13 @@ LlAuthoredWork >> authors: aCollection [
 LlAuthoredWork >> authorsDescription [
 	<magritteDescription>
 	
-	^ MAMultipleOptionDescription new
+	^ MAToManyRelationDescription new
 		accessor: #authors;
 		label: 'Authors';
 		priority: 200;
-		default: {};
-		options: MpAddressBook uniqueInstance contacts; 
+		default: OrderedCollection new;
+		classes: MpRelatableEntity allSubclasses;
+		gtSearchSource: (MessageSend receiver: self selector: #addressBook); 
 		yourself
 ]
 
