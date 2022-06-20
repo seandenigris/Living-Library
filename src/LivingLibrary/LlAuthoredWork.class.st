@@ -222,7 +222,6 @@ LlAuthoredWork >> authorsDescription [
 	
 	^ MAToManyRelationDescription new
 		accessor: #authors;
-		label: 'Authors';
 		priority: 200;
 		default: OrderedCollection new;
 		classes: MpRelatableEntity allSubclasses;
