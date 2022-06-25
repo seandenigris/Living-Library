@@ -17,6 +17,13 @@ LlWebResource class >> cachingUrl: aUrl [
 		yourself
 ]
 
+{ #category : #'instance creation' }
+LlWebResource class >> fromString: aString [
+	^ self new
+		url: aString asUrl;
+		yourself
+]
+
 { #category : #accessing }
 LlWebResource >> author [
 	^ self work author
