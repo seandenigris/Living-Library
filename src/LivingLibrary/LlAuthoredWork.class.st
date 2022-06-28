@@ -230,6 +230,16 @@ LlAuthoredWork >> authorsDescription [
 ]
 
 { #category : #accessing }
+LlAuthoredWork >> calibreID [
+	^ self propertyAt: #calibreID ifAbsent: [ nil ]
+]
+
+{ #category : #accessing }
+LlAuthoredWork >> calibreID: aNumber [
+	^ self propertyAt: #calibreID put: aNumber
+]
+
+{ #category : #accessing }
 LlAuthoredWork >> ccAuthorMarkup [
 	^ String streamContents: [ :str |
 		self authors
