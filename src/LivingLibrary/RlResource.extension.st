@@ -1,6 +1,11 @@
 Extension { #name : #RlResource }
 
 { #category : #'*LivingLibrary' }
+RlResource class >> calibreName [
+	^ self typeName
+]
+
+{ #category : #'*LivingLibrary' }
 RlResource >> newWork [
 	^ LlAuthoredWork new
 		title: self file base;
