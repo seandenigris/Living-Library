@@ -7,11 +7,18 @@ Class {
 		'title',
 		'subjects'
 	],
-	#category : 'LivingLibrary-Core'
+	#category : #'LivingLibrary-Core'
 }
 
 { #category : #'as yet unclassified' }
-LlInterview >> descriptionSubjects [
+LlInterview >> printOn: aStream [
+	title
+		ifNotNil: [ aStream nextPutAll: title ]
+		ifNil: [ super printOn: aStream ]
+]
+
+{ #category : #'as yet unclassified' }
+LlInterview >> subjectsDescription [
 	<magritteDescription>
 	
 	^ MAToManyRelationDescription new
@@ -21,13 +28,6 @@ LlInterview >> descriptionSubjects [
 		default: OrderedCollection new;
 		priority: 200;
 		yourself
-]
-
-{ #category : #'as yet unclassified' }
-LlInterview >> printOn: aStream [
-	title
-		ifNotNil: [ aStream nextPutAll: title ]
-		ifNil: [ super printOn: aStream ]
 ]
 
 { #category : #'as yet unclassified' }
