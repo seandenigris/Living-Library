@@ -4,12 +4,12 @@ Class {
 	#instVars : [
 		'contents'
 	],
-	#category : 'LivingLibrary-Bible'
+	#category : #'LivingLibrary-Bible'
 }
 
 { #category : #accessing }
 BrBibleVerse >> contents [
-	^ self maLazyFrom: self descriptionContents
+	^ self maLazyFrom: self contentsDescription
 ]
 
 { #category : #accessing }
@@ -18,7 +18,7 @@ BrBibleVerse >> contents: anObject [
 ]
 
 { #category : #'magritte-accessing' }
-BrBibleVerse >> descriptionContents [
+BrBibleVerse >> contentsDescription [
 	<magritteDescription>
 	^ MAStringDescription new
 		accessor: #contents;
