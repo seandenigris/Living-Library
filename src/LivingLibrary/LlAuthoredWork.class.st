@@ -249,7 +249,7 @@ LlAuthoredWork >> ccAuthorMarkup [
 
 { #category : #accessing }
 LlAuthoredWork >> children [
-	^ children ifNil: [ children := Set new ]
+	^ children ifNil: [ children := CTOrderedSet new ]
 ]
 
 { #category : #'library access' }

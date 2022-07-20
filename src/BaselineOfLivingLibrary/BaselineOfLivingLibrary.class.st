@@ -30,6 +30,8 @@ BaselineOfLivingLibrary >> baseline: spec [
 	
 	spec for: #'common' do: [
 		spec 
+			baseline: 'ContainersOrderedSet' with: [ 
+				spec repository: 'github://pharo-containers/Containers-OrderedSet' ];
 			baseline: 'Magritte' with: [
 				spec 
 					loads: #('Magritte-Bootstrap');
