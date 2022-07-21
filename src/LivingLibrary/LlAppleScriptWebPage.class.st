@@ -34,6 +34,12 @@ LlAppleScriptWebPage >> browser: anObject [
 ]
 
 { #category : #accessing }
+LlAppleScriptWebPage >> cookie [
+	"https://stackoverflow.com/a/57909990"
+	^ self doJavascript: 'document.cookie'
+]
+
+{ #category : #accessing }
 LlAppleScriptWebPage >> doJavascript: script [
 	^ self browser doJavascript: script in: self documentIdString
 ]
