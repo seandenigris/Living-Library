@@ -40,6 +40,16 @@ LlWebResource >> authors [
 ]
 
 { #category : #caching }
+LlWebResource >> cache [
+	^ self propertyAt: #cache ifAbsent: [ nil ]
+]
+
+{ #category : #caching }
+LlWebResource >> cache: file [
+	self propertyAt: #cache put: file
+]
+
+{ #category : #caching }
 LlWebResource >> cached [
 	| file result |
 	self propertyAt: #cache ifPresent: [ :c | ^ c ].
@@ -49,7 +59,7 @@ LlWebResource >> cached [
 	result := file asRlResource
 		source: self url;
 		yourself.
-	self propertyAt: #cache put: result.
+	self cache: result.
 	^ result
 ]
 
