@@ -1,10 +1,10 @@
 Class {
 	#name : #LlVimeoVideo,
-	#superclass : #Object,
+	#superclass : #LlWebVideo,
 	#instVars : [
-		'url'
+		'id'
 	],
-	#category : 'LivingLibrary'
+	#category : #'LivingLibrary-Core'
 }
 
 { #category : #'as yet unclassified' }
@@ -19,6 +19,14 @@ LlVimeoVideo class >> currentlyOpenInSafari [
 	^ self new setUrl: CwSafari reference currentUrl.
 ]
 
+{ #category : #accessing }
+LlVimeoVideo class >> withID: aNumber [
+
+	^ self new
+		id: aNumber;
+		yourself
+]
+
 { #category : #'as yet unclassified' }
 LlVimeoVideo >> currentTime [
 
@@ -29,6 +37,18 @@ LlVimeoVideo >> currentTime [
 LlVimeoVideo >> currentTime: aDuration [
 
 	CwSafari reference doJavascript: 'document.getElementsByTagName(''video'')[0].currentTime = ', aDuration asSeconds asString.
+]
+
+{ #category : #accessing }
+LlVimeoVideo >> id [
+
+	^ id
+]
+
+{ #category : #accessing }
+LlVimeoVideo >> id: aNumber [
+
+	id := aNumber
 ]
 
 { #category : #'as yet unclassified' }
@@ -45,17 +65,20 @@ LlVimeoVideo >> play [
 	CwSafari reference doJavascript: 'document.getElementsByClassName(''play_button'')[0].click()'.
 ]
 
-{ #category : #private }
-LlVimeoVideo >> setUrl: aUrl [ 
-
-	url := aUrl.
-	^ self.
+{ #category : #accessing }
+LlVimeoVideo >> playerUrl [
+	^ 'https://player.vimeo.com/video' asUrl / self id
 ]
 
 { #category : #'as yet unclassified' }
 LlVimeoVideo >> show [
 
-	CwSafari reference openInNewWindow: url.
+	CwSafari reference openInNewWindow: id.
 	self play.
 		
+]
+
+{ #category : #accessing }
+LlVimeoVideo >> url [
+	^ 'https://vimeo.com' asUrl / self id
 ]
