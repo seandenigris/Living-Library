@@ -12,6 +12,15 @@ LlPlaywright class >> initialize [
 	SessionManager default registerSystemClassNamed: self name
 ]
 
+{ #category : #installation }
+LlPlaywright class >> install [
+	| pyBridgeFolder cmdString pipEnvReference |
+	pyBridgeFolder := FileLocator imageDirectory / 'PythonBridgeRuntime'.
+	pipEnvReference := FileLocator home / '.pyenv/shims/pipenv'.
+	cmdString := 'cd "', pyBridgeFolder fullName, '"; ', pipEnvReference fullName, ' run playwright install'.
+	cmdString asSuCommand run
+]
+
 { #category : #initialization }
 LlPlaywright class >> shutDown: quitting [
 	quitting ifFalse: [ ^ self ].
