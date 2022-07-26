@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'model'
 	],
-	#category : #'LivingLibrary-Playwright'
+	#category : #'LivingLibrary-Web Driving-Playwright'
 }
 
 { #category : #accessing }

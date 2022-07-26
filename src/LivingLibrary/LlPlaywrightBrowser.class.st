@@ -1,7 +1,7 @@
 Class {
 	#name : #LlPlaywrightBrowser,
 	#superclass : #LlPlaywrightObject,
-	#category : #'LivingLibrary-Playwright'
+	#category : #'LivingLibrary-Web Driving-Playwright'
 }
 
 { #category : #'instance creation' }

@@ -1,7 +1,7 @@
 Class {
 	#name : #LlVideoUrl,
 	#superclass : #ZnUrl,
-	#category : #LivingLibrary
+	#category : #'LivingLibrary-URLs, Custom'
 }
 
 { #category : #accessing }

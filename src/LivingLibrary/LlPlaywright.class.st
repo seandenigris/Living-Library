@@ -4,7 +4,7 @@ Class {
 	#classVars : [
 		'PythonInstance'
 	],
-	#category : #'LivingLibrary-Playwright'
+	#category : #'LivingLibrary-Web Driving-Playwright'
 }
 
 { #category : #initialization }

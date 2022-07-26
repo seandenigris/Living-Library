@@ -5,7 +5,7 @@ Class {
 		'url',
 		'browser'
 	],
-	#category : #LivingLibrary
+	#category : #'LivingLibrary-Web Driving-AppleScript'
 }
 
 { #category : #accessing }

@@ -6,7 +6,7 @@ From [the doc](https://playwright.dev/python/docs/api/class-framelocator): *Fram
 Class {
 	#name : #LlPlaywrightLocator,
 	#superclass : #LlPlaywrightObject,
-	#category : #'LivingLibrary-Playwright'
+	#category : #'LivingLibrary-Web Driving-Playwright'
 }
 
 { #category : #'instance creation' }

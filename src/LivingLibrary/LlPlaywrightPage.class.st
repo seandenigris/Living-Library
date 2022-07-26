@@ -9,7 +9,7 @@ Class {
 	#instVars : [
 		'browser'
 	],
-	#category : #'LivingLibrary-Playwright'
+	#category : #'LivingLibrary-Web Driving-Playwright'
 }
 
 { #category : #accessing }

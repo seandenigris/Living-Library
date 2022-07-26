@@ -5,7 +5,7 @@ Class {
 		'selector',
 		'page'
 	],
-	#category : #LivingLibrary
+	#category : #'LivingLibrary-Web Driving-AppleScript'
 }
 
 { #category : #accessing }

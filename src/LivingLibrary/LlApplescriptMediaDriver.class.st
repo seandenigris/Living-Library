@@ -1,7 +1,7 @@
 Class {
 	#name : #LlApplescriptMediaDriver,
 	#superclass : #Object,
-	#category : #LivingLibrary
+	#category : #'LivingLibrary-Web Driving-AppleScript'
 }
 
 { #category : #accessing }
