@@ -78,6 +78,14 @@ LlCalibreResource >> url [
 ]
 
 { #category : #accessing }
+LlCalibreResource >> urlForLocation: aString [
+	"Assumes current library
+	Reference: https://manual.calibre-ebook.com/url_scheme.html#id3"
+	
+	^ self url queryAt: #open_at put: aString
+]
+
+{ #category : #accessing }
 LlCalibreResource >> workID [
 	^ self work calibreID
 ]
