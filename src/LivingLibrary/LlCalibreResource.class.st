@@ -15,7 +15,7 @@ LlCalibreResource class >> example [
 	<gtExample>
 	^ self
 		new: RlPDF
-		ofWork: LlLibrary example works atRandom
+		ofWork: LlAuthoredWork exampleCalibre
 ]
 
 { #category : #'instance creation' }
@@ -96,5 +96,5 @@ LlCalibreResource >> workUrl [
 	Reference: https://manual.calibre-ebook.com/url_scheme.html#id2"
 	| library |
 	library := '_'.
-	^ 'calibre://show-book/' asUrl / library / self id asString
+	^ 'calibre://show-book/' asUrl / library / self workID asString
 ]

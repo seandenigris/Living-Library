@@ -56,6 +56,16 @@ LlAuthoredWork class >> exampleAntifragile [
 ]
 
 { #category : #example }
+LlAuthoredWork class >> exampleCalibre [
+	<gtExample>
+	| result |
+	result := self exampleAntifragile.
+	result calibreID: 122.
+	result calibreID should equal: 122.
+	^ result
+]
+
+{ #category : #example }
 LlAuthoredWork class >> exampleHamlet [
 	<gtExample>
 	| result |
