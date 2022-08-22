@@ -7,7 +7,7 @@ Class {
 	#instVars : [
 		'format'
 	],
-	#category : #'LivingLibrary-Core'
+	#category : #'LivingLibrary-Calibre'
 }
 
 { #category : #examples }
