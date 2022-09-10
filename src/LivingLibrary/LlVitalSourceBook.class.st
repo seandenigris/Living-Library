@@ -20,17 +20,17 @@ LlVitalSourceBook class >> example [
 ]
 
 { #category : #examples }
-LlVitalSourceBook class >> exampleFromLinkString [
+LlVitalSourceBook class >> exampleFromString [
 	<gtExample>
 	^ self 
 		given: []
 		when: [ 
-			self fromLinkString: 'https://online.vitalsource.com/reader/books/9780879396497/pageid/132' ]
+			self fromString: 'https://online.vitalsource.com/reader/books/9780879396497/pageid/132' ]
 		then: [ :book | book url asString should equal: 'https://online.vitalsource.com/reader/books/9780879396497' ]
 ]
 
 { #category : #examples }
-LlVitalSourceBook class >> fromLinkString: aString [
+LlVitalSourceBook class >> fromString: aString [
 	^ self new
 		id: (aString asUrl pathSegments third);
 		yourself

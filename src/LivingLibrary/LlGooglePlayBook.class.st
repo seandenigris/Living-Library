@@ -23,7 +23,7 @@ LlGooglePlayBook class >> example [
 ]
 
 { #category : #examples }
-LlGooglePlayBook class >> fromLinkString: aString [
+LlGooglePlayBook class >> fromString: aString [
 	^ self new
 		id: (aString asUrl queryAt: #id);
 		yourself

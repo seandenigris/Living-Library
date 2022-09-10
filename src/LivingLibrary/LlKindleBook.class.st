@@ -20,19 +20,19 @@ LlKindleBook class >> example [
 ]
 
 { #category : #examples }
-LlKindleBook class >> exampleFromLinkString [
+LlKindleBook class >> exampleFromString [
 	<gtExample>
 	^ self 
 		given: []
 		when: [ 
-			self fromLinkString: 'https://read.amazon.com/?asin=B07ZTQR8P4&language=en-US' ]
+			self fromString: 'https://read.amazon.com/?asin=B07ZTQR8P4&language=en-US' ]
 		then: [ :book | 
 			book url asString should equal: 'https://read.amazon.com/?asin=B07ZTQR8P4'.
 			book id should equal: 'B07ZTQR8P4' ]
 ]
 
 { #category : #examples }
-LlKindleBook class >> fromLinkString: aString [
+LlKindleBook class >> fromString: aString [
 	^ self new
 		id: (aString asUrl queryAt: #asin);
 		yourself

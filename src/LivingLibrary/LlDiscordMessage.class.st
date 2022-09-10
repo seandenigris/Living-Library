@@ -10,7 +10,20 @@ Class {
 }
 
 { #category : #'instance creation' }
-LlDiscordMessage class >> fromLinkString: aString [
+LlDiscordMessage class >> fromLinkStringExample [
+	<gtExample>
+	
+	^ self
+		given: [ 'https://discord.com/channels/729445214812504107/755319168504692778/1009824276574113804' ]
+		when: [ :str | self fromString: str ]
+		then: [ :result | 
+			result server should equal: 729445214812504107.
+			result channel should equal: 755319168504692778.
+			result id should equal: 1009824276574113804 ]
+]
+
+{ #category : #'instance creation' }
+LlDiscordMessage class >> fromString: aString [
 
 	| url |
 	url := aString asUrl.
@@ -22,21 +35,8 @@ LlDiscordMessage class >> fromLinkString: aString [
 		yourself
 ]
 
-{ #category : #'instance creation' }
-LlDiscordMessage class >> fromLinkStringExample [
-	<gtExample>
-	
-	^ self
-		given: [ 'https://discord.com/channels/729445214812504107/755319168504692778/1009824276574113804' ]
-		when: [ :str | self fromLinkString: str ]
-		then: [ :result | 
-			result server should equal: 729445214812504107.
-			result channel should equal: 755319168504692778.
-			result id should equal: 1009824276574113804 ]
-]
-
 { #category : #accessing }
-LlDiscordMessage class >> isClassForString: aString [
+LlDiscordMessage class >> peCanHandleFromString: aString [
 	^ aString beginsWith: 'https://discord.com'
 ]
 

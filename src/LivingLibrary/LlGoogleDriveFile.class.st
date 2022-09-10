@@ -5,7 +5,7 @@ Class {
 }
 
 { #category : #'instance creation' }
-LlGoogleDriveFile class >> fromLinkString: aString [
+LlGoogleDriveFile class >> fromString: aString [
 	^ self new
 		url: aString asUrl;
 		yourself

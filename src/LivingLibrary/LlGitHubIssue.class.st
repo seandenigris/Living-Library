@@ -10,7 +10,20 @@ Class {
 }
 
 { #category : #'instance creation' }
-LlGitHubIssue class >> fromLinkString: aString [
+LlGitHubIssue class >> fromLinkStringExample [
+	<gtExample>
+	
+	^ self
+		given: [ 'https://github.com/feenkcom/gtoolkit/issues/2786' ]
+		when: [ :str | self fromString: str ]
+		then: [ :result | 
+			result user should equal: 'feenkcom'.
+			result project should equal: 'gtoolkit'.
+			result number should equal: 2786 ]
+]
+
+{ #category : #'instance creation' }
+LlGitHubIssue class >> fromString: aString [
 
 	| url |
 	url := aString asUrl.
@@ -20,19 +33,6 @@ LlGitHubIssue class >> fromLinkString: aString [
 		project: url pathSegments second;
 		number: url file asNumber;
 		yourself
-]
-
-{ #category : #'instance creation' }
-LlGitHubIssue class >> fromLinkStringExample [
-	<gtExample>
-	
-	^ self
-		given: [ 'https://github.com/feenkcom/gtoolkit/issues/2786' ]
-		when: [ :str | self fromLinkString: str ]
-		then: [ :result | 
-			result user should equal: 'feenkcom'.
-			result project should equal: 'gtoolkit'.
-			result number should equal: 2786 ]
 ]
 
 { #category : #accessing }

@@ -41,8 +41,16 @@ LlYouTubeVideo class >> exampleTranscriptEmptyPage [
 		then: [ :page | page "children should haveSize: 1" ]
 ]
 
+{ #category : #example }
+LlYouTubeVideo class >> fromLinkStringExample [
+	<gtExample>
+	self fromStringExampleInput: 'https://youtu.be/A0TafHXszg' shouldSetID: 'A0TafHXszg'.
+	self fromStringExampleInput: 'https://youtube.com/embed/A0TafHXszg?loop=1' shouldSetID: 'A0TafHXszg'.
+	^ self fromStringExampleInput: 'https://www.youtube.com/watch?v=QOe3FA4wJcQ' shouldSetID: 'QOe3FA4wJcQ'
+]
+
 { #category : #'instance creation' }
-LlYouTubeVideo class >> fromLinkString: aString [
+LlYouTubeVideo class >> fromString: aString [
 	| url id |
 	url := aString asUrl.
 	id := url pathSegments first = 'embed' "embedded"
@@ -56,20 +64,12 @@ LlYouTubeVideo class >> fromLinkString: aString [
 		yourself
 ]
 
-{ #category : #example }
-LlYouTubeVideo class >> fromLinkStringExample [
-	<gtExample>
-	self fromLinkStringExampleInput: 'https://youtu.be/A0TafHXszg' shouldSetID: 'A0TafHXszg'.
-	self fromLinkStringExampleInput: 'https://youtube.com/embed/A0TafHXszg?loop=1' shouldSetID: 'A0TafHXszg'.
-	^ self fromLinkStringExampleInput: 'https://www.youtube.com/watch?v=QOe3FA4wJcQ' shouldSetID: 'QOe3FA4wJcQ'
-]
-
 { #category : #'private-examples' }
-LlYouTubeVideo class >> fromLinkStringExampleInput: urlString shouldSetID: idString [
+LlYouTubeVideo class >> fromStringExampleInput: urlString shouldSetID: idString [
 	<gtExample>
 	^ self
 		given: [ urlString ]
-		when: [ :str | self fromLinkString: str ]
+		when: [ :str | self fromString: str ]
 		then: [ :video | video id should equal: idString ] 
 ]
 

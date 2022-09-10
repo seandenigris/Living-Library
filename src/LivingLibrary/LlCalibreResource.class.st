@@ -28,6 +28,11 @@ LlCalibreResource class >> new: anRlResourceClass ofWork: anLlAuthoredWork [
 		yourself
 ]
 
+{ #category : #testing }
+LlCalibreResource class >> peCanHandleFromString: aString [
+	^ aString beginsWith: 'calibre://'
+]
+
 { #category : #accessing }
 LlCalibreResource >> format [
 
