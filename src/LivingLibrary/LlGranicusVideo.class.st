@@ -9,7 +9,17 @@ Class {
 }
 
 { #category : #accessing }
-LlGranicusVideo class >> fromLinkStringExample [
+LlGranicusVideo class >> fromString: aString [
+	| url id |
+	url := aString asUrl.
+	^ self new
+		id: (url queryAt: #clip_id);
+		subdomain: (url host copyUpTo: $.);
+		yourself
+]
+
+{ #category : #accessing }
+LlGranicusVideo class >> fromStringExample [
 	<gtExample>
 	^ self 
 		given: []
@@ -19,16 +29,6 @@ LlGranicusVideo class >> fromLinkStringExample [
 			video url asString should equal: 'https://sub.granicus.com/MediaPlayer.php?clip_id=1234'.
 			video id should equal: '1234'.
 			video subdomain should equal: 'sub' ]
-]
-
-{ #category : #accessing }
-LlGranicusVideo class >> fromString: aString [
-	| url id |
-	url := aString asUrl.
-	^ self new
-		id: (url queryAt: #clip_id);
-		subdomain: (url host copyUpTo: $.);
-		yourself
 ]
 
 { #category : #accessing }

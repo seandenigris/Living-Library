@@ -41,14 +41,6 @@ LlYouTubeVideo class >> exampleTranscriptEmptyPage [
 		then: [ :page | page "children should haveSize: 1" ]
 ]
 
-{ #category : #example }
-LlYouTubeVideo class >> fromLinkStringExample [
-	<gtExample>
-	self fromStringExampleInput: 'https://youtu.be/A0TafHXszg' shouldSetID: 'A0TafHXszg'.
-	self fromStringExampleInput: 'https://youtube.com/embed/A0TafHXszg?loop=1' shouldSetID: 'A0TafHXszg'.
-	^ self fromStringExampleInput: 'https://www.youtube.com/watch?v=QOe3FA4wJcQ' shouldSetID: 'QOe3FA4wJcQ'
-]
-
 { #category : #'instance creation' }
 LlYouTubeVideo class >> fromString: aString [
 	| url id |
@@ -62,6 +54,14 @@ LlYouTubeVideo class >> fromString: aString [
 	^ self new
 		id: id;
 		yourself
+]
+
+{ #category : #example }
+LlYouTubeVideo class >> fromStringExample [
+	<gtExample>
+	self fromStringExampleInput: 'https://youtu.be/A0TafHXszg' shouldSetID: 'A0TafHXszg'.
+	self fromStringExampleInput: 'https://youtube.com/embed/A0TafHXszg?loop=1' shouldSetID: 'A0TafHXszg'.
+	^ self fromStringExampleInput: 'https://www.youtube.com/watch?v=QOe3FA4wJcQ' shouldSetID: 'QOe3FA4wJcQ'
 ]
 
 { #category : #'private-examples' }

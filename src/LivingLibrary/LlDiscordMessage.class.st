@@ -10,19 +10,6 @@ Class {
 }
 
 { #category : #'instance creation' }
-LlDiscordMessage class >> fromLinkStringExample [
-	<gtExample>
-	
-	^ self
-		given: [ 'https://discord.com/channels/729445214812504107/755319168504692778/1009824276574113804' ]
-		when: [ :str | self fromString: str ]
-		then: [ :result | 
-			result server should equal: 729445214812504107.
-			result channel should equal: 755319168504692778.
-			result id should equal: 1009824276574113804 ]
-]
-
-{ #category : #'instance creation' }
 LlDiscordMessage class >> fromString: aString [
 
 	| url |
@@ -33,6 +20,19 @@ LlDiscordMessage class >> fromString: aString [
 		channel: url pathSegments third asNumber;
 		id: url pathSegments fourth asNumber;
 		yourself
+]
+
+{ #category : #'instance creation' }
+LlDiscordMessage class >> fromStringExample [
+	<gtExample>
+	
+	^ self
+		given: [ 'https://discord.com/channels/729445214812504107/755319168504692778/1009824276574113804' ]
+		when: [ :str | self fromString: str ]
+		then: [ :result | 
+			result server should equal: 729445214812504107.
+			result channel should equal: 755319168504692778.
+			result id should equal: 1009824276574113804 ]
 ]
 
 { #category : #accessing }
