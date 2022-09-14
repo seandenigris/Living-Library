@@ -56,7 +56,7 @@ LlAppleScriptWebPage >> elementLocatorFromSelector: aString [
 
 { #category : #accessing }
 LlAppleScriptWebPage >> exists [
-	^ self browser applescriptTell: 'exists (', self documentIdString, ')'
+	^ self browser applescriptTellTo: 'exists (', self documentIdString, ')'
 ]
 
 { #category : #accessing }
@@ -106,7 +106,7 @@ LlAppleScriptWebPage >> url: aUrl [
 	script := scriptTemplate format: {
 		#document -> self documentIdString.
 		#targetUrl -> aUrl asString } asDictionary.
-	self browser applescriptTell: script.
+	self browser applescriptTellTo: script.
 	url := aUrl.
 	self waitForDocumentToLoad.
 ]
