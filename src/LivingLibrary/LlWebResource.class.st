@@ -24,6 +24,15 @@ LlWebResource class >> fromString: aString [
 		yourself
 ]
 
+{ #category : #testing }
+LlWebResource class >> peCanHandleFromString: aString [
+
+	| schemes |
+	self == LlWebResource ifFalse: [  ^ false ].
+	schemes := #('http://' 'https://').
+	^ schemes anySatisfy: [ :e | aString beginsWith: e ]
+]
+
 { #category : #accessing }
 LlWebResource >> author [
 	^ self work author
