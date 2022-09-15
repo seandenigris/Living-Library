@@ -101,7 +101,7 @@ LlWebResource >> open [
 { #category : #accessing }
 LlWebResource >> printOn: aStream [
 	aStream
-		nextPutAll: self description;
+		nextPutAll: self className;
 		nextPutAll: ' @ ';
 		print: self url
 ]
