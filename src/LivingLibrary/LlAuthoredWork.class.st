@@ -259,12 +259,59 @@ LlAuthoredWork >> ccAuthorMarkup [
 
 { #category : #accessing }
 LlAuthoredWork >> children [
-	^ children ifNil: [ children := CTOrderedSet new ]
+	^ self maLazyInstVarUsing: self childrenDescription
+]
+
+{ #category : #private }
+LlAuthoredWork >> children: anObject [
+
+	children := anObject
+]
+
+{ #category : #magritte }
+LlAuthoredWork >> childrenDescription [
+	<magritteDescription>
+	
+	^ MAToManyRelationDescription new
+		accessor: #children;
+		priority: 600;
+		default: CTOrderedSet new;
+		classes: LlAuthoredWork withAllSubclasses;
+		beReadOnly; "we actually have a collection, but how to initialize the parent/child relationship
+		gtSearchSource: (MessageSend receiver: self selector: #library);"
+		yourself
 ]
 
 { #category : #'library access' }
 LlAuthoredWork >> copies [
 	^ self library copiesOf: self
+]
+
+{ #category : #magritte }
+LlAuthoredWork >> copiesDescription [
+	<magritteDescription>
+	
+	| gtSearchSource librarySource classes |
+	gtSearchSource := PeGtCompositeSearch new.
+	librarySource := PeGtDelegatedSearch 
+		to: LlLibraryItem 
+		message: #gtSpotterNewFor:.
+	gtSearchSource children 
+		add: librarySource;
+		add: self resourceLibrary.
+		
+	classes := RlResource withAllSubclasses
+		addAll: LlLibraryItem allSubclasses;
+		addAll: PpInventoryItem withAllSubclasses;
+		yourself.
+	
+	^ MAToManyRelationDescription new
+		accessor: #copies;
+		priority: 700;
+		beReadOnly;
+		classes: classes;
+		"gtSearchSource: gtSearchSource; there is no collection to operate on - may be possible after Magritte issue #303"
+		yourself
 ]
 
 { #category : #accessing }
@@ -488,6 +535,11 @@ LlAuthoredWork >> quoteDb [
 { #category : #quotation }
 LlAuthoredWork >> quotes [
 	^ self quoteDb select: [ :e | e citation source = self ]
+]
+
+{ #category : #magritte }
+LlAuthoredWork >> resourceLibrary [
+	^ RlResourceLibrary uniqueInstance
 ]
 
 { #category : #actions }
