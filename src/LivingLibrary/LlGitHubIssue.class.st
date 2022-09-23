@@ -35,6 +35,14 @@ LlGitHubIssue class >> fromStringExample [
 			result number should equal: 2786 ]
 ]
 
+{ #category : #testing }
+LlGitHubIssue class >> peCanHandleFromString: aString [
+
+	| url |	
+	url := aString asUrl.
+	^ url host = 'github.com' and: [ url pathSegments size = 4 and: [ url pathSegments third = 'issues' ] ]
+]
+
 { #category : #accessing }
 LlGitHubIssue >> number [
 
