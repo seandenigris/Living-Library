@@ -195,9 +195,10 @@ LlLibrary >> gtGtSpotterWorksOn: aSearch [
 ]
 
 { #category : #spotter }
-LlLibrary >> gtSpotterNewWorkFor: aStep [
+LlLibrary >> gtSpotterNewWorkFor: aSearch [
 	<gtSearch>
-	aStep listProcessor
+	
+	^ aSearch list
 		title: 'New Work';
 		priority: 50;
 		itemName: [ :input | 'Create new work: ', input ];
