@@ -10,14 +10,15 @@ Class {
 }
 
 { #category : #accessing }
-LlLibraryItem class >> gtSpotterNewFor: aStep [
+LlLibraryItem class >> gtSpotterNewFor: aSearch [
 	<gtSearch>
-	
-	aStep listProcessor
+	^ aSearch list
 		title: 'New instance';
 		priority: 50;
 		wantsToDisplayOnEmptyQuery: false;
-		filter: (PeGtDeepestSubInstanceFilter new rootClass: self; yourself)
+		filter: (PeGtDeepestSubInstanceFilter new
+				rootClass: self;
+				yourself)
 ]
 
 { #category : #'magritte-accessing' }

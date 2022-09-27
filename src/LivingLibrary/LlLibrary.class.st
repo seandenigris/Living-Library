@@ -184,15 +184,14 @@ LlLibrary >> ensureCardFor: work [
 ]
 
 { #category : #spotter }
-LlLibrary >> gtGtSpotterWorksOn: aStep [
- 	<gtSearch>
- 	^ aStep listProcessor
- 		priority: 5;
- 		title: 'Works';
- 		allCandidates: [ self works ];
- 		filter: GtFilterSubstrings;
- 		candidatesLimit: 7;
- 		itemName: #displayString
+LlLibrary >> gtGtSpotterWorksOn: aSearch [
+	<gtSearch>
+	^ aSearch list
+		priority: 5;
+		title: 'Works';
+		items: [ self works ];
+		matchSubstrings;
+		itemName: #displayString
 ]
 
 { #category : #spotter }
