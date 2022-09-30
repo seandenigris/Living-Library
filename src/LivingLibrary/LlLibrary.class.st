@@ -144,6 +144,12 @@ LlLibrary >> addCopy: copy of: work [
 	^ copies add: copy.
 ]
 
+{ #category : #accessing }
+LlLibrary >> addressBook [
+	
+	^ MpAddressBook uniqueInstance
+]
+
 { #category : #actions }
 LlLibrary >> beAwareOf: work [
 	^ self ensureCardFor: work
