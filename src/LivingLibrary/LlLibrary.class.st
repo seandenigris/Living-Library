@@ -284,6 +284,22 @@ LlLibrary >> rootWorks [
 	^ self works select: [ :e | e parent isNil ]
 ]
 
+{ #category : #accessing }
+LlLibrary >> verifyModel [
+	
+	| libs |
+	libs := self works collect: [ :e | e library ] as: IdentitySet.
+	libs size = 1 ifFalse: [ self error ].
+	libs atRandom == self ifFalse: [ self error ].
+	
+	self works do: [ :e | 
+		| copies |
+		copies := self copiesOf: e.
+		copies do: [ :c | 
+			self assert: c work == e.
+			self assert: e library == self ]. ].
+]
+
 { #category : #actions }
 LlLibrary >> view: aWrittenWork [
 
