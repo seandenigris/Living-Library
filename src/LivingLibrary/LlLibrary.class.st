@@ -189,8 +189,8 @@ LlLibrary >> ensureCardFor: work [
 	^ self catalog at: work
 ]
 
-{ #category : #spotter }
-LlLibrary >> gtGtSpotterWorksOn: aSearch [
+{ #category : #searches }
+LlLibrary >> gtSearchForWorksFor: aSearch [
 	<gtSearch>
 	^ aSearch list
 		priority: 5;
@@ -200,28 +200,21 @@ LlLibrary >> gtGtSpotterWorksOn: aSearch [
 		itemName: #displayString
 ]
 
-{ #category : #spotter }
-LlLibrary >> gtSpotterNewWorkFor: aSearch [
+{ #category : #searches }
+LlLibrary >> gtSpotNewWorkFor: aSearch [
 	<gtSearch>
 	
-	^ aSearch list
+	^ aSearch explicit
 		title: 'New Work';
 		priority: 50;
-		itemName: [ :input | 'Create new work: ', input ];
-		previewObject: [ :input | LlAuthoredWork new title: input; yourself ];
-		wantsToDisplayOnEmptyQuery: false;
-		filter: GtNullFilter
-			item: [ :filter :context | 
-				| isExisting |
-				isExisting := self works anySatisfy: [ :e | 
-					e title = context textTrimmed ].
-				isExisting ifFalse: [ 
-					filter value: context textTrimmed ] ];
-		send: [ :newName :spotterStep | 
-			| work |
-			work := LlAuthoredWork new title: newName; yourself.
-			self beAwareOf: work.
-			work ]
+		itemName: [ :result | '+ ', result gtDisplayText ];
+		search: [ :aContext | 
+			| input |
+			input := aContext searchQuery trimBoth.
+			{ LlAuthoredWork new 
+				title: input; 
+				yourself } asAsyncStream ];
+		itemSpawnAfter: [ :anObject | self beAwareOf: anObject ]
 ]
 
 { #category : #views }
