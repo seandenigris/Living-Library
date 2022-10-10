@@ -497,6 +497,13 @@ LlAuthoredWork >> pathString [
 	^ parent ifNotNil: [ :p | p fullTitle ] ifNil: [ '' ]
 ]
 
+{ #category : #accessing }
+LlAuthoredWork >> present [
+	^ self copies
+		ifNotEmpty: [ :cps | cps atRandom open ]
+		ifEmpty: [ self error: 'no copies of ', self displayString ]
+]
+
 { #category : #printing }
 LlAuthoredWork >> printOn: aStream [
 
