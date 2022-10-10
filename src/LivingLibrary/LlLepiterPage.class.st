@@ -10,7 +10,7 @@ Class {
 
 { #category : #testing }
 LlLepiterPage class >> peCanHandleFromString: aString [
-	^ true
+	^ false
 ]
 
 { #category : #accessing }
