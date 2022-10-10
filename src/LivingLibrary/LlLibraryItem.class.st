@@ -15,7 +15,7 @@ LlLibraryItem class >> gtSpotterNewFor: aSearch [
 	^ aSearch list
 		title: 'New instance';
 		priority: 50;
-		wantsToDisplayOnEmptyQuery: false;
+		items: [ {} ];
 		filter: (PeGtDeepestSubInstanceFilter new
 				rootClass: self;
 				yourself)
