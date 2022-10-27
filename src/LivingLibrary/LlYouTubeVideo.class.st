@@ -188,5 +188,5 @@ LlYouTubeVideo >> title [
 
 { #category : #accessing }
 LlYouTubeVideo >> url [
-	^ (LlYouTubeUrl fromString: 'https://www.youtube.com/watch') ? (#v -> self id)
+	^ LlYouTubeUrl fromString: 'https://www.youtube.com/watch?v=', 'self id'
 ]
