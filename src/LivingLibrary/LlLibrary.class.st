@@ -300,7 +300,7 @@ LlLibrary >> view: aWrittenWork [
 	copies := catalog
 		at: aWrittenWork
 		ifAbsent: [ self error: 'No copies of ', aWrittenWork asString ].
-	copies atRandom view
+	copies atRandom present
 ]
 
 { #category : #accessing }

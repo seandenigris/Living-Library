@@ -71,6 +71,13 @@ LlWebVideo >> playbackSpeedIn: page [
 	^ self videoIn: page doJavaScript: 'playbackRate'.
 ]
 
+{ #category : #accessing }
+LlWebVideo >> present [
+	^ self newPlayer
+		play;
+		yourself
+]
+
 { #category : #'player-media' }
 LlWebVideo >> seekTo: aDuration in: page [
 	self videoIn: page doJavaScript: 'currentTime = ', aDuration asSeconds asString.
@@ -79,11 +86,4 @@ LlWebVideo >> seekTo: aDuration in: page [
 { #category : #accessing }
 LlWebVideo >> videoIn: page doJavaScript: aString [
 	^ self element: 'video' in: page doJavaScript: aString
-]
-
-{ #category : #accessing }
-LlWebVideo >> view [
-	^ self newPlayer
-		view;
-		yourself
 ]

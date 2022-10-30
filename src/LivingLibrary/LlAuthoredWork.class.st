@@ -504,6 +504,17 @@ LlAuthoredWork >> present [
 		ifEmpty: [ self error: 'no copies of ', self displayString ]
 ]
 
+{ #category : #accessing }
+LlAuthoredWork >> presentDescription [
+	<magritteActionDescription>
+	^ MAActionDescription new
+		gtIcon: BrGlamorousVectorIcons playinspect;
+		isLabelVisible: true;
+		enableBlock: [ false ];
+		action: #present;
+		yourself
+]
+
 { #category : #printing }
 LlAuthoredWork >> printOn: aStream [
 
@@ -641,24 +652,6 @@ LlAuthoredWork >> typeDescription [
         beSorted;
 "        beRequired; "
         yourself
-]
-
-{ #category : #accessing }
-LlAuthoredWork >> view [
-	self copies 
-		ifNotEmpty: [ :col | col atRandom open ]
-		ifEmpty: [ self error: 'No copies to view!' ]
-]
-
-{ #category : #accessing }
-LlAuthoredWork >> viewDescription [
-	<magritteActionDescription>
-	^ MAActionDescription new
-		gtIcon: BrGlamorousVectorIcons playinspect;
-		isLabelVisible: true;
-		enableBlock: [ false ];
-		action: #view;
-		yourself
 ]
 
 { #category : #accessing }

@@ -104,7 +104,23 @@ LlWebResource >> descriptionDescription [
 { #category : #accessing }
 LlWebResource >> open [
 	"RlResource compatibility"
-	^ self view
+	^ self present
+]
+
+{ #category : #accessing }
+LlWebResource >> present [
+	self url open
+]
+
+{ #category : #accessing }
+LlWebResource >> presentDescription [
+	<magritteActionDescription>
+	^ MAActionDescription new
+		gtIcon: BrGlamorousIcons go;
+		comment: 'Browse on web';
+		action: #present;
+		isLabelVisible: false;
+		yourself
 ]
 
 { #category : #accessing }
@@ -143,22 +159,6 @@ LlWebResource >> url [
 { #category : #accessing }
 LlWebResource >> url: anObject [
 	url := anObject
-]
-
-{ #category : #accessing }
-LlWebResource >> view [
-	self url open
-]
-
-{ #category : #accessing }
-LlWebResource >> viewDescription [
-	<magritteActionDescription>
-	^ MAActionDescription new
-		gtIcon: BrGlamorousIcons go;
-		comment: 'Browse on web';
-		action: #view;
-		isLabelVisible: false;
-		yourself
 ]
 
 { #category : #accessing }
