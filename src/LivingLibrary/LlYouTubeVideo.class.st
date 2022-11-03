@@ -73,6 +73,11 @@ LlYouTubeVideo class >> fromStringExampleInput: urlString shouldSetID: idString 
 		then: [ :video | video id should equal: idString ] 
 ]
 
+{ #category : #'instance creation' }
+LlYouTubeVideo class >> peCanHandleFromString: aString [
+	^ LlYouTubeUrl peCanHandleFromString: aString
+]
+
 { #category : #accessing }
 LlYouTubeVideo >> currentTimeIn: page [
 
