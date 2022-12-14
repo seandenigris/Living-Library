@@ -7,7 +7,7 @@ Class {
 		'work',
 		'description'
 	],
-	#category : 'LivingLibrary-Core'
+	#category : #'LivingLibrary-Core'
 }
 
 { #category : #accessing }
@@ -28,15 +28,6 @@ LlEdition >> descriptionDescription [
 		yourself
 ]
 
-{ #category : #'magritte-accessing' }
-LlEdition >> descriptionWork [
-	<magritteDescription>
-	^ MAToOneRelationDescription new
-		accessor: #work;
-		classes: { LlAuthoredWork };
-		yourself
-]
-
 { #category : #printing }
 LlEdition >> printOn: aStream [
 
@@ -48,10 +39,19 @@ LlEdition >> printOn: aStream [
 
 { #category : #accessing }
 LlEdition >> work [
-	^ self maLazyFrom: self descriptionWork
+	^ self maLazyFrom: self workDescription
 ]
 
 { #category : #accessing }
 LlEdition >> work: anObject [
 	work := anObject
+]
+
+{ #category : #'magritte-accessing' }
+LlEdition >> workDescription [
+	<magritteDescription>
+	^ MAToOneRelationDescription new
+		accessor: #work;
+		classes: { LlAuthoredWork };
+		yourself
 ]

@@ -21,21 +21,21 @@ LlLibraryItem class >> gtSpotterNewFor: aSearch [
 				yourself)
 ]
 
-{ #category : #'magritte-accessing' }
-LlLibraryItem >> descriptionWork [
-	<magritteDescription>
-	^ MAToOneRelationDescription new
-		accessor: #work;
-		classes: { LlAuthoredWork. LlEdition };
-		yourself
-]
-
 { #category : #accessing }
 LlLibraryItem >> work [
-	^ self maLazyInstVarUsing: self descriptionWork
+	^ self maLazyInstVarUsing: self workDescription
 ]
 
 { #category : #accessing }
 LlLibraryItem >> work: aWork [
 	work := aWork
+]
+
+{ #category : #'magritte-accessing' }
+LlLibraryItem >> workDescription [
+	<magritteDescription>
+	^ MAToOneRelationDescription new
+		accessor: #work;
+		classes: { LlAuthoredWork. LlEdition };
+		yourself
 ]
