@@ -214,7 +214,9 @@ LlLibrary >> gtSpotNewWorkFor: aSearch [
 			{ LlAuthoredWork new 
 				title: input; 
 				yourself } asAsyncStream ];
-		itemSpawnAfter: [ :anObject | self beAwareOf: anObject ]
+		send: [ :anObject | 
+			self beAwareOf: anObject.
+			anObject ]
 ]
 
 { #category : #views }
