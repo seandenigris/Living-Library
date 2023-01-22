@@ -388,26 +388,6 @@ LlAuthoredWork >> gtViewCopiesFor: aView [
 		actionUpdateButtonTooltip: 'Update'.
 ]
 
-{ #category : #transcript }
-LlAuthoredWork >> gtViewTranscriptFor: aView [
-	<gtView>
-
-	(self hasProperty: #transcript) ifFalse: [ ^ aView empty ].
-	
-	^ aView forward
-		title: 'Transcript' translated;
-		priority: 65;
-		object: [ self transcript lepiterPage ];
-		view: #gtLiveFor:;
-		actionButtonIcon: LeIcons lepiterIcon
-			tooltip: 'Lepiter Page (Inspect)'
-			action: [ :aButton :aTab | aButton phlow spawnObject: self transcript lepiterPage ];
-		actionButtonIcon: BrGlamorousVectorIcons inspect
-			tooltip: 'Inspect Transcript'
-			action: [ :aButton :aTab | aButton phlow spawnObject: self transcript ];
-		actionUpdateButtonTooltip: 'Update'.
-]
-
 { #category : #accessing }
 LlAuthoredWork >> hash [
 	^ self identityHash
@@ -624,6 +604,26 @@ LlAuthoredWork >> titleDescription [
 		default: '';
 		priority: 100;
 		yourself
+]
+
+{ #category : #transcript }
+LlAuthoredWork >> transcriptGtViewFor: aView [
+	<gtView>
+
+	(self hasProperty: #transcript) ifFalse: [ ^ aView empty ].
+	
+	^ aView forward
+		title: 'Transcript' translated;
+		priority: 65;
+		object: [ self transcript lepiterPage ];
+		view: #gtLiveFor:;
+		actionButtonIcon: LeIcons lepiterIcon
+			tooltip: 'Lepiter Page (Inspect)'
+			action: [ :aButton :aTab | aButton phlow spawnObject: self transcript lepiterPage ];
+		actionButtonIcon: BrGlamorousVectorIcons inspect
+			tooltip: 'Inspect Transcript'
+			action: [ :aButton :aTab | aButton phlow spawnObject: self transcript ];
+		actionUpdateButtonTooltip: 'Update'.
 ]
 
 { #category : #accessing }
