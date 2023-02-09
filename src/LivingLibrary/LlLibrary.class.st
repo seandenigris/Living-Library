@@ -275,6 +275,15 @@ LlLibrary >> removeCardFor: work [
 ]
 
 { #category : #accessing }
+LlLibrary >> removeWork: aLlAuthoredWork [ 
+	
+	self catalog removeKey: aLlAuthoredWork.
+	aLlAuthoredWork library: nil.
+	aLlAuthoredWork removeChildren.
+	aLlAuthoredWork parent ifNotNil: [ aLlAuthoredWork removeParent ]
+]
+
+{ #category : #accessing }
 LlLibrary >> rootWorks [
 	^ self works select: [ :e | e parent isNil ]
 ]
