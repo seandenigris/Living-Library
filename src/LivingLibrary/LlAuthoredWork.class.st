@@ -180,8 +180,9 @@ LlAuthoredWork >> = rhs [
 { #category : #accessing }
 LlAuthoredWork >> addChild: aWork [
 	self syncLibraryWith: aWork.
-	self children add: aWork. "Children currently a set so don't worry about duplicate adding"
-	aWork parent ifNil: [ aWork parent: self ]
+	self privateChildren add: aWork. "Children currently a set so don't worry about duplicate adding"
+	aWork parent ifNil: [ aWork parent: self ].
+	^ aWork
 ]
 
 { #category : #accessing }
@@ -257,11 +258,6 @@ LlAuthoredWork >> ccAuthorMarkup [
 			separatedBy: [ str space ] ]
 ]
 
-{ #category : #accessing }
-LlAuthoredWork >> children [
-	^ self maLazyInstVarUsing: self childrenDescription
-]
-
 { #category : #private }
 LlAuthoredWork >> children: anObject [
 
@@ -273,12 +269,13 @@ LlAuthoredWork >> childrenDescription [
 	<magritteDescription>
 	
 	^ MAToManyRelationDescription new
-		accessor: #children;
+		accessor: #privateChildren;
 		priority: 600;
 		default: CTOrderedSet new;
 		classes: LlAuthoredWork withAllSubclasses;
-		beReadOnly; "we actually have a collection, but how to initialize the parent/child relationship
-		gtSearchSource: (MessageSend receiver: self selector: #library);"
+		beReadOnly;
+		gtSearchSource: (MessageSend receiver: self selector: #library);
+		gtSearchTransform: [ :work | self addChild: work ];
 		yourself
 ]
 
@@ -296,7 +293,7 @@ LlAuthoredWork >> copiesDescription [
 	librarySource := PeGtDelegatedSearch 
 		to: LlLibraryItem 
 		message: #gtSpotterNewFor:.
-	gtSearchSource children 
+	gtSearchSource privateChildren 
 		add: librarySource;
 		add: self resourceLibrary.
 		
@@ -345,7 +342,7 @@ LlAuthoredWork >> editionsDescription [
 LlAuthoredWork >> family [
 	^ OrderedCollection streamContents: [ :str |
 		str nextPutAll: self withAncestors.
-		self children do: [ :child | str nextPutAll: child withOffspring ] ]
+		self privateChildren do: [ :child | str nextPutAll: child withOffspring ] ]
 ]
 
 { #category : #private }
@@ -365,12 +362,12 @@ LlAuthoredWork >> fullTitle [
 LlAuthoredWork >> gtViewChildrenFor: aView [
 
 	<gtView>
-	self children ifEmpty: [ ^ aView empty ].
+	self privateChildren ifEmpty: [ ^ aView empty ].
 
 	^ aView list
 		  title: 'Children' translated;
 		  priority: 70;
-		  items: [ self children asOrderedCollection ];
+		  items: [ self privateChildren asOrderedCollection ];
 		  itemText: [ :w | w title ];
 		  actionUpdateButtonTooltip: 'Update'
 ]
@@ -462,6 +459,11 @@ LlAuthoredWork >> parent [
 
 { #category : #accessing }
 LlAuthoredWork >> parent: aWork [
+
+	aWork ifNil: [
+		parent := nil.
+		^ self ].
+
 	self syncLibraryWith: aWork.
 	parent := aWork.
 	aWork addChild: self.
@@ -511,6 +513,11 @@ LlAuthoredWork >> printOn: aStream [
 		separatedBy: [ aStream nextPutAll: ', ' ]
 ]
 
+{ #category : #accessing }
+LlAuthoredWork >> privateChildren [
+	^ self maLazyInstVarUsing: self childrenDescription
+]
+
 { #category : #quotation }
 LlAuthoredWork >> quote: aString onPage: aNumber [
 	| citation quote |
@@ -533,6 +540,35 @@ LlAuthoredWork >> quoteDb [
 { #category : #quotation }
 LlAuthoredWork >> quotes [
 	^ self quoteDb select: [ :e | e citation source = self ]
+]
+
+{ #category : #accessing }
+LlAuthoredWork >> removeChild: aWork [
+	
+	self privateChildren remove: aWork.
+	aWork parent: nil.
+	^ aWork
+]
+
+{ #category : #accessing }
+LlAuthoredWork >> removeChildren [
+	
+	^ self privateChildren copy do: [ :child |
+		self removeChild: child ].
+]
+
+{ #category : #accessing }
+LlAuthoredWork >> removeFromLibrary [
+
+	self library removeWork: self.
+]
+
+{ #category : #accessing }
+LlAuthoredWork >> removeParent [
+
+	^ parent
+		removeChild: self;
+		yourself
 ]
 
 { #category : #magritte }
@@ -628,7 +664,7 @@ LlAuthoredWork >> transcriptGtViewFor: aView [
 
 { #category : #accessing }
 LlAuthoredWork >> treeChildren [
-	^ self copies, self children
+	^ self copies asOrderedCollection, self privateChildren
 ]
 
 { #category : #accessing }
@@ -665,5 +701,5 @@ LlAuthoredWork >> withAncestors [
 LlAuthoredWork >> withOffspring [
 	^ OrderedCollection streamContents: [ :str |
 		str nextPut: self.
-		self children do: [ :child | str nextPutAll: child withOffspring ] ]
+		self privateChildren do: [ :child | str nextPutAll: child withOffspring ] ]
 ]
