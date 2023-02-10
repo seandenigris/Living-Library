@@ -664,7 +664,10 @@ LlAuthoredWork >> transcriptGtViewFor: aView [
 
 { #category : #accessing }
 LlAuthoredWork >> treeChildren [
-	^ self copies asOrderedCollection, self privateChildren
+	^ OrderedCollection new
+		addAll: self copies;
+		addAll: self privateChildren;
+		yourself
 ]
 
 { #category : #accessing }
