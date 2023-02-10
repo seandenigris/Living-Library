@@ -33,7 +33,7 @@ Class {
 		'library',
 		'editions',
 		'parent',
-		'children'
+		'privateChildren'
 	],
 	#category : #'LivingLibrary-Core'
 }
@@ -258,12 +258,6 @@ LlAuthoredWork >> ccAuthorMarkup [
 			separatedBy: [ str space ] ]
 ]
 
-{ #category : #private }
-LlAuthoredWork >> children: anObject [
-
-	children := anObject
-]
-
 { #category : #magritte }
 LlAuthoredWork >> childrenDescription [
 	<magritteDescription>
@@ -293,7 +287,7 @@ LlAuthoredWork >> copiesDescription [
 	librarySource := PeGtDelegatedSearch 
 		to: LlLibraryItem 
 		message: #gtSpotterNewFor:.
-	gtSearchSource privateChildren 
+	gtSearchSource children 
 		add: librarySource;
 		add: self resourceLibrary.
 		
@@ -516,6 +510,12 @@ LlAuthoredWork >> printOn: aStream [
 { #category : #accessing }
 LlAuthoredWork >> privateChildren [
 	^ self maLazyInstVarUsing: self childrenDescription
+]
+
+{ #category : #private }
+LlAuthoredWork >> privateChildren: anObject [
+
+	privateChildren := anObject
 ]
 
 { #category : #quotation }
