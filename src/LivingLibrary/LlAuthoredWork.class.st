@@ -181,7 +181,7 @@ LlAuthoredWork >> = rhs [
 LlAuthoredWork >> addChild: aWork [
 	self syncLibraryWith: aWork.
 	self privateChildren add: aWork. "Children currently a set so don't worry about duplicate adding"
-	aWork parent ifNil: [ aWork parent: self ].
+	aWork parent: self.
 	^ aWork
 ]
 
