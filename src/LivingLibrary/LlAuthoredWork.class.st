@@ -491,6 +491,22 @@ LlAuthoredWork >> newPlayer [
 		ifEmpty: [ self shouldBeImplemented ]
 ]
 
+{ #category : #copies }
+LlAuthoredWork >> open [
+
+	self copies atRandom open
+]
+
+{ #category : #magritte }
+LlAuthoredWork >> openDescription [
+	<magritteActionDescription>
+	^ MAActionDescription new
+		gtIcon: BrGlamorousVectorIcons playinspect;
+		enableBlock: [ self copies isNotEmpty ];
+		action: #open;
+		yourself
+]
+
 { #category : #accessing }
 LlAuthoredWork >> parent [
 	^ parent
