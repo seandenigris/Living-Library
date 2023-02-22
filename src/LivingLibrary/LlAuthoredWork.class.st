@@ -305,6 +305,51 @@ LlAuthoredWork >> copiesDescription [
 		yourself
 ]
 
+{ #category : #magritte }
+LlAuthoredWork >> copiesGtSearchFor: aSearch [
+	<gtSearch>
+	
+	^ aSearch list
+		title: 'Copies';
+		priority: 50;
+		items: [ self copies asOrderedCollection ];
+		filterBySubstring
+]
+
+{ #category : #magritte }
+LlAuthoredWork >> copiesGtSearchNewFor: aSearch [
+
+	"<gtSearch>
+	
+	| gtSearchSource librarySource classes |
+	gtSearchSource := PeGtCompositeSearch new.
+	librarySource := PeGtDelegatedSearch 
+		to: LlLibraryItem 
+		message: #gtSpotterNewFor:.
+	gtSearchSource children 
+		add: librarySource;
+		add: self resourceLibrary.
+		
+	classes := RlResource withAllSubclasses
+		addAll: LlLibraryItem allSubclasses;
+		addAll: PpInventoryItem withAllSubclasses;
+		yourself.
+	
+	^ aSearch explicit
+		title: 'Add copy';
+		priority: 50;
+		itemName: [ :result | '+ ', result gtDisplayText ];
+		search: [ :context | 
+			| isExisting input |
+			input := context searchQuery trimBoth.
+			isExisting := self bookmarks anySatisfy: [ :e | 
+				e url asString = input ].
+				(isExisting not and: [ context textTrimmed beginsWith: 'http' ]) 
+					ifTrue: [ { input asUrl } ]
+					ifFalse: [ {} ] ];
+		send: [ :result | self addBookmarkTo: result asUrl ]"
+]
+
 { #category : #accessing }
 LlAuthoredWork >> deleteAll [
 	self copies do: [ :e | e delete ].
