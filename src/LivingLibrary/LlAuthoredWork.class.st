@@ -275,7 +275,9 @@ LlAuthoredWork >> childrenDescription [
 
 { #category : #'library access' }
 LlAuthoredWork >> copies [
-	^ self library copiesOf: self
+	^ self library 
+		ifNotNil: [ :lib | lib copiesOf: self ]
+		ifNil: [ #() ]
 ]
 
 { #category : #magritte }
