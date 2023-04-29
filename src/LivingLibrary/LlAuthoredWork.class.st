@@ -181,7 +181,7 @@ LlAuthoredWork >> = rhs [
 LlAuthoredWork >> addChild: aWork [
 	self syncLibraryWith: aWork.
 	self privateChildren add: aWork. "Children currently a set so don't worry about duplicate adding"
-	aWork parent: self.
+	aWork basicParent: self.
 	^ aWork
 ]
 
@@ -238,6 +238,12 @@ LlAuthoredWork >> authorsDescription [
 		classes: MpRelatableEntity allSubclasses;
 		gtSearchSource: (MessageSend receiver: self selector: #addressBook); 
 		yourself
+]
+
+{ #category : #accessing }
+LlAuthoredWork >> basicParent: aWork [
+
+	parent := aWork
 ]
 
 { #category : #accessing }
@@ -522,7 +528,7 @@ LlAuthoredWork >> parent: aWork [
 		^ self ].
 
 	self syncLibraryWith: aWork.
-	parent := aWork.
+	self basicParent: aWork.
 	aWork addChild: self.
 ]
 
