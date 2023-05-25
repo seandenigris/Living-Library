@@ -273,6 +273,7 @@ LlAuthoredWork >> childrenDescription [
 	<magritteDescription>
 	
 	^ MAToManyRelationDescription new
+		label: 'Children';
 		accessor: #privateChildren;
 		priority: 600;
 		default: CTOrderedSet new;
