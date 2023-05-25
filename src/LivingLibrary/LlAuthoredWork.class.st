@@ -218,7 +218,11 @@ LlAuthoredWork >> author: person [
 { #category : #accessing }
 LlAuthoredWork >> authors [
 
-	^ authors ifNil: [ authors := OrderedCollection new ]
+	authors ifNotNil: [ ^ authors ].
+	
+	self parent ifNotNil: [ ^ self parent authors ].
+	
+	^ authors := OrderedCollection new
 ]
 
 { #category : #'private-magritte' }
@@ -569,9 +573,9 @@ LlAuthoredWork >> printOn: aStream [
 				nextPut: $";
 				nextPutAll: self fullTitle;
 				nextPut: $" ].
-	authors isEmptyOrNil ifTrue: [ ^ self ].
+	self authors isEmpty ifTrue: [ ^ self ].
 	aStream nextPutAll: ' by '.
-	authors
+	self authors
 		do: [ :e | aStream nextPutAll: e fullName ]
 		separatedBy: [ aStream nextPutAll: ', ' ]
 ]
