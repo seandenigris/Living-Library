@@ -1,0 +1,9 @@
+SmalltalkCISpec {
+  #loading : [
+    SCIMetacelloLoadSpec {
+      #baseline : 'LivingLibrary',
+      #directory : 'src',
+      #platforms : [ #pharo ]
+    }
+  ]
+}
