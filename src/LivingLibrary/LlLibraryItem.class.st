@@ -22,6 +22,21 @@ LlLibraryItem class >> gtSpotterNewFor: aSearch [
 ]
 
 { #category : #accessing }
+LlLibraryItem >> displayName [
+	^ (self className allButFirst: 2) piecesCutWhereCamelCase joinUsing: Character space
+]
+
+{ #category : #accessing }
+LlLibraryItem >> name [
+	^ self propertyAt: #name ifAbsent: [ ^ nil ]
+]
+
+{ #category : #accessing }
+LlLibraryItem >> name: aString [
+	^ self propertyAt: #name putRemovingNil: aString
+]
+
+{ #category : #accessing }
 LlLibraryItem >> work [
 	^ self maLazyInstVarUsing: self workDescription
 ]
