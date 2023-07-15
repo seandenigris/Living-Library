@@ -445,6 +445,7 @@ LlAuthoredWork >> hash [
 LlAuthoredWork >> initialize [
 
 	super initialize.
+	self ensureUUID.
 	type := #unknown.
 ]
 

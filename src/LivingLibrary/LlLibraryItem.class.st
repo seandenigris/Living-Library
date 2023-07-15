@@ -27,6 +27,12 @@ LlLibraryItem >> displayName [
 ]
 
 { #category : #accessing }
+LlLibraryItem >> initialize [
+	super initialize.
+	self ensureUUID
+]
+
+{ #category : #accessing }
 LlLibraryItem >> name [
 	^ self propertyAt: #name ifAbsent: [ ^ nil ]
 ]
