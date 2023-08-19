@@ -277,10 +277,10 @@ LlLibrary >> removeCardFor: work [
 { #category : #accessing }
 LlLibrary >> removeWork: aLlAuthoredWork [ 
 	
-	self catalog removeKey: aLlAuthoredWork.
-	aLlAuthoredWork library: nil.
-	aLlAuthoredWork removeChildren.
-	aLlAuthoredWork parent ifNotNil: [ aLlAuthoredWork removeParent ]
+	self removeCardFor: aLlAuthoredWork.
+	aLlAuthoredWork
+		library: nil;
+		removeChildren.
 ]
 
 { #category : #accessing }

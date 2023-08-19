@@ -363,13 +363,6 @@ LlAuthoredWork >> copiesGtSearchNewFor: aSearch [
 ]
 
 { #category : #accessing }
-LlAuthoredWork >> deleteAll [
-	self copies do: [ :e | e delete ].
-	self library removeCardFor: self.
-	self library: nil.
-]
-
-{ #category : #accessing }
 LlAuthoredWork >> editions [
 	^ self maLazyInstVarUsing: self editionsDescription
 ]
@@ -614,6 +607,12 @@ LlAuthoredWork >> quoteDb [
 { #category : #quotation }
 LlAuthoredWork >> quotes [
 	^ self quoteDb select: [ :e | e citation source = self ]
+]
+
+{ #category : #accessing }
+LlAuthoredWork >> removeAll [
+	self copies do: [ :e | e delete ].
+	self removeFromLibrary.
 ]
 
 { #category : #accessing }
