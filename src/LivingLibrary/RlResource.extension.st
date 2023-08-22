@@ -6,6 +6,12 @@ RlResource class >> calibreName [
 ]
 
 { #category : #'*LivingLibrary' }
+RlResource >> newPlayer [
+
+	^ LlNullMediaPlayer new
+]
+
+{ #category : #'*LivingLibrary' }
 RlResource >> newWork [
 	^ LlAuthoredWork new
 		title: self file base;
