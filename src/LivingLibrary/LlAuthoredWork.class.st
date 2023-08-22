@@ -429,6 +429,11 @@ LlAuthoredWork >> gtViewCopiesFor: aView [
 		actionUpdateButtonTooltip: 'Update'.
 ]
 
+{ #category : #'library access' }
+LlAuthoredWork >> hasCopies [
+	^ self copies isNotEmpty
+]
+
 { #category : #accessing }
 LlAuthoredWork >> hash [
 	^ self identityHash
