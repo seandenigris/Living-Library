@@ -267,9 +267,15 @@ LlLibrary >> view: aWrittenWork [
 	copies atRandom present
 ]
 
+{ #category : #'magritte-accessing' }
+LlLibrary >> workClass [
+	
+	^ LlAuthoredWork
+]
+
 { #category : #accessing }
 LlLibrary >> works [
-	^ self catalog keys "sort: #nameForAlphabetization ascending"
+	^ self catalog keys
 ]
 
 { #category : #'magritte-accessing' }
@@ -277,7 +283,7 @@ LlLibrary >> worksDescription [
 	<magritteDescription>
 	^ MAToManyRelationDescription new
 		accessor: #works;
-		classes: { LlAuthoredWork };
+		classes: { self workClass };
 		default: OrderedCollection new;
 		readOnly;
 		yourself
