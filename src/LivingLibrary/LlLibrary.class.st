@@ -189,53 +189,6 @@ LlLibrary >> ensureCardFor: work [
 	^ self catalog at: work
 ]
 
-{ #category : #searches }
-LlLibrary >> gtSearchForWorksFor: aSearch [
-	<gtSearch>
-	^ aSearch list
-		priority: 5;
-		title: 'Works';
-		items: [ self works ];
-		matchSubstrings;
-		itemName: #displayString
-]
-
-{ #category : #searches }
-LlLibrary >> gtSpotNewWorkFor: aSearch [
-	<gtSearch>
-	
-	^ aSearch explicit
-		title: 'New Work';
-		priority: 50;
-		itemName: [ :result | '+ ', result gtDisplayText ];
-		search: [ :aContext | 
-			| input |
-			input := aContext searchQuery trimBoth.
-			{ LlAuthoredWork new 
-				title: input; 
-				yourself } asAsyncStream ];
-		send: [ :anObject | 
-			self beAwareOf: anObject.
-			anObject ]
-]
-
-{ #category : #views }
-LlLibrary >> gtViewWorksOn: aView [
-	<gtView>
-
-	(self works isEmpty) ifTrue: [ ^ aView empty ].
-	^ aView tree
-		title: 'Works' translated;
-		priority: 25;
-		items: [ self rootWorks ];
-		children: [ :each | 
-			(each isKindOf: LlAuthoredWork)
-				ifTrue: [ each treeChildren ]
-				ifFalse: [ #() ] ];
-		itemText: #displayString;
-		actionUpdateButtonTooltip: 'Update'.
-]
-
 { #category : #testing }
 LlLibrary >> hasCardFor: aWork [
 	^ self catalog includesKey: aWork
@@ -328,4 +281,52 @@ LlLibrary >> worksDescription [
 		default: OrderedCollection new;
 		readOnly;
 		yourself
+]
+
+{ #category : #searches }
+LlLibrary >> worksGtSearchFor: aSearch [
+	<gtSearch>
+	
+	^ aSearch list
+		priority: 5;
+		title: 'Works';
+		items: [ self works ];
+		matchSubstrings;
+		itemName: #displayString
+]
+
+{ #category : #searches }
+LlLibrary >> worksGtSearchNewFor: aSearch [
+	<gtSearch>
+	
+	^ aSearch explicit
+		title: 'New Work';
+		priority: 50;
+		itemName: [ :result | '+ ', result gtDisplayText ];
+		search: [ :aContext | 
+			| input |
+			input := aContext searchQuery trimBoth.
+			{ self workClass new 
+				title: input; 
+				yourself } asAsyncStream ];
+		send: [ :anObject | 
+			self beAwareOf: anObject.
+			anObject ]
+]
+
+{ #category : #views }
+LlLibrary >> worksGtViewOn: aView [
+	<gtView>
+
+	(self works isEmpty) ifTrue: [ ^ aView empty ].
+	^ aView tree
+		title: 'Works' translated;
+		priority: 25;
+		items: [ self rootWorks ];
+		children: [ :each | 
+			(each isKindOf: self workClass)
+				ifTrue: [ each treeChildren ]
+				ifFalse: [ #() ] ];
+		itemText: #displayString;
+		actionUpdateButtonTooltip: 'Update'.
 ]
