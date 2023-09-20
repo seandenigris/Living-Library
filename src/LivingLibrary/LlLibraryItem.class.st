@@ -43,6 +43,12 @@ LlLibraryItem >> name: aString [
 ]
 
 { #category : #accessing }
+LlLibraryItem >> newPlayer [
+
+	^ LlNullMediaPlayer new
+]
+
+{ #category : #accessing }
 LlLibraryItem >> work [
 	^ self maLazyInstVarUsing: self workDescription
 ]
