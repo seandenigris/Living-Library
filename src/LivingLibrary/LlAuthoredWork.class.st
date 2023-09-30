@@ -413,7 +413,7 @@ LlAuthoredWork >> gtViewChildrenFor: aView [
 		  priority: 70;
 		  items: [ self privateChildren asOrderedCollection ];
 		  itemText: [ :w | w title ];
-		  actionUpdateButtonTooltip: 'Update'
+		  actionUpdateButton
 ]
 
 { #category : #accessing }
@@ -426,7 +426,7 @@ LlAuthoredWork >> gtViewCopiesFor: aView [
 		title: 'Copies' translated;
 		priority: 60;
 		items: [ self copies asOrderedCollection ];
-		actionUpdateButtonTooltip: 'Update'.
+		actionUpdateButton
 ]
 
 { #category : #'library access' }
@@ -737,7 +737,7 @@ LlAuthoredWork >> transcriptGtViewFor: aView [
 		actionButtonIcon: BrGlamorousVectorIcons inspect
 			tooltip: 'Inspect Transcript'
 			action: [ :aButton :aTab | aButton phlow spawnObject: self transcript ];
-		actionUpdateButtonTooltip: 'Update'.
+		actionUpdateButton
 ]
 
 { #category : #accessing }

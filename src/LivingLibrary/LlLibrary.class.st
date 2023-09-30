@@ -334,5 +334,5 @@ LlLibrary >> worksGtViewOn: aView [
 				ifTrue: [ each treeChildren ]
 				ifFalse: [ #() ] ];
 		itemText: #displayString;
-		actionUpdateButtonTooltip: 'Update'.
+		actionUpdateButton
 ]

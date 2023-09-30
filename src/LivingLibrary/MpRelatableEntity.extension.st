@@ -12,7 +12,7 @@ MpRelatableEntity >> gtViewWorksOn: aView [
 		title: 'Works' translated;
 		priority: 60;
 		items: [ works ];
-		actionUpdateButtonTooltip: 'Update'.
+		actionUpdateButton
 ]
 
 { #category : #'*LivingLibrary' }
