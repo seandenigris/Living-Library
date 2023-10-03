@@ -22,11 +22,6 @@ LlLibraryItem class >> gtSpotterNewFor: aSearch [
 ]
 
 { #category : #accessing }
-LlLibraryItem >> displayName [
-	^ (self className allButFirst: 2) piecesCutWhereCamelCase joinUsing: Character space
-]
-
-{ #category : #accessing }
 LlLibraryItem >> initialize [
 	super initialize.
 	self ensureUUID
