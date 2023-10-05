@@ -32,6 +32,8 @@ BaselineOfLivingLibrary >> baseline: spec [
 		spec 
 			baseline: 'ContainersOrderedSet' with: [ 
 				spec repository: 'github://pharo-containers/Containers-OrderedSet' ];
+			baseline: 'DynabookFoundation' with: [
+				spec repository: 'github://seandenigris/Dynabook-Foundation' ];
 			baseline: 'Magritte' with: [
 				spec 
 					loads: #('Magritte-Bootstrap');
@@ -49,7 +51,7 @@ BaselineOfLivingLibrary >> baseline: spec [
 			baseline: 'SimplePersistence' with: [
 				spec repository: 'github://seandenigris/Simple-Persistence' ].
 		spec package: 'LivingLibrary' with: [
-			spec requires: #('ContainersOrderedSet' 'Magritte' 'Mocketry' 'MyPeople' 'PharoEnhancements' 'QuoteMe' 'ResourcesLive' 'SimplePersistence') ] ].
+			spec requires: #('ContainersOrderedSet' 'DynabookFoundation' 'Magritte' 'Mocketry' 'MyPeople' 'PharoEnhancements' 'QuoteMe' 'ResourcesLive' 'SimplePersistence') ] ].
 				
 	spec for: #GToolkit do: [
 		spec 

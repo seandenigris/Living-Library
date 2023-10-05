@@ -1,8 +1,8 @@
 Class {
 	#name : #LlLibraryItem,
 	#superclass : #Object,
-	#traits : 'MATPropertyOwner',
-	#classTraits : 'MATPropertyOwner classTrait',
+	#traits : 'DbTDomainObject',
+	#classTraits : 'DbTDomainObject classTrait',
 	#instVars : [
 		'work'
 	],

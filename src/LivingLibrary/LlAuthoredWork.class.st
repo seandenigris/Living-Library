@@ -24,8 +24,8 @@ The ""type"" is currently like a tag. While we started with a class per type ((e
 Class {
 	#name : #LlAuthoredWork,
 	#superclass : #Object,
-	#traits : 'LlTLibraryItem + (MATPropertyOwner - {#editLepiterPageDescription}) + MpTAlphabetizable + QuTTranscriptable',
-	#classTraits : 'LlTLibraryItem classTrait + MATPropertyOwner classTrait + MpTAlphabetizable classTrait + QuTTranscriptable classTrait',
+	#traits : 'LlTLibraryItem + (DbTDomainObject - {#editLepiterPageDescription}) + MpTAlphabetizable + QuTTranscriptable',
+	#classTraits : 'LlTLibraryItem classTrait + DbTDomainObject classTrait + MpTAlphabetizable classTrait + QuTTranscriptable classTrait',
 	#instVars : [
 		'title',
 		'type',
