@@ -26,7 +26,7 @@ LlPlaywright class >> install [
 LlPlaywright class >> shutDown: quitting [
 	quitting ifFalse: [ ^ self ].
 
-	PythonInstance stop
+	PythonInstance ifNotNil: #stop
 ]
 
 { #category : #accessing }
