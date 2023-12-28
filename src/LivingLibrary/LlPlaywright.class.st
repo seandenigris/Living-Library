@@ -16,7 +16,7 @@ LlPlaywright class >> initialize [
 LlPlaywright class >> install [
 	| pyBridgeFolder cmdString playwrightFile |
 	pyBridgeFolder := FileLocator imageDirectory / 'PythonBridgeRuntime'.
-	playwrightFile := FileLocator home / '.pyenv/shims/playwright'.
+	playwrightFile := pyBridgeFolder / '.venv/bin/playwright'.
 	cmdString := 'cd "', pyBridgeFolder fullName, '"; ', playwrightFile fullName, ' install'.
 	
 	cmdString asSuCommand run
