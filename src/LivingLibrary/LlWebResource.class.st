@@ -1,6 +1,8 @@
 Class {
 	#name : #LlWebResource,
 	#superclass : #LlLibraryItem,
+	#traits : 'LlTCacheable',
+	#classTraits : 'LlTCacheable classTrait',
 	#instVars : [
 		'url',
 		'description'
@@ -48,30 +50,6 @@ LlWebResource >> authors [
 	^ self work authors
 ]
 
-{ #category : #caching }
-LlWebResource >> cache [
-	^ self propertyAt: #cache ifAbsent: [ nil ]
-]
-
-{ #category : #caching }
-LlWebResource >> cache: file [
-	self propertyAt: #cache put: file
-]
-
-{ #category : #caching }
-LlWebResource >> cached [
-	| file result |
-	self propertyAt: #cache ifPresent: [ :c | ^ c ].
-	file := Tempfile named: self url rlFilename.
-	file parent ensureCreateDirectory.
-	self url saveContentsToFile: file.
-	result := file asRlResource
-		source: self url;
-		yourself.
-	self cache: result.
-	^ result
-]
-
 { #category : #accessing }
 LlWebResource >> citation [
 	^ QuWebCitation new
@@ -99,6 +77,17 @@ LlWebResource >> descriptionDescription [
 			default: '';
 			beRequired;
 			yourself
+]
+
+{ #category : #caching }
+LlWebResource >> download [
+	| file |
+	file := Tempfile named: self url rlFilename.
+	file parent ensureCreateDirectory.
+	self url saveContentsToFile: file.
+	^ file asRlResource
+		source: self url;
+		yourself
 ]
 
 { #category : #accessing }
@@ -129,16 +118,6 @@ LlWebResource >> printOn: aStream [
 		nextPutAll: self className;
 		nextPutAll: ' @ ';
 		print: self url
-]
-
-{ #category : #accessing }
-LlWebResource >> resourceLibrary [
-	^ self propertyAt: #resourceLibrary ifAbsent: [ RlResourceLibrary uniqueInstance ]
-]
-
-{ #category : #'instance creation' }
-LlWebResource >> saveCache [
-	self resourceLibrary import: self cached
 ]
 
 { #category : #accessing }
