@@ -362,6 +362,11 @@ LlAuthoredWork >> copiesGtSearchNewFor: aSearch [
 		send: [ :result | self addBookmarkTo: result asUrl ]"
 ]
 
+{ #category : #'library access' }
+LlAuthoredWork >> copiesRemove: anObject [
+	^ self library copy: anObject removeFrom: self
+]
+
 { #category : #accessing }
 LlAuthoredWork >> editions [
 	^ self maLazyInstVarUsing: self editionsDescription

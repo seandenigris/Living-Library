@@ -178,6 +178,14 @@ LlLibrary >> copiesOf: aWrittenWork [
 	^ catalog at: aWrittenWork ifAbsent: [ #() ]
 ]
 
+{ #category : #accessing }
+LlLibrary >> copy: anObject removeFrom: aWrittenWork [
+
+	| copies |
+	copies := self copiesOf: aWrittenWork.
+	^ copies remove: anObject
+]
+
 { #category : #private }
 LlLibrary >> ensureCardFor: work [
 	work family do: [ :e | 
