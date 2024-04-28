@@ -368,6 +368,14 @@ LlAuthoredWork >> copiesRemove: anObject [
 ]
 
 { #category : #accessing }
+LlAuthoredWork >> coverImageDownload [
+
+	^ LlCoverImageFinder new
+		work: self;
+		openLibraryImage
+]
+
+{ #category : #accessing }
 LlAuthoredWork >> editions [
 	^ self maLazyInstVarUsing: self editionsDescription
 ]
@@ -405,6 +413,12 @@ LlAuthoredWork >> fullTitle [
 	^ self pathString 
 		ifEmpty: [ self title ]
 		ifNotEmpty: [ :p | p, ': ', self title ]
+]
+
+{ #category : #accessing }
+LlAuthoredWork >> googleBooksInfo [
+	
+	^ LlGoogleBooksInfo forWork: self
 ]
 
 { #category : #accessing }
