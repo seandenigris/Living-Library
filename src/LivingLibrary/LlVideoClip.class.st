@@ -54,30 +54,6 @@ LlVideoClip >> newPlayer [
 ]
 
 { #category : #playing }
-LlVideoClip >> player [
-
-	^ video.
-]
-
-{ #category : #playing }
-LlVideoClip >> playold [
-	"I think this should ultimately be delegated to the player. It's only necessary to fork with either QT or DVDPlayer (I forget which, but I guess DVD Player since that's what we're dealing with - although this could've been a cut and paste job. This again points to the need for executable documentation of assumptions) because you can't specify a fractional second (although we should check the underlying Cocoa framework at some point, which may expose more functionality).
-	The whole thing would become:
-		disc playFrom: startTime to: endTime"
-
-	| originalPosition |
-	self flag: #nvdn.
-	video play.
-	originalPosition := video position.
-	video position: startTime.
-	self isPlaying ifTrue: [ ^ self ].
-	"self backgroundProcess: [ [ video position < endTime ] whileTrue: [ (Delay forMilliseconds: 100) wait ].
-		video pause.
-		video position: originalPosition.
-		backgroundProcess := nil ] fork."
-]
-
-{ #category : #playing }
 LlVideoClip >> printOn: aStream [
 
 	| prettyStartTime prettyEndTime |
