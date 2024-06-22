@@ -17,8 +17,8 @@ LlLibraryItem class >> gtSpotterNewFor: aSearch [
 		priority: 50;
 		items: [ {} ];
 		filter: (PeGtDeepestSubInstanceFilter new
-				rootClass: self;
-				yourself)
+			rootClass: self;
+			yourself)
 ]
 
 { #category : #accessing }

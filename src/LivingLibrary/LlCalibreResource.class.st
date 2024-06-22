@@ -18,6 +18,19 @@ LlCalibreResource class >> example [
 		ofWork: LlAuthoredWork exampleCalibre
 ]
 
+{ #category : #accessing }
+LlCalibreResource class >> fromString: urlString [
+
+	| url dummyResource work |
+	url := urlString asUrl.
+	dummyResource := RlResource on: 'file' asFileReference, url pathSegments third.
+	work := LlLibrary uniqueInstance works detect: [ :w | w calibreID = url pathSegments second asNumber ].
+	
+	^ LlCalibreResource
+		new: dummyResource class
+		ofWork: work
+]
+
 { #category : #'instance creation' }
 LlCalibreResource class >> new: anRlResourceClass ofWork: anLlAuthoredWork [
 	"anRlResourceClass - the format e.g. RlPDF"

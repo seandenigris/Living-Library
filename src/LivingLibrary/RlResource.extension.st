@@ -2,7 +2,7 @@ Extension { #name : #RlResource }
 
 { #category : #'*LivingLibrary' }
 RlResource class >> calibreName [
-	^ self typeName
+	^ self typeName asUppercase
 ]
 
 { #category : #'*LivingLibrary' }

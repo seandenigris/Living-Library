@@ -1,6 +1,14 @@
 {
 	"__schema" : "4.1",
 	"__type" : "page",
+	"uid" : {
+		"__type" : "uuid",
+		"uuid" : "c39b9418-0182-0d00-baa4-8890077c59b3"
+	},
+	"pageType" : {
+		"__type" : "namedPage",
+		"title" : "Overview"
+	},
 	"children" : {
 		"__type" : "snippets",
 		"items" : [
@@ -76,7 +84,7 @@
 											"__type" : "time",
 											"time" : {
 												"__type" : "dateAndTime",
-												"dateAndTimeString" : "2021-06-25T20:03:12.262912-04:00"
+												"dateAndTimeString" : "2024-06-22T02:45:26.352891+00:00"
 											}
 										},
 										"uid" : {
@@ -86,7 +94,7 @@
 										"paragraphStyle" : {
 											"__type" : "textStyle"
 										},
-										"string" : "We define a {{gtClass:LivingLibrary|label=library|show=#gtCoderLepiterCommentsFor:}} as a place where one can find `copies` of {{gtClass:LlAuthoredWork|label=works}}"
+										"string" : "We define a {{gtClass:LlLibrary|label=library|show=#gtCoderLepiterCommentsFor:}} as a place where one can find `copies` of {{gtClass:LlAuthoredWork|label=works}}"
 									},
 									{
 										"__type" : "textSnippet",
@@ -160,14 +168,14 @@
 																	"__type" : "time",
 																	"time" : {
 																		"__type" : "dateAndTime",
-																		"dateAndTimeString" : "2021-06-25T19:46:13.841366-04:00"
+																		"dateAndTimeString" : "2024-06-22T02:45:36.111257+00:00"
 																	}
 																},
 																"uid" : {
 																	"__type" : "uid",
 																	"uidString" : "XRJtegGCDQC6tIRRB3xZsw=="
 																},
-																"code" : "LivingLibrary uniqueInstance"
+																"code" : "LlLibrary uniqueInstance"
 															}
 														]
 													},
@@ -324,13 +332,5 @@
 			"__type" : "dateAndTime",
 			"dateAndTimeString" : "2021-06-25T19:18:43.660089-04:00"
 		}
-	},
-	"pageType" : {
-		"__type" : "namedPage",
-		"title" : "Overview"
-	},
-	"uid" : {
-		"__type" : "uuid",
-		"uuid" : "c39b9418-0182-0d00-baa4-8890077c59b3"
 	}
 }
