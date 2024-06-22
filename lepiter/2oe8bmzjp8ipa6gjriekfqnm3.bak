@@ -63,114 +63,6 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-06-22T02:47:42.154911+00:00"
-					}
-				},
-				"editEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"editTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-06-22T04:00:33.097672+00:00"
-					}
-				},
-				"uid" : {
-					"__type" : "uid",
-					"uidString" : "5gQWT9PXDQCCA5hdAos6LQ=="
-				},
-				"paragraphStyle" : {
-					"__type" : "textStyle"
-				},
-				"string" : "It was not immediately clear how {{gtClass:LlCalibreResource}} is supposed to work. We should be able to create such a LlLibraryItem sub-instance from a Calibre URL, but the following seems to cause an error:"
-			},
-			{
-				"__type" : "pharoSnippet",
-				"children" : {
-					"__type" : "snippets",
-					"items" : [ ]
-				},
-				"createEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"createTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-06-22T02:50:22.487177+00:00"
-					}
-				},
-				"editEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"editTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-06-22T03:53:36.078831+00:00"
-					}
-				},
-				"uid" : {
-					"__type" : "uid",
-					"uidString" : "wn+kWNPXDQCF1nZKAos6LQ=="
-				},
-				"code" : "LlCalibreResource fromString: 'calibre://view-book/_hex_-43616c696272655f4c696272617279/200/DOCX'"
-			},
-			{
-				"__type" : "textSnippet",
-				"children" : {
-					"__type" : "snippets",
-					"items" : [ ]
-				},
-				"createEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"createTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-06-22T03:44:18.954831+00:00"
-					}
-				},
-				"editEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"editTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-06-22T03:45:12.346562+00:00"
-					}
-				},
-				"uid" : {
-					"__type" : "uid",
-					"uidString" : "VhKNGdTXDQCOXl6rAos6LQ=="
-				},
-				"paragraphStyle" : {
-					"__type" : "textStyle"
-				},
-				"string" : "It looks like there is only one instance creation method, {{gtMethod:LlCalibreResource class>>new:ofWork:}}, which takes an RlResource class and a work as arguments."
-			},
-			{
-				"__type" : "textSnippet",
-				"children" : {
-					"__type" : "snippets",
-					"items" : [ ]
-				},
-				"createEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"createTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
 						"dateAndTimeString" : "2024-06-22T03:39:21.908845+00:00"
 					}
 				},
@@ -182,7 +74,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-06-22T03:39:39.929949+00:00"
+						"dateAndTimeString" : "2024-06-22T04:15:58.668838+00:00"
 					}
 				},
 				"uid" : {
@@ -192,7 +84,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "If we consider the following sample URL:"
+				"string" : "Given a work in the singleton library with Calibre ID 200, you can create a resource pointing to Calibre's copies from a URL:"
 			},
 			{
 				"__type" : "pharoSnippet",
@@ -219,14 +111,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-06-22T03:44:00.536433+00:00"
+						"dateAndTimeString" : "2024-06-22T04:14:28.243471+00:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "wNf6W9PXDQCGXNhXAos6LQ=="
 				},
-				"code" : "url := 'calibre://view-book/_hex_-43616c696272655f4c696272617279/200/PDF' asUrl."
+				"code" : "urlString := 'calibre://view-book/_/200/PDF'.\rLlCalibreResource fromString: urlString"
 			},
 			{
 				"__type" : "textSnippet",
