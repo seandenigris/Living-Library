@@ -115,7 +115,6 @@ LlLibrary class >> exampleAddYouTubeVideo [
 LlLibrary class >> restoreFrom: aLivingLibrary [
 
 	self uniqueInstance: aLivingLibrary.
-
 ]
 
 { #category : #persisting }

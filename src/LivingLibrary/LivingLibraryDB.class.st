@@ -1,7 +1,7 @@
 Class {
 	#name : #LivingLibraryDB,
 	#superclass : #SpFileDatabase,
-	#category : 'LivingLibrary-Persistence'
+	#category : #'LivingLibrary-Persistence'
 }
 
 { #category : #accessing }
@@ -12,5 +12,9 @@ LivingLibraryDB class >> backupDirectoryParent [
 { #category : #'override in subclasses' }
 LivingLibraryDB class >> schema [
 
-	^ { BrBible. LlLibrary. MyPeopleDB }.
+	^ { 
+		BrBible. 
+		LlLibrary. 
+		LlWorkplace.
+		MyPeopleDB }.
 ]
