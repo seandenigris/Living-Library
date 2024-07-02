@@ -19,6 +19,16 @@ LlVimeoVideo class >> currentlyOpenInSafari [
 	^ self new setUrl: CwSafari reference currentUrl.
 ]
 
+{ #category : #'instance creation' }
+LlVimeoVideo class >> fromString: aString [
+	| url id |
+	url := aString asUrl.
+	id := url pathSegments first.
+	^ self new
+		id: id;
+		yourself
+]
+
 { #category : #accessing }
 LlVimeoVideo class >> withID: aNumber [
 
