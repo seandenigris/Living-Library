@@ -396,6 +396,30 @@ LlAuthoredWork >> editionsDescription [
 ]
 
 { #category : #accessing }
+LlAuthoredWork >> export [
+
+	| toExport target |
+	toExport := { 
+		#work -> self.
+		#copies -> self copies.
+		#lepiterPageSource -> (LeJsonV4 uniqueInstance serializePretty: self transcript lepiterPage)
+	} asDictionary.
+	
+	target := Tempfile named: self displayString, '.fuel'.
+	
+	FLSerializer new
+		object: toExport;
+		filePath: target fullName;
+		when: [ :object | 
+			{ LlLibrary. RlResourceLibrary } 
+				anySatisfy: [ :libCls | object isKindOf: libCls ] ]
+			substituteBy: [ :object | nil ];
+		serialize.
+		
+	^ target
+]
+
+{ #category : #accessing }
 LlAuthoredWork >> family [
 	^ OrderedCollection streamContents: [ :str |
 		str nextPutAll: self withAncestors.
