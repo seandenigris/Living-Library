@@ -9,6 +9,14 @@ Class {
 	#category : #'LivingLibrary-Core'
 }
 
+{ #category : #'as yet unclassified' }
+LlLibraryItem class >> fromString: aString [ 
+	
+	| cls |
+	cls := self peClassForString: aString.
+	^ cls fromString: aString
+]
+
 { #category : #accessing }
 LlLibraryItem class >> gtSpotterNewFor: aSearch [
 	<gtSearch>
