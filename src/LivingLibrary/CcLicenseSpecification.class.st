@@ -1,7 +1,7 @@
 Class {
 	#name : #CcLicenseSpecification,
 	#superclass : #TestCase,
-	#category : 'LivingLibrary-Licensing'
+	#category : #'LivingLibrary-Licensing'
 }
 
 { #category : #tests }
@@ -9,7 +9,7 @@ CcLicenseSpecification >> testDeedUrl [
 
 	| license |
 	license := CcLicense nonCommercial version: 4.0.
-	license deedURL should equal: 'http://creativecommons.org/licenses/by-nc/4.0' asUrl
+	license deedURL should equal: 'https://creativecommons.org/licenses/by-nc/4.0/' asUrl
 ]
 
 { #category : #tests }

@@ -1,6 +1,6 @@
 Class {
 	#name : #CcPhotoSpecification,
-	#superclass : #TestCase,
+	#superclass : #BabyPhexample,
 	#instVars : [
 		'photoUrl',
 		'ownerUsername',
@@ -8,7 +8,7 @@ Class {
 		'license',
 		'profileUrl'
 	],
-	#category : 'LivingLibrary-Licensing'
+	#category : #'LivingLibrary-Licensing'
 }
 
 { #category : #asserting }

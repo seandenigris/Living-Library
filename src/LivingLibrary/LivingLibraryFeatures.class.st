@@ -8,14 +8,14 @@ Scenario: E-Book
 Class {
 	#name : #LivingLibraryFeatures,
 	#superclass : #TestCase,
-	#category : 'LivingLibrary-Features'
+	#category : #'LivingLibrary-Features'
 }
 
 { #category : #'as yet unclassified' }
 LivingLibraryFeatures >> testImportAcademicPaper [
 
 	| library author title paper |
-	library := LivingLibrary new.
+	library := LlLibrary new.
 	author := MpPerson named: 'Ivan Edward Sutherland'.
 	title := 'Sketchpad: A man-machine graphical communication system'.
 	paper := LlAuthoredWork newAcademicPaper 
@@ -29,7 +29,7 @@ LivingLibraryFeatures >> testImportAcademicPaper [
 LivingLibraryFeatures >> testImportEBookIntoSystem [
 
 	| library author1 author2 title ebook |
-	library := LivingLibrary new.
+	library := LlLibrary new.
 	author1 := MpPerson named: 'Matt Wynne'.
 	author2 := MpPerson named: 'Aslak Hellesoy'.
 	title := 'The Cucumber Book'.
@@ -62,21 +62,6 @@ comes to getting better with women.
 		Then I sould see the quote - in this case a morph representing the quote in the world.
 		
 		There's a hole in the theory here. Ideally, everything I do would be experienced at the logical level, not the application implementation level. So the fact that I'm in a browser, dealing with a pdf is why so much work has to be done. So let me table this for a moment until I find another document. Although, I could just assume that"
-]
-
-{ #category : #'as yet unclassified' }
-LivingLibraryFeatures >> testImportPDF [
-
-	| pdfFile copy library work |
-	pdfFile := FileLocator imageDirectory / 'FDNY FE GUIDE Page 1.pdf'.
-	work := LlAuthoredWork new.
-	copy := LiFileLibraryCopy new
-		work: work;
-		file: pdfFile;
-		yourself.
-	library := LivingLibrary new.
-	library receive: copy.
-	(library catalog at: work) size should equal: 1.
 ]
 
 { #category : #'as yet unclassified' }

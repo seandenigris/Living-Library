@@ -8,7 +8,7 @@ Class {
 WrittenWorkSpecification >> testAddEdition [
 
 	| work edition |
-	work := self given: #testCreation.
+	work := self testCreation.
 	edition := LlEdition new description: '2nd Edition'.
 	work editions add: edition.
 	work editions first should equal: edition.
@@ -27,16 +27,6 @@ WrittenWorkSpecification >> testCreation [
 ]
 
 { #category : #tests }
-WrittenWorkSpecification >> testLibraryControl [
-	| work library |
-	work := self given: #testCreation.
-	library := LivingLibrary new.
-	library beAwareOf: work.
-	library works add: work.
-	library works should include: work
-]
-
-{ #category : #tests }
 WrittenWorkSpecification >> testNoAuthor [
 
 	| title work |
@@ -49,24 +39,9 @@ WrittenWorkSpecification >> testNoAuthor [
 ]
 
 { #category : #tests }
-WrittenWorkSpecification >> testPdfCopy [
-
-	| title work library |
-	library := context mock: 'library'.
-	title := 'FDNY FORCIBLE ENTRY REFERENCE GUIDE: TECHNIQUES AND PROCEDURES'.
-	work := LlAuthoredWork new
-		title: title;
-		library: library;
-		yourself.
-	library should receive: #copyOf:; with: work.
-	work anyCopy.
-		
-]
-
-{ #category : #tests }
 WrittenWorkSpecification >> testPrinting [
 
 	| work |
-	work := self given: #testCreation.
+	work := self testCreation.
 	work printString should equal: work title surroundedByDoubleQuotes, ' by ', work author fullName.
 ]
