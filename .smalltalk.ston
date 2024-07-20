@@ -3,7 +3,8 @@ SmalltalkCISpec {
     SCIMetacelloLoadSpec {
       #baseline : 'LivingLibrary',
       #directory : 'src',
-      #platforms : [ #pharo ]
+      #platforms : [ #pharo ],
+      #onConflict : #useIncoming
     }
   ]
 }
