@@ -22,7 +22,7 @@ LivingLibraryFeatures >> testImportAcademicPaper [
 		title: title;
 		author: author.
 	library beAwareOf: paper.
-	(library hasCardFor: paper) should beTrue
+	(library hasCardFor: paper) should be: true
 ]
 
 { #category : #'as yet unclassified' }
@@ -38,7 +38,7 @@ LivingLibraryFeatures >> testImportEBookIntoSystem [
 		authors: { author1. author2 }
 		yourself.
 	library beAwareOf: ebook.
-	(library hasCardFor: ebook) should beTrue
+	(library hasCardFor: ebook) should be: true
 ]
 
 { #category : #'as yet unclassified' }
