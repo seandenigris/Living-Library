@@ -285,6 +285,22 @@ LlLibrary >> works [
 	^ self catalog keys
 ]
 
+{ #category : #views }
+LlLibrary >> works: aValuable gtViewOn: aView title: aString priority: aNumber [
+	
+	(self works isEmpty) ifTrue: [ ^ aView empty ].
+	^ aView tree
+		title: aString translated;
+		priority: aNumber;
+		items: aValuable;
+		children: [ :each | 
+			(each isKindOf: self workClass)
+				ifTrue: [ each treeChildren ]
+				ifFalse: [ #() ] ];
+		itemText: #displayString;
+		actionUpdateButton
+]
+
 { #category : #'magritte-accessing' }
 LlLibrary >> worksDescription [
 	<magritteDescription>
@@ -331,15 +347,24 @@ LlLibrary >> worksGtSearchNewFor: aSearch [
 LlLibrary >> worksGtViewOn: aView [
 	<gtView>
 
-	(self works isEmpty) ifTrue: [ ^ aView empty ].
-	^ aView tree
-		title: 'Works' translated;
-		priority: 25;
-		items: [ self rootWorks ];
-		children: [ :each | 
-			(each isKindOf: self workClass)
-				ifTrue: [ each treeChildren ]
-				ifFalse: [ #() ] ];
-		itemText: #displayString;
-		actionUpdateButton
+	^ self 
+		works: [ self rootWorks ] 
+		gtViewOn: aView 
+		title: 'Works'
+		priority: 25
+]
+
+{ #category : #views }
+LlLibrary >> worksImportDescending [
+	^ self rootWorks sort: #importTimestamp descending
+]
+
+{ #category : #views }
+LlLibrary >> worksRecentGtViewOn: aView [
+	<gtView>
+	^ self
+		works: [ self worksImportDescending ]
+		gtViewOn: aView
+		title: 'Recent Works'
+		priority: 32
 ]

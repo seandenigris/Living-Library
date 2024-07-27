@@ -24,7 +24,7 @@ The ""type"" is currently like a tag. While we started with a class per type ((e
 Class {
 	#name : #LlAuthoredWork,
 	#superclass : #Object,
-	#traits : 'LlTLibraryItem + (DbTDomainObject - {#editLepiterPageDescription}) + MpTAlphabetizable + QuTTranscriptable',
+	#traits : 'LlTLibraryItem + DbTDomainObject + MpTAlphabetizable + QuTTranscriptable',
 	#classTraits : 'LlTLibraryItem classTrait + DbTDomainObject classTrait + MpTAlphabetizable classTrait + QuTTranscriptable classTrait',
 	#instVars : [
 		'title',
@@ -33,7 +33,8 @@ Class {
 		'library',
 		'editions',
 		'parent',
-		'privateChildren'
+		'privateChildren',
+		'importTimestamp'
 	],
 	#category : #'LivingLibrary-Core'
 }
@@ -482,6 +483,16 @@ LlAuthoredWork >> hash [
 	^ self identityHash
 ]
 
+{ #category : #accessing }
+LlAuthoredWork >> importTimestamp [
+	^ importTimestamp
+]
+
+{ #category : #accessing }
+LlAuthoredWork >> importTimestamp: aDateAndTime [
+	importTimestamp := aDateAndTime translateToUTC
+]
+
 { #category : #initialization }
 LlAuthoredWork >> initialize [
 
@@ -509,7 +520,8 @@ LlAuthoredWork >> library [
 
 { #category : #debugging }
 LlAuthoredWork >> library: anObject [
-	library := anObject
+	library := anObject.
+	self importTimestamp: DateAndTime now translateToUTC
 ]
 
 { #category : #accessing }
