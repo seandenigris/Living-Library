@@ -30,6 +30,8 @@ BaselineOfLivingLibrary >> baseline: spec [
 	
 	spec for: #'common' do: [
 		spec 
+			baseline: 'BabyPhexample' with: [
+				spec repository: 'github://seandenigris/Baby-Phexample' ];
 			baseline: 'ContainersOrderedSet' with: [ 
 				spec repository: 'github://pharo-containers/Containers-OrderedSet' ];
 			baseline: 'DynabookFoundation' with: [
@@ -51,7 +53,7 @@ BaselineOfLivingLibrary >> baseline: spec [
 			baseline: 'SimplePersistence' with: [
 				spec repository: 'github://seandenigris/Simple-Persistence' ].
 		spec package: 'LivingLibrary' with: [
-			spec requires: #('ContainersOrderedSet' 'DynabookFoundation' 'Magritte' 'Mocketry' 'MyPeople' 'PharoEnhancements' 'QuoteMe' 'ResourcesLive' 'SimplePersistence') ] ].
+			spec requires: #('BabyPhexample' 'ContainersOrderedSet' 'DynabookFoundation' 'Magritte' 'Mocketry' 'MyPeople' 'PharoEnhancements' 'QuoteMe' 'ResourcesLive' 'SimplePersistence') ] ].
 				
 	spec for: #GToolkit do: [
 		spec 
