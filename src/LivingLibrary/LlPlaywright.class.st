@@ -14,9 +14,10 @@ LlPlaywright class >> initialize [
 
 { #category : #installation }
 LlPlaywright class >> install [
-	| pyBridgeFolder cmdString playwrightFile |
+	| pyBridgeFolder cmdString playwrightFile vEnvFolder |
 	pyBridgeFolder := FileLocator imageDirectory / 'PythonBridgeRuntime'.
-	playwrightFile := pyBridgeFolder / '.venv/bin/playwright'.
+	vEnvFolder := ('cd ', pyBridgeFolder suForCommand, '; ', PBPharoPipenvProcess pipenvPath suForCommand, ' --venv') asSuCommand output trimBoth asFileReference.
+	playwrightFile := vEnvFolder / 'bin/playwright'.
 	cmdString := 'cd "', pyBridgeFolder fullName, '"; ', playwrightFile fullName, ' install'.
 	
 	cmdString asSuCommand run
