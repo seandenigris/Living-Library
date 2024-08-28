@@ -30,47 +30,47 @@ BaselineOfLivingLibrary >> baseline: spec [
 	
 	spec for: #'common' do: [
 		spec 
-			baseline: 'BabyPhexample' with: [
+			baseline: #'BabyPhexample' with: [
 				spec repository: 'github://seandenigris/Baby-Phexample' ];
-			baseline: 'ContainersOrderedSet' with: [ 
+			baseline: #'ContainersOrderedSet' with: [ 
 				spec repository: 'github://pharo-containers/Containers-OrderedSet' ];
-			baseline: 'DynabookFoundation' with: [
+			baseline: #'DynabookFoundation' with: [
 				spec repository: 'github://seandenigris/Dynabook-Foundation' ];
-			baseline: 'Magritte' with: [
+			baseline: #'Magritte' with: [
 				spec 
-					loads: #('Magritte-Bootstrap');
+					loads: #(#'Magritte-Bootstrap');
 					repository: 'github://seandenigris/Magritte' ];
-			baseline: 'Mocketry' with: [
+			baseline: #'Mocketry' with: [
 				spec repository: 'github://dionisiydk/Mocketry' ];
-			baseline: 'MyPeople' with: [
+			baseline: #'MyPeople' with: [
 				spec repository: 'github://seandenigris/My-People' ];
-			baseline: 'PharoEnhancements' with: [
+			baseline: #'PharoEnhancements' with: [
 				spec repository: 'github://seandenigris/Pharo-Enhancements' ];
-			baseline: 'QuoteMe' with: [
+			baseline: #'QuoteMe' with: [
 				spec repository: 'github://seandenigris/Quote-Me' ];
-			baseline: 'ResourcesLive' with: [
+			baseline: #'ResourcesLive' with: [
 				spec repository: 'github://seandenigris/Resources-Live' ];
-			baseline: 'SimplePersistence' with: [
+			baseline: #'SimplePersistence' with: [
 				spec repository: 'github://seandenigris/Simple-Persistence' ].
-		spec package: 'LivingLibrary' with: [
-			spec requires: #('BabyPhexample' 'ContainersOrderedSet' 'DynabookFoundation' 'Magritte' 'Mocketry' 'MyPeople' 'PharoEnhancements' 'QuoteMe' 'ResourcesLive' 'SimplePersistence') ] ].
+		spec package: #'LivingLibrary' with: [
+			spec requires: #(#'BabyPhexample' #'ContainersOrderedSet' #'DynabookFoundation' #'Magritte' #'Mocketry' #'MyPeople' #'PharoEnhancements' #'QuoteMe' #'ResourcesLive' #'SimplePersistence') ] ].
 				
 	spec for: #GToolkit do: [
 		spec 
-			baseline: 'ObjectiveLepiter' with: [
+			baseline: #'ObjectiveLepiter' with: [
 				spec repository: 'github://seandenigris/Objective-Lepiter' ].
 
 		spec 
-			package: 'LivingLibrary' with: [ 
+			package: #'LivingLibrary' with: [ 
 				spec requires: #(ObjectiveLepiter ) ] ].
 				
 	spec for: #notGToolkit do: [
 		spec 
-			baseline: 'XPath' with: [
+			baseline: #'XPath' with: [
 				spec repository: 'github://seandenigris/XML-XPath' ].
 		spec 
-			package: 'LivingLibrary' with: [ 
-				spec requires: #('XPath' "needed for bible stuff") ] ]
+			package: #'LivingLibrary' with: [ 
+				spec requires: #(#'XPath' "needed for bible stuff") ] ]
 ]
 
 { #category : #accessing }
