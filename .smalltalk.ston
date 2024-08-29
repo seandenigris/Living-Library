@@ -1,11 +1,1 @@
-SmalltalkCISpec {
-  #loading : [
-    SCIMetacelloLoadSpec {
-      #baseline : 'LivingLibrary',
-      #directory : 'repository',
-      #onConflict : #useIncoming
-    }
-  ],
-  #testing : {
-      #failOnZeroTests : false  }
-}
+SmalltalkCISpec {  #loading : [    SCIMetacelloLoadSpec {      #baseline : 'LivingLibrary',      #directory : 'src',      #onConflict : #useIncoming    }  ],  #testing : {      #failOnZeroTests : false  }}
