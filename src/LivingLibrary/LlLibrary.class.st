@@ -348,7 +348,7 @@ LlLibrary >> worksGtViewOn: aView [
 	<gtView>
 
 	^ self 
-		works: [ self rootWorks ] 
+		works: [ self rootWorks sort: #nameForAlphabetization ascending ] 
 		gtViewOn: aView 
 		title: 'Works'
 		priority: 25
