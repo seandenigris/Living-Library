@@ -1,11 +1,16 @@
 Extension { #name : #MpRelatableEntity }
 
 { #category : #'*LivingLibrary' }
-MpRelatableEntity >> gtViewWorksOn: aView [
+MpRelatableEntity >> llAsCollection [
+	^ OrderedCollection with: self
+]
+
+{ #category : #'*LivingLibrary' }
+MpRelatableEntity >> worksGtViewOn: aView [
 	<gtView>
 
 	| works |
-	works := LlLibrary uniqueInstance works select: [ :w | w authors includes: self ].
+	works := self library works select: [ :w | w authors includes: self ].
 	works ifEmpty: [ ^ aView empty ].
 	
 	^ aView list
@@ -13,9 +18,4 @@ MpRelatableEntity >> gtViewWorksOn: aView [
 		priority: 60;
 		items: [ works ];
 		actionUpdateButton
-]
-
-{ #category : #'*LivingLibrary' }
-MpRelatableEntity >> llAsCollection [
-	^ OrderedCollection with: self
 ]
