@@ -51,6 +51,22 @@ LlLibraryItem >> newPlayer [
 	^ LlNullMediaPlayer new
 ]
 
+{ #category : #'as yet unclassified' }
+LlLibraryItem >> source [
+
+	^ self
+		propertyAt: #source
+		ifAbsent: [ nil ]
+]
+
+{ #category : #'as yet unclassified' }
+LlLibraryItem >> source: anObject [
+
+	^ self
+		propertyAt: #source
+		putRemovingNil: anObject
+]
+
 { #category : #accessing }
 LlLibraryItem >> work [
 	^ self maLazyInstVarUsing: self workDescription
