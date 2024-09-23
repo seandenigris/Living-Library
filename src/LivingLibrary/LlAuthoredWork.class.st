@@ -483,6 +483,23 @@ LlAuthoredWork >> hash [
 	^ self identityHash
 ]
 
+{ #category : #'as yet unclassified' }
+LlAuthoredWork >> import [
+
+	LlLibrary uniqueInstance beAwareOf: self
+]
+
+{ #category : #'as yet unclassified' }
+LlAuthoredWork >> importDescription [
+	<magritteActionDescription>
+	^ MAActionDescription new
+		gtIcon: BrGlamorousVectorIcons down;
+		comment: 'Import into Singleton Library';
+		action: #import;
+		enableBlock: [ :work | (LlLibrary uniqueInstance hasCardFor: work) not ];
+		yourself
+]
+
 { #category : #accessing }
 LlAuthoredWork >> importTimestamp [
 	^ importTimestamp
