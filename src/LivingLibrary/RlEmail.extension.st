@@ -1,10 +1,7 @@
 Extension { #name : #RlEmail }
 
 { #category : #'*LivingLibrary' }
-RlEmail >> importWork [
+RlEmail >> workTitleDefault [
 
-	| work |
-	work := LlAuthoredWork titled: self subject.
-	LlLibrary uniqueInstance addCopy: self import of: work.
-	^ work
+	^ self subject
 ]

@@ -6,6 +6,15 @@ RlResource class >> calibreName [
 ]
 
 { #category : #'*LivingLibrary' }
+RlResource >> importWork [
+
+	| work |
+	work := LlAuthoredWork titled: self workTitleDefault.
+	LlLibrary uniqueInstance addCopy: self import of: work.
+	^ work
+]
+
+{ #category : #'*LivingLibrary' }
 RlResource >> newPlayer [
 
 	^ LlNullMediaPlayer new
@@ -26,4 +35,9 @@ RlResource >> work [
 { #category : #'*LivingLibrary' }
 RlResource >> work: anLlAuthoredWork [
 	self propertyAt: #llWork put: anLlAuthoredWork
+]
+
+{ #category : #'*LivingLibrary' }
+RlResource >> workTitleDefault [
+	^ self file base
 ]
