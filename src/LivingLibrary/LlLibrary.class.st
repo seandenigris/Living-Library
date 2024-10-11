@@ -181,6 +181,7 @@ LlLibrary >> copiesOf: aWrittenWork [
 LlLibrary >> copy: anObject removeFrom: aWrittenWork [
 
 	| copies |
+	anObject work: nil.
 	copies := self copiesOf: aWrittenWork.
 	^ copies remove: anObject
 ]
