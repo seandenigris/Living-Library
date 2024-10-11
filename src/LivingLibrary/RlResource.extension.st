@@ -34,7 +34,7 @@ RlResource >> work [
 
 { #category : #'*LivingLibrary' }
 RlResource >> work: anLlAuthoredWork [
-	self propertyAt: #llWork put: anLlAuthoredWork
+	self propertyAt: #llWork putRemovingNil: anLlAuthoredWork
 ]
 
 { #category : #'*LivingLibrary' }
