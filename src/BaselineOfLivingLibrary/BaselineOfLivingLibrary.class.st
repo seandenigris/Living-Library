@@ -24,6 +24,12 @@ BaselineOfLivingLibrary class >> isDynabook [
 	^ true
 ]
 
+{ #category : #setup }
+BaselineOfLivingLibrary class >> pipEnvPostLoad [
+	
+	LlPlaywright install.
+]
+
 { #category : #baseline }
 BaselineOfLivingLibrary >> baseline: spec [
 	<baseline>
