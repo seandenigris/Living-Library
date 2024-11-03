@@ -30,6 +30,11 @@ LlWebVideo >> defaultDriver: anObject [
 ]
 
 { #category : #accessing }
+LlWebVideo >> element: selectorString in: page [
+	^ page elementLocatorFromSelector: selectorString
+]
+
+{ #category : #accessing }
 LlWebVideo >> element: selectorString in: page doJavaScript: jsString [
 	| element |
 	element := page elementLocatorFromSelector: selectorString.
