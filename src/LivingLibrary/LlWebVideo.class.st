@@ -37,7 +37,7 @@ LlWebVideo >> element: selectorString in: page [
 { #category : #accessing }
 LlWebVideo >> element: selectorString in: page doJavaScript: jsString [
 	| element |
-	element := page elementLocatorFromSelector: selectorString.
+	element := self element: selectorString in: page.
 	^ element selfEvaluate: jsString.
 ]
 
