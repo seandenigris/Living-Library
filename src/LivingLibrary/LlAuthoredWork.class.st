@@ -296,7 +296,7 @@ LlAuthoredWork >> copiesDescription [
 	<magritteDescription>
 	
 	| gtSearchSource librarySource classes |
-	gtSearchSource := PeGtCompositeSearch new.
+	gtSearchSource := PeGtCollectedSearch new.
 	librarySource := PeGtDelegatedSearch 
 		to: LlLibraryItem 
 		message: #gtSpotterNewFor:.
