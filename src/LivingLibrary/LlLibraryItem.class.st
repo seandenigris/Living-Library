@@ -85,3 +85,12 @@ LlLibraryItem >> workDescription [
 		classes: { LlAuthoredWork. LlEdition };
 		yourself
 ]
+
+{ #category : #'as yet unclassified' }
+LlLibraryItem >> workEnsured [
+
+	| aWork |
+	aWork := self work ifNil: [ LlAuthoredWork titled: self title ].
+	LlLibrary uniqueInstance addCopy: self of: aWork.
+	^ aWork
+]

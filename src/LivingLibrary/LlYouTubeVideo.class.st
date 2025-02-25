@@ -187,7 +187,8 @@ LlYouTubeVideo >> seekTo: aDuration in: page [
 
 { #category : #accessing }
 LlYouTubeVideo >> title [
-	"We'd like to get from API"
+	"We'd like to get from API: ('https://www.googleapis.com/youtube/v3/videos?part=id%2C+snippet&id=', self id, '&key=') asUrl
+	Adapted from https://stackoverflow.com/a/50076966"
 	self shouldBeImplemented
 ]
 
