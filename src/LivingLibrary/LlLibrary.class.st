@@ -193,7 +193,7 @@ LlLibrary >> ensureCardFor: work [
 			at: e 
 			ifAbsentPut: [ 
 				e library: self.
-				Bag new ] ].
+				Set new ] ].
 	^ self catalog at: work
 ]
 
