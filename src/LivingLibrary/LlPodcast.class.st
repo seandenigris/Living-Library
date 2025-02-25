@@ -6,39 +6,58 @@ Class {
 	#category : #LivingLibrary
 }
 
-{ #category : #accessing }
-LlPodcast class >> fromRssUrl: aUrl [
+{ #category : #'instance creation' }
+LlPodcast class >> fromXml: aXMLElement [ 
 
 	^ self new
-		channelXml: (aUrl asRlResource document / 'rss' / 'channel') first;
+		rawData: aXMLElement;
 		yourself
 ]
 
 { #category : #accessing }
-LlPodcast >> channelXml [
-	^ self rawData
-]
-
-{ #category : #accessing }
-LlPodcast >> channelXml: anObject [
-	self rawData: anObject
-]
-
-{ #category : #'as yet unclassified' }
-LlPodcast >> description [
-
+LlPodcast >> author [
+	
 	^ self 
-		rawDataAt: 'description'
+		rawDataAt: #author
 		reader: #contentString
 ]
 
-{ #category : #'as yet unclassified' }
-LlPodcast >> episodes [
+{ #category : #printing }
+LlPodcast >> displayStringOn: aStream [
 
-	^ self channelXml / #item
+	aStream
+		nextPutAll: self title surroundedByDoubleQuotes;
+		nextPutAll: ' by ';
+		nextPutAll: self author
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #playing }
+LlPodcast >> play [
+
+	| node urlString |
+	node := self rawDataAt: #enclosure.
+	urlString := node attributeAt: 'url'.
+	^ urlString asUrl open
+]
+
+{ #category : #'magritte-descriptions' }
+LlPodcast >> playDescription [
+	<magritteActionDescription>
+	^ MAActionDescription new
+		action: [ :lesson | lesson play ];
+		gtIcon: BrGlamorousVectorIcons play;
+		isLabelVisible: false;
+		shortcut: $c;
+		yourself
+]
+
+{ #category : #printing }
+LlPodcast >> printOn: aStream [
+
+	self printFromDisplayStringOn: aStream
+]
+
+{ #category : #private }
 LlPodcast >> rawDataAt: aString reader: aValuable ifAbsent: absentBlock [
 		
 	| el |
@@ -49,7 +68,7 @@ LlPodcast >> rawDataAt: aString reader: aValuable ifAbsent: absentBlock [
 	^ aValuable value: el
 ]
 
-{ #category : #accessing }
+{ #category : #'GT Views' }
 LlPodcast >> rawDataGtViewFor: aView context: aContext do: aBlock [
 	"If you want to customize the view (e.g. reload latest data via API on update button), send this message from your view method"
 	
@@ -57,7 +76,7 @@ LlPodcast >> rawDataGtViewFor: aView context: aContext do: aBlock [
 	result := aView forward
 		title: 'XML';
 		priority: 75;
-		object: [ self channelXml ];
+		object: [ self rawData ];
 		view: #gtItemsFor:;
 		inspectButtonFor: [ self rawData ].
 		
@@ -66,26 +85,10 @@ LlPodcast >> rawDataGtViewFor: aView context: aContext do: aBlock [
 	^ result
 ]
 
-{ #category : #'as yet unclassified' }
-LlPodcast >> rssUrl [
-
-	^ self 
-		rawDataAt: 'atom:link'
-		reader: [ :node | (node attributeAt: #href) asUrl ]
-]
-
-{ #category : #'as yet unclassified' }
-LlPodcast >> showUrl [
-
-	^ self 
-		rawDataAt: 'link'
-		reader: [ :node | node contentString asUrl ]
-]
-
 { #category : #accessing }
 LlPodcast >> title [
-
+	
 	^ self 
-		rawDataAt: 'title'
+		rawDataAt: #title
 		reader: #contentString
 ]
