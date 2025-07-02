@@ -302,6 +302,11 @@ LlLibrary >> works: aValuable gtViewOn: aView title: aString priority: aNumber [
 		actionUpdateButton
 ]
 
+{ #category : #views }
+LlLibrary >> worksByImportDescending [
+	^ self rootWorks sort: #importTimestamp descending
+]
+
 { #category : #'magritte-accessing' }
 LlLibrary >> worksDescription [
 	<magritteDescription>
@@ -356,15 +361,10 @@ LlLibrary >> worksGtViewOn: aView [
 ]
 
 { #category : #views }
-LlLibrary >> worksImportDescending [
-	^ self rootWorks sort: #importTimestamp descending
-]
-
-{ #category : #views }
 LlLibrary >> worksRecentGtViewOn: aView [
 	<gtView>
 	^ self
-		works: [ self worksImportDescending ]
+		works: [ self worksByImportDescending ]
 		gtViewOn: aView
 		title: 'Recent Works'
 		priority: 32
