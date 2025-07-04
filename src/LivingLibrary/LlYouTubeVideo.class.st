@@ -43,16 +43,10 @@ LlYouTubeVideo class >> exampleTranscriptEmptyPage [
 
 { #category : #'instance creation' }
 LlYouTubeVideo class >> fromString: aString [
-	| url id |
-	url := aString asUrl.
-	id := url pathSegments first = 'embed' "embedded"
-		ifTrue: [ id := url file ]
-		ifFalse: [ 
-			url host = 'youtu.be' "shortened"
-				ifTrue: [ id := url pathSegments first ]
-				ifFalse: [ url queryAt: #v "normal" ] ].
+	| url |
+	url := LlYouTubeUrl fromString: aString.
 	^ self new
-		id: id;
+		id: url id;
 		yourself
 ]
 

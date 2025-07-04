@@ -24,14 +24,14 @@ LlYouTubeUrl class >> exampleStringInputs [
 
 { #category : #accessing }
 LlYouTubeUrl class >> fromString: aString [
-	| url id |
+	| url id hasIdInFile |
 	url := aString asUrl.
-	id := url pathSegments first = 'embed' "embedded"
-		ifTrue: [ id := url file ]
-		ifFalse: [ 
-			url host = 'youtu.be' "shortened"
-				ifTrue: [ id := url pathSegments first ]
-				ifFalse: [ url queryAt: #v "normal" ] ].
+	hasIdInFile := #('embed' "embedded" 'live') includes: url pathSegments first.	
+	id := hasIdInFile
+			ifTrue: [ id := url file ]
+			ifFalse: [ url host = 'youtu.be'"shortened" 
+					ifTrue: [ id := url pathSegments first ]
+					ifFalse: [ url queryAt: #v "normal" ] ].
 	^ (super fromString: 'https://www.youtube.com/watch') ? (#v -> id)
 ]
 
