@@ -9,7 +9,7 @@ Class {
 	#classInstVars : [
 		'versions'
 	],
-	#category : 'LivingLibrary-Bible'
+	#category : #'LivingLibrary-Bible'
 }
 
 { #category : #accessing }
@@ -67,22 +67,6 @@ BrBible >> books [
 	^ books ifNil: [ books := Bag new ]
 ]
 
-{ #category : #'magritte-accessing' }
-BrBible >> descriptionVersion [
-	<magritteDescription>
-	^ MAStringDescription new
-		accessor: #version;
-		yourself
-]
-
-{ #category : #'magritte-accessing' }
-BrBible >> descriptionVersionCode [
-	<magritteDescription>
-	^ MAStringDescription new
-		accessor: #versionCode;
-		yourself
-]
-
 { #category : #printing }
 BrBible >> printOn: aStream [
 	aStream
@@ -94,7 +78,7 @@ BrBible >> printOn: aStream [
 
 { #category : #accessing }
 BrBible >> version [
-	^ self maLazyFrom: self descriptionVersion
+	^ self maLazyFrom: self versionDescription
 ]
 
 { #category : #accessing }
@@ -104,10 +88,27 @@ BrBible >> version: anObject [
 
 { #category : #accessing }
 BrBible >> versionCode [
-	^ self maLazyFrom: self descriptionVersionCode
+	^ self maLazyFrom: self versionCodeDescription
 ]
 
 { #category : #accessing }
 BrBible >> versionCode: anObject [
 	versionCode := anObject
+]
+
+{ #category : #'magritte-accessing' }
+BrBible >> versionCodeDescription [
+	<magritteDescription>
+	^ MAStringDescription new
+		accessor: #versionCode;
+		yourself
+]
+
+{ #category : #'magritte-accessing' }
+BrBible >> versionDescription [
+	<magritteDescription>
+	
+	^ MAStringDescription new
+		accessor: #version;
+		yourself
 ]
