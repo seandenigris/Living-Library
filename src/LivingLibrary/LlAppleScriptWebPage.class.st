@@ -41,7 +41,20 @@ LlAppleScriptWebPage >> cookie [
 
 { #category : #accessing }
 LlAppleScriptWebPage >> doJavascript: script [
+	^ self doJavascriptViaPython: script
+	
+	"The OsaScript bridge (see `doJavascriptViaOSA:`) is finicky, so trying to use Python instead by default"
+]
+
+{ #category : #accessing }
+LlAppleScriptWebPage >> doJavascriptViaOSA: script [
 	^ self browser doJavascript: script in: self documentIdString
+]
+
+{ #category : #accessing }
+LlAppleScriptWebPage >> doJavascriptViaPython: script [
+	
+	^ self pythonInstance do_JavaScript: script
 ]
 
 { #category : #accessing }
@@ -59,6 +72,21 @@ LlAppleScriptWebPage >> exists [
 	^ self browser applescriptTellTo: 'exists (', self documentIdString, ')'
 ]
 
+{ #category : #'as yet unclassified' }
+LlAppleScriptWebPage >> iframeSrcBeginningWith: aString [
+	
+	| urlString js jsTemplate |
+	
+	jsTemplate := 'frameSelector = `iframe[src^={url}]`;
+document.querySelector(frameSelector).getAttribute(''src'')'.
+	js := jsTemplate format: { #url -> aString surroundedBySingleQuotes } asDictionary.
+	urlString := self doJavascriptViaPython: js.
+
+	^ urlString asUrl.
+	
+	"Implementation note: couldn't get this to work with th  OsaScript bridge, so using Python instead. It might be best to just"
+]
+
 { #category : #accessing }
 LlAppleScriptWebPage >> isDocumentComplete [
 
@@ -67,6 +95,12 @@ LlAppleScriptWebPage >> isDocumentComplete [
 		in: self documentIdString.
 		
 	"Reference: https://developer.mozilla.org/en-US/docs/Web/API/Document/readyState via https://codereview.stackexchange.com/a/91967"
+]
+
+{ #category : #'as yet unclassified' }
+LlAppleScriptWebPage >> name [
+
+	^ self pythonInstance name callMethod: #get
 ]
 
 { #category : #accessing }
@@ -92,6 +126,17 @@ LlAppleScriptWebPage >> printOn: aStream [
 		nextPutAll: ' ('.
 	super printOn: aStream.
 	aStream nextPut: $)
+]
+
+{ #category : #'as yet unclassified' }
+LlAppleScriptWebPage >> pythonInstance [
+
+	^ PBApplication start newCommandStringFactory
+		script: 'from appscript import *
+pageReferences = app("Safari").documents[its.URL.beginswith(url)]';
+		bindingAt: #url put: self url asString;
+	    resultExpression: 'pageReferences[1]';
+	    sendAndWait.
 ]
 
 { #category : #accessing }

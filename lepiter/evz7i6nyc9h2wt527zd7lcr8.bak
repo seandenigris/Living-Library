@@ -1,0 +1,150 @@
+{
+	"__schema" : "4.1",
+	"__type" : "page",
+	"uid" : {
+		"__type" : "uuid",
+		"uuid" : "d4ded5a1-1df9-0d00-a61d-f0a2034ffc06"
+	},
+	"pageType" : {
+		"__type" : "namedPage",
+		"title" : "Media Web Drivers"
+	},
+	"children" : {
+		"__type" : "snippets",
+		"items" : [
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-08-19T14:19:21.77917-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-08-19T14:21:00.714742-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "B0DWoR35DQCmHi8sA0/8Bg=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "We want to interact videos and other media on the web in the same way we would with local media. One easy (but limiting) way to do this is to present the media in a browser, and control the browser."
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-08-19T14:21:04.113656-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-08-19T14:27:46.847231-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "fqbZpx35DQCrNIKSA0/8Bg=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "A common obstacle here is that media are often played from a cross-site iframe, and JavaScript, the most common way to interact with the DOM, does not jump across site boundaries for security reasons (see e.g. [this SO answer](https://stackoverflow.com/a/25098153)). One possible loophole is that you can access the properties of the frame tag itself (just not its document). You may be able to get valuable info about the media from the frame's properties, and even get the media's URL itself from the `src` property. In Safari, you can access this info with {{gtMethod:LlAppleScriptWebPage>>iframeSrcBeginningWith:}}."
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-08-19T14:27:56.245128-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-08-19T14:31:03.009532-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "5luAwB35DQC4F+exA0/8Bg=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "If you really want to jump into a cross-site iframe, you can use {{gtClass:LlPlaywright}}, but this presents it's own challenges. If you are only working with publicly accessible sites, you should be okay, but for sites requiring login, you would have to be willing to supply login credentials to a browser designed for acceptance testing and automatically downloaded. Also, you won't have access to saved passwords and would need to en"
+			}
+		]
+	},
+	"createEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"createTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2025-08-19T14:19:32.637673-04:00"
+		}
+	},
+	"editEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"editTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2025-08-19T14:19:32.637673-04:00"
+		}
+	}
+}
