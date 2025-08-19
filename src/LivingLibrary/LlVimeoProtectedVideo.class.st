@@ -1,35 +1,51 @@
 Class {
 	#name : #LlVimeoProtectedVideo,
-	#superclass : #LlWebResource,
+	#superclass : #LlVimeoVideo,
 	#instVars : [
-		'id'
+		'pageUrl',
+		'unlistedHash'
 	],
 	#category : #'LivingLibrary-Core'
 }
 
+{ #category : #'as yet unclassified' }
+LlVimeoProtectedVideo class >> fromUrl: aUrlOrString [
+
+	| aUrl |
+	aUrl := aUrlOrString asUrl.
+	^ self
+		withID: aUrl lastPathSegment
+		andUnlistedHash: (aUrl queryAt: #h)
+]
+
 { #category : #'instance creation' }
-LlVimeoProtectedVideo class >> withID: aNumber [
+LlVimeoProtectedVideo class >> withID: aNumberOrString andUnlistedHash: aString [
 
 	^ self new
-		id: aNumber;
+		id: aNumberOrString asString;
+		unlistedHash: aString;
 		yourself
 ]
 
-{ #category : #accessing }
-LlVimeoProtectedVideo >> id [
-
-	^ id
-]
-
-{ #category : #accessing }
-LlVimeoProtectedVideo >> id: anObject [
-
-	id := anObject
-]
-
-{ #category : #accessing }
+{ #category : #'as yet unclassified' }
 LlVimeoProtectedVideo >> newPlayer [
-	^ (LlMediaPlayer on: self cache)
-		driver: LlPythonMpv new;
+	^ super newPlayer
+		driver: LlApplescriptMediaDriver new;
 		yourself
+]
+
+{ #category : #accessing }
+LlVimeoProtectedVideo >> unlistedHash [
+	^ unlistedHash
+]
+
+{ #category : #accessing }
+LlVimeoProtectedVideo >> unlistedHash: anObject [
+	unlistedHash := anObject
+]
+
+{ #category : #'as yet unclassified' }
+LlVimeoProtectedVideo >> url [
+
+	^ super url / self unlistedHash
 ]

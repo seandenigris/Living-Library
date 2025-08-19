@@ -10,13 +10,13 @@ Class {
 { #category : #'as yet unclassified' }
 LlVimeoVideo class >> atUrl: aString [
 
-	^ self new setUrl: aString asUrl.
+	^ self new url: aString asUrl.
 ]
 
 { #category : #'as yet unclassified' }
 LlVimeoVideo class >> currentlyOpenInSafari [
 
-	^ self new setUrl: CwSafari reference currentUrl.
+	^ self new url: CwSafari reference currentUrl.
 ]
 
 { #category : #'instance creation' }
