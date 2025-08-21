@@ -84,7 +84,9 @@ document.querySelector(frameSelector).getAttribute(''src'')'.
 
 	^ urlString asUrl.
 	
-	"Implementation note: couldn't get this to work with th  OsaScript bridge, so using Python instead. It might be best to just"
+	"Implementation notes: 
+	- couldn't get this to work with the  OsaScript bridge, so using Python instead. 
+	- Query selector syntax adapted from https://stackoverflow.com/a/303961"
 ]
 
 { #category : #accessing }
@@ -132,11 +134,24 @@ LlAppleScriptWebPage >> printOn: aStream [
 LlAppleScriptWebPage >> pythonInstance [
 
 	^ PBApplication start newCommandStringFactory
-		script: 'from appscript import *
-pageReferences = app("Safari").documents[its.URL.beginswith(url)]';
+		script: 'from appscript import *';
 		bindingAt: #url put: self url asString;
-	    resultExpression: 'pageReferences[1]';
+	    resultExpression: 'app("Safari").documents[its.URL.beginswith(url)][1]';
 	    sendAndWait.
+	    
+	"Appscript reference filtering doc: https://appscript.sourceforge.io/py-appscript/doc_3x/appscript-manual/09_referenceforms.html"
+]
+
+{ #category : #'as yet unclassified' }
+LlAppleScriptWebPage >> source [
+	| sourceString htmlFile result |
+	sourceString := self pythonInstance source callMethod: #get.
+	htmlFile := Tempfile named: self name asFilename , '.html'.
+	htmlFile writeStreamDo: [ :str | str << sourceString ].
+	result := RlHTML on: htmlFile.
+	^ result
+		source: self url;
+		yourself.
 ]
 
 { #category : #accessing }
