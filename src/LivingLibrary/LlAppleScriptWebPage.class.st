@@ -54,7 +54,7 @@ LlAppleScriptWebPage >> doJavascriptViaOSA: script [
 { #category : #accessing }
 LlAppleScriptWebPage >> doJavascriptViaPython: script [
 	
-	^ self pythonInstance do_JavaScript: script
+	^ self pythonInstance do_JavaScript: script string
 ]
 
 { #category : #accessing }
