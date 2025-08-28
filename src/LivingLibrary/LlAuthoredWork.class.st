@@ -438,7 +438,8 @@ LlAuthoredWork >> gtViewChildrenFor: aView [
 		  priority: 70;
 		  items: [ self privateChildren asOrderedCollection ];
 		  itemText: [ :w | w title ];
-		  actionUpdateButton
+		  actionUpdateButton;
+		  inspectButtonFor: [ self privateChildren ]
 ]
 
 { #category : #accessing }
