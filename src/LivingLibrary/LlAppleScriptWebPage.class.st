@@ -63,6 +63,12 @@ LlAppleScriptWebPage >> documentIdString [
 ]
 
 { #category : #accessing }
+LlAppleScriptWebPage >> elementLocatorFromId: aString [
+
+	^ self elementLocatorFromSelector: '#', aString
+]
+
+{ #category : #accessing }
 LlAppleScriptWebPage >> elementLocatorFromSelector: aString [ 
 	^ LlAppleScriptHtmlElementLocator selector: aString in: self
 ]

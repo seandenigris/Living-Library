@@ -31,6 +31,12 @@ LlAppleScriptHtmlElementLocator >> getAttribute: aString [
 	^ self selfEvaluate: 'getAttribute(', aString surroundedBySingleQuotes, ')'
 ]
 
+{ #category : #'as yet unclassified' }
+LlAppleScriptHtmlElementLocator >> innerHTML [
+
+	^ RlHTML fromString: (self selfEvaluate: 'innerHTML')
+]
+
 { #category : #accessing }
 LlAppleScriptHtmlElementLocator >> page [
 
