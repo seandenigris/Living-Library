@@ -1,12 +1,14 @@
 Class {
-	#name : #LlGoogleBooksInfo,
-	#superclass : #Object,
+	#name : 'LlGoogleBooksInfo',
+	#superclass : 'Object',
 	#traits : 'PeTRawDataHolder',
 	#classTraits : 'PeTRawDataHolder classTrait',
-	#category : #'LivingLibrary-Core'
+	#category : 'LivingLibrary-Core',
+	#package : 'LivingLibrary',
+	#tag : 'Core'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 LlGoogleBooksInfo class >> forIsbn: aString [
 
 	"URL format from https://stackoverflow.com/a/7909402"
@@ -18,13 +20,13 @@ LlGoogleBooksInfo class >> forIsbn: aString [
 	^ self fromDictionary: items first
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 LlGoogleBooksInfo class >> forWork: anLlAuthoredWork [
 
 	^ self forIsbn: anLlAuthoredWork isbn
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlGoogleBooksInfo >> thumbnail [
 
 	| url destination didSucceed |

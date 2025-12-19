@@ -1,15 +1,17 @@
 Class {
-	#name : #LlDiscordMessage,
-	#superclass : #LlWebResource,
+	#name : 'LlDiscordMessage',
+	#superclass : 'LlWebResource',
 	#instVars : [
 		'server',
 		'channel',
 		'id'
 	],
-	#category : #'LivingLibrary-Core'
+	#category : 'LivingLibrary-Core',
+	#package : 'LivingLibrary',
+	#tag : 'Core'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 LlDiscordMessage class >> fromString: aString [
 
 	| url |
@@ -22,7 +24,7 @@ LlDiscordMessage class >> fromString: aString [
 		yourself
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 LlDiscordMessage class >> fromStringExample [
 	<gtExample>
 	
@@ -35,36 +37,36 @@ LlDiscordMessage class >> fromStringExample [
 			result id should equal: 1009824276574113804 ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlDiscordMessage class >> peCanHandleFromString: aString [
 	^ aString beginsWith: 'https://discord.com'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlDiscordMessage >> channel [
 
 	^ channel
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlDiscordMessage >> channel: anObject [
 
 	channel := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlDiscordMessage >> id [
 
 	^ id
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlDiscordMessage >> id: anObject [
 
 	id := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlDiscordMessage >> printOn: aStream [
 	aStream
 		nextPutAll: 'Discord';
@@ -72,19 +74,19 @@ LlDiscordMessage >> printOn: aStream [
 		print: self url
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlDiscordMessage >> server [
 
 	^ server
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlDiscordMessage >> server: anObject [
 
 	server := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlDiscordMessage >> url [
 	^ 'https://discord.com/channels' asUrl / self server asString / self channel asString / self id asString
 ]

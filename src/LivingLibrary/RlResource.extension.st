@@ -1,34 +1,34 @@
-Extension { #name : #RlResource }
+Extension { #name : 'RlResource' }
 
-{ #category : #'*LivingLibrary' }
+{ #category : '*LivingLibrary' }
 RlResource class >> calibreName [
 	^ self typeName asUppercase
 ]
 
-{ #category : #'*LivingLibrary' }
+{ #category : '*LivingLibrary' }
 RlResource >> newPlayer [
 
 	^ LlNullMediaPlayer new
 ]
 
-{ #category : #'*LivingLibrary' }
+{ #category : '*LivingLibrary' }
 RlResource >> newWork [
 	^ LlAuthoredWork new
 		title: self file base;
 		yourself
 ]
 
-{ #category : #'*LivingLibrary' }
+{ #category : '*LivingLibrary' }
 RlResource >> work [
 	^ self propertyAt: #llWork ifAbsent: [ nil ]
 ]
 
-{ #category : #'*LivingLibrary' }
+{ #category : '*LivingLibrary' }
 RlResource >> work: anLlAuthoredWork [
 	self propertyAt: #llWork putRemovingNil: anLlAuthoredWork
 ]
 
-{ #category : #'*LivingLibrary' }
+{ #category : '*LivingLibrary' }
 RlResource >> workEnsured [
 
 	| work |
@@ -38,7 +38,7 @@ RlResource >> workEnsured [
 	^ work
 ]
 
-{ #category : #'*LivingLibrary' }
+{ #category : '*LivingLibrary' }
 RlResource >> workTitleDefault [
 	^ self file base
 ]

@@ -4,15 +4,17 @@ From [the doc](https://playwright.dev/python/docs/api/class-page):
 *extends: EventEmitter. Page provides methods to interact with a single tab in a Browser, or an extension background page in Chromium. One Browser instance might have multiple Page instances.*
 "
 Class {
-	#name : #LlPlaywrightPage,
-	#superclass : #LlPlaywrightObject,
+	#name : 'LlPlaywrightPage',
+	#superclass : 'LlPlaywrightObject',
 	#instVars : [
 		'browser'
 	],
-	#category : #'LivingLibrary-Web Driving-Playwright'
+	#category : 'LivingLibrary-Web Driving-Playwright',
+	#package : 'LivingLibrary',
+	#tag : 'Web Driving-Playwright'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlPlaywrightPage class >> on: proxy inBrowser: browser [ 
 	^ self new
 		model: proxy;
@@ -20,25 +22,25 @@ LlPlaywrightPage class >> on: proxy inBrowser: browser [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlPlaywrightPage >> browser [
 
 	^ browser
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlPlaywrightPage >> browser: anObject [
 
 	browser := anObject
 ]
 
-{ #category : #'player API' }
+{ #category : 'player API' }
 LlPlaywrightPage >> elementLocatorFromSelector: aString [
 	
 	^ self locator: aString
 ]
 
-{ #category : #API }
+{ #category : 'API' }
 LlPlaywrightPage >> frameLocator: selectorString [
 	"selectorString - any valid CSS selector, plus some custom Playwright additions
 	
@@ -49,13 +51,13 @@ LlPlaywrightPage >> frameLocator: selectorString [
 			factory << (P3GCall target: self model => #frame_locator positionalArguments: { selectorString }) ]
 ]
 
-{ #category : #'player API' }
+{ #category : 'player API' }
 LlPlaywrightPage >> frameReferenceFromSelector: selectorString [
 
 	^ self frameLocator: selectorString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlPlaywrightPage >> locator: aString [
 	
 	^ self 
@@ -64,24 +66,24 @@ LlPlaywrightPage >> locator: aString [
 				factory << (P3GCall target: self model => #locator positionalArguments: { aString }) ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlPlaywrightPage >> model [
 
 	^ model
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlPlaywrightPage >> model: anObject [
 
 	model := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlPlaywrightPage >> onQuit [
 	self browser close
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlPlaywrightPage >> url: aUrl [
 	
 	self model newCommandFactory

@@ -1,34 +1,36 @@
 Class {
-	#name : #LlPlaywrightBrowser,
-	#superclass : #LlPlaywrightObject,
-	#category : #'LivingLibrary-Web Driving-Playwright'
+	#name : 'LlPlaywrightBrowser',
+	#superclass : 'LlPlaywrightObject',
+	#category : 'LivingLibrary-Web Driving-Playwright',
+	#package : 'LivingLibrary',
+	#tag : 'Web Driving-Playwright'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 LlPlaywrightBrowser class >> on: proxy [
 	^ self new
 		model: proxy;
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlPlaywrightBrowser >> close [
 	^ self model newCommandFactory
 		<< (P3GCall target: self model => #close positionalArguments: { });
 		sendAndWait.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlPlaywrightBrowser >> model [
 
 	^ model
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlPlaywrightBrowser >> model: aPBProxyObject [
 	model := aPBProxyObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlPlaywrightBrowser >> openOn: aUrl [
 ]

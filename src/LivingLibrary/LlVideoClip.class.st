@@ -6,23 +6,25 @@ VideoClip allInstances collect: [ :e |
 	e instVarNamed: 'backgroundProcess' ]
 "
 Class {
-	#name : #LlVideoClip,
-	#superclass : #Object,
+	#name : 'LlVideoClip',
+	#superclass : 'Object',
 	#instVars : [
 		'startTime',
 		'endTime',
 		'video'
 	],
-	#category : #'LivingLibrary-Core'
+	#category : 'LivingLibrary-Core',
+	#package : 'LivingLibrary',
+	#tag : 'Core'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 LlVideoClip class >> from: aVideo startingAt: startString andEndingAt: endString [ 
 
 	^ self new setVideo: aVideo startTime: startString endTime: endString.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LlVideoClip >> asMorph [
 	
 	| morph playButton builder pauseButton controls |
@@ -37,14 +39,14 @@ LlVideoClip >> asMorph [
 	^ morph.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlVideoClip >> doesNotUnderstand: aMessage [
 	^ (self video respondsTo: aMessage selector)
 		ifTrue: [ aMessage sendTo: self video ]
 		ifFalse: [ super doesNotUnderstand: aMessage ]
 ]
 
-{ #category : #playing }
+{ #category : 'playing' }
 LlVideoClip >> newPlayer [
 
 	^ self video newPlayer
@@ -53,7 +55,7 @@ LlVideoClip >> newPlayer [
 		yourself
 ]
 
-{ #category : #playing }
+{ #category : 'playing' }
 LlVideoClip >> printOn: aStream [
 
 	| prettyStartTime prettyEndTime |
@@ -63,7 +65,7 @@ LlVideoClip >> printOn: aStream [
 	video printOn: aStream.
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 LlVideoClip >> setVideo: aVideo startTime: startPosition endTime: endPosition [
 
 	video := aVideo.
@@ -72,17 +74,17 @@ LlVideoClip >> setVideo: aVideo startTime: startPosition endTime: endPosition [
 	^ self.
 ]
 
-{ #category : #playing }
+{ #category : 'playing' }
 LlVideoClip >> startPosition [
 	^ startTime
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlVideoClip >> startPosition: position [
 	startTime := position
 ]
 
-{ #category : #playing }
+{ #category : 'playing' }
 LlVideoClip >> video [
 	^ video
 ]

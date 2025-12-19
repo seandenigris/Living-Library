@@ -1,33 +1,35 @@
 Class {
-	#name : #LlMpvJSONDriver,
-	#superclass : #Object,
+	#name : 'LlMpvJSONDriver',
+	#superclass : 'Object',
 	#instVars : [
 		'pythonMpv'
 	],
-	#category : #'LivingLibrary-PythonMpv'
+	#category : 'LivingLibrary-PythonMpv',
+	#package : 'LivingLibrary',
+	#tag : 'PythonMpv'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlMpvJSONDriver >> currentTime [
 	^ self pythonMpv newCommandFactory
 		<< (self pythonMpv => #time_pos);
 		sendAndWait
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlMpvJSONDriver >> exampleCommand [
 
 	LibC resultOfCommand: 'echo ''{ "command": ["get_property", "playback-time"] }'' | /opt/homebrew/bin/socat - /tmp/mpvsocket'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlMpvJSONDriver >> filename [
 	self pythonMpv newCommandFactory
 		<< (self pythonMpv => #filename);
 		sendAndWait
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LlMpvJSONDriver >> isPlaying [
 	| isPaused |
 	self filename ifNil: [ ^ false ].
@@ -37,26 +39,26 @@ LlMpvJSONDriver >> isPlaying [
 	^ isPaused not
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlMpvJSONDriver >> onQuit [
 	self terminate
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlMpvJSONDriver >> pause [
 	self pythonMpv newCommandFactory
 		<< (self pythonMpv => #pause <- true);
 		send
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlMpvJSONDriver >> play [
 	self pythonMpv newCommandFactory
 		<< (self pythonMpv => #pause <- false);
 		send
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlMpvJSONDriver >> pythonMpv [
 	pythonMpv ifNotNil: [ ^ pythonMpv ].
 	
@@ -67,7 +69,7 @@ mpv.MPV()'
 		withBindings: {}
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LlMpvJSONDriver >> seekTo: aDuration [ 
 	"player.seek(offset, reference=""absolute"")"
 	
@@ -76,7 +78,7 @@ LlMpvJSONDriver >> seekTo: aDuration [
 		sendAndWait.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlMpvJSONDriver >> show: media [
 	"PBApplication uniqueInstance 
 		sendSource: 'player.play(filename)'
@@ -90,7 +92,7 @@ LlMpvJSONDriver >> show: media [
 	^ self "I am the container because I don't have e.g. tabs"
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlMpvJSONDriver >> skipSilence [
 	PBApplication uniqueInstance newCommandFactory
 		<< (P3GCall 
@@ -102,21 +104,21 @@ LlMpvJSONDriver >> skipSilence [
 		sendAndWait.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlMpvJSONDriver >> speed [
 	^ self pythonMpv newCommandFactory
 		<< (self pythonMpv => #speed);
 		sendAndWait
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlMpvJSONDriver >> speed: aNumber [
 	self pythonMpv newCommandFactory
 		<< (self pythonMpv => #speed <- aNumber);
 		send
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlMpvJSONDriver >> terminate [
 	
 	self pythonMpv newCommandFactory

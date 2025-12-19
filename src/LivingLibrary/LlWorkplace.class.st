@@ -1,54 +1,56 @@
 Class {
-	#name : #LlWorkplace,
-	#superclass : #Object,
+	#name : 'LlWorkplace',
+	#superclass : 'Object',
 	#instVars : [
 		'items'
 	],
 	#classVars : [
 		'UniqueInstance'
 	],
-	#category : #'LivingLibrary-Core'
+	#category : 'LivingLibrary-Core',
+	#package : 'LivingLibrary',
+	#tag : 'Core'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlWorkplace class >> restoreFrom: anLlWorkplace [
 
 	self uniqueInstance: anLlWorkplace.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlWorkplace class >> spData [
 
 	^ self uniqueInstance
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlWorkplace class >> uniqueInstance [
 	^ UniqueInstance ifNil: [ UniqueInstance := self new ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlWorkplace class >> uniqueInstance: anObject [
 	UniqueInstance := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlWorkplace >> dbCollectionAccessor [
 
 	^ #items
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlWorkplace >> items [
 	^ items ifNil: [ items := OrderedCollection new ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlWorkplace >> items: anObject [
 	items := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlWorkplace >> itemsSearchFor: aSearch [
 	<gtSearch>
 	
@@ -61,7 +63,7 @@ LlWorkplace >> itemsSearchFor: aSearch [
 			(self items select: [ :e | e url = input asUrl ]) asAsyncStream ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlWorkplace >> itemsSearchNewFor: aSearch [
 	<gtSearch>
 	^ aSearch explicit
@@ -76,7 +78,7 @@ LlWorkplace >> itemsSearchNewFor: aSearch [
 		send: [ :result | self items add: result ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlWorkplace >> shouldCreateNewItemFromString: aString [
 	
 	(LlWorkplaceComment peCanHandleFromString: aString) ifFalse: [ ^ false ].

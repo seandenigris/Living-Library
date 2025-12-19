@@ -1,5 +1,7 @@
 Class {
-	#name : #LivingLibraryTestFactory,
-	#superclass : #Object,
-	#category : 'LivingLibrary-Features'
+	#name : 'LivingLibraryTestFactory',
+	#superclass : 'Object',
+	#category : 'LivingLibrary-Features',
+	#package : 'LivingLibrary',
+	#tag : 'Features'
 }

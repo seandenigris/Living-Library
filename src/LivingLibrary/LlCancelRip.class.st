@@ -1,5 +1,7 @@
 Class {
-	#name : #LlCancelRip,
-	#superclass : #Announcement,
-	#category : 'LivingLibrary-Support'
+	#name : 'LlCancelRip',
+	#superclass : 'Announcement',
+	#category : 'LivingLibrary-Support',
+	#package : 'LivingLibrary',
+	#tag : 'Support'
 }

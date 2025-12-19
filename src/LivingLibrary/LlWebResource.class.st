@@ -1,16 +1,18 @@
 Class {
-	#name : #LlWebResource,
-	#superclass : #LlLibraryItem,
+	#name : 'LlWebResource',
+	#superclass : 'LlLibraryItem',
 	#traits : 'LlTCacheable',
 	#classTraits : 'LlTCacheable classTrait',
 	#instVars : [
 		'url',
 		'description'
 	],
-	#category : #'LivingLibrary-Core'
+	#category : 'LivingLibrary-Core',
+	#package : 'LivingLibrary',
+	#tag : 'Core'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 LlWebResource class >> cachingUrl: aUrl [
 
 	^ self new
@@ -19,14 +21,14 @@ LlWebResource class >> cachingUrl: aUrl [
 		yourself
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 LlWebResource class >> fromString: aString [
 	^ self new
 		url: aString asUrl;
 		yourself
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LlWebResource class >> peCanHandleFromString: aString [
 
 	| schemes |
@@ -35,39 +37,39 @@ LlWebResource class >> peCanHandleFromString: aString [
 	^ schemes anySatisfy: [ :e | aString beginsWith: e ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlWebResource >> author [
 	^ self work author
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlWebResource >> author: person [
 	^ self work author: person
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlWebResource >> authors [
 	^ self work authors
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlWebResource >> citation [
 	^ QuWebCitation new
 		source: self url
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlWebResource >> description [
 	^ self maLazyInstVarUsing: self descriptionDescription
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlWebResource >> description: anObject [
 	description := anObject
 ]
 
-{ #category : #Magritte }
+{ #category : 'Magritte' }
 LlWebResource >> descriptionDescription [
 	<magritteDescription>
 	^ MAStringDescription new
@@ -79,7 +81,7 @@ LlWebResource >> descriptionDescription [
 			yourself
 ]
 
-{ #category : #caching }
+{ #category : 'caching' }
 LlWebResource >> download [
 	| file |
 	file := Tempfile named: self url rlFilename.
@@ -90,18 +92,18 @@ LlWebResource >> download [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlWebResource >> open [
 	"RlResource compatibility"
 	^ self present
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlWebResource >> present [
 	self url open
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlWebResource >> presentDescription [
 	<magritteActionDescription>
 	^ MAActionDescription new
@@ -112,7 +114,7 @@ LlWebResource >> presentDescription [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlWebResource >> printOn: aStream [
 	aStream
 		nextPutAll: self className;
@@ -120,27 +122,27 @@ LlWebResource >> printOn: aStream [
 		print: self url
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlWebResource >> title [
 	^ self work title
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlWebResource >> title: aString [
 	self work title: aString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlWebResource >> url [
 	^ url
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlWebResource >> url: anObject [
 	url := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlWebResource >> work [
 	^ work ifNil: [ work := LlAuthoredWork new ]
 ]

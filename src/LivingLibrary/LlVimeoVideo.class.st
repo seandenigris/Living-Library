@@ -1,25 +1,27 @@
 Class {
-	#name : #LlVimeoVideo,
-	#superclass : #LlWebVideo,
+	#name : 'LlVimeoVideo',
+	#superclass : 'LlWebVideo',
 	#instVars : [
 		'id'
 	],
-	#category : #'LivingLibrary-Core'
+	#category : 'LivingLibrary-Core',
+	#package : 'LivingLibrary',
+	#tag : 'Core'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LlVimeoVideo class >> atUrl: aString [
 
 	^ self new url: aString asUrl.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LlVimeoVideo class >> currentlyOpenInSafari [
 
 	^ self new url: CwSafari reference currentUrl.
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 LlVimeoVideo class >> fromString: aString [
 	| url id |
 	url := aString asUrl.
@@ -29,7 +31,7 @@ LlVimeoVideo class >> fromString: aString [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlVimeoVideo class >> withID: aNumber [
 
 	^ self new
@@ -37,31 +39,31 @@ LlVimeoVideo class >> withID: aNumber [
 		yourself
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LlVimeoVideo >> currentTime [
 
 	^ (CwSafari reference doJavascript: 'document.getElementsByTagName(''video'')[0].currentTime') asNumber seconds.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LlVimeoVideo >> currentTime: aDuration [
 
 	CwSafari reference doJavascript: 'document.getElementsByTagName(''video'')[0].currentTime = ', aDuration asSeconds asString.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlVimeoVideo >> id [
 
 	^ id
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlVimeoVideo >> id: aNumber [
 
 	id := aNumber
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LlVimeoVideo >> play [
 	"There is a bug.  I don't know if it's in Vimeo, Safari, or elsewhere, but you have to use click the first time, and after that, the video tag works.  I think the simplest solution would be to use the click for #play and the video tag for all the other API methods.
 	Via the play button: 'document.getElementsByClassName(''play_button'')[0].click()'
@@ -75,12 +77,12 @@ LlVimeoVideo >> play [
 	CwSafari reference doJavascript: 'document.getElementsByClassName(''play_button'')[0].click()'.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlVimeoVideo >> playerUrl [
 	^ 'https://player.vimeo.com/video' asUrl / self id
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LlVimeoVideo >> show [
 
 	CwSafari reference openInNewWindow: id.
@@ -88,7 +90,7 @@ LlVimeoVideo >> show [
 		
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlVimeoVideo >> url [
 	^ 'https://vimeo.com' asUrl / self id
 ]

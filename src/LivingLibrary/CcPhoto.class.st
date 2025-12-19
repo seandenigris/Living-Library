@@ -1,16 +1,18 @@
 Class {
-	#name : #CcPhoto,
-	#superclass : #Object,
+	#name : 'CcPhoto',
+	#superclass : 'Object',
 	#instVars : [
 		'title',
 		'url',
 		'owner',
 		'license'
 	],
-	#category : 'LivingLibrary-Licensing'
+	#category : 'LivingLibrary-Licensing',
+	#package : 'LivingLibrary',
+	#tag : 'Licensing'
 }
 
-{ #category : #private }
+{ #category : 'private' }
 CcPhoto >> fillAttributionTemplate: expectedAttributionTemplate [
 	^ expectedAttributionTemplate
 		format: {		
@@ -22,44 +24,44 @@ CcPhoto >> fillAttributionTemplate: expectedAttributionTemplate [
 			#licenseDeedUrl -> self license deedURL } asDictionary
 ]
 
-{ #category : #attributing }
+{ #category : 'attributing' }
 CcPhoto >> htmlAttribution [
 	^ self fillAttributionTemplate: '"<a href="{photoUrl}">{photoTitle}</a>" by <a href="{profileUrl}">{ownerUsername}</a> is licensed under <a href="{licenseDeedUrl}">{licenseName}</a>'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CcPhoto >> license [
 	^ license
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CcPhoto >> license: anObject [
 	license := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CcPhoto >> owner [
 	^ owner
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CcPhoto >> owner: anObject [
 	owner := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CcPhoto >> ownerUsername [
 
 	^ owner
 ]
 
-{ #category : #attributing }
+{ #category : 'attributing' }
 CcPhoto >> plainTextAttribution [
 
 	^ self fillAttributionTemplate: '"{photoTitle}" ({photoUrl}) by {ownerUsername} ({profileUrl}) is licensed under {licenseName} ({licenseDeedUrl})'.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CcPhoto >> profileUrl [
 	^ url copy
 			clearPath;
@@ -67,22 +69,22 @@ CcPhoto >> profileUrl [
 			yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CcPhoto >> title [
 	^ title
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CcPhoto >> title: anObject [
 	title := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CcPhoto >> url [
 	^ url
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CcPhoto >> url: anObject [
 	url := anObject
 ]

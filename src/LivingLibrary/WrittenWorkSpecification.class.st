@@ -1,10 +1,12 @@
 Class {
-	#name : #WrittenWorkSpecification,
-	#superclass : #TestCase,
-	#category : #'LivingLibrary-Specifications'
+	#name : 'WrittenWorkSpecification',
+	#superclass : 'TestCase',
+	#category : 'LivingLibrary-Specifications',
+	#package : 'LivingLibrary',
+	#tag : 'Specifications'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 WrittenWorkSpecification >> testAddEdition [
 
 	| work edition |
@@ -14,7 +16,7 @@ WrittenWorkSpecification >> testAddEdition [
 	work editions first should equal: edition.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 WrittenWorkSpecification >> testCreation [
 
 	| author title work |
@@ -26,7 +28,7 @@ WrittenWorkSpecification >> testCreation [
 	^ work
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 WrittenWorkSpecification >> testNoAuthor [
 
 	| title work |
@@ -38,7 +40,7 @@ WrittenWorkSpecification >> testNoAuthor [
 		
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 WrittenWorkSpecification >> testPrinting [
 
 	| work |

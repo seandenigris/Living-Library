@@ -1,19 +1,21 @@
 Class {
-	#name : #LlCoverImageFinder,
-	#superclass : #Object,
+	#name : 'LlCoverImageFinder',
+	#superclass : 'Object',
 	#instVars : [
 		'work'
 	],
-	#category : #'LivingLibrary-Core'
+	#category : 'LivingLibrary-Core',
+	#package : 'LivingLibrary',
+	#tag : 'Core'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlCoverImageFinder >> googleThumbnail [
 
 	^ self work googleBooksInfo thumbnail
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlCoverImageFinder >> openLibraryImage [
 
 	| filename destination coverUrl didSucceed |
@@ -33,12 +35,12 @@ LlCoverImageFinder >> openLibraryImage [
 	^ destination asRlResource
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlCoverImageFinder >> work [
 	^ work
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlCoverImageFinder >> work: anObject [
 	work := anObject
 ]

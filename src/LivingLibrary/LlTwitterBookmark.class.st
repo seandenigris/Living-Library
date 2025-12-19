@@ -4,15 +4,17 @@ Apparently, bookmarks are not available via the Twitter API.
 2. Use me to process these JSON files
 "
 Class {
-	#name : #LlTwitterBookmark,
-	#superclass : #Object,
+	#name : 'LlTwitterBookmark',
+	#superclass : 'Object',
 	#instVars : [
 		'rawData'
 	],
-	#category : #'LivingLibrary-Twitter'
+	#category : 'LivingLibrary-Twitter',
+	#package : 'LivingLibrary',
+	#tag : 'Twitter'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlTwitterBookmark class >> dictionary: aDictionary deepAt: aCollection [
 
 	^ aCollection 
@@ -21,7 +23,7 @@ LlTwitterBookmark class >> dictionary: aDictionary deepAt: aCollection [
 		result at: key ].
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlTwitterBookmark class >> dictionary: aDictionary deepAt: aCollection ifAbsent: absentBlock [
 
 	^ aCollection 
@@ -30,7 +32,7 @@ LlTwitterBookmark class >> dictionary: aDictionary deepAt: aCollection ifAbsent:
 		result at: key ifAbsent: absentBlock ].
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlTwitterBookmark class >> dictionary: aDictionary deepAt: aCollection ifPresent: presentBlock ifAbsent: absentBlock [
 
 	| result |
@@ -44,7 +46,7 @@ LlTwitterBookmark class >> dictionary: aDictionary deepAt: aCollection ifPresent
 	^ presentBlock cull: result
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlTwitterBookmark class >> fromJsonFile: file [
 	
 	| results json resultsPath resultPath |
@@ -79,7 +81,7 @@ LlTwitterBookmark class >> fromJsonFile: file [
 	"Adapted from https://dev.to/divyajyotiuk/exporting-your-twitter-bookmarks-in-markdown-file-19bj"
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlTwitterBookmark class >> fromJsonInFolder: folder [
 	
 	| jsonFiles |
@@ -87,7 +89,7 @@ LlTwitterBookmark class >> fromJsonInFolder: folder [
 	^ jsonFiles flatCollect: [ :file | self fromJsonFile: file ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlTwitterBookmark >> id [
 	^ self class
 		dictionary: self rawData
@@ -96,19 +98,19 @@ LlTwitterBookmark >> id [
 		ifAbsent: [ nil ].
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlTwitterBookmark >> rawData [
 
 	^ rawData
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlTwitterBookmark >> rawData: anObject [
 
 	rawData := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlTwitterBookmark >> text [
 	^ self class
 		dictionary: self rawData
@@ -117,7 +119,7 @@ LlTwitterBookmark >> text [
 		ifAbsent: [ nil ].
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlTwitterBookmark >> username [
 	^ self class
 		dictionary: self rawData

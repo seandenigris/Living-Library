@@ -1,6 +1,6 @@
-Extension { #name : #QuCitation }
+Extension { #name : 'QuCitation' }
 
-{ #category : #'*LivingLibrary' }
+{ #category : '*LivingLibrary' }
 QuCitation >> llSourceDescription: aDescription [
 	<magritteDescription: #sourceDescription>
 	

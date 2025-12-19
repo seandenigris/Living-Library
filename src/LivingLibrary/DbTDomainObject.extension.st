@@ -1,6 +1,6 @@
-Extension { #name : #DbTDomainObject }
+Extension { #name : 'DbTDomainObject' }
 
-{ #category : #'*LivingLibrary' }
+{ #category : '*LivingLibrary' }
 DbTDomainObject >> library [
 	^ LlLibrary uniqueInstance
 ]

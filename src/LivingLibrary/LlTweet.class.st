@@ -2,16 +2,18 @@
 URL format per [this SO thread](https://stackoverflow.com/questions/5652136/url-for-a-link-to-twitter-for-a-specific-tweet) 
 "
 Class {
-	#name : #LlTweet,
-	#superclass : #LlWebResource,
+	#name : 'LlTweet',
+	#superclass : 'LlWebResource',
 	#instVars : [
 		'user',
 		'id'
 	],
-	#category : #'LivingLibrary-Core'
+	#category : 'LivingLibrary-Core',
+	#package : 'LivingLibrary',
+	#tag : 'Core'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 LlTweet class >> fromString: aString [
 
 	| url |
@@ -23,7 +25,7 @@ LlTweet class >> fromString: aString [
 		yourself
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 LlTweet class >> fromStringExample [
 	<gtExample>
 	
@@ -36,7 +38,7 @@ LlTweet class >> fromStringExample [
 			result id should equal: 1009824276574113804 ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlTweet class >> peCanHandleFromString: aString [
 
 	| url |
@@ -47,19 +49,19 @@ LlTweet class >> peCanHandleFromString: aString [
 				and: [ url pathSegments second = 'status' ] ] ].
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlTweet >> id [
 
 	^ id
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlTweet >> id: anObject [
 
 	id := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlTweet >> printOn: aStream [
 	aStream
 		nextPutAll: 'Tweet';
@@ -67,18 +69,18 @@ LlTweet >> printOn: aStream [
 		nextPutAll: self user
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlTweet >> url [
 	^ 'https://twitter.com' asUrl / self user / 'status' / self id asString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlTweet >> user [
 
 	^ user
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlTweet >> user: anObject [
 
 	user := anObject

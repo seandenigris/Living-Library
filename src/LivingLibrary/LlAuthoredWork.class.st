@@ -22,8 +22,8 @@ This is the most general level at which we discuss a creation. We might say `Ali
 The ""type"" is currently like a tag. While we started with a class per type ((e.g. book vs. magazine), it seems like there's little benefit until we can justify differing behavior.
 "
 Class {
-	#name : #LlAuthoredWork,
-	#superclass : #Object,
+	#name : 'LlAuthoredWork',
+	#superclass : 'Object',
 	#traits : 'LlTLibraryItem + DbTDomainObject + MpTAlphabetizable + QuTTranscriptable',
 	#classTraits : 'LlTLibraryItem classTrait + DbTDomainObject classTrait + MpTAlphabetizable classTrait + QuTTranscriptable classTrait',
 	#instVars : [
@@ -36,17 +36,19 @@ Class {
 		'privateChildren',
 		'importTimestamp'
 	],
-	#category : #'LivingLibrary-Core'
+	#category : 'LivingLibrary-Core',
+	#package : 'LivingLibrary',
+	#tag : 'Core'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 LlAuthoredWork class >> article [
 	^ self new
 			type: #Article;
 			yourself
 ]
 
-{ #category : #example }
+{ #category : 'example' }
 LlAuthoredWork class >> exampleAntifragile [
 	<gtExample>
 	| result |
@@ -56,7 +58,7 @@ LlAuthoredWork class >> exampleAntifragile [
 	^ result
 ]
 
-{ #category : #example }
+{ #category : 'example' }
 LlAuthoredWork class >> exampleCalibre [
 	<gtExample>
 	| result |
@@ -66,7 +68,7 @@ LlAuthoredWork class >> exampleCalibre [
 	^ result
 ]
 
-{ #category : #example }
+{ #category : 'example' }
 LlAuthoredWork class >> exampleHamlet [
 	<gtExample>
 	| result |
@@ -75,12 +77,12 @@ LlAuthoredWork class >> exampleHamlet [
 	^ result
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlAuthoredWork class >> exampleParentChild [
 	"What should happen here? If a child is addd to parent or vice versa, it seems to make sense to make sure they're both added to the library as well. However, then we can't lazily initialize the default library because there's no way to tell if the work has been added to a library or if it's just the default. In fact, a library isn't the work's library until it has been added. What if the libraries are different?"
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlAuthoredWork class >> exampleStarWarsSeries [
 	<gtExample>
 	| series newHope strikesBack |
@@ -101,7 +103,7 @@ LlAuthoredWork class >> exampleStarWarsSeries [
 	^ series
 ]
 
-{ #category : #example }
+{ #category : 'example' }
 LlAuthoredWork class >> exampleStopDrawingDeadFish [
 	<gtExample>
 	"Companion is LlYouTubeVideo exampleStopDrawingDeadFish"
@@ -111,7 +113,7 @@ LlAuthoredWork class >> exampleStopDrawingDeadFish [
 	^ result
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 LlAuthoredWork class >> exampleTranscriptEmptyPage [
 	<gtExample>
 	^ self
@@ -129,93 +131,93 @@ LlAuthoredWork class >> exampleTranscriptEmptyPage [
 		then: [ :page | page "children should haveSize: 1" ]
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LlAuthoredWork class >> isAbstract [
 	^ false
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlAuthoredWork class >> knownAuthors [
 
 	^ OrderedCollection streamContents: [ :s | self allSubInstancesDo: [ :b | b authors do: [ :a | s nextPut: a ] ] ].
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlAuthoredWork class >> newAcademicPaper [
 	^ self new
 		type: #'Academic Paper';
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlAuthoredWork class >> newEBook [
 	^ self new
 		type: #'E-book'; "https://en.wikipedia.org/wiki/E-book"
 		yourself
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 LlAuthoredWork class >> titled: titleString [
 	^ self new 
 		title: titleString;
 		yourself
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 LlAuthoredWork class >> titled: titleString by: authorOrCollection [
 	^ self new 
 		title: titleString;
 		authors: authorOrCollection llAsCollection.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlAuthoredWork class >> types [
 	^ #(#'E-book' #'Academic Paper' Book Article).
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 LlAuthoredWork >> = rhs [
 	^ self == rhs
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlAuthoredWork >> addChild: aWork [
 	self syncLibraryWith: aWork.
 	aWork basicParent: self.
 	^ self privateChildren add: aWork. "Children currently a set so don't worry about duplicate adding"
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlAuthoredWork >> addressBook [
 
 	^ self propertyAt: #addressBook ifAbsent: [ MpAddressBook uniqueInstance ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlAuthoredWork >> addressBook: anMpAddressBook [
 
 	^ self propertyAt: #addressBook put: anMpAddressBook
 ]
 
-{ #category : #'library access' }
+{ #category : 'library access' }
 LlAuthoredWork >> anyCopy [
 	^ self copies ifNotEmpty: [ :col | col atRandom ] ifEmpty: [ nil ].
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlAuthoredWork >> author [
 
 	self assert: self authors size = 1.
 	^ self authors first.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlAuthoredWork >> author: person [
 	authors := { person }
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlAuthoredWork >> authors [
 
 	authors ifNotNil: [ ^ authors ].
@@ -225,13 +227,13 @@ LlAuthoredWork >> authors [
 	^ authors := OrderedCollection new
 ]
 
-{ #category : #'private-magritte' }
+{ #category : 'private-magritte' }
 LlAuthoredWork >> authors: aCollection [
 	"We need this because Magritte's ToMany Relations replace the whole collection"
 	authors := aCollection
 ]
 
-{ #category : #magritte }
+{ #category : 'magritte' }
 LlAuthoredWork >> authorsDescription [
 	<magritteDescription>
 	
@@ -244,23 +246,23 @@ LlAuthoredWork >> authorsDescription [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlAuthoredWork >> basicParent: aWork [
 
 	parent := aWork
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlAuthoredWork >> calibreID [
 	^ self propertyAt: #calibreID ifAbsent: [ nil ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlAuthoredWork >> calibreID: aNumber [
 	^ self propertyAt: #calibreID put: aNumber
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlAuthoredWork >> ccAuthorMarkup [
 	^ String streamContents: [ :str |
 		self authors
@@ -268,7 +270,7 @@ LlAuthoredWork >> ccAuthorMarkup [
 			separatedBy: [ str space ] ]
 ]
 
-{ #category : #magritte }
+{ #category : 'magritte' }
 LlAuthoredWork >> childrenDescription [
 	<magritteDescription>
 	
@@ -284,14 +286,14 @@ LlAuthoredWork >> childrenDescription [
 		yourself
 ]
 
-{ #category : #'library access' }
+{ #category : 'library access' }
 LlAuthoredWork >> copies [
 	^ self library 
 		ifNotNil: [ :lib | lib copiesOf: self ]
 		ifNil: [ #() ]
 ]
 
-{ #category : #magritte }
+{ #category : 'magritte' }
 LlAuthoredWork >> copiesDescription [
 	<magritteDescription>
 	
@@ -318,7 +320,7 @@ LlAuthoredWork >> copiesDescription [
 		yourself
 ]
 
-{ #category : #magritte }
+{ #category : 'magritte' }
 LlAuthoredWork >> copiesGtSearchFor: aSearch [
 	<gtSearch>
 	
@@ -329,7 +331,7 @@ LlAuthoredWork >> copiesGtSearchFor: aSearch [
 		filterBySubstring
 ]
 
-{ #category : #magritte }
+{ #category : 'magritte' }
 LlAuthoredWork >> copiesGtSearchNewFor: aSearch [
 
 	"<gtSearch>
@@ -344,12 +346,12 @@ LlAuthoredWork >> copiesGtSearchNewFor: aSearch [
 		send: [ :result |  ]"
 ]
 
-{ #category : #'library access' }
+{ #category : 'library access' }
 LlAuthoredWork >> copiesRemove: anObject [
 	^ self library copy: anObject removeFrom: self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlAuthoredWork >> coverImageDownload [
 
 	^ LlCoverImageFinder new
@@ -357,17 +359,17 @@ LlAuthoredWork >> coverImageDownload [
 		openLibraryImage
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlAuthoredWork >> editions [
 	^ self maLazyInstVarUsing: self editionsDescription
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlAuthoredWork >> editions: anObject [
 	editions := anObject
 ]
 
-{ #category : #'magritte-accessing' }
+{ #category : 'magritte-accessing' }
 LlAuthoredWork >> editionsDescription [
 	<magritteDescription>
 	^ MAToManyRelationDescription new
@@ -377,7 +379,7 @@ LlAuthoredWork >> editionsDescription [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlAuthoredWork >> export [
 
 	| toExport target |
@@ -401,33 +403,33 @@ LlAuthoredWork >> export [
 	^ target
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlAuthoredWork >> family [
 	^ OrderedCollection streamContents: [ :str |
 		str nextPutAll: self withAncestors.
 		self privateChildren do: [ :child | str nextPutAll: child withOffspring ] ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 LlAuthoredWork >> fullName [
 	"Trait compatibility"
 	^ self fullTitle
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlAuthoredWork >> fullTitle [
 	^ self pathString 
 		ifEmpty: [ self title ]
 		ifNotEmpty: [ :p | p, ': ', self title ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlAuthoredWork >> googleBooksInfo [
 	
 	^ LlGoogleBooksInfo forWork: self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlAuthoredWork >> gtViewChildrenFor: aView [
 
 	<gtView>
@@ -442,7 +444,7 @@ LlAuthoredWork >> gtViewChildrenFor: aView [
 		  inspectButtonFor: [ self privateChildren ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlAuthoredWork >> gtViewCopiesFor: aView [
 	<gtView>
 
@@ -455,23 +457,23 @@ LlAuthoredWork >> gtViewCopiesFor: aView [
 		actionUpdateButton
 ]
 
-{ #category : #'library access' }
+{ #category : 'library access' }
 LlAuthoredWork >> hasCopies [
 	^ self copies isNotEmpty
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlAuthoredWork >> hash [
 	^ self identityHash
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LlAuthoredWork >> import [
 
 	LlLibrary uniqueInstance beAwareOf: self
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LlAuthoredWork >> importDescription [
 	<magritteActionDescription>
 	^ MAActionDescription new
@@ -482,17 +484,17 @@ LlAuthoredWork >> importDescription [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlAuthoredWork >> importTimestamp [
 	^ importTimestamp
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlAuthoredWork >> importTimestamp: aDateAndTime [
 	importTimestamp := aDateAndTime translateToUTC
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 LlAuthoredWork >> initialize [
 
 	super initialize.
@@ -500,45 +502,45 @@ LlAuthoredWork >> initialize [
 	type := #unknown.
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LlAuthoredWork >> isPlayable [
 	^ self copies isNotEmpty
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 LlAuthoredWork >> isSameAs: rhs [
 	self species = rhs species ifFalse: [ ^ false ].
 	^ self title = rhs title and: [ self authors sort hasEqualElements: rhs authors sort ].
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 LlAuthoredWork >> library [
 	^ library
 	"Implementation Note: This used to be lazily initialized to the Living Library singleton. It is not currently, because in the domain to logically to have a library means the work has been added to that library. So the appropriate place to set this is during that addition. Returning a non-nil before that is logically wrong"
 ]
 
-{ #category : #debugging }
+{ #category : 'debugging' }
 LlAuthoredWork >> library: anObject [
 	library := anObject.
 	self importTimestamp: DateAndTime now translateToUTC
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlAuthoredWork >> license [
 	^ self maLazyPropertyUsing: self licenseDescription
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlAuthoredWork >> license: anObject [
 	self propertyAt: #license put: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlAuthoredWork >> licenseAttribution [
 	^ self license attributionFor: self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlAuthoredWork >> licenseDescription [
 	<magritteDescription>
 	
@@ -549,20 +551,20 @@ LlAuthoredWork >> licenseDescription [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlAuthoredWork >> newPlayer [
 	^ self copies
 		ifNotEmpty: [ :cps | cps atRandom newPlayer ]
 		ifEmpty: [ LlNullMediaPlayer new ]
 ]
 
-{ #category : #copies }
+{ #category : 'copies' }
 LlAuthoredWork >> open [
 
 	self copies atRandom open
 ]
 
-{ #category : #magritte }
+{ #category : 'magritte' }
 LlAuthoredWork >> openDescription [
 	<magritteActionDescription>
 	^ MAActionDescription new
@@ -572,12 +574,12 @@ LlAuthoredWork >> openDescription [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlAuthoredWork >> parent [
 	^ parent
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlAuthoredWork >> parent: aWork [
 
 	aWork ifNil: [
@@ -589,24 +591,24 @@ LlAuthoredWork >> parent: aWork [
 	aWork addChild: self.
 ]
 
-{ #category : #transcript }
+{ #category : 'transcript' }
 LlAuthoredWork >> participants [
 	^ self authors
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlAuthoredWork >> pathString [
 	^ parent ifNotNil: [ :p | p fullTitle ] ifNil: [ '' ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlAuthoredWork >> present [
 	^ self copies
 		ifNotEmpty: [ :cps | cps atRandom open ]
 		ifEmpty: [ self error: 'no copies of ', self displayString ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlAuthoredWork >> presentDescription [
 	<magritteActionDescription>
 	^ MAActionDescription new
@@ -617,7 +619,7 @@ LlAuthoredWork >> presentDescription [
 		yourself
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 LlAuthoredWork >> printOn: aStream [
 
 	self title 
@@ -633,18 +635,18 @@ LlAuthoredWork >> printOn: aStream [
 		separatedBy: [ aStream nextPutAll: ', ' ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlAuthoredWork >> privateChildren [
 	^ self maLazyInstVarUsing: self childrenDescription
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 LlAuthoredWork >> privateChildren: anObject [
 
 	privateChildren := anObject
 ]
 
-{ #category : #quotation }
+{ #category : 'quotation' }
 LlAuthoredWork >> quote: aString onPage: aNumber [
 	| citation quote |
 	citation := QuPageCitation new
@@ -658,23 +660,23 @@ LlAuthoredWork >> quote: aString onPage: aNumber [
 	self quoteDb add: quote
 ]
 
-{ #category : #quotation }
+{ #category : 'quotation' }
 LlAuthoredWork >> quoteDb [
 	^ QuQuote db
 ]
 
-{ #category : #quotation }
+{ #category : 'quotation' }
 LlAuthoredWork >> quotes [
 	^ self quoteDb select: [ :e | e citation source = self ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlAuthoredWork >> removeAll [
 	self copies do: [ :e | e delete ].
 	self removeFromLibrary.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlAuthoredWork >> removeChild: aWork [
 	
 	self privateChildren remove: aWork.
@@ -682,20 +684,20 @@ LlAuthoredWork >> removeChild: aWork [
 	^ aWork
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlAuthoredWork >> removeChildren [
 	
 	^ self privateChildren copy do: [ :child |
 		self removeChild: child ].
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlAuthoredWork >> removeFromLibrary [
 
 	self library removeWork: self.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlAuthoredWork >> removeParent [
 
 	^ parent
@@ -703,12 +705,12 @@ LlAuthoredWork >> removeParent [
 		yourself
 ]
 
-{ #category : #magritte }
+{ #category : 'magritte' }
 LlAuthoredWork >> resourceLibrary [
 	^ RlResourceLibrary uniqueInstance
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 LlAuthoredWork >> searchWebForCopies [
 
 	"Vendors listed in reverse order of moral value because the last tab opened will be on top"	
@@ -726,7 +728,7 @@ LlAuthoredWork >> searchWebForCopies [
 		open
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 LlAuthoredWork >> setTitle: titleString author: authorString [
 
 	title := titleString.
@@ -734,7 +736,7 @@ LlAuthoredWork >> setTitle: titleString author: authorString [
 	^ self.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlAuthoredWork >> syncLibraryWith: aWork [ 
 	| isLibraryConflict |
 	"If both nil, nothing to set; if both non-nil equal, no action needed"
@@ -750,19 +752,19 @@ LlAuthoredWork >> syncLibraryWith: aWork [
 		ifNotNil: [ aWork library beAwareOf: self ].
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlAuthoredWork >> title [
 
 	^ title" ifNil: [ '' ]"
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlAuthoredWork >> title: aString [
 	title := aString
 
 ]
 
-{ #category : #magritte }
+{ #category : 'magritte' }
 LlAuthoredWork >> titleDescription [
 	<magritteDescription>
 	
@@ -774,7 +776,7 @@ LlAuthoredWork >> titleDescription [
 		yourself
 ]
 
-{ #category : #transcript }
+{ #category : 'transcript' }
 LlAuthoredWork >> transcriptGtViewFor: aView [
 	<gtView>
 
@@ -794,7 +796,7 @@ LlAuthoredWork >> transcriptGtViewFor: aView [
 		actionUpdateButton
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlAuthoredWork >> treeChildren [
 	^ OrderedCollection new
 		addAll: self copies;
@@ -802,18 +804,18 @@ LlAuthoredWork >> treeChildren [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlAuthoredWork >> type [
 
 	^ type.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlAuthoredWork >> type: aString [ 
 	type := aString.
 ]
 
-{ #category : #magritte }
+{ #category : 'magritte' }
 LlAuthoredWork >> typeDescription [
     ^ MASingleOptionDescription new
         accessor: #type;
@@ -825,14 +827,14 @@ LlAuthoredWork >> typeDescription [
         yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlAuthoredWork >> withAncestors [
 	^ OrderedCollection streamContents: [ :str |
 		str nextPut: self.
 		self parent ifNotNil: [ :p | str nextPutAll: p withAncestors ] ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlAuthoredWork >> withOffspring [
 	^ OrderedCollection streamContents: [ :str |
 		str nextPut: self.

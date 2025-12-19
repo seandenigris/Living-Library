@@ -1,6 +1,6 @@
 Class {
-	#name : #BrBible,
-	#superclass : #Object,
+	#name : 'BrBible',
+	#superclass : 'Object',
 	#instVars : [
 		'books',
 		'version',
@@ -9,10 +9,12 @@ Class {
 	#classInstVars : [
 		'versions'
 	],
-	#category : #'LivingLibrary-Bible'
+	#category : 'LivingLibrary-Bible',
+	#package : 'LivingLibrary',
+	#tag : 'Bible'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BrBible class >> exampleImportVersion [
 	<sampleInstance>
 	"To add to DB: `BrBible versions add: self exampleImportVersion`"
@@ -47,27 +49,27 @@ BrBible class >> exampleImportVersion [
 	^ bible
 ]
 
-{ #category : #persisting }
+{ #category : 'persisting' }
 BrBible class >> restoreFrom: aCollection [
 	versions := aCollection
 ]
 
-{ #category : #persisting }
+{ #category : 'persisting' }
 BrBible class >> spData [
 	^ versions
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BrBible class >> versions [
 	^ versions ifNil: [ versions := Bag new ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BrBible >> books [
 	^ books ifNil: [ books := Bag new ]
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 BrBible >> printOn: aStream [
 	aStream
 		nextPutAll: self version;
@@ -76,27 +78,27 @@ BrBible >> printOn: aStream [
 		nextPut: $)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BrBible >> version [
 	^ self maLazyFrom: self versionDescription
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BrBible >> version: anObject [
 	version := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BrBible >> versionCode [
 	^ self maLazyFrom: self versionCodeDescription
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BrBible >> versionCode: anObject [
 	versionCode := anObject
 ]
 
-{ #category : #'magritte-accessing' }
+{ #category : 'magritte-accessing' }
 BrBible >> versionCodeDescription [
 	<magritteDescription>
 	^ MAStringDescription new
@@ -104,7 +106,7 @@ BrBible >> versionCodeDescription [
 		yourself
 ]
 
-{ #category : #'magritte-accessing' }
+{ #category : 'magritte-accessing' }
 BrBible >> versionDescription [
 	<magritteDescription>
 	

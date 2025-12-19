@@ -2,15 +2,17 @@
 I could probably be modeled as an RlResource, since Calibre is storing files, but for now we will not go there since Calibre has its own API we can utilize to ignore the files as Calibre implementation details.
 "
 Class {
-	#name : #LlCalibreResource,
-	#superclass : #LlLibraryItem,
+	#name : 'LlCalibreResource',
+	#superclass : 'LlLibraryItem',
 	#instVars : [
 		'format'
 	],
-	#category : #'LivingLibrary-Calibre'
+	#category : 'LivingLibrary-Calibre',
+	#package : 'LivingLibrary',
+	#tag : 'Calibre'
 }
 
-{ #category : #examples }
+{ #category : 'examples' }
 LlCalibreResource class >> example [
 	<gtExample>
 	^ self
@@ -18,7 +20,7 @@ LlCalibreResource class >> example [
 		ofWork: LlAuthoredWork exampleCalibre
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlCalibreResource class >> fromString: urlString [
 
 	| url dummyResource work |
@@ -31,7 +33,7 @@ LlCalibreResource class >> fromString: urlString [
 		ofWork: work
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 LlCalibreResource class >> new: anRlResourceClass ofWork: anLlAuthoredWork [
 	"anRlResourceClass - the format e.g. RlPDF"
 
@@ -41,29 +43,29 @@ LlCalibreResource class >> new: anRlResourceClass ofWork: anLlAuthoredWork [
 		yourself
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LlCalibreResource class >> peCanHandleFromString: aString [
 	^ aString beginsWith: 'calibre://'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlCalibreResource >> format [
 
 	^ format
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlCalibreResource >> format: anRlResourceClass [
 
 	format := anRlResourceClass
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlCalibreResource >> present [
 	^ self url open
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlCalibreResource >> presentDescription [
 	<magritteActionDescription>
 	^ MAActionDescription new
@@ -72,7 +74,7 @@ LlCalibreResource >> presentDescription [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlCalibreResource >> printOn: aStream [
 
 	aStream 
@@ -86,7 +88,7 @@ LlCalibreResource >> printOn: aStream [
 	aStream nextPut: $).
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlCalibreResource >> url [
 	"Assumes current library
 	Reference: https://manual.calibre-ebook.com/url_scheme.html#id3"
@@ -95,7 +97,7 @@ LlCalibreResource >> url [
 	^ 'calibre://view-book' asUrl / library / self workID asString / self format calibreName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlCalibreResource >> urlForLocation: aString [
 	"Assumes current library
 	Reference: https://manual.calibre-ebook.com/url_scheme.html#id3"
@@ -103,12 +105,12 @@ LlCalibreResource >> urlForLocation: aString [
 	^ self url queryAt: #open_at put: aString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlCalibreResource >> workID [
 	^ self work calibreID
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlCalibreResource >> workUrl [
 	"Assumes current library
 	Reference: https://manual.calibre-ebook.com/url_scheme.html#id2"

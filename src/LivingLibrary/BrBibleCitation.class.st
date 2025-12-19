@@ -1,36 +1,38 @@
 Class {
-	#name : #BrBibleCitation,
-	#superclass : #Object,
+	#name : 'BrBibleCitation',
+	#superclass : 'Object',
 	#instVars : [
 		'translation',
 		'book',
 		'chapter',
 		'verse'
 	],
-	#category : 'LivingLibrary-Bible'
+	#category : 'LivingLibrary-Bible',
+	#package : 'LivingLibrary',
+	#tag : 'Bible'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BrBibleCitation >> book [
 	^ book
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BrBibleCitation >> book: aString [ 
 	book := aString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BrBibleCitation >> chapter [
 	^ chapter
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BrBibleCitation >> chapter: anInteger [ 
 	chapter := anInteger
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 BrBibleCitation >> lookUp [
 	| result bible |
 	
@@ -47,7 +49,7 @@ BrBibleCitation >> lookUp [
 	^ result at: self verse.
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 BrBibleCitation >> printOn: aStream [
 
 	"Per MLA [1], the translation is actually not optional. The parenthetical citation should start with (in italics) e.g. 'New Jerusalem Bible'. Since we haven't modeled translations yet, we'll fudge a bit
@@ -63,22 +65,22 @@ BrBibleCitation >> printOn: aStream [
 	verse ifNotNil: [ aStream nextPut: $.; print: verse ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BrBibleCitation >> translation [
 	^ translation
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BrBibleCitation >> translation: anObject [
 	translation := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BrBibleCitation >> verse [
 	^ verse
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BrBibleCitation >> verse: anInteger [ 
 	verse := anInteger
 ]

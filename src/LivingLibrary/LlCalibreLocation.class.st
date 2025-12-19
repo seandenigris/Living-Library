@@ -1,14 +1,16 @@
 Class {
-	#name : #LlCalibreLocation,
-	#superclass : #Object,
+	#name : 'LlCalibreLocation',
+	#superclass : 'Object',
 	#instVars : [
 		'resource',
 		'location'
 	],
-	#category : #'LivingLibrary-Calibre'
+	#category : 'LivingLibrary-Calibre',
+	#package : 'LivingLibrary',
+	#tag : 'Calibre'
 }
 
-{ #category : #examples }
+{ #category : 'examples' }
 LlCalibreLocation class >> example [
 	<gtExample>
 
@@ -32,36 +34,36 @@ LlCalibreLocation class >> example [
 			 result url should equal: url asUrl ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlCalibreLocation >> location [
 
 	^ location
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlCalibreLocation >> location: anObject [
 
 	location := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlCalibreLocation >> present [
 	^ self url open
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlCalibreLocation >> resource [
 
 	^ resource
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlCalibreLocation >> resource: anObject [
 
 	resource := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlCalibreLocation >> url [
 	^ self resource urlForLocation: self location
 ]

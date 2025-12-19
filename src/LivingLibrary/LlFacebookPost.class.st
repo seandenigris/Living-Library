@@ -1,14 +1,16 @@
 Class {
-	#name : #LlFacebookPost,
-	#superclass : #LlWebResource,
+	#name : 'LlFacebookPost',
+	#superclass : 'LlWebResource',
 	#instVars : [
 		'location',
 		'id'
 	],
-	#category : #'LivingLibrary-Core'
+	#category : 'LivingLibrary-Core',
+	#package : 'LivingLibrary',
+	#tag : 'Core'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 LlFacebookPost class >> fromString: aString [
 	
 	aString asUrl pathSegments readStreamDo: [ :pathStream |
@@ -24,7 +26,7 @@ LlFacebookPost class >> fromString: aString [
 			yourself ].
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 LlFacebookPost class >> fromStringExample [
 	<gtExample>
 	
@@ -36,7 +38,7 @@ LlFacebookPost class >> fromStringExample [
 			result id should equal: '456' ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlFacebookPost class >> peCanHandleFromString: aString [
 
 	| url |
@@ -46,35 +48,35 @@ LlFacebookPost class >> peCanHandleFromString: aString [
 			and: [ url pathSegments includes: 'posts' ] ].
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlFacebookPost >> id [
 
 	^ id
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlFacebookPost >> id: anObject [
 
 	id := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlFacebookPost >> location [
 	^ location
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlFacebookPost >> location: anObject [
 	location := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlFacebookPost >> printOn: aStream [
 	aStream
 		nextPutAll: 'Facebook post'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlFacebookPost >> url [
 	^ 'https://www.facebook.com' asUrl / self location / 'posts' / self id
 ]

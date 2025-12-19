@@ -1,10 +1,12 @@
 Class {
-	#name : #CcLicenseSpecification,
-	#superclass : #TestCase,
-	#category : #'LivingLibrary-Licensing'
+	#name : 'CcLicenseSpecification',
+	#superclass : 'TestCase',
+	#category : 'LivingLibrary-Licensing',
+	#package : 'LivingLibrary',
+	#tag : 'Licensing'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 CcLicenseSpecification >> testDeedUrl [
 
 	| license |
@@ -12,7 +14,7 @@ CcLicenseSpecification >> testDeedUrl [
 	license deedURL should equal: 'https://creativecommons.org/licenses/by-nc/4.0/' asUrl
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 CcLicenseSpecification >> testLinkText [
 
 	| license version |

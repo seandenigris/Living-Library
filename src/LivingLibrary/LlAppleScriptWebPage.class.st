@@ -1,14 +1,16 @@
 Class {
-	#name : #LlAppleScriptWebPage,
-	#superclass : #Object,
+	#name : 'LlAppleScriptWebPage',
+	#superclass : 'Object',
 	#instVars : [
 		'url',
 		'browser'
 	],
-	#category : #'LivingLibrary-Web Driving-AppleScript'
+	#category : 'LivingLibrary-Web Driving-AppleScript',
+	#package : 'LivingLibrary',
+	#tag : 'Web Driving-AppleScript'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlAppleScriptWebPage class >> atUrl: aUrl in: browser [
 	^ self new
 		basicUrl: aUrl;
@@ -16,69 +18,69 @@ LlAppleScriptWebPage class >> atUrl: aUrl in: browser [
 		yourself
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LlAppleScriptWebPage >> basicUrl: aUrl [ 
 	url := aUrl
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlAppleScriptWebPage >> browser [
 
 	^ browser
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlAppleScriptWebPage >> browser: anObject [
 
 	browser := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlAppleScriptWebPage >> cookie [
 	"https://stackoverflow.com/a/57909990"
 	^ self doJavascript: 'document.cookie'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlAppleScriptWebPage >> doJavascript: script [
 	^ self doJavascriptViaPython: script
 	
 	"The OsaScript bridge (see `doJavascriptViaOSA:`) is finicky, so trying to use Python instead by default"
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlAppleScriptWebPage >> doJavascriptViaOSA: script [
 	^ self browser doJavascript: script in: self documentIdString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlAppleScriptWebPage >> doJavascriptViaPython: script [
 	
 	^ self pythonInstance do_JavaScript: script string
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlAppleScriptWebPage >> documentIdString [
 	^ 'first document where URL begins with ', self url asString surroundedByDoubleQuotes
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlAppleScriptWebPage >> elementLocatorFromId: aString [
 
 	^ self elementLocatorFromSelector: '#', aString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlAppleScriptWebPage >> elementLocatorFromSelector: aString [ 
 	^ LlAppleScriptHtmlElementLocator selector: aString in: self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlAppleScriptWebPage >> exists [
 	^ self browser applescriptTellTo: 'exists (', self documentIdString, ')'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LlAppleScriptWebPage >> iframeSrcBeginningWith: aString [
 	
 	| urlString js jsTemplate |
@@ -95,7 +97,7 @@ document.querySelector(frameSelector).getAttribute(''src'')'.
 	- Query selector syntax adapted from https://stackoverflow.com/a/303961"
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlAppleScriptWebPage >> isDocumentComplete [
 
 	^ self browser 
@@ -105,13 +107,13 @@ LlAppleScriptWebPage >> isDocumentComplete [
 	"Reference: https://developer.mozilla.org/en-US/docs/Web/API/Document/readyState via https://codereview.stackexchange.com/a/91967"
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LlAppleScriptWebPage >> name [
 
 	^ self pythonInstance name callMethod: #get
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlAppleScriptWebPage >> onQuit [
 	| template script |
 	template := 'repeat with t in tabs of windows
@@ -126,7 +128,7 @@ LlAppleScriptWebPage >> onQuit [
 	self browser tellApplicationTo: script
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlAppleScriptWebPage >> printOn: aStream [
 
 	aStream
@@ -136,7 +138,7 @@ LlAppleScriptWebPage >> printOn: aStream [
 	aStream nextPut: $)
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LlAppleScriptWebPage >> pythonInstance [
 
 	^ PBApplication start newCommandStringFactory
@@ -148,7 +150,7 @@ LlAppleScriptWebPage >> pythonInstance [
 	"Appscript reference filtering doc: https://appscript.sourceforge.io/py-appscript/doc_3x/appscript-manual/09_referenceforms.html"
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LlAppleScriptWebPage >> source [
 	| sourceString htmlFile result |
 	sourceString := self pythonInstance source callMethod: #get.
@@ -160,12 +162,12 @@ LlAppleScriptWebPage >> source [
 		yourself.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlAppleScriptWebPage >> url [
 	^ url
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlAppleScriptWebPage >> url: aUrl [
 	| scriptTemplate script |
 	scriptTemplate := 'set URL of {document} to "{targetUrl}"'.
@@ -177,7 +179,7 @@ LlAppleScriptWebPage >> url: aUrl [
 	self waitForDocumentToLoad.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlAppleScriptWebPage >> waitForDocumentToLoad [
 			
 	[ [ self exists and: [  self isDocumentComplete ] ] whileFalse: [ 0.2 seconds wait ] ]

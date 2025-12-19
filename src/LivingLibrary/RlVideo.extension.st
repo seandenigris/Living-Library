@@ -1,6 +1,6 @@
-Extension { #name : #RlVideo }
+Extension { #name : 'RlVideo' }
 
-{ #category : #'*LivingLibrary' }
+{ #category : '*LivingLibrary' }
 RlVideo >> llNewScreencast [
 	| timeParser filenameParser |
 	timeParser := (#digit asPParser plus flatten delimitedBy: $. asPParser), #any asPParser plus flatten ==> [ :n | Time fromString: n first first, ':', n first third, ':', n first fifth, n second  ].
@@ -11,7 +11,7 @@ RlVideo >> llNewScreencast [
 		yourself
 ]
 
-{ #category : #'*LivingLibrary' }
+{ #category : '*LivingLibrary' }
 RlVideo >> newWork [
 	^ super newWork
 		type: #Video;

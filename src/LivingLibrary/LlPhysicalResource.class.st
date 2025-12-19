@@ -1,24 +1,26 @@
 Class {
-	#name : #LlPhysicalResource,
-	#superclass : #LlLibraryItem,
+	#name : 'LlPhysicalResource',
+	#superclass : 'LlLibraryItem',
 	#instVars : [
 		'description',
 		'location'
 	],
-	#category : #'LivingLibrary-Core'
+	#category : 'LivingLibrary-Core',
+	#package : 'LivingLibrary',
+	#tag : 'Core'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlPhysicalResource >> description [
 	^ description ifNil: [ self work title ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlPhysicalResource >> description: anObject [
 	description := anObject
 ]
 
-{ #category : #Magritte }
+{ #category : 'Magritte' }
 LlPhysicalResource >> descriptionDescription [
 	<magritteDescription>
 	^ MAStringDescription new
@@ -30,17 +32,17 @@ LlPhysicalResource >> descriptionDescription [
 			yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlPhysicalResource >> location [
 	^ location
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlPhysicalResource >> location: anObject [
 	location := anObject
 ]
 
-{ #category : #Magritte }
+{ #category : 'Magritte' }
 LlPhysicalResource >> locationDescription [
 	<magritteDescription>
 	^ MAStringDescription new
@@ -52,7 +54,7 @@ LlPhysicalResource >> locationDescription [
 			yourself
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 LlPhysicalResource >> printOn: aStream [
 	aStream nextPutAll: self description surroundedByDoubleQuotes.
 	aStream 

@@ -1,11 +1,11 @@
-Extension { #name : #MpRelatableEntity }
+Extension { #name : 'MpRelatableEntity' }
 
-{ #category : #'*LivingLibrary' }
+{ #category : '*LivingLibrary' }
 MpRelatableEntity >> llAsCollection [
 	^ OrderedCollection with: self
 ]
 
-{ #category : #'*LivingLibrary' }
+{ #category : '*LivingLibrary' }
 MpRelatableEntity >> worksGtViewOn: aView [
 	<gtView>
 

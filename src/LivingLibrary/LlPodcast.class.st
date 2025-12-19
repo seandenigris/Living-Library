@@ -1,12 +1,13 @@
 Class {
-	#name : #LlPodcast,
-	#superclass : #Object,
+	#name : 'LlPodcast',
+	#superclass : 'Object',
 	#traits : 'PeTRawDataHolder - {#rawDataAt:reader:ifAbsent:}',
 	#classTraits : 'PeTRawDataHolder classTrait',
-	#category : #LivingLibrary
+	#category : 'LivingLibrary',
+	#package : 'LivingLibrary'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 LlPodcast class >> fromXml: aXMLElement [ 
 
 	^ self new
@@ -14,7 +15,7 @@ LlPodcast class >> fromXml: aXMLElement [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlPodcast >> author [
 	
 	^ self 
@@ -22,7 +23,7 @@ LlPodcast >> author [
 		reader: #contentString
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 LlPodcast >> displayStringOn: aStream [
 
 	aStream
@@ -31,7 +32,7 @@ LlPodcast >> displayStringOn: aStream [
 		nextPutAll: self author
 ]
 
-{ #category : #playing }
+{ #category : 'playing' }
 LlPodcast >> play [
 
 	| node urlString |
@@ -40,7 +41,7 @@ LlPodcast >> play [
 	^ urlString asUrl open
 ]
 
-{ #category : #'magritte-descriptions' }
+{ #category : 'magritte-descriptions' }
 LlPodcast >> playDescription [
 	<magritteActionDescription>
 	^ MAActionDescription new
@@ -51,25 +52,25 @@ LlPodcast >> playDescription [
 		yourself
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 LlPodcast >> printOn: aStream [
 
 	self printFromDisplayStringOn: aStream
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 LlPodcast >> rawDataAt: aString reader: aValuable ifAbsent: absentBlock [
 		
 	^ self rawDataXmlAt: aString reader: aValuable ifAbsent: absentBlock
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlPodcast >> rawDataGtViewFor: aView context: aContext do: aBlock [
 
 	^ self rawDataXmlGtViewFor: aView context: aContext do: aBlock
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlPodcast >> title [
 	
 	^ self 

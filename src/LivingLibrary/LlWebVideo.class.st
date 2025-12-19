@@ -1,22 +1,24 @@
 Class {
-	#name : #LlWebVideo,
-	#superclass : #LlWebResource,
-	#category : #'LivingLibrary-Core'
+	#name : 'LlWebVideo',
+	#superclass : 'LlWebResource',
+	#category : 'LivingLibrary-Core',
+	#package : 'LivingLibrary',
+	#tag : 'Core'
 }
 
-{ #category : #'player-media' }
+{ #category : 'player-media' }
 LlWebVideo >> currentPosition: aDuration in: page [
 	"Subclasses may override if e.g. video has seekable chapters, slides, etc"
 	self seekTo: aDuration in: page
 ]
 
-{ #category : #'player-media' }
+{ #category : 'player-media' }
 LlWebVideo >> currentPositionIn: page [
 	"Subclasses may override if e.g. video has seekable chapters, slides, etc"
 	^ self currentTimeIn: page
 ]
 
-{ #category : #'player-media' }
+{ #category : 'player-media' }
 LlWebVideo >> currentTimeIn: page [
 
 	| secondsString |
@@ -24,29 +26,29 @@ LlWebVideo >> currentTimeIn: page [
 	^ secondsString asNumber seconds
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlWebVideo >> defaultDriver: anObject [
 	self propertyAt: #defaultDriver put: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlWebVideo >> element: selectorString in: page [
 	^ page elementLocatorFromSelector: selectorString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlWebVideo >> element: selectorString in: page doJavaScript: jsString [
 	| element |
 	element := self element: selectorString in: page.
 	^ element selfEvaluate: jsString.
 ]
 
-{ #category : #playing }
+{ #category : 'playing' }
 LlWebVideo >> isPlayingIn: page [
 	^ (self videoIn: page doJavaScript: 'paused') not.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlWebVideo >> newPlayer [
 	| result |
 	result := LlMediaPlayer on: self.
@@ -56,39 +58,39 @@ LlWebVideo >> newPlayer [
 	^ result
 ]
 
-{ #category : #'player-media' }
+{ #category : 'player-media' }
 LlWebVideo >> pauseIn: page [
 	self videoIn: page doJavaScript: 'pause()'.
 ]
 
-{ #category : #playing }
+{ #category : 'playing' }
 LlWebVideo >> playIn: page [
 	self videoIn: page doJavaScript: 'play()'.
 ]
 
-{ #category : #'player-media' }
+{ #category : 'player-media' }
 LlWebVideo >> playbackSpeed: aNumber in: page [
 	self videoIn: page doJavaScript: 'playbackRate=', aNumber asString.
 ]
 
-{ #category : #'player-media' }
+{ #category : 'player-media' }
 LlWebVideo >> playbackSpeedIn: page [
 	^ self videoIn: page doJavaScript: 'playbackRate'.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlWebVideo >> present [
 	^ self newPlayer
 		play;
 		yourself
 ]
 
-{ #category : #'player-media' }
+{ #category : 'player-media' }
 LlWebVideo >> seekTo: aDuration in: page [
 	self videoIn: page doJavaScript: 'currentTime = ', aDuration asSeconds asString.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlWebVideo >> videoIn: page doJavaScript: aString [
 	^ self element: 'video' in: page doJavaScript: aString
 ]

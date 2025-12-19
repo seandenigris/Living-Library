@@ -1,13 +1,15 @@
 Class {
-	#name : #LlGooglePlayBook,
-	#superclass : #LlWebResource,
+	#name : 'LlGooglePlayBook',
+	#superclass : 'LlWebResource',
 	#instVars : [
 		'id'
 	],
-	#category : #'LivingLibrary-Core'
+	#category : 'LivingLibrary-Core',
+	#package : 'LivingLibrary',
+	#tag : 'Core'
 }
 
-{ #category : #examples }
+{ #category : 'examples' }
 LlGooglePlayBook class >> example [
 	<gtExample>
 	^ self 
@@ -22,24 +24,24 @@ LlGooglePlayBook class >> example [
 			book title should equal: LlAuthoredWork exampleAntifragile title ]
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 LlGooglePlayBook class >> fromString: aString [
 	^ self new
 		id: (aString asUrl queryAt: #id);
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlGooglePlayBook >> id [
 	^ id
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlGooglePlayBook >> id: anObject [
 	id := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlGooglePlayBook >> url [
 	^ 'https://play.google.com/books/reader' asUrl ? (#id -> self id)
 ]

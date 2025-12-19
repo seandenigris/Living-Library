@@ -1,11 +1,11 @@
-Extension { #name : #Collection }
+Extension { #name : 'Collection' }
 
-{ #category : #'*LivingLibrary' }
+{ #category : '*LivingLibrary' }
 Collection >> llAsAuthorCollection [
 	^ self
 ]
 
-{ #category : #'*LivingLibrary' }
+{ #category : '*LivingLibrary' }
 Collection >> llAsCollection [
 	^ self flatCollect: #llAsCollection
 ]

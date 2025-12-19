@@ -1,13 +1,13 @@
-Extension { #name : #RlMp3 }
+Extension { #name : 'RlMp3' }
 
-{ #category : #'*LivingLibrary' }
+{ #category : '*LivingLibrary' }
 RlMp3 >> newPlayer [
 	^ (LlMediaPlayer on: self)
 		driver: LlPythonMpv new;
 		yourself
 ]
 
-{ #category : #'*LivingLibrary' }
+{ #category : '*LivingLibrary' }
 RlMp3 >> playIn: container [
 	container play
 ]

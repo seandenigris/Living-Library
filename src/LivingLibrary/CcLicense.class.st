@@ -2,23 +2,25 @@
 [Creative Commons Licenses](https://creativecommons.org)
 "
 Class {
-	#name : #CcLicense,
-	#superclass : #Object,
+	#name : 'CcLicense',
+	#superclass : 'Object',
 	#instVars : [
 		'name',
 		'abbreviation',
 		'version'
 	],
-	#category : 'LivingLibrary-Licensing'
+	#category : 'LivingLibrary-Licensing',
+	#package : 'LivingLibrary',
+	#tag : 'Licensing'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 CcLicense class >> all [
 
 	^ { self attribution. self shareAlike. self noDerivs. self nonCommercial. self nonCommercialShareAlike. self nonCommercialNoDerivs }
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 CcLicense class >> attribution [
 
 	^ self new
@@ -27,7 +29,7 @@ CcLicense class >> attribution [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CcLicense class >> exampleAttribution [
 	<gtExample>
 	^ self
@@ -39,7 +41,7 @@ CcLicense class >> exampleAttribution [
 		then: [ :p | p should equalPillarMarkup: '"*Creative Commons 10th Birthday Celebration San Francisco>https://www.flickr.com/photos/sixteenmilesofstring/8256206923/in/set-72157632200936657*" by *sixteenmilesofstring>https://www.flickr.com/photos/sixteenmilesofstring/* is licensed under *CC BY 2.0>https://creativecommons.org/licenses/by/2.0/*' ]
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 CcLicense class >> exampleAttributionString [
 	<gtExample>
 	^ self
@@ -51,7 +53,7 @@ CcLicense class >> exampleAttributionString [
 		then: [ :str | str should equal: '"Antifragile" by Nassim Taleb is licensed under CC BY 2.0' ]
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 CcLicense class >> examplePrinting [
 	<gtExample>
 	^ self
@@ -60,7 +62,7 @@ CcLicense class >> examplePrinting [
 		then: [ :str | str should equal: 'CC BY 2.0' ]
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 CcLicense class >> exampleVersion [
 	<gtExample>
 	^ self
@@ -72,7 +74,7 @@ CcLicense class >> exampleVersion [
 		then: [ :lic :v | lic version should equal: v ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 CcLicense class >> noDerivs [
 
 	^ self new
@@ -81,7 +83,7 @@ CcLicense class >> noDerivs [
 		yourself
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 CcLicense class >> nonCommercial [
 
 	^ self new
@@ -90,7 +92,7 @@ CcLicense class >> nonCommercial [
 		yourself
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 CcLicense class >> nonCommercialNoDerivs [
 
 	^ self new
@@ -99,7 +101,7 @@ CcLicense class >> nonCommercialNoDerivs [
 		yourself
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 CcLicense class >> nonCommercialShareAlike [
 
 	^ self new
@@ -108,7 +110,7 @@ CcLicense class >> nonCommercialShareAlike [
 		yourself
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 CcLicense class >> shareAlike [
 
 	^ self new
@@ -117,23 +119,23 @@ CcLicense class >> shareAlike [
 		yourself
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 CcLicense >> = rhs [
 
 	^ self name = rhs name and: [ self abbreviation = rhs abbreviation and: [ self version = rhs version ] ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CcLicense >> abbreviation [
 	^ abbreviation
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CcLicense >> abbreviation: anObject [
 	abbreviation := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CcLicense >> attributionFor: aWork [
 	"Reference: https://creativecommons.org/use-remix/attribution/"
 	| template markup |
@@ -146,12 +148,12 @@ CcLicense >> attributionFor: aWork [
 	^ PRPillarParser parse: markup
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CcLicense >> atttributionStringFor: work [
 	^ PRTextWriter write: (self attributionFor: work)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CcLicense >> deedURL [
 
 	| baseUrl myPath |
@@ -160,43 +162,43 @@ CcLicense >> deedURL [
 	^ baseUrl / myPath / self version asString addPathSegment: $/
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 CcLicense >> hash [
 	^ (self name hash bitXor: self abbreviation) bitXor: self version
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CcLicense >> legalCodeURL [
 
 	^ self deedURL / 'legalcode'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CcLicense >> linkText [
 	^ self abbreviation, ' ', self version asString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CcLicense >> name [
 	^ name
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CcLicense >> name: anObject [
 	name := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CcLicense >> printOn: aStream [
 	aStream nextPutAll: self linkText
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CcLicense >> version [
 	^ version
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CcLicense >> version: anObject [
 	version := anObject
 ]

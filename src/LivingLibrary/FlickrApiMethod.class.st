@@ -1,13 +1,15 @@
 Class {
-	#name : #FlickrApiMethod,
-	#superclass : #Object,
+	#name : 'FlickrApiMethod',
+	#superclass : 'Object',
 	#instVars : [
 		'name'
 	],
-	#category : 'LivingLibrary-Flickr'
+	#category : 'LivingLibrary-Flickr',
+	#package : 'LivingLibrary',
+	#tag : 'Flickr'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 FlickrApiMethod class >> named: aString [
 
 	^ self new
@@ -15,7 +17,7 @@ FlickrApiMethod class >> named: aString [
 		yourself
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FlickrApiMethod >> info [
 
 	^ Flickr new
@@ -23,17 +25,17 @@ FlickrApiMethod >> info [
 		get: 'flickr.reflection.getMethodInfo'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FlickrApiMethod >> name [
 	^ name
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FlickrApiMethod >> name: anObject [
 	name := anObject
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 FlickrApiMethod >> printOn: aStream [
 
 	name

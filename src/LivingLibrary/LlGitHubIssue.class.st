@@ -1,15 +1,17 @@
 Class {
-	#name : #LlGitHubIssue,
-	#superclass : #LlWebResource,
+	#name : 'LlGitHubIssue',
+	#superclass : 'LlWebResource',
 	#instVars : [
 		'user',
 		'project',
 		'number'
 	],
-	#category : #'LivingLibrary-Core'
+	#category : 'LivingLibrary-Core',
+	#package : 'LivingLibrary',
+	#tag : 'Core'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 LlGitHubIssue class >> fromString: aString [
 
 	| url |
@@ -22,7 +24,7 @@ LlGitHubIssue class >> fromString: aString [
 		yourself
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 LlGitHubIssue class >> fromStringExample [
 	<gtExample>
 	
@@ -35,7 +37,7 @@ LlGitHubIssue class >> fromStringExample [
 			result number should equal: 2786 ]
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LlGitHubIssue class >> peCanHandleFromString: aString [
 
 	| url |	
@@ -43,19 +45,19 @@ LlGitHubIssue class >> peCanHandleFromString: aString [
 	^ url host = 'github.com' and: [ url pathSegments size = 4 and: [ url pathSegments third = 'issues' ] ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlGitHubIssue >> number [
 
 	^ number
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlGitHubIssue >> number: anObject [
 
 	number := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlGitHubIssue >> printOn: aStream [
 	aStream
 		nextPutAll: 'GH Issue: ';
@@ -66,38 +68,38 @@ LlGitHubIssue >> printOn: aStream [
 		print: self number
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlGitHubIssue >> project [
 
 	^ project
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlGitHubIssue >> project: anObject [
 
 	project := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlGitHubIssue >> url [
 
 	^ 'https://github.com' asUrl / self user / self project / 'issues' / self number asString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlGitHubIssue >> url: aUrl [
 
 	aUrl host = 'drive.google.com' ifFalse: [ self error: 'invalid google drive URL' ].
 	url := 'https://drive.google.com' asUrl addPathSegments: aUrl pathSegments
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlGitHubIssue >> user [
 
 	^ user
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlGitHubIssue >> user: anObject [
 
 	user := anObject

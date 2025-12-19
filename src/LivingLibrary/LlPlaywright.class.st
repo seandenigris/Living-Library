@@ -1,18 +1,20 @@
 Class {
-	#name : #LlPlaywright,
-	#superclass : #Object,
+	#name : 'LlPlaywright',
+	#superclass : 'Object',
 	#classVars : [
 		'PythonInstance'
 	],
-	#category : #'LivingLibrary-Web Driving-Playwright'
+	#category : 'LivingLibrary-Web Driving-Playwright',
+	#package : 'LivingLibrary',
+	#tag : 'Web Driving-Playwright'
 }
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 LlPlaywright class >> initialize [
 	SessionManager default registerSystemClassNamed: self name
 ]
 
-{ #category : #installation }
+{ #category : 'installation' }
 LlPlaywright class >> install [
 	| pyBridgeFolder cmdString playwrightFile vEnvFolder |
 	pyBridgeFolder := FileLocator imageDirectory / 'PythonBridgeRuntime'.
@@ -23,14 +25,14 @@ LlPlaywright class >> install [
 	cmdString asSuCommand run
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 LlPlaywright class >> shutDown: quitting [
 	quitting ifFalse: [ ^ self ].
 
 	PythonInstance ifNotNil: #stop
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlPlaywright class >> start [
 	| template |
 	
@@ -44,7 +46,7 @@ LlPlaywright class >> start [
 	    sendAndWait.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlPlaywright class >> stop [
 	PythonInstance ifNil: [ ^ self ].
 	
@@ -52,12 +54,12 @@ LlPlaywright class >> stop [
 	PythonInstance := nil
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlPlaywright class >> uniqueInstance [
 	^ self new
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlPlaywright >> gtDirFor: aView [
 	<gtView>
 	
@@ -67,13 +69,13 @@ LlPlaywright >> gtDirFor: aView [
 		view: #gtDirFor:
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlPlaywright >> initialize [
 	super initialize.
 	self class start.
 ]
 
-{ #category : #convenience }
+{ #category : 'convenience' }
 LlPlaywright >> launch: browser isHeadless: aBoolean [
 	"browser - e.g. firefox, chromium, webkit"
 	| proxy |
@@ -83,13 +85,13 @@ LlPlaywright >> launch: browser isHeadless: aBoolean [
 	^ LlPlaywrightBrowser on: proxy
 ]
 
-{ #category : #convenience }
+{ #category : 'convenience' }
 LlPlaywright >> pythonInstance [
 	PythonInstance ifNil: [ self class start ].
 	^ PythonInstance
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlPlaywright >> show: media [
 
 	| browserProxy pageProxy browser |

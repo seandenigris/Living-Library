@@ -1,6 +1,6 @@
-Extension { #name : #RlEmail }
+Extension { #name : 'RlEmail' }
 
-{ #category : #'*LivingLibrary' }
+{ #category : '*LivingLibrary' }
 RlEmail >> workTitleDefault [
 
 	^ self subject

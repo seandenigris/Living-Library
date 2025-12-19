@@ -1,16 +1,18 @@
 Class {
-	#name : #LlApplescriptMediaDriver,
-	#superclass : #Object,
-	#category : #'LivingLibrary-Web Driving-AppleScript'
+	#name : 'LlApplescriptMediaDriver',
+	#superclass : 'Object',
+	#category : 'LivingLibrary-Web Driving-AppleScript',
+	#package : 'LivingLibrary',
+	#tag : 'Web Driving-AppleScript'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlApplescriptMediaDriver >> browser [
 
 	^ CwSafari reference
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlApplescriptMediaDriver >> initialize [
 
 	| somethingFromJS |
@@ -20,7 +22,7 @@ LlApplescriptMediaDriver >> initialize [
 	somethingFromJS = 1 ifFalse: [ self error: 'Can''t doJavaScript in ', self browser class name, ' browser. You probably need to enable "Allow JavaScript from Apple Events" in the "Develop" menu' ].
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlApplescriptMediaDriver >> show: media [
 
 	| result |

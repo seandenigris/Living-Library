@@ -1,6 +1,6 @@
 Class {
-	#name : #CcPhotoSpecification,
-	#superclass : #BabyPhexample,
+	#name : 'CcPhotoSpecification',
+	#superclass : 'BabyPhexample',
 	#instVars : [
 		'photoUrl',
 		'ownerUsername',
@@ -8,10 +8,12 @@ Class {
 		'license',
 		'profileUrl'
 	],
-	#category : #'LivingLibrary-Licensing'
+	#category : 'LivingLibrary-Licensing',
+	#package : 'LivingLibrary',
+	#tag : 'Licensing'
 }
 
-{ #category : #asserting }
+{ #category : 'asserting' }
 CcPhotoSpecification >> assert: actual matches: expectedAttributionTemplate [ 
 
 	| expectedAttribution |
@@ -26,7 +28,7 @@ CcPhotoSpecification >> assert: actual matches: expectedAttributionTemplate [
 	actual should equal: expectedAttribution
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 CcPhotoSpecification >> setUp [
 
 	photoTitle := 'Creative Commons 10th Birthday Celebration San Francisco'.
@@ -36,7 +38,7 @@ CcPhotoSpecification >> setUp [
 	license := CcLicense attribution version: 2.0.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 CcPhotoSpecification >> testAttribution [
 	"Adapted from https://wiki.creativecommons.org/Best_practices_for_attribution#This_is_an_ideal_attribution for plain text when you can't hyperlink (e.g. Facebook posts). Of course, we'd like to keep real object (i.e. text with links, which one can then convert into e.g. Markdown, HTML, plain text, etc., but given the current Text mess, we'll leave that as a task for another day..."
 	
@@ -46,7 +48,7 @@ CcPhotoSpecification >> testAttribution [
 	self assert: photo plainTextAttribution matches: '"{photoTitle}" ({photoUrl}) by {ownerUsername} ({profileUrl}) is licensed under {licenseName} ({licenseDeedUrl})'.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 CcPhotoSpecification >> testCreation [
 
 	| photo |

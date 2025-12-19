@@ -1,15 +1,17 @@
 Class {
-	#name : #LlLibraryItem,
-	#superclass : #Object,
+	#name : 'LlLibraryItem',
+	#superclass : 'Object',
 	#traits : 'DbTDomainObject',
 	#classTraits : 'DbTDomainObject classTrait',
 	#instVars : [
 		'work'
 	],
-	#category : #'LivingLibrary-Core'
+	#category : 'LivingLibrary-Core',
+	#package : 'LivingLibrary',
+	#tag : 'Core'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LlLibraryItem class >> fromString: aString [ 
 	
 	| cls |
@@ -17,7 +19,7 @@ LlLibraryItem class >> fromString: aString [
 	^ cls fromString: aString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlLibraryItem class >> gtSpotterNewFor: aSearch [
 	<gtSearch>
 	^ aSearch list
@@ -29,29 +31,29 @@ LlLibraryItem class >> gtSpotterNewFor: aSearch [
 			yourself)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlLibraryItem >> initialize [
 	super initialize.
 	self ensureUUID
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlLibraryItem >> name [
 	^ self propertyAt: #name ifAbsent: [ ^ nil ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlLibraryItem >> name: aString [
 	^ self propertyAt: #name putRemovingNil: aString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlLibraryItem >> newPlayer [
 
 	^ LlNullMediaPlayer new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LlLibraryItem >> source [
 
 	^ self
@@ -59,7 +61,7 @@ LlLibraryItem >> source [
 		ifAbsent: [ nil ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LlLibraryItem >> source: anObject [
 
 	^ self
@@ -67,17 +69,17 @@ LlLibraryItem >> source: anObject [
 		putRemovingNil: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlLibraryItem >> work [
 	^ self maLazyInstVarUsing: self workDescription
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlLibraryItem >> work: aWork [
 	work := aWork
 ]
 
-{ #category : #'magritte-accessing' }
+{ #category : 'magritte-accessing' }
 LlLibraryItem >> workDescription [
 	<magritteDescription>
 	^ MAToOneRelationDescription new
@@ -86,7 +88,7 @@ LlLibraryItem >> workDescription [
 		yourself
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LlLibraryItem >> workEnsured [
 
 	| aWork |

@@ -1,13 +1,15 @@
 Class {
-	#name : #LlVitalSourceBook,
-	#superclass : #LlWebResource,
+	#name : 'LlVitalSourceBook',
+	#superclass : 'LlWebResource',
 	#instVars : [
 		'id'
 	],
-	#category : #'LivingLibrary-Core'
+	#category : 'LivingLibrary-Core',
+	#package : 'LivingLibrary',
+	#tag : 'Core'
 }
 
-{ #category : #examples }
+{ #category : 'examples' }
 LlVitalSourceBook class >> example [
 	<gtExample>
 	^ self 
@@ -19,7 +21,7 @@ LlVitalSourceBook class >> example [
 		then: [ :book | book url asString should equal: 'https://online.vitalsource.com/reader/books/9780879396497' ]
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 LlVitalSourceBook class >> exampleFromString [
 	<gtExample>
 	^ self 
@@ -29,24 +31,24 @@ LlVitalSourceBook class >> exampleFromString [
 		then: [ :book | book url asString should equal: 'https://online.vitalsource.com/reader/books/9780879396497' ]
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 LlVitalSourceBook class >> fromString: aString [
 	^ self new
 		id: (aString asUrl pathSegments third);
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlVitalSourceBook >> id [
 	^ id
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlVitalSourceBook >> id: anObject [
 	id := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlVitalSourceBook >> url [
 	^ 'https://online.vitalsource.com/reader/books' asUrl / self id
 ]

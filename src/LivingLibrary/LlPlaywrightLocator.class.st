@@ -4,19 +4,21 @@ Think {{gtClass:FileLocator}}, but for the DOM.
 From [the doc](https://playwright.dev/python/docs/api/class-framelocator): *FrameLocator represents a view to the iframe on the page. It captures the logic sufficient to retrieve the iframe and locate elements in that iframe. FrameLocator can be created with either page.frame_locator(selector) or locator.frame_locator(selector) method.*
 "
 Class {
-	#name : #LlPlaywrightLocator,
-	#superclass : #LlPlaywrightObject,
-	#category : #'LivingLibrary-Web Driving-Playwright'
+	#name : 'LlPlaywrightLocator',
+	#superclass : 'LlPlaywrightObject',
+	#category : 'LivingLibrary-Web Driving-Playwright',
+	#package : 'LivingLibrary',
+	#tag : 'Web Driving-Playwright'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 LlPlaywrightLocator class >> on: proxy [
 	^ self new
 		model: proxy;
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlPlaywrightLocator >> doesNotUnderstand: aMessage [
 
 	"Currently we only support getters"
@@ -27,7 +29,7 @@ LlPlaywrightLocator >> doesNotUnderstand: aMessage [
 		sendAndWait.
 ]
 
-{ #category : #API }
+{ #category : 'API' }
 LlPlaywrightLocator >> evaluate: aString [
 	"Reference: https://playwright.dev/python/docs/api/class-locator#locator-evaluate"
 	^ self model newCommandFactory
@@ -35,18 +37,18 @@ LlPlaywrightLocator >> evaluate: aString [
 		sendAndWait.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlPlaywrightLocator >> model [
 
 	^ model
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlPlaywrightLocator >> model: aPBProxyObject [
 	model := aPBProxyObject
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 LlPlaywrightLocator >> selfEvaluate: aString [
 	"aString - what you would type in JS after `element.`"
 	^ self evaluate: 'node => node.', aString

@@ -1,14 +1,16 @@
 Class {
-	#name : #LlAppleScriptHtmlElementLocator,
-	#superclass : #Object,
+	#name : 'LlAppleScriptHtmlElementLocator',
+	#superclass : 'Object',
 	#instVars : [
 		'selector',
 		'page'
 	],
-	#category : #'LivingLibrary-Web Driving-AppleScript'
+	#category : 'LivingLibrary-Web Driving-AppleScript',
+	#package : 'LivingLibrary',
+	#tag : 'Web Driving-AppleScript'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlAppleScriptHtmlElementLocator class >> selector: aString in: page [
 	^ self new
 		selector: aString;
@@ -16,7 +18,7 @@ LlAppleScriptHtmlElementLocator class >> selector: aString in: page [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlAppleScriptHtmlElementLocator >> exists [
 	| js |
 	js := (SuJSScript queryingSelector + ' !== null')
@@ -26,40 +28,40 @@ LlAppleScriptHtmlElementLocator >> exists [
 	^ self page doJavascript: js
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlAppleScriptHtmlElementLocator >> getAttribute: aString [
 	^ self selfEvaluate: 'getAttribute(', aString surroundedBySingleQuotes, ')'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LlAppleScriptHtmlElementLocator >> innerHTML [
 
 	^ RlHTML fromString: (self selfEvaluate: 'innerHTML')
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlAppleScriptHtmlElementLocator >> page [
 
 	^ page
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlAppleScriptHtmlElementLocator >> page: anObject [
 
 	page := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlAppleScriptHtmlElementLocator >> selector [
 	^ selector
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LlAppleScriptHtmlElementLocator >> selector: aString [ 
 	selector := aString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlAppleScriptHtmlElementLocator >> selfEvaluate: aString [ 
 	| js |
 	js := (SuJSScript queryingSelector -> aString)

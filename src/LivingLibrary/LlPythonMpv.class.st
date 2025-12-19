@@ -1,27 +1,29 @@
 Class {
-	#name : #LlPythonMpv,
-	#superclass : #Object,
+	#name : 'LlPythonMpv',
+	#superclass : 'Object',
 	#instVars : [
 		'pythonMpv'
 	],
-	#category : #'LivingLibrary-PythonMpv'
+	#category : 'LivingLibrary-PythonMpv',
+	#package : 'LivingLibrary',
+	#tag : 'PythonMpv'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlPythonMpv >> currentTime [
 	^ self pythonMpv newCommandFactory
 		<< (self pythonMpv => #time_pos);
 		sendAndWait
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlPythonMpv >> filename [
 	self pythonMpv newCommandFactory
 		<< (self pythonMpv => #filename);
 		sendAndWait
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LlPythonMpv >> isPlaying [
 	| isPaused |
 	self filename ifNil: [ ^ false ].
@@ -31,26 +33,26 @@ LlPythonMpv >> isPlaying [
 	^ isPaused not
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlPythonMpv >> onQuit [
 	self terminate
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlPythonMpv >> pause [
 	self pythonMpv newCommandFactory
 		<< (self pythonMpv => #pause <- true);
 		send
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlPythonMpv >> play [
 	self pythonMpv newCommandFactory
 		<< (self pythonMpv => #pause <- false);
 		send
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlPythonMpv >> pythonMpv [
 	pythonMpv ifNotNil: [ ^ pythonMpv ].
 	
@@ -61,7 +63,7 @@ mpv.MPV()'
 		withBindings: {}
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LlPythonMpv >> seekTo: aDuration [ 
 	"player.seek(offset, reference=""absolute"")"
 	
@@ -70,7 +72,7 @@ LlPythonMpv >> seekTo: aDuration [
 		sendAndWait.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlPythonMpv >> show: media [
 	"PBApplication uniqueInstance 
 		sendSource: 'player.play(filename)'
@@ -84,7 +86,7 @@ LlPythonMpv >> show: media [
 	^ self "I am the container because I don't have e.g. tabs"
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlPythonMpv >> skipSilence [
 	PBApplication uniqueInstance newCommandFactory
 		<< (P3GCall 
@@ -96,21 +98,21 @@ LlPythonMpv >> skipSilence [
 		sendAndWait.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlPythonMpv >> speed [
 	^ self pythonMpv newCommandFactory
 		<< (self pythonMpv => #speed);
 		sendAndWait
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlPythonMpv >> speed: aNumber [
 	self pythonMpv newCommandFactory
 		<< (self pythonMpv => #speed <- aNumber);
 		send
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlPythonMpv >> terminate [
 	
 	self pythonMpv newCommandFactory

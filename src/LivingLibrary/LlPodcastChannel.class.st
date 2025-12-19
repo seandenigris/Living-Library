@@ -1,12 +1,13 @@
 Class {
-	#name : #LlPodcastChannel,
-	#superclass : #Object,
+	#name : 'LlPodcastChannel',
+	#superclass : 'Object',
 	#traits : 'PeTRawDataHolder - {#rawDataAt:reader:ifAbsent:}',
 	#classTraits : 'PeTRawDataHolder classTrait',
-	#category : #LivingLibrary
+	#category : 'LivingLibrary',
+	#package : 'LivingLibrary'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlPodcastChannel class >> fromRssUrl: aUrl [
 
 	^ self new
@@ -14,17 +15,17 @@ LlPodcastChannel class >> fromRssUrl: aUrl [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlPodcastChannel >> channelXml [
 	^ self rawData
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlPodcastChannel >> channelXml: anObject [
 	self rawData: anObject
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LlPodcastChannel >> description [
 
 	^ self 
@@ -32,7 +33,7 @@ LlPodcastChannel >> description [
 		reader: #contentString
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LlPodcastChannel >> episodes [
 
 	^ (self channelXml / #item) 
@@ -40,7 +41,7 @@ LlPodcastChannel >> episodes [
 		as: OrderedCollection
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LlPodcastChannel >> episodesGtViewFor: aView [
 	<gtView>
 
@@ -51,7 +52,7 @@ LlPodcastChannel >> episodesGtViewFor: aView [
 		yourself
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LlPodcastChannel >> rawDataAt: aString reader: aValuable ifAbsent: absentBlock [
 		
 	| el |
@@ -62,7 +63,7 @@ LlPodcastChannel >> rawDataAt: aString reader: aValuable ifAbsent: absentBlock [
 	^ aValuable value: el
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlPodcastChannel >> rawDataGtViewFor: aView context: aContext do: aBlock [
 	"If you want to customize the view (e.g. reload latest data via API on update button), send this message from your view method"
 	
@@ -79,7 +80,7 @@ LlPodcastChannel >> rawDataGtViewFor: aView context: aContext do: aBlock [
 	^ result
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LlPodcastChannel >> rssUrl [
 
 	^ self 
@@ -87,7 +88,7 @@ LlPodcastChannel >> rssUrl [
 		reader: [ :node | (node attributeAt: #href) asUrl ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LlPodcastChannel >> showUrl [
 
 	^ self 
@@ -95,7 +96,7 @@ LlPodcastChannel >> showUrl [
 		reader: [ :node | node contentString asUrl ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlPodcastChannel >> title [
 
 	^ self 

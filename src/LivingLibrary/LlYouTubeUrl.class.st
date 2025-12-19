@@ -1,10 +1,12 @@
 Class {
-	#name : #LlYouTubeUrl,
-	#superclass : #LlVideoUrl,
-	#category : #'LivingLibrary-URLs, Custom'
+	#name : 'LlYouTubeUrl',
+	#superclass : 'LlVideoUrl',
+	#category : 'LivingLibrary-URLs, Custom',
+	#package : 'LivingLibrary',
+	#tag : 'URLs, Custom'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlYouTubeUrl class >> exampleParsingInput: urlString shouldSetID: idString [
 	<gtExample>
 	^ self
@@ -13,7 +15,7 @@ LlYouTubeUrl class >> exampleParsingInput: urlString shouldSetID: idString [
 		then: [ :video | video id should equal: idString ] 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlYouTubeUrl class >> exampleStringInputs [
 	
 	^ {
@@ -22,7 +24,7 @@ LlYouTubeUrl class >> exampleStringInputs [
 		 'https://www.youtube.com/watch?v=QOe3FA4wJcQ' -> 'QOe3FA4wJcQ' }
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlYouTubeUrl class >> fromString: aString [
 	| url id hasIdInFile |
 	url := aString asUrl.
@@ -35,7 +37,7 @@ LlYouTubeUrl class >> fromString: aString [
 	^ (super fromString: 'https://www.youtube.com/watch') ? (#v -> id)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlYouTubeUrl class >> fromStringExample [
 	<gtExample>
 	
@@ -48,7 +50,7 @@ LlYouTubeUrl class >> fromStringExample [
 	^ result
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlYouTubeUrl class >> peCanHandleFromString: aString [
 
 	[ self fromString: aString ]
@@ -58,7 +60,7 @@ LlYouTubeUrl class >> peCanHandleFromString: aString [
 	^ true
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlYouTubeUrl class >> peCanHandleFromStringExample [
 	<gtExample>
 	
@@ -72,7 +74,7 @@ LlYouTubeUrl class >> peCanHandleFromStringExample [
 	result should beFalse.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlYouTubeUrl class >> peExternalDropServicesFor: anObject [
 	<peDropService>
 	
@@ -87,14 +89,14 @@ LlYouTubeUrl class >> peExternalDropServicesFor: anObject [
 			buttonLabel: '+' }
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlYouTubeUrl >> asVideo [
 	^ LlYouTubeVideo new
 		id: self id;
 		yourself.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlYouTubeUrl >> id [
 	^ self query at: #v
 ]

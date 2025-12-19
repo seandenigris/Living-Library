@@ -3,15 +3,17 @@ Creating:
 video := YouTubeVideo of: 'Melissa Etheridge & Joss Stone - Janis Joplin Tribute' at: 'http://www.youtube.com/watch?v=ef-f-l2Pbn8&sns=tw'.
 "
 Class {
-	#name : #LlYouTubeVideo,
-	#superclass : #LlWebVideo,
+	#name : 'LlYouTubeVideo',
+	#superclass : 'LlWebVideo',
 	#instVars : [
 		'id'
 	],
-	#category : #'LivingLibrary-Core'
+	#category : 'LivingLibrary-Core',
+	#package : 'LivingLibrary',
+	#tag : 'Core'
 }
 
-{ #category : #example }
+{ #category : 'example' }
 LlYouTubeVideo class >> exampleStopDrawingDeadFish [
 	<gtExample>
 	"Bret Victor - Stop Drawing Dead Fish"
@@ -23,7 +25,7 @@ LlYouTubeVideo class >> exampleStopDrawingDeadFish [
 			inst url id should equal: 'ZfytHvgHybA' ]
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 LlYouTubeVideo class >> exampleTranscriptEmptyPage [
 	<gtExample>
 	^ self
@@ -41,7 +43,7 @@ LlYouTubeVideo class >> exampleTranscriptEmptyPage [
 		then: [ :page | page "children should haveSize: 1" ]
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 LlYouTubeVideo class >> fromString: aString [
 	| url |
 	url := LlYouTubeUrl fromString: aString.
@@ -50,7 +52,7 @@ LlYouTubeVideo class >> fromString: aString [
 		yourself
 ]
 
-{ #category : #example }
+{ #category : 'example' }
 LlYouTubeVideo class >> fromStringExample [
 	<gtExample>
 	self fromStringExampleInput: 'https://youtu.be/A0TafHXszg' shouldSetID: 'A0TafHXszg'.
@@ -58,7 +60,7 @@ LlYouTubeVideo class >> fromStringExample [
 	^ self fromStringExampleInput: 'https://www.youtube.com/watch?v=QOe3FA4wJcQ' shouldSetID: 'QOe3FA4wJcQ'
 ]
 
-{ #category : #'private-examples' }
+{ #category : 'private-examples' }
 LlYouTubeVideo class >> fromStringExampleInput: urlString shouldSetID: idString [
 	<gtExample>
 	^ self
@@ -67,12 +69,12 @@ LlYouTubeVideo class >> fromStringExampleInput: urlString shouldSetID: idString 
 		then: [ :video | video id should equal: idString ] 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 LlYouTubeVideo class >> peCanHandleFromString: aString [
 	^ LlYouTubeUrl peCanHandleFromString: aString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlYouTubeVideo >> currentTimeIn: page [
 
 	| secondsString |
@@ -80,14 +82,14 @@ LlYouTubeVideo >> currentTimeIn: page [
 	^ secondsString asNumber seconds
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlYouTubeVideo >> displayStringOn: aStream [
 	aStream
 		nextPutAll: 'YouTube Video: ';
 		print: self work
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 LlYouTubeVideo >> download [
 
 	YouTubeVideoDownloader new download: self.
@@ -132,34 +134,34 @@ http%3A%2F%2Fv7.lscache6.c.youtube.com%2Fvideoplayback%3Fip%3D0.0.0.0%26sparams%
 rv.2.rating=4.8801843318"
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlYouTubeVideo >> id [
 	^ id
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlYouTubeVideo >> id: aString [
 	id := aString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlYouTubeVideo >> newPlayer [
 	^ super newPlayer
 		driver: LlApplescriptMediaDriver new;
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlYouTubeVideo >> pauseIn: page [ 
 	^ self playerIn: page doJavaScript: 'pauseVideo()'.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlYouTubeVideo >> playIn: page [
 	^ self playerIn: page doJavaScript: 'playVideo()'.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlYouTubeVideo >> playerIn: page doJavaScript: aString [
 	"Player API Reference: https://developers.google.com/youtube/iframe_api_reference"
 
@@ -168,7 +170,7 @@ LlYouTubeVideo >> playerIn: page doJavaScript: aString [
 	^ playerElement selfEvaluate: aString.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlYouTubeVideo >> seekTo: aDuration in: page [
 	
 	| template js |
@@ -179,14 +181,14 @@ LlYouTubeVideo >> seekTo: aDuration in: page [
 	^ self playerIn: page doJavaScript: js.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlYouTubeVideo >> title [
 	"We'd like to get from API: ('https://www.googleapis.com/youtube/v3/videos?part=id%2C+snippet&id=', self id, '&key=') asUrl
 	Adapted from https://stackoverflow.com/a/50076966"
 	self shouldBeImplemented
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlYouTubeVideo >> url [
 	^ LlYouTubeUrl fromString: 'https://www.youtube.com/watch?v=' , self id
 ]

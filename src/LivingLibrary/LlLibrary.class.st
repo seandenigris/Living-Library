@@ -21,18 +21,20 @@ Say we have a CD. It's not a work itself, but a copy of that work - say an audio
 If there is a work that you want to remain aware of, before you actually have a copy yourself, you can do it like this: {{gtExample:LlLibrary class>>exampleAddSeries}}
 "
 Class {
-	#name : #LlLibrary,
-	#superclass : #Object,
+	#name : 'LlLibrary',
+	#superclass : 'Object',
 	#instVars : [
 		'catalog'
 	],
 	#classInstVars : [
 		'uniqueInstance'
 	],
-	#category : #'LivingLibrary-Core'
+	#category : 'LivingLibrary-Core',
+	#package : 'LivingLibrary',
+	#tag : 'Core'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlLibrary class >> example [
 	<gtExample>
 	^ self
@@ -47,7 +49,7 @@ LlLibrary class >> example [
 		then: [ :lib | lib works should haveSize: 6 ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlLibrary class >> exampleAddDigitalItem [
 	<gtExample>
 	| pdfFile copy lib work |
@@ -64,7 +66,7 @@ LlLibrary class >> exampleAddDigitalItem [
 	^ lib
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlLibrary class >> exampleAddPhysicalItem [
 	<gtExample>
 	| copy work lib |
@@ -81,7 +83,7 @@ LlLibrary class >> exampleAddPhysicalItem [
 	^ lib
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlLibrary class >> exampleAddSeries [
 	<gtExample>
 	^ self
@@ -93,7 +95,7 @@ LlLibrary class >> exampleAddSeries [
 		then: [ :a :b | ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlLibrary class >> exampleAddYouTubeVideo [
 	<gtExample>
 	| pdfFile copy lib work |
@@ -111,31 +113,31 @@ LlLibrary class >> exampleAddYouTubeVideo [
 	^ lib
 ]
 
-{ #category : #persisting }
+{ #category : 'persisting' }
 LlLibrary class >> restoreFrom: aLivingLibrary [
 
 	self uniqueInstance: aLivingLibrary.
 ]
 
-{ #category : #persisting }
+{ #category : 'persisting' }
 LlLibrary class >> spData [
 
 	^ self uniqueInstance
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlLibrary class >> uniqueInstance [
 
 	^ uniqueInstance ifNil: [ uniqueInstance := self new ].
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlLibrary class >> uniqueInstance: aLivingLibrary [
 	uniqueInstance := aLivingLibrary
 
 ]
 
-{ #category : #'copies - adding' }
+{ #category : 'copies - adding' }
 LlLibrary >> addCopy: copy of: work [
 	| copies |
 	copy work: work.
@@ -143,41 +145,41 @@ LlLibrary >> addCopy: copy of: work [
 	^ copies add: copy.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlLibrary >> addressBook [
 	
 	^ MpAddressBook uniqueInstance
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 LlLibrary >> beAwareOf: work [
 	^ self ensureCardFor: work
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlLibrary >> catalog [
 	^ catalog ifNil: [ catalog := Dictionary new ].
 ]
 
-{ #category : #'*LivingLibrary-Features' }
+{ #category : 'accessing' }
 LlLibrary >> collection [
 
 	^ self catalog keys.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlLibrary >> copies [
 
 	^ self catalog flatCollect: #yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlLibrary >> copiesOf: aWrittenWork [
 
 	^ catalog at: aWrittenWork ifAbsent: [ #() ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlLibrary >> copy: anObject removeFrom: aWrittenWork [
 
 	| copies |
@@ -186,7 +188,7 @@ LlLibrary >> copy: anObject removeFrom: aWrittenWork [
 	^ copies remove: anObject
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 LlLibrary >> ensureCardFor: work [
 	work family do: [ :e | 
 		self catalog 
@@ -197,12 +199,12 @@ LlLibrary >> ensureCardFor: work [
 	^ self catalog at: work
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LlLibrary >> hasCardFor: aWork [
 	^ self catalog includesKey: aWork
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlLibrary >> importAllFrom: aLibrary [
 	aLibrary catalog keysAndValuesDo: [ :work :rhsCopies |
 		self catalog
@@ -211,7 +213,7 @@ LlLibrary >> importAllFrom: aLibrary [
 			ifAbsentPut: [ rhsCopies ] ].
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlLibrary >> printOn: aStream [
 	
 	| numCopies |
@@ -225,17 +227,17 @@ LlLibrary >> printOn: aStream [
 		nextPutAll: ' works'
 ]
 
-{ #category : #'copies - adding' }
+{ #category : 'copies - adding' }
 LlLibrary >> receive: aCopy [
 	self addCopy: aCopy of: aCopy work
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 LlLibrary >> removeCardFor: work [
 	self catalog removeKey: work
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlLibrary >> removeWork: aLlAuthoredWork [ 
 	
 	self removeCardFor: aLlAuthoredWork.
@@ -244,12 +246,12 @@ LlLibrary >> removeWork: aLlAuthoredWork [
 		removeChildren.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlLibrary >> rootWorks [
 	^ self works select: [ :e | e parent isNil ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlLibrary >> verifyModel [
 	
 	| libs |
@@ -265,7 +267,7 @@ LlLibrary >> verifyModel [
 			self assert: e library == self ]. ].
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 LlLibrary >> view: aWrittenWork [
 
 	| copies |
@@ -275,18 +277,18 @@ LlLibrary >> view: aWrittenWork [
 	copies atRandom present
 ]
 
-{ #category : #'magritte-accessing' }
+{ #category : 'magritte-accessing' }
 LlLibrary >> workClass [
 	
 	^ LlAuthoredWork
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlLibrary >> works [
 	^ self catalog keys
 ]
 
-{ #category : #views }
+{ #category : 'views' }
 LlLibrary >> works: aValuable gtViewOn: aView title: aString priority: aNumber [
 	
 	(self works isEmpty) ifTrue: [ ^ aView empty ].
@@ -302,12 +304,12 @@ LlLibrary >> works: aValuable gtViewOn: aView title: aString priority: aNumber [
 		actionUpdateButton
 ]
 
-{ #category : #views }
+{ #category : 'views' }
 LlLibrary >> worksByImportDescending [
 	^ self rootWorks sort: #importTimestamp descending
 ]
 
-{ #category : #'magritte-accessing' }
+{ #category : 'magritte-accessing' }
 LlLibrary >> worksDescription [
 	<magritteDescription>
 	^ MAToManyRelationDescription new
@@ -318,7 +320,7 @@ LlLibrary >> worksDescription [
 		yourself
 ]
 
-{ #category : #searches }
+{ #category : 'searches' }
 LlLibrary >> worksGtSearchFor: aSearch [
 	<gtSearch>
 	
@@ -330,7 +332,7 @@ LlLibrary >> worksGtSearchFor: aSearch [
 		itemName: #displayString
 ]
 
-{ #category : #searches }
+{ #category : 'searches' }
 LlLibrary >> worksGtSearchNewFor: aSearch [
 	<gtSearch>
 	
@@ -349,7 +351,7 @@ LlLibrary >> worksGtSearchNewFor: aSearch [
 			anObject ]
 ]
 
-{ #category : #views }
+{ #category : 'views' }
 LlLibrary >> worksGtViewOn: aView [
 	<gtView>
 
@@ -360,7 +362,7 @@ LlLibrary >> worksGtViewOn: aView [
 		priority: 25
 ]
 
-{ #category : #views }
+{ #category : 'views' }
 LlLibrary >> worksRecentGtViewOn: aView [
 	<gtView>
 	^ self

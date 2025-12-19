@@ -1,6 +1,6 @@
-Extension { #name : #String }
+Extension { #name : 'String' }
 
-{ #category : #'*LivingLibrary' }
+{ #category : '*LivingLibrary' }
 String >> llAsCollection [
 	^ { MpPerson named: self }
 ]

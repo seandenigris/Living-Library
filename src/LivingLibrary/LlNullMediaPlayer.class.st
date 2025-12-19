@@ -1,10 +1,12 @@
 Class {
-	#name : #LlNullMediaPlayer,
-	#superclass : #Object,
-	#category : #'LivingLibrary-Core'
+	#name : 'LlNullMediaPlayer',
+	#superclass : 'Object',
+	#category : 'LivingLibrary-Core',
+	#package : 'LivingLibrary',
+	#tag : 'Core'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlNullMediaPlayer >> currentPosition [
 	^ nil
 ]

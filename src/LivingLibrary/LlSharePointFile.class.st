@@ -1,16 +1,18 @@
 Class {
-	#name : #LlSharePointFile,
-	#superclass : #LlWebResource,
+	#name : 'LlSharePointFile',
+	#superclass : 'LlWebResource',
 	#instVars : [
 		'owner',
 		'file',
 		'typeCodes',
 		'site'
 	],
-	#category : #'LivingLibrary-Core'
+	#category : 'LivingLibrary-Core',
+	#package : 'LivingLibrary',
+	#tag : 'Core'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 LlSharePointFile class >> fromString: aString [
 
 	| aUrl filePath owner typeCodes site |
@@ -30,19 +32,19 @@ LlSharePointFile class >> fromString: aString [
 		yourself
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 LlSharePointFile class >> peCanHandleFromString: aString [
 
 	^ self urlBaseParser matches: aString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlSharePointFile class >> urlBaseParser [
 
 	^ 'https://' asPParser, self urlSubdomainGrammar flatten, '.sharepoint.com/' asPParser ==> [ :nodes | nodes second ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlSharePointFile class >> urlSubdomainGrammar [
 	"Any valid subdomain which does not end in '-my', which would be a OneDrive URL"
 	
@@ -52,38 +54,38 @@ LlSharePointFile class >> urlSubdomainGrammar [
 	^ #word asPParser plus, (oneDriveSuffix not, $- asPParser, #word asPParser plus) star.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlSharePointFile >> downloadUrl [
 
 	^ self urlBase withPathSegments: (self typeCodes / self owner resolvePath: self file)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlSharePointFile >> file [
 	^ file
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlSharePointFile >> file: anObject [
 	file := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlSharePointFile >> name [
 	^ self propertyAt: #name ifAbsent: [ ^ self downloadUrl file ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlSharePointFile >> owner [
 	^ owner
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlSharePointFile >> owner: anObject [
 	owner := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlSharePointFile >> printOn: aStream [
 	aStream
 		nextPutAll: 'Share Point';
@@ -91,17 +93,17 @@ LlSharePointFile >> printOn: aStream [
 		print: self url
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlSharePointFile >> site [
 	^ site
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlSharePointFile >> site: anObject [
 	site := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlSharePointFile >> typeCodes [
 	^ typeCodes
 	
@@ -119,18 +121,18 @@ LlSharePointFile >> typeCodes [
 /:e - edit link (https://sharepoint.stackexchange.com/a/270230)"
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlSharePointFile >> typeCodes: anObject [
 	typeCodes := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlSharePointFile >> url [
 
 	^ self downloadUrl queryAt: 'web' put: 1
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlSharePointFile >> urlBase [
 
 	^ ('https://', self site, '.sharepoint.com') asUrl

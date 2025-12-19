@@ -1,25 +1,27 @@
 Class {
-	#name : #LlDiskImageStatus,
-	#superclass : #Announcement,
+	#name : 'LlDiskImageStatus',
+	#superclass : 'Announcement',
 	#instVars : [
 		'completionPercentage'
 	],
-	#category : 'LivingLibrary-Support'
+	#category : 'LivingLibrary-Support',
+	#package : 'LivingLibrary',
+	#tag : 'Support'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LlDiskImageStatus class >> completionPercentage: aNumber [
 
 	^ self new setCompletionPercentage: aNumber.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LlDiskImageStatus >> completionPercentage [
 
 	^ completionPercentage.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LlDiskImageStatus >> setCompletionPercentage: aNumber [
 
 	completionPercentage := aNumber.

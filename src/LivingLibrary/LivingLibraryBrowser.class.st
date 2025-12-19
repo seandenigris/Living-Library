@@ -1,10 +1,12 @@
 Class {
-	#name : #LivingLibraryBrowser,
-	#superclass : #Object,
-	#category : 'LivingLibrary-UI'
+	#name : 'LivingLibraryBrowser',
+	#superclass : 'Object',
+	#category : 'LivingLibrary-UI',
+	#package : 'LivingLibrary',
+	#tag : 'UI'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LivingLibraryBrowser class >> menuCommandOn: aBuilder [ 
 
 	<worldMenu>
@@ -12,13 +14,13 @@ LivingLibraryBrowser class >> menuCommandOn: aBuilder [
 		action: [ self open ].
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LivingLibraryBrowser class >> open [
 
 	^ self new open.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LivingLibraryBrowser >> addWorkTo: aLivingLibrary [
 
 	| type title author book |
@@ -30,7 +32,7 @@ LivingLibraryBrowser >> addWorkTo: aLivingLibrary [
 	aLivingLibrary receive: book.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LivingLibraryBrowser >> browser [
 
 	| browser |
@@ -44,7 +46,7 @@ LivingLibraryBrowser >> browser [
 	^ browser.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LivingLibraryBrowser >> collectionIn: presentation [
 
 	presentation list
@@ -62,7 +64,7 @@ LivingLibraryBrowser >> collectionIn: presentation [
 		display: #collection.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LivingLibraryBrowser >> highlight: aWrittenWork [
 
 	| content page reference quote |
@@ -75,13 +77,13 @@ LivingLibraryBrowser >> highlight: aWrittenWork [
 	aWrittenWork highlight: quote.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LivingLibraryBrowser >> open [
 
 	self browser openOn: LlLibrary uniqueInstance.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LivingLibraryBrowser >> quotesIn: aPresentation [
 	
 	aPresentation list

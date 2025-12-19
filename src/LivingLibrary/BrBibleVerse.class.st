@@ -1,23 +1,25 @@
 Class {
-	#name : #BrBibleVerse,
-	#superclass : #Object,
+	#name : 'BrBibleVerse',
+	#superclass : 'Object',
 	#instVars : [
 		'contents'
 	],
-	#category : #'LivingLibrary-Bible'
+	#category : 'LivingLibrary-Bible',
+	#package : 'LivingLibrary',
+	#tag : 'Bible'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BrBibleVerse >> contents [
 	^ self maLazyFrom: self contentsDescription
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BrBibleVerse >> contents: anObject [
 	contents := anObject
 ]
 
-{ #category : #'magritte-accessing' }
+{ #category : 'magritte-accessing' }
 BrBibleVerse >> contentsDescription [
 	<magritteDescription>
 	^ MAStringDescription new
@@ -25,7 +27,7 @@ BrBibleVerse >> contentsDescription [
 		yourself
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 BrBibleVerse >> printOn: aStream [
 	aStream nextPutAll: self contents
 ]

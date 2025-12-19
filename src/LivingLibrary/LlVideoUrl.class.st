@@ -1,10 +1,12 @@
 Class {
-	#name : #LlVideoUrl,
-	#superclass : #ZnUrl,
-	#category : #'LivingLibrary-URLs, Custom'
+	#name : 'LlVideoUrl',
+	#superclass : 'ZnUrl',
+	#category : 'LivingLibrary-URLs, Custom',
+	#package : 'LivingLibrary',
+	#tag : 'URLs, Custom'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlVideoUrl >> autoplay: aBoolean [
 	"https://vimeo.zendesk.com/hc/en-us/articles/115004485728-Autoplaying-and-looping-embedded-videos"
 

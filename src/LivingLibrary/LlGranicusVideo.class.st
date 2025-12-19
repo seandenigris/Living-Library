@@ -1,14 +1,16 @@
 Class {
-	#name : #LlGranicusVideo,
-	#superclass : #LlWebVideo,
+	#name : 'LlGranicusVideo',
+	#superclass : 'LlWebVideo',
 	#instVars : [
 		'subdomain',
 		'id'
 	],
-	#category : #'LivingLibrary-Core'
+	#category : 'LivingLibrary-Core',
+	#package : 'LivingLibrary',
+	#tag : 'Core'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlGranicusVideo class >> fromString: aString [
 	| url id |
 	url := aString asUrl.
@@ -18,7 +20,7 @@ LlGranicusVideo class >> fromString: aString [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlGranicusVideo class >> fromStringExample [
 	<gtExample>
 	^ self 
@@ -31,31 +33,31 @@ LlGranicusVideo class >> fromStringExample [
 			video subdomain should equal: 'sub' ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlGranicusVideo >> id [
 
 	^ id
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlGranicusVideo >> id: anObject [
 
 	id := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlGranicusVideo >> subdomain [
 
 	^ subdomain
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlGranicusVideo >> subdomain: anObject [
 
 	subdomain := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlGranicusVideo >> url [
 
 	| template string |
@@ -66,7 +68,7 @@ LlGranicusVideo >> url [
 	^ string asUrl
 ]
 
-{ #category : #playing }
+{ #category : 'playing' }
 LlGranicusVideo >> videoIn: page doJavaScript: aString [
 	| frame element |
 	frame := page frameReferenceFromSelector: '[src*=', self videosBaseUrl asString surroundedByDoubleQuotes, ']'.
@@ -74,14 +76,14 @@ LlGranicusVideo >> videoIn: page doJavaScript: aString [
 	^ element selfEvaluate: aString.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlGranicusVideo >> videoPlayerUrl [
 	"Just the video, no index links or agenda"
 
 	^ self videosBaseUrl /  self id / 'player'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlGranicusVideo >> videosBaseUrl [
 	
 	| template string |

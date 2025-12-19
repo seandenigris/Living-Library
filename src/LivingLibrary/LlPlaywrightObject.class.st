@@ -1,13 +1,15 @@
 Class {
-	#name : #LlPlaywrightObject,
-	#superclass : #Object,
+	#name : 'LlPlaywrightObject',
+	#superclass : 'Object',
 	#instVars : [
 		'model'
 	],
-	#category : #'LivingLibrary-Web Driving-Playwright'
+	#category : 'LivingLibrary-Web Driving-Playwright',
+	#package : 'LivingLibrary',
+	#tag : 'Web Driving-Playwright'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LlPlaywrightObject >> returnA: aClass fromScript: aBlock [
 
 	| factory |
