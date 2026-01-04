@@ -70,3 +70,9 @@ LlAppleScriptHtmlElementLocator >> selfEvaluate: aString [
 
 	^ self page doJavascript: js
 ]
+
+{ #category : 'as yet unclassified' }
+LlAppleScriptHtmlElementLocator >> textContent [
+
+	^ self selfEvaluate: 'textContent'
+]
