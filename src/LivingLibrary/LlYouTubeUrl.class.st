@@ -7,6 +7,20 @@ Class {
 }
 
 { #category : 'accessing' }
+LlYouTubeUrl class >> canonicalFromString: aString [
+	| url id hasIdInFile |
+	url := aString asUrl.
+	hasIdInFile := #('embed' 'live') includes: url pathSegments first.	"embedded"
+	id := hasIdInFile
+			ifTrue: [ id := url file ]
+			ifFalse: [ url host = 'youtu.be'
+					ifTrue: [ id := url pathSegments first ]
+					ifFalse: [ url queryAt: #v	"normal" ]	"shortened" ].
+	^ (ZnUrl fromString: 'https://www.youtube.com/watch')
+			? (#v -> id).
+]
+
+{ #category : 'accessing' }
 LlYouTubeUrl class >> exampleParsingInput: urlString shouldSetID: idString [
 	<gtExample>
 	^ self
@@ -22,19 +36,6 @@ LlYouTubeUrl class >> exampleStringInputs [
 		 'https://youtu.be/A0TafHXszg' -> 'A0TafHXszg'.
 		 'https://youtube.com/embed/A0TafHXszg?loop=1' -> 'A0TafHXszg'.
 		 'https://www.youtube.com/watch?v=QOe3FA4wJcQ' -> 'QOe3FA4wJcQ' }
-]
-
-{ #category : 'accessing' }
-LlYouTubeUrl class >> fromString: aString [
-	| url id hasIdInFile |
-	url := aString asUrl.
-	hasIdInFile := #('embed' "embedded" 'live') includes: url pathSegments first.	
-	id := hasIdInFile
-			ifTrue: [ id := url file ]
-			ifFalse: [ url host = 'youtu.be'"shortened" 
-					ifTrue: [ id := url pathSegments first ]
-					ifFalse: [ url queryAt: #v "normal" ] ].
-	^ (super fromString: 'https://www.youtube.com/watch') ? (#v -> id)
 ]
 
 { #category : 'accessing' }

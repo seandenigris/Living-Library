@@ -90,10 +90,10 @@ document.querySelector(frameSelector).getAttribute(''src'')'.
 	js := jsTemplate format: { #url -> aString surroundedBySingleQuotes } asDictionary.
 	urlString := self doJavascriptViaPython: js.
 
-	^ urlString asUrl.
+	^ LlVideoUrl fromString: urlString.
 	
 	"Implementation notes: 
-	- couldn't get this to work with the  OsaScript bridge, so using Python instead. 
+	- couldn't get this to work with the OsaScript bridge, so using Python instead. 
 	- Query selector syntax adapted from https://stackoverflow.com/a/303961"
 ]
 
