@@ -19,6 +19,20 @@ RlResource >> newWork [
 ]
 
 { #category : '*LivingLibrary' }
+RlResource >> playerGtViewFor: aView [
+	<gtView>
+	
+	(self newPlayer isKindOf: LlNullMediaPlayer) ifTrue: [ ^ aView empty ].
+	
+	^ aView forward
+		title: 'Player';
+		priority: 25;
+		object: [ self newPlayer ];
+		view: #playerGtViewFor:;
+		yourself
+]
+
+{ #category : '*LivingLibrary' }
 RlResource >> work [
 	^ self propertyAt: #llWork ifAbsent: [ nil ]
 ]
