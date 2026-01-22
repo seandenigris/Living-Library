@@ -128,6 +128,17 @@ LlMediaPlayer >> play [
 	self media playIn: self mediaContainer
 ]
 
+{ #category : 'as yet unclassified' }
+LlMediaPlayer >> playerGtViewFor: aView [
+	<gtView>
+	
+	^ aView explicit
+		title: 'Player';
+		priority: 25;
+		stencil: [ LlMediaPlayerElement on: self ];
+		yourself
+]
+
 { #category : 'accessing' }
 LlMediaPlayer >> previousSection [
 	self media previousSectionIn: self mediaContainer.
