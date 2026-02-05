@@ -8,10 +8,23 @@ Class {
 	#instVars : [
 		'id'
 	],
+	#classVars : [
+		'ApiKey'
+	],
 	#category : 'LivingLibrary-Core',
 	#package : 'LivingLibrary',
 	#tag : 'Core'
 }
+
+{ #category : 'accessing' }
+LlYouTubeVideo class >> apiKey [
+	^ ApiKey
+]
+
+{ #category : 'accessing' }
+LlYouTubeVideo class >> apiKey: anObject [
+	ApiKey := anObject
+]
 
 { #category : 'example' }
 LlYouTubeVideo class >> exampleStopDrawingDeadFish [
@@ -183,9 +196,23 @@ LlYouTubeVideo >> seekTo: aDuration in: page [
 
 { #category : 'accessing' }
 LlYouTubeVideo >> title [
-	"We'd like to get from API: ('https://www.googleapis.com/youtube/v3/videos?part=id%2C+snippet&id=', self id, '&key=') asUrl
-	Adapted from https://stackoverflow.com/a/50076966"
-	self shouldBeImplemented
+	"Adapted from https://stackoverflow.com/a/50076966"
+	
+	| aUrl |
+	
+	self class apiKey ifNil: [ ^ nil ].
+	
+	aUrl := 'https://www.googleapis.com/youtube/v3/videos?part=id%2C+snippet' asUrl
+		queryAt: #id put: self id;
+		queryAt: #key put: self class apiKey;
+		yourself.
+	^ ZnClient new
+		forJsonREST;
+		contentReader: [ :entity | 
+			| json |
+			json := ZnUtils defaultJSONReader fromString: entity contents.
+			(json at: #items) first atPath: { #snippet. #title } ];
+		get: aUrl
 ]
 
 { #category : 'accessing' }
