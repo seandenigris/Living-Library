@@ -29,7 +29,8 @@ LlPlaywright class >> install [
 LlPlaywright class >> shutDown: quitting [
 	quitting ifFalse: [ ^ self ].
 
-	PythonInstance ifNotNil: #stop
+	PythonInstance ifNotNil: #stop.
+	PythonInstance := nil
 ]
 
 { #category : 'accessing' }
