@@ -306,7 +306,7 @@ LlLibrary >> works: aValuable gtViewOn: aView title: aString priority: aNumber [
 
 { #category : 'views' }
 LlLibrary >> worksByImportDescending [
-	^ self rootWorks sort: #importTimestamp descending
+	^ self rootWorks sort: #importTimestamp descending undefinedLast
 ]
 
 { #category : 'magritte-accessing' }
