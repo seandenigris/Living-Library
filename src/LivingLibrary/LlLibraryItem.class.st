@@ -92,7 +92,7 @@ LlLibraryItem >> workDescription [
 LlLibraryItem >> workEnsured [
 
 	| aWork |
-	aWork := self work ifNil: [ LlAuthoredWork titled: self title ].
+	aWork := work ifNil: [ LlAuthoredWork titled: self title ].
 	LlLibrary uniqueInstance addCopy: self of: aWork.
 	^ aWork
 ]
