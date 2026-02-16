@@ -83,6 +83,16 @@ LlYouTubeVideo class >> fromStringExampleInput: urlString shouldSetID: idString 
 ]
 
 { #category : 'instance creation' }
+LlYouTubeVideo class >> fromYouTubeUrl: aUrl [
+
+	self flag: 'or should it be fromUrl: and then convert if not a YT URL?'.
+
+	^ self new
+		id: aUrl id;
+		yourself
+]
+
+{ #category : 'instance creation' }
 LlYouTubeVideo class >> peCanHandleFromString: aString [
 	^ LlYouTubeUrl peCanHandleFromString: aString
 ]
