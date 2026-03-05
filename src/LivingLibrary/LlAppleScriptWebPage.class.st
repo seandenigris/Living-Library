@@ -108,6 +108,15 @@ LlAppleScriptWebPage >> isDocumentComplete [
 ]
 
 { #category : 'as yet unclassified' }
+LlAppleScriptWebPage >> loadEnsured [
+
+	self exists ifTrue: [ ^ self ].
+	
+	self browser open: self url.
+	self waitForDocumentToLoad
+]
+
+{ #category : 'as yet unclassified' }
 LlAppleScriptWebPage >> name [
 
 	^ self pythonInstance name callMethod: #get
