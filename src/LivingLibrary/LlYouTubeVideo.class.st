@@ -83,12 +83,13 @@ LlYouTubeVideo class >> fromStringExampleInput: urlString shouldSetID: idString 
 ]
 
 { #category : 'instance creation' }
-LlYouTubeVideo class >> fromYouTubeUrl: aUrl [
+LlYouTubeVideo class >> fromUrl: aUrl [
 
-	self flag: 'or should it be fromUrl: and then convert if not a YT URL?'.
+	| youTubeUrl |
+	youTubeUrl := LlYouTubeUrl fromString: aUrl asString.
 
 	^ self new
-		id: aUrl id;
+		id: youTubeUrl id;
 		yourself
 ]
 
