@@ -521,6 +521,8 @@ LlAuthoredWork >> library [
 
 { #category : 'debugging' }
 LlAuthoredWork >> library: anObject [
+	"Can override to perform post-import actions, but make sure to call this super method first"
+	
 	library := anObject.
 	self importTimestamp: DateAndTime now translateToUTC
 ]

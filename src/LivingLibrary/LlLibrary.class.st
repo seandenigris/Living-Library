@@ -193,9 +193,11 @@ LlLibrary >> ensureCardFor: work [
 	work family do: [ :e | 
 		self catalog 
 			at: e 
-			ifAbsentPut: [ 
-				e library: self.
-				Set new ] ].
+			ifAbsent: [ 
+				self catalog 
+					at: e 
+					put: Set new.
+				e library: self ] ].
 	^ self catalog at: work
 ]
 
