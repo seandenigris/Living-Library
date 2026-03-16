@@ -184,7 +184,7 @@ LlAppleScriptWebPage >> url: aUrl [
 		#document -> self documentIdString.
 		#targetUrl -> aUrl asString } asDictionary.
 	self browser applescriptTellTo: script.
-	url := aUrl.
+	self basicUrl: aUrl.
 	self waitForDocumentToLoad.
 ]
 
