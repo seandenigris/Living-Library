@@ -23,8 +23,13 @@ LlWebResource class >> cachingUrl: aUrl [
 
 { #category : 'instance creation' }
 LlWebResource class >> fromString: aString [
+	^ self fromUrl: aString asUrl
+]
+
+{ #category : 'instance creation' }
+LlWebResource class >> fromUrl: aUrl [
 	^ self new
-		url: aString asUrl;
+		url: aUrl;
 		yourself
 ]
 
