@@ -1,6 +1,9 @@
 Class {
 	#name : 'LlWebVideo',
 	#superclass : 'LlWebResource',
+	#instVars : [
+		'querySelector'
+	],
 	#category : 'LivingLibrary-Core',
 	#package : 'LivingLibrary',
 	#tag : 'Core'
@@ -85,6 +88,16 @@ LlWebVideo >> present [
 		yourself
 ]
 
+{ #category : 'accessing' }
+LlWebVideo >> querySelector [
+	^ querySelector ifNil: [ 'video' ]
+]
+
+{ #category : 'accessing' }
+LlWebVideo >> querySelector: anObject [
+	querySelector := anObject
+]
+
 { #category : 'player-media' }
 LlWebVideo >> seekTo: aDuration in: page [
 	self videoIn: page doJavaScript: 'currentTime = ', aDuration asSeconds asString.
@@ -92,5 +105,5 @@ LlWebVideo >> seekTo: aDuration in: page [
 
 { #category : 'accessing' }
 LlWebVideo >> videoIn: page doJavaScript: aString [
-	^ self element: 'video' in: page doJavaScript: aString
+	^ self element: self querySelector in: page doJavaScript: aString
 ]
