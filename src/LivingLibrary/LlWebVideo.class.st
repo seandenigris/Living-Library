@@ -30,6 +30,11 @@ LlWebVideo >> currentTimeIn: page [
 ]
 
 { #category : 'accessing' }
+LlWebVideo >> defaultDriver [
+	^ self propertyAt: #defaultDriver
+]
+
+{ #category : 'accessing' }
 LlWebVideo >> defaultDriver: anObject [
 	self propertyAt: #defaultDriver put: anObject
 ]
@@ -55,9 +60,7 @@ LlWebVideo >> isPlayingIn: page [
 LlWebVideo >> newPlayer [
 	| result |
 	result := LlMediaPlayer on: self.
-	self 
-		propertyAt: #defaultDriver 
-		ifPresent: [ :driver | result driver: driver ].
+	self defaultDriver ifNotNil: [ :driver | result driver: driver ].
 	^ result
 ]
 

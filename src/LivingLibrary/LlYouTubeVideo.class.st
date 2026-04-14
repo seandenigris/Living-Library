@@ -107,6 +107,14 @@ LlYouTubeVideo >> currentTimeIn: page [
 ]
 
 { #category : 'accessing' }
+LlYouTubeVideo >> defaultDriver [
+
+	^ self
+		propertyAt: #defaultDriver
+		ifAbsent: [ LlApplescriptMediaDriver new ]
+]
+
+{ #category : 'accessing' }
 LlYouTubeVideo >> displayStringOn: aStream [
 	aStream
 		nextPutAll: 'YouTube Video: ';
