@@ -51,7 +51,7 @@ LlPlaywright class >> start [
 LlPlaywright class >> stop [
 	PythonInstance ifNil: [ ^ self ].
 	
-	[ PythonInstance send: #stop ] on: Error do: [].
+	[ PythonInstance send: #stop ] on: Exception do: [].
 	PythonInstance := nil
 ]
 
