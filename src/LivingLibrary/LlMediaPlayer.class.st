@@ -17,12 +17,11 @@ The underlying app we use to present the media. Examples might include:
 "
 Class {
 	#name : 'LlMediaPlayer',
-	#superclass : 'Object',
+	#superclass : 'LlAbstractMediaPlayer',
 	#instVars : [
-		'media',
-		'driver',
 		'mediaContainer',
-		'requestedSpeed'
+		'driver',
+		'media'
 	],
 	#category : 'LivingLibrary-Core',
 	#package : 'LivingLibrary',
@@ -74,17 +73,15 @@ LlMediaPlayer >> driver: anObject [
 	driver := anObject
 ]
 
-{ #category : 'accessing' }
-LlMediaPlayer >> isPlaying [
-	^ self media isPlayingIn: self mediaContainer
+{ #category : 'as yet unclassified' }
+LlMediaPlayer >> duration [
+
+	^ self media duration
 ]
 
 { #category : 'accessing' }
-LlMediaPlayer >> isPlaying: aBoolean [
-	
-	aBoolean
-		ifTrue: [ self play ]
-		ifFalse: [ self pause ]
+LlMediaPlayer >> isPlaying [
+	^ self media isPlayingIn: self mediaContainer
 ]
 
 { #category : 'as yet unclassified' }
@@ -128,17 +125,6 @@ LlMediaPlayer >> play [
 	self media playIn: self mediaContainer
 ]
 
-{ #category : 'as yet unclassified' }
-LlMediaPlayer >> playerGtViewFor: aView [
-	<gtView>
-	
-	^ aView explicit
-		title: 'Player';
-		priority: 25;
-		stencil: [ LlMediaPlayerElement on: self ];
-		yourself
-]
-
 { #category : 'accessing' }
 LlMediaPlayer >> previousSection [
 	self media previousSectionIn: self mediaContainer.
@@ -152,32 +138,10 @@ LlMediaPlayer >> quit [
 ]
 
 { #category : 'accessing' }
-LlMediaPlayer >> requestedSpeed [
-
-	^ requestedSpeed
-]
-
-{ #category : 'accessing' }
-LlMediaPlayer >> requestedSpeed: aNumber [
-
-	requestedSpeed := aNumber
-]
-
-{ #category : 'accessing' }
 LlMediaPlayer >> reset [
 	mediaContainer ifNil: [ ^ self ].
 	mediaContainer onQuit.
 	mediaContainer := nil.
-]
-
-{ #category : 'accessing' }
-LlMediaPlayer >> restorePlayStateAfter: aBlock [
-	| playState |
-	playState := self isPlaying.
-	aBlock value.
-	self isPlaying: playState
-	
-	"Note: this was first needed because it seemed that seeking via Playwright driver plays the video even if it wasn't already"
 ]
 
 { #category : 'accessing' }
@@ -201,13 +165,6 @@ LlMediaPlayer >> speed [
 { #category : 'accessing' }
 LlMediaPlayer >> speed: aNumber [
 
-	self requestedSpeed: aNumber.
+	super speed: aNumber.
 	self media playbackSpeed: aNumber in: self mediaContainer
-]
-
-{ #category : 'accessing' }
-LlMediaPlayer >> togglePlayPause [
-	self isPlaying
-		ifTrue: [ self pause ]
-		ifFalse: [ self play ]
 ]
