@@ -107,6 +107,31 @@ LlYouTubeVideo >> currentTimeIn: page [
 ]
 
 { #category : 'accessing' }
+LlYouTubeVideo >> dataApiJsonParts: aCollection do: aBlock [
+	"Adapted from https://stackoverflow.com/a/50076966"
+	
+	| aUrl partsString |
+	
+	self class apiKey ifNil: [ ^ nil ].
+	
+	partsString := aCollection joinUsing: $,.
+	
+	aUrl := 'https://www.googleapis.com/youtube/v3/videos' asUrl
+		queryAt: #part put: partsString;
+		queryAt: #id put: self id;
+		queryAt: #key put: self class apiKey;
+		yourself.
+		
+	^ ZnClient new
+		forJsonREST;
+		contentReader: [ :entity | 
+			| json |
+			json := ZnUtils defaultJSONReader fromString: entity contents.
+			aBlock value: json ];
+		get: aUrl.
+]
+
+{ #category : 'accessing' }
 LlYouTubeVideo >> defaultDriver [
 
 	^ self
@@ -167,6 +192,33 @@ rv.2.rating=4.8801843318"
 ]
 
 { #category : 'accessing' }
+LlYouTubeVideo >> duration [
+
+	| number hours min sec parser |
+	number := #digit asPParser plus flatten ==> #asNumber.
+	hours := number, $H asPParser ==> #first.
+	min := number, $M asPParser ==> #first.
+	sec := number, $S asPParser ==>  #first.
+	parser := 'PT' asPParser, hours optional, min optional, sec optional ==> [ :nodes |
+		Duration
+			days: 0
+			hours: (nodes second ifNil: [ 0 ])
+			minutes: (nodes third ifNil: [ 0 ])
+			seconds: (nodes fourth ifNil: [ 0 ]) ].
+		
+	^ self 
+		dataApiJsonParts: #(contentDetails)
+		do: [ :json |
+			| iso8601 |
+			iso8601 := (json at: #items) first atPath: { #contentDetails. #duration }.
+			parser parse: iso8601 ]
+			
+	"
+	- API call adapted from https://stackoverflow.com/a/15605838
+	- ISO 8601 format. See https://en.wikipedia.org/wiki/ISO_8601#Durations"
+]
+
+{ #category : 'accessing' }
 LlYouTubeVideo >> id [
 	^ id
 ]
@@ -215,23 +267,11 @@ LlYouTubeVideo >> seekTo: aDuration in: page [
 
 { #category : 'accessing' }
 LlYouTubeVideo >> title [
-	"Adapted from https://stackoverflow.com/a/50076966"
 	
-	| aUrl |
-	
-	self class apiKey ifNil: [ ^ nil ].
-	
-	aUrl := 'https://www.googleapis.com/youtube/v3/videos?part=id%2C+snippet' asUrl
-		queryAt: #id put: self id;
-		queryAt: #key put: self class apiKey;
-		yourself.
-	^ ZnClient new
-		forJsonREST;
-		contentReader: [ :entity | 
-			| json |
-			json := ZnUtils defaultJSONReader fromString: entity contents.
-			(json at: #items) first atPath: { #snippet. #title } ];
-		get: aUrl
+	^ self 
+		dataApiJsonParts: #(snippet)
+		do: [ :json |
+			(json at: #items) first atPath: { #snippet. #title } ]
 ]
 
 { #category : 'accessing' }
