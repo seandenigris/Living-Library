@@ -61,6 +61,9 @@ LlWebVideo >> element: selectorString in: page doJavaScript: jsString [
 
 { #category : 'playing' }
 LlWebVideo >> isPlayingIn: page [
+	
+	page exists ifFalse: [ ^ false ].
+	
 	^ (self videoIn: page doJavaScript: 'paused') not.
 ]
 
