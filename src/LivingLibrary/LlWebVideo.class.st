@@ -39,6 +39,14 @@ LlWebVideo >> defaultDriver: anObject [
 	self propertyAt: #defaultDriver put: anObject
 ]
 
+{ #category : 'as yet unclassified' }
+LlWebVideo >> durationIn: page [
+	
+	| secondsString |
+	secondsString := self videoIn: page doJavaScript: 'duration'.
+	^ secondsString asNumber seconds.
+]
+
 { #category : 'accessing' }
 LlWebVideo >> element: selectorString in: page [
 	^ page elementLocatorFromSelector: selectorString
