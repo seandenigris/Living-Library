@@ -237,6 +237,7 @@ LlYouTubeVideo >> newPlayer [
 
 { #category : 'accessing' }
 LlYouTubeVideo >> pauseIn: page [ 
+	page exists ifFalse: [ self error: 'Page does not exist: ', page url asString ].
 	^ self playerIn: page doJavaScript: 'pauseVideo()'.
 ]
 
@@ -257,10 +258,15 @@ LlYouTubeVideo >> playerIn: page doJavaScript: aString [
 { #category : 'accessing' }
 LlYouTubeVideo >> seekTo: aDuration in: page [
 	
-	| template js |
+	| template js myDuration safeDuration |
+	
+	"If we try to seek past the end of the video, the currentTime does not update correctly"
+	myDuration := self durationIn: page.
+	safeDuration := aDuration min: myDuration.
+	
 	template := 'seekTo({seconds}, {allowSeekAhead})'.
 	js := template format: { 
-		#seconds -> aDuration asSeconds. 
+		#seconds -> safeDuration asSeconds. 
 		#allowSeekAhead -> true } asDictionary.
 	^ self playerIn: page doJavaScript: js.
 ]
