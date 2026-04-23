@@ -130,6 +130,12 @@ LlPlaylistPlayer >> mediaStream: anObject [
 ]
 
 { #category : 'as yet unclassified' }
+LlPlaylistPlayer >> nextSection [
+	
+	self playerNext
+]
+
+{ #category : 'as yet unclassified' }
 LlPlaylistPlayer >> pause [
 
 	self playerCurrent pause
