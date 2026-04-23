@@ -30,7 +30,8 @@ LlPlaylist >> itemsGtViewFor: aView [
   ^ aView columnedList
       title: 'Items';
       items: [ items ];
-      column: 'Value' text: [ :each | each gtDisplayString ]
+      column: 'Value' text: [ :each | each gtDisplayString ];
+      actionUpdateButton
 ]
 
 { #category : 'as yet unclassified' }
