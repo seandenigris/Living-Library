@@ -102,6 +102,7 @@ LlPlaylistPlayer >> mediaCurrent: anObject [
 			
 		self playerCurrent 
 			show;
+			pause;
 			speed: self requestedSpeed ].
 ]
 
