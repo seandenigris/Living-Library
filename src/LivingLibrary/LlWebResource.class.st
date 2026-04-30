@@ -88,12 +88,19 @@ LlWebResource >> descriptionDescription [
 
 { #category : 'caching' }
 LlWebResource >> download [
+	
+	^ self
+		downloadTo: self url rlFilename
+		with: [ :aFile | self url saveContentsToFile: aFile ]
+]
+
+{ #category : 'caching' }
+LlWebResource >> downloadTo: filename with: aBlock [
 	| file |
-	file := Tempfile named: self url rlFilename.
-	file parent ensureCreateDirectory.
-	self url saveContentsToFile: file.
+	file := Tempfile named: filename.
+	aBlock value: file.
 	^ file asRlResource
-		source: self url;
+		source: self;
 		yourself
 ]
 
