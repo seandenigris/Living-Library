@@ -23,6 +23,8 @@ LlYouTubeVideo class >> apiKey [
 
 { #category : 'accessing' }
 LlYouTubeVideo class >> apiKey: anObject [
+	"Key created and accessed at https://console.cloud.google.com/apis/credentials"
+	
 	ApiKey := anObject
 ]
 
