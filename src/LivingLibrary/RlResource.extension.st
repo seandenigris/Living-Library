@@ -6,35 +6,9 @@ RlResource class >> calibreName [
 ]
 
 { #category : '*LivingLibrary' }
-RlResource >> newPlayer [
-
-	^ LlNullMediaPlayer new
-]
-
-{ #category : '*LivingLibrary' }
 RlResource >> newWork [
 	^ LlAuthoredWork new
 		title: self file base;
-		yourself
-]
-
-{ #category : '*LivingLibrary' }
-RlResource >> playerClass [
-
-	^ LlNullMediaPlayer
-]
-
-{ #category : '*LivingLibrary' }
-RlResource >> playerGtViewFor: aView [
-	<gtView>
-	
-	(self newPlayer isKindOf: LlNullMediaPlayer) ifTrue: [ ^ aView empty ].
-	
-	^ aView forward
-		title: 'Player';
-		priority: 25;
-		object: [ self newPlayer ];
-		view: #playerGtViewFor:;
 		yourself
 ]
 

@@ -1,1 +1,1 @@
-Package { #name : #BaselineOfLivingLibrary }
+Package { #name : 'BaselineOfLivingLibrary' }

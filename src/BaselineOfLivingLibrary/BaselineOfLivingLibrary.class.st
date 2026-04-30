@@ -14,23 +14,18 @@ Here, in the magical virtual world, the possibilities are exponentially more.
 We define a `library` as a place where one can find `copies` of `authored works`. Check out  {{gtClass:LlLibrary|show=#gtCoderLepiterCommentsFor:}} for more info.
 "
 Class {
-	#name : #BaselineOfLivingLibrary,
-	#superclass : #BaselineOf,
-	#category : #BaselineOfLivingLibrary
+	#name : 'BaselineOfLivingLibrary',
+	#superclass : 'BaselineOf',
+	#category : 'BaselineOfLivingLibrary',
+	#package : 'BaselineOfLivingLibrary'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 BaselineOfLivingLibrary class >> isDynabook [
 	^ true
 ]
 
-{ #category : #setup }
-BaselineOfLivingLibrary class >> pipEnvPostLoad [
-	
-	LlPlaywright install.
-]
-
-{ #category : #baseline }
+{ #category : 'baseline' }
 BaselineOfLivingLibrary >> baseline: spec [
 	<baseline>
 	
@@ -79,14 +74,14 @@ BaselineOfLivingLibrary >> baseline: spec [
 				spec requires: #(#'XPath' "needed for bible stuff") ] ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BaselineOfLivingLibrary >> customProjectAttributes [
 	^ self isGTImage
 			ifFalse: [ #(notGToolkit) ]
 			ifTrue: [ #(GToolkit) ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BaselineOfLivingLibrary >> isGTImage [
 	
 	^ RPackageOrganizer default packageNames anySatisfy: [ :pn | pn beginsWith: 'Lepiter-' ].
