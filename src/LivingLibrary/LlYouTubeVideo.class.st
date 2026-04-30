@@ -101,14 +101,6 @@ LlYouTubeVideo class >> peCanHandleFromString: aString [
 ]
 
 { #category : 'accessing' }
-LlYouTubeVideo >> currentTimeIn: page [
-
-	| secondsString |
-	secondsString := self playerIn: page doJavaScript: 'getCurrentTime()'.
-	^ secondsString asNumber seconds
-]
-
-{ #category : 'accessing' }
 LlYouTubeVideo >> dataApiJsonParts: aCollection do: aBlock [
 	"Adapted from https://stackoverflow.com/a/50076966"
 	
@@ -155,6 +147,7 @@ LlYouTubeVideo >> download [
 
 { #category : 'accessing' }
 LlYouTubeVideo >> duration [
+	"Second resolution, but YT really uses sub-second precision, which is available via LlDomVideo>>duration"
 
 	| number hours min sec parser |
 	number := #digit asPParser plus flatten ==> #asNumber.
@@ -190,47 +183,9 @@ LlYouTubeVideo >> id: aString [
 	id := aString
 ]
 
-{ #category : 'accessing' }
-LlYouTubeVideo >> newPlayer [
-	^ super newPlayer
-		driver: LlApplescriptMediaDriver new;
-		yourself
-]
-
-{ #category : 'accessing' }
-LlYouTubeVideo >> pauseIn: page [ 
-	page exists ifFalse: [ self error: 'Page does not exist: ', page url asString ].
-	^ self playerIn: page doJavaScript: 'pauseVideo()'.
-]
-
-{ #category : 'accessing' }
-LlYouTubeVideo >> playIn: page [
-	^ self playerIn: page doJavaScript: 'playVideo()'.
-]
-
-{ #category : 'accessing' }
-LlYouTubeVideo >> playerIn: page doJavaScript: aString [
-	"Player API Reference: https://developers.google.com/youtube/iframe_api_reference"
-
-	| playerElement |
-	playerElement := page domElementFromSelector: '#movie_player'.
-	^ playerElement selfEvaluate: aString.
-]
-
-{ #category : 'accessing' }
-LlYouTubeVideo >> seekTo: aDuration in: page [
-	
-	| template js myDuration safeDuration |
-	
-	"If we try to seek past the end of the video, the currentTime does not update correctly"
-	myDuration := self durationIn: page.
-	safeDuration := aDuration min: myDuration.
-	
-	template := 'seekTo({seconds}, {allowSeekAhead})'.
-	js := template format: { 
-		#seconds -> safeDuration asSeconds. 
-		#allowSeekAhead -> true } asDictionary.
-	^ self playerIn: page doJavaScript: js.
+{ #category : 'as yet unclassified' }
+LlYouTubeVideo >> playableClass [
+	^ LlDomYouTubeVideo
 ]
 
 { #category : 'accessing' }

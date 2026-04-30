@@ -1,5 +1,5 @@
 Class {
-	#name : 'LlDomVideoElement',
+	#name : 'LlDomVideo',
 	#superclass : 'LlDomElementLocator',
 	#category : 'LivingLibrary-Web Driving',
 	#package : 'LivingLibrary',
@@ -7,7 +7,7 @@ Class {
 }
 
 { #category : 'as yet unclassified' }
-LlDomVideoElement class >> in: page [
+LlDomVideo class >> in: page [
 	"Default querySelector is sufficient unless there are multiple videos on a page to distinguish, which can be done via e.g. ID or class"
 
 	^ self
@@ -16,19 +16,19 @@ LlDomVideoElement class >> in: page [
 ]
 
 { #category : 'as yet unclassified' }
-LlDomVideoElement >> currentPosition [
+LlDomVideo >> currentPosition [
 	"Subclasses may override if e.g. video has seekable chapters, slides, etc"
 	^ self currentTime
 ]
 
 { #category : 'as yet unclassified' }
-LlDomVideoElement >> currentPosition: aDuration [
+LlDomVideo >> currentPosition: aDuration [
 	"Subclasses may override if e.g. video has seekable chapters, slides, etc"
 	self seekTo: aDuration
 ]
 
 { #category : 'as yet unclassified' }
-LlDomVideoElement >> currentTime [
+LlDomVideo >> currentTime [
 
 	| secondsString |
 	secondsString := self doJavaScript: 'currentTime'.
@@ -36,7 +36,7 @@ LlDomVideoElement >> currentTime [
 ]
 
 { #category : 'as yet unclassified' }
-LlDomVideoElement >> duration [
+LlDomVideo >> duration [
 	
 	| secondsString |
 	secondsString := self doJavaScript: 'duration'.
@@ -44,7 +44,7 @@ LlDomVideoElement >> duration [
 ]
 
 { #category : 'as yet unclassified' }
-LlDomVideoElement >> isPlaying [
+LlDomVideo >> isPlaying [
 	
 	self page exists ifFalse: [ ^ false ].
 	
@@ -52,26 +52,26 @@ LlDomVideoElement >> isPlaying [
 ]
 
 { #category : 'as yet unclassified' }
-LlDomVideoElement >> pause [
+LlDomVideo >> pause [
 	self doJavaScript: 'pause()'.
 ]
 
 { #category : 'as yet unclassified' }
-LlDomVideoElement >> play [
+LlDomVideo >> play [
 	self doJavaScript: 'play()'.
 ]
 
 { #category : 'as yet unclassified' }
-LlDomVideoElement >> playbackSpeed [
+LlDomVideo >> playbackSpeed [
 	^ self doJavaScript: 'playbackRate'.
 ]
 
 { #category : 'as yet unclassified' }
-LlDomVideoElement >> playbackSpeed: aNumber [
+LlDomVideo >> playbackSpeed: aNumber [
 	self doJavaScript: 'playbackRate=', aNumber asString.
 ]
 
 { #category : 'as yet unclassified' }
-LlDomVideoElement >> seekTo: aDuration [
+LlDomVideo >> seekTo: aDuration [
 	self doJavaScript: 'currentTime = ', aDuration asSeconds asString.
 ]

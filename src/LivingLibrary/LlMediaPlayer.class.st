@@ -125,7 +125,7 @@ LlMediaPlayer >> play [
 LlMediaPlayer >> playable [
 
 	self flag: 'this is hard-coded and must be delegated!'.
-	^ LlDomVideoElement in: self mediaContainer
+	^ self media playableClass in: self mediaContainer
 ]
 
 { #category : 'accessing' }

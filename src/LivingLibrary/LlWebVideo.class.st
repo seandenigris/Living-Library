@@ -16,6 +16,11 @@ LlWebVideo >> defaultDriver [
 	^ LlApplescriptMediaDriver new
 ]
 
+{ #category : 'as yet unclassified' }
+LlWebVideo >> playableClass [
+	^ LlDomVideo
+]
+
 { #category : 'accessing' }
 LlWebVideo >> present [
 	^ self newPlayer

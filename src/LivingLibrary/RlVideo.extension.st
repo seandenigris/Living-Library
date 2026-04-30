@@ -23,3 +23,8 @@ RlVideo >> newWork [
 		type: #Video;
 		yourself
 ]
+
+{ #category : '*LivingLibrary' }
+RlVideo >> playableClass [
+	^ LlDomVideo
+]
