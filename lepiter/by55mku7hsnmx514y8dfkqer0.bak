@@ -1,0 +1,150 @@
+{
+	"__schema" : "4.1",
+	"__type" : "page",
+	"uid" : {
+		"__type" : "uuid",
+		"uuid" : "2ccd4ad2-e518-4546-9705-a4228bbed2c9"
+	},
+	"pageType" : {
+		"__type" : "namedPage",
+		"title" : "Media Player Model"
+	},
+	"children" : {
+		"__type" : "snippets",
+		"items" : [
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-04-28T20:53:51.466113-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-04-28T20:55:25.518026-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "Kxk/b76KT4maWnVrFKNeaw=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "The default {{gtClass:LlMediaPlayer}} class has `media`, a `driver` and a `container` in which the media plays."
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-04-28T20:55:28.944406-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-04-28T21:15:54.649968-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "sg6avXvgRK+GWooIBcL5fw=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "Roles and responsibilities can get a little confusing. Let's start with a common case, playing a video. {{gtMethod:LlMediaPlayer>>play}} asks the `media` to `playIn:` a container. \n\nTwo examples of `playIn:` implementations:\n- For HTML videos, {{gtMethod:LlWebVideo>>playIn:}} sends {{gtMethod:LlWebVideo>>videoIn:doJavaScript:}} which sends JS `play()` to a video HTML tag.\n- For YouTube videos, there is a player API, so {{gtMethod:LlYouTubeVideo>>playIn:}} sends {{gtMethod:LlYouTubeVideo>>playerIn:doJavaScript:}} which sends JS `playVideo()` to a player HTML tag.\n\nIt seems reasonable that each media type knows how to identify the HTML element representing it. This way, we can use polymorphism to have the player send the same message to any media type and avoid switch-statement-style control. What's less clear is whether it then makes sense to control this element through messages implemented in each media type for each command (`pauseIn:`, `playIn:`, etc). I guess the case could be made for WebVideos since control in a webpage seems inherent to their identity, but for RlVideos? These methods would be the same, but in a different hierarchy. We could share them via a trait e.g. LlTPlayableVideo... or maybe have them both return a VideoHtmlElement object? YouTube videos could subclass or sibling with their player-style modifications."
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-04-28T21:19:19.740896-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-04-28T21:19:45.472735-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "2DVdxQLmT12h+jY86+glRg=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "My gut says to create an LlPlayableHtmlElement object..."
+			}
+		]
+	},
+	"createEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"createTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2026-04-28T20:53:49.967706-04:00"
+		}
+	},
+	"editEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"editTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2026-04-28T20:53:49.967706-04:00"
+		}
+	}
+}

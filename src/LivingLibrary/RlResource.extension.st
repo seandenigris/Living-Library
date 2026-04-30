@@ -19,6 +19,12 @@ RlResource >> newWork [
 ]
 
 { #category : '*LivingLibrary' }
+RlResource >> playerClass [
+
+	^ LlNullMediaPlayer
+]
+
+{ #category : '*LivingLibrary' }
 RlResource >> playerGtViewFor: aView [
 	<gtView>
 	

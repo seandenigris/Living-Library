@@ -37,28 +37,24 @@ LlMediaPlayer class >> on: anObject [
 
 { #category : 'accessing' }
 LlMediaPlayer >> currentPosition [
-	^ self media currentPositionIn: self mediaContainer
+	^ self playable currentPosition
 ]
 
 { #category : 'accessing' }
 LlMediaPlayer >> currentPosition: anObject [
 	self restorePlayStateAfter: [
-		self media 
-			currentPosition: anObject 
-			in: self mediaContainer ]
+		self playable currentPosition: anObject ]
 ]
 
 { #category : 'accessing' }
 LlMediaPlayer >> currentTime [
-	^ self media currentTimeIn: self mediaContainer
+	^ self playable currentTime
 ]
 
 { #category : 'accessing' }
 LlMediaPlayer >> currentTime: aDuration [
 	self restorePlayStateAfter: [
-		self media 
-			seekTo: aDuration 
-			in: self mediaContainer ]
+		self playable seekTo: aDuration ]
 ]
 
 { #category : 'accessing' }
@@ -81,7 +77,7 @@ LlMediaPlayer >> duration [
 
 { #category : 'accessing' }
 LlMediaPlayer >> isPlaying [
-	^ self media isPlayingIn: self mediaContainer
+	^ self playable isPlaying
 ]
 
 { #category : 'as yet unclassified' }
@@ -117,12 +113,19 @@ LlMediaPlayer >> nextSection [
 
 { #category : 'actions' }
 LlMediaPlayer >> pause [
-	self media pauseIn: self mediaContainer
+	self playable pause
 ]
 
 { #category : 'actions' }
 LlMediaPlayer >> play [
-	self media playIn: self mediaContainer
+	self playable play
+]
+
+{ #category : 'actions' }
+LlMediaPlayer >> playable [
+
+	self flag: 'this is hard-coded and must be delegated!'.
+	^ LlDomVideoElement in: self mediaContainer
 ]
 
 { #category : 'accessing' }
@@ -159,12 +162,12 @@ LlMediaPlayer >> show [
 
 { #category : 'accessing' }
 LlMediaPlayer >> speed [
-	^ self media playbackSpeedIn: self mediaContainer
+	^ self playable playbackSpeed
 ]
 
 { #category : 'accessing' }
 LlMediaPlayer >> speed: aNumber [
 
 	super speed: aNumber.
-	self media playbackSpeed: aNumber in: self mediaContainer
+	self playable playbackSpeed: aNumber
 ]

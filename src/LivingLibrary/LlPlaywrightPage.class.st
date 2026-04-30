@@ -35,7 +35,7 @@ LlPlaywrightPage >> browser: anObject [
 ]
 
 { #category : 'player API' }
-LlPlaywrightPage >> elementLocatorFromSelector: aString [
+LlPlaywrightPage >> domElementFromSelector: aString [
 	
 	^ self locator: aString
 ]

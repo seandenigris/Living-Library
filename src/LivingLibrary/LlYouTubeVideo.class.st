@@ -132,14 +132,6 @@ LlYouTubeVideo >> dataApiJsonParts: aCollection do: aBlock [
 ]
 
 { #category : 'accessing' }
-LlYouTubeVideo >> defaultDriver [
-
-	^ self
-		propertyAt: #defaultDriver
-		ifAbsent: [ LlApplescriptMediaDriver new ]
-]
-
-{ #category : 'accessing' }
 LlYouTubeVideo >> displayStringOn: aStream [
 	aStream
 		nextPutAll: 'YouTube Video: ';
@@ -251,7 +243,7 @@ LlYouTubeVideo >> playerIn: page doJavaScript: aString [
 	"Player API Reference: https://developers.google.com/youtube/iframe_api_reference"
 
 	| playerElement |
-	playerElement := page elementLocatorFromSelector: '#movie_player'.
+	playerElement := page domElementFromSelector: '#movie_player'.
 	^ playerElement selfEvaluate: aString.
 ]
 

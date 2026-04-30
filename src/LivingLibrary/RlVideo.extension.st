@@ -1,6 +1,12 @@
 Extension { #name : 'RlVideo' }
 
 { #category : '*LivingLibrary' }
+RlVideo >> defaultDriver [
+
+	^ LlApplescriptMediaDriver "LlPythonMpv" new
+]
+
+{ #category : '*LivingLibrary' }
 RlVideo >> llNewScreencast [
 	| timeParser filenameParser |
 	timeParser := (#digit asPParser plus flatten delimitedBy: $. asPParser), #any asPParser plus flatten ==> [ :n | Time fromString: n first first, ':', n first third, ':', n first fifth, n second  ].
