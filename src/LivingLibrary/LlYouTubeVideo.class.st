@@ -114,7 +114,7 @@ LlYouTubeVideo >> dataApiJsonParts: aCollection do: aBlock [
 	
 	| aUrl partsString |
 	
-	self class apiKey ifNil: [ ^ nil ].
+	self class apiKey ifNil: [ ^ self error: 'Google API key not set' ].
 	
 	partsString := aCollection joinUsing: $,.
 	
