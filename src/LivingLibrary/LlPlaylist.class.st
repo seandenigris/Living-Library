@@ -12,7 +12,7 @@ Class {
 { #category : 'accessing' }
 LlPlaylist >> items [
 
-  ^ items
+  ^ items ifNil: [ items := OrderedCollection new ]
 ]
 
 { #category : 'accessing' }
