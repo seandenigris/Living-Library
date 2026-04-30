@@ -8,6 +8,6 @@ RlMp3 >> newPlayer [
 ]
 
 { #category : '*LivingLibrary' }
-RlMp3 >> playIn: container [
-	container play
+RlMp3 >> playableClass [
+	^ LlContainedMedia
 ]
