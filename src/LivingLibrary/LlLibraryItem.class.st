@@ -50,7 +50,7 @@ LlLibraryItem >> name: aString [
 { #category : 'accessing' }
 LlLibraryItem >> newPlayer [
 
-	^ LlNullMediaPlayer new
+	^ RlNullMediaPlayer new
 ]
 
 { #category : 'as yet unclassified' }

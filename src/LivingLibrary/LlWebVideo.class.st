@@ -13,12 +13,12 @@ Class {
 
 { #category : 'accessing' }
 LlWebVideo >> defaultDriver [
-	^ LlApplescriptMediaDriver new
+	^ RlApplescriptMediaDriver new
 ]
 
 { #category : 'as yet unclassified' }
 LlWebVideo >> playableClass [
-	^ LlDomVideo
+	^ RlDomVideo
 ]
 
 { #category : 'accessing' }

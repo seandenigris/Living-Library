@@ -185,7 +185,7 @@ LlYouTubeVideo >> id: aString [
 
 { #category : 'as yet unclassified' }
 LlYouTubeVideo >> playableClass [
-	^ LlDomYouTubeVideo
+	^ RlDomYouTubeVideo
 ]
 
 { #category : 'accessing' }

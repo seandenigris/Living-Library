@@ -36,5 +36,5 @@ LlPlaylist >> itemsGtViewFor: aView [
 
 { #category : 'as yet unclassified' }
 LlPlaylist >> newPlayer [
-	^ LlPlaylistPlayer on: self.
+	^ RlPlaylistPlayer on: self.
 ]

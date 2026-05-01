@@ -32,7 +32,7 @@ LlVimeoProtectedVideo class >> withID: aNumberOrString andUnlistedHash: aString 
 { #category : 'as yet unclassified' }
 LlVimeoProtectedVideo >> newPlayer [
 	^ super newPlayer
-		driver: LlApplescriptMediaDriver new;
+		driver: RlApplescriptMediaDriver new;
 		yourself
 ]
 

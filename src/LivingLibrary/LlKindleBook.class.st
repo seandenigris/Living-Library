@@ -52,8 +52,8 @@ LlKindleBook >> id: anObject [
 
 { #category : 'as yet unclassified' }
 LlKindleBook >> newPlayer [
-	^ (LlMediaPlayer on: self)
-		driver: LlApplescriptMediaDriver new;
+	^ (RlMediaPlayer on: self)
+		driver: RlApplescriptMediaDriver new;
 		yourself
 ]
 
