@@ -50,18 +50,24 @@ LlVideoClip >> doesNotUnderstand: aMessage [
 LlVideoClip >> newPlayer [
 
 	^ self video newPlayer
-		media: self;
+		pause;
 		currentPosition: self startPosition;
+		play;
 		yourself
 ]
 
 { #category : 'playing' }
 LlVideoClip >> printOn: aStream [
 
-	| prettyStartTime prettyEndTime |
+	"| prettyStartTime prettyEndTime |
 	prettyStartTime := startTime roundTo: (Duration seconds: 1).
-	prettyEndTime := endTime roundTo: (Duration seconds: 1).
-	aStream nextPutAll: 'Clip from ', prettyStartTime asString, ' to ', prettyEndTime asString, ' in '.
+	prettyEndTime := endTime roundTo: (Duration seconds: 1)."
+	aStream 
+		nextPutAll: 'Clip from ';
+		print: startTime ;
+		nextPutAll: ' to ';
+		print: endTime;
+		nextPutAll: ' in '.
 	video printOn: aStream.
 ]
 
