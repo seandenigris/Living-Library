@@ -36,5 +36,9 @@ LlPlaylist >> itemsGtViewFor: aView [
 
 { #category : 'as yet unclassified' }
 LlPlaylist >> newPlayer [
-	^ RlPlaylistPlayer on: self.
+
+	(self items first newPlayer isKindOf: RlNullMediaPlayer) 
+		ifTrue: [ ^ RlNullMediaPlayer new ].
+		
+	^ LlPlaylistPlayer on: self.
 ]
