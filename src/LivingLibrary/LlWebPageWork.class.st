@@ -15,6 +15,12 @@ LlWebPageWork class >> baseUrl [
 	self subclassResponsibility
 ]
 
+{ #category : 'as yet unclassified' }
+LlWebPageWork >> delete [
+
+	html ifNotNil: [ html delete ]
+]
+
 { #category : 'accessing' }
 LlWebPageWork >> html [
 	^ html
@@ -26,12 +32,32 @@ LlWebPageWork >> html: anObject [
 ]
 
 { #category : 'as yet unclassified' }
+LlWebPageWork >> htmlEnsured [
+
+	html ifNil: [ self htmlSave ].
+	^ html
+]
+
+{ #category : 'as yet unclassified' }
 LlWebPageWork >> htmlSave [
 
 	html := self webPage source import
 ]
 
 { #category : 'as yet unclassified' }
+LlWebPageWork >> title [
+
+	^ title ifNil: [ title := self titleFromHtml ].
+]
+
+{ #category : 'accessing' }
+LlWebPageWork >> titleFromHtml [
+	"Subclasses should override if a title is scrapable"
+
+	^ ''
+]
+
+{ #category : 'accessing' }
 LlWebPageWork >> webPage [
 
 	| page |
