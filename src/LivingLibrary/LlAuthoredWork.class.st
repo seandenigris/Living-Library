@@ -555,9 +555,13 @@ LlAuthoredWork >> licenseDescription [
 
 { #category : 'accessing' }
 LlAuthoredWork >> newPlayer [
-	^ self copies
-		ifNotEmpty: [ :cps | cps atRandom newPlayer ]
-		ifEmpty: [ RlNullMediaPlayer new ]
+	
+	self copies do: [ :cp |
+		| aPlayer |
+		aPlayer := cp newPlayer.
+		(aPlayer isKindOf: RlNullMediaPlayer) ifFalse: [ ^ aPlayer ] ].
+		
+	^ RlNullMediaPlayer new
 ]
 
 { #category : 'copies' }
