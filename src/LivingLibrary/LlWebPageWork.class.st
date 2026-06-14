@@ -57,6 +57,12 @@ LlWebPageWork >> titleFromHtml [
 	^ ''
 ]
 
+{ #category : 'as yet unclassified' }
+LlWebPageWork >> view [
+
+	self url open
+]
+
 { #category : 'accessing' }
 LlWebPageWork >> webPage [
 

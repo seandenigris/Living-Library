@@ -1,8 +1,8 @@
 Class {
 	#name : 'LlLibraryItem',
 	#superclass : 'Object',
-	#traits : 'DbTDomainObject',
-	#classTraits : 'DbTDomainObject classTrait',
+	#traits : 'DbTDomainObject + RlTPlayable',
+	#classTraits : 'DbTDomainObject classTrait + RlTPlayable classTrait',
 	#instVars : [
 		'work'
 	],
@@ -48,9 +48,9 @@ LlLibraryItem >> name: aString [
 ]
 
 { #category : 'accessing' }
-LlLibraryItem >> newPlayer [
+LlLibraryItem >> playerClass [
 
-	^ RlNullMediaPlayer new
+	^ RlNullMediaPlayer
 ]
 
 { #category : 'as yet unclassified' }

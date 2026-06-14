@@ -1,8 +1,6 @@
 Class {
 	#name : 'LlWebVideo',
 	#superclass : 'LlWebResource',
-	#traits : 'RlTPlayable',
-	#classTraits : 'RlTPlayable classTrait',
 	#instVars : [
 		'querySelector'
 	],
@@ -12,8 +10,8 @@ Class {
 }
 
 { #category : 'accessing' }
-LlWebVideo >> defaultDriver [
-	^ RlApplescriptMediaDriver new
+LlWebVideo >> defaultDriverClass [
+	^ RlApplescriptMediaDriver
 ]
 
 { #category : 'as yet unclassified' }

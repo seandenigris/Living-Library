@@ -40,6 +40,11 @@ LlKindleBook class >> fromString: aString [
 		yourself
 ]
 
+{ #category : 'as yet unclassified' }
+LlKindleBook >> defaultDriverClass [
+	^ RlApplescriptMediaDriver
+]
+
 { #category : 'accessing' }
 LlKindleBook >> id [
 	^ id
@@ -51,10 +56,8 @@ LlKindleBook >> id: anObject [
 ]
 
 { #category : 'as yet unclassified' }
-LlKindleBook >> newPlayer [
-	^ (RlMediaPlayer on: self)
-		driver: RlApplescriptMediaDriver new;
-		yourself
+LlKindleBook >> playerClass [
+	^ RlMediaPlayer
 ]
 
 { #category : 'accessing' }
