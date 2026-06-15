@@ -19,6 +19,11 @@ LlWebVideo >> playableClass [
 	^ RlDomVideo
 ]
 
+{ #category : 'as yet unclassified' }
+LlWebVideo >> playerClass [
+	^ RlMediaPlayer
+]
+
 { #category : 'accessing' }
 LlWebVideo >> present [
 	^ self newPlayer
