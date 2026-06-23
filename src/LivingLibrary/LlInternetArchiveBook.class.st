@@ -36,6 +36,11 @@ LlInternetArchiveBook class >> peCanHandleFromString: aString [
 	^ aString beginsWith: 'https://archive.org/details/'
 ]
 
+{ #category : 'as yet unclassified' }
+LlInternetArchiveBook >> defaultDriverClass [
+	^ RlApplescriptMediaDriver
+]
+
 { #category : 'accessing' }
 LlInternetArchiveBook >> id [
 	^ id
