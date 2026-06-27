@@ -45,6 +45,13 @@ LlWebPageWork >> htmlSave [
 ]
 
 { #category : 'as yet unclassified' }
+LlWebPageWork >> soupDo: aBlock [
+
+	GtStackOverflowChecker suspendStackOverflowWatchersDuring: [ 
+		^ aBlock value: self html soup ]
+]
+
+{ #category : 'as yet unclassified' }
 LlWebPageWork >> title [
 
 	^ title ifNil: [ title := self titleFromHtml ].
