@@ -137,6 +137,23 @@ LlLibrary class >> uniqueInstance: aLivingLibrary [
 
 ]
 
+{ #category : 'views' }
+LlLibrary class >> works: aValuable ofKind: aClass gtViewOn: aView title: aString priority: aNumber [
+	
+	(aValuable value isEmpty) ifTrue: [ ^ aView empty ].
+	
+	^ aView tree
+		title: aString translated;
+		priority: aNumber;
+		items: aValuable;
+		children: [ :each | 
+			(each isKindOf: aClass)
+				ifTrue: [ each treeChildren ]
+				ifFalse: [ #() ] ];
+		itemText: #displayString;
+		actionUpdateButton
+]
+
 { #category : 'copies - adding' }
 LlLibrary >> addCopy: copy of: work [
 	| copies |
@@ -291,22 +308,6 @@ LlLibrary >> works [
 ]
 
 { #category : 'views' }
-LlLibrary >> works: aValuable gtViewOn: aView title: aString priority: aNumber [
-	
-	(self works isEmpty) ifTrue: [ ^ aView empty ].
-	^ aView tree
-		title: aString translated;
-		priority: aNumber;
-		items: aValuable;
-		children: [ :each | 
-			(each isKindOf: self workClass)
-				ifTrue: [ each treeChildren ]
-				ifFalse: [ #() ] ];
-		itemText: #displayString;
-		actionUpdateButton
-]
-
-{ #category : 'views' }
 LlLibrary >> worksByImportDescending [
 	^ self rootWorks sort: #importTimestamp descending undefinedLast
 ]
@@ -357,8 +358,9 @@ LlLibrary >> worksGtSearchNewFor: aSearch [
 LlLibrary >> worksGtViewOn: aView [
 	<gtView>
 
-	^ self 
-		works: [ self rootWorks sort: #nameForAlphabetization ascending ] 
+	^ self class
+		works: [ self rootWorks sort: #nameForAlphabetization ascending ]
+		ofKind: self workClass
 		gtViewOn: aView 
 		title: 'Works'
 		priority: 25
@@ -367,8 +369,9 @@ LlLibrary >> worksGtViewOn: aView [
 { #category : 'views' }
 LlLibrary >> worksRecentGtViewOn: aView [
 	<gtView>
-	^ self
+	^ self class
 		works: [ self worksByImportDescending ]
+		ofKind: self workClass
 		gtViewOn: aView
 		title: 'Recent Works'
 		priority: 32

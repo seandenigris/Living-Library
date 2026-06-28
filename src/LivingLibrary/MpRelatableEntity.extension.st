@@ -9,13 +9,11 @@ MpRelatableEntity >> llAsCollection [
 MpRelatableEntity >> worksGtViewOn: aView [
 	<gtView>
 
-	| works |
-	works := self library works select: [ :w | w authors includes: self ].
-	works ifEmpty: [ ^ aView empty ].
-	
-	^ aView list
-		title: 'Works' translated;
-		priority: 60;
-		items: [ works ];
-		actionUpdateButton
+	^ self library class
+		works: [ self library rootWorks select: [ :w | 
+			w authors includes: self ] ]
+		ofKind: self library workClass
+		gtViewOn: aView 
+		title: 'Works'
+		priority: 60
 ]
