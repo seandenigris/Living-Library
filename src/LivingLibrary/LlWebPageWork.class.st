@@ -48,7 +48,7 @@ LlWebPageWork >> htmlSave [
 LlWebPageWork >> soupDo: aBlock [
 
 	GtStackOverflowChecker suspendStackOverflowWatchersDuring: [ 
-		^ aBlock value: self html soup ]
+		^ aBlock value: self htmlEnsured soup ]
 ]
 
 { #category : 'as yet unclassified' }
