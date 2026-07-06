@@ -270,6 +270,18 @@ LlLibrary >> rootWorks [
 	^ self works select: [ :e | e parent isNil ]
 ]
 
+{ #category : 'searches' }
+LlLibrary >> rootWorksGtSearchFor: aSearch [
+	<gtSearch>
+	
+	^ aSearch list
+		priority: 3;
+		title: 'Works';
+		items: [ self rootWorks ];
+		matchSubstrings;
+		itemName: #displayString
+]
+
 { #category : 'accessing' }
 LlLibrary >> verifyModel [
 	
@@ -329,7 +341,7 @@ LlLibrary >> worksGtSearchFor: aSearch [
 	
 	^ aSearch list
 		priority: 5;
-		title: 'Works';
+		title: 'Works (all)';
 		items: [ self works ];
 		matchSubstrings;
 		itemName: #displayString
