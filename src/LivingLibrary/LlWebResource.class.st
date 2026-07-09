@@ -136,7 +136,7 @@ LlWebResource >> printOn: aStream [
 
 { #category : 'accessing' }
 LlWebResource >> title [
-	^ self work title
+	^ self work ifNotNil: #title
 ]
 
 { #category : 'accessing' }
