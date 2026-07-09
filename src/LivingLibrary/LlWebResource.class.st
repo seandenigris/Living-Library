@@ -156,5 +156,5 @@ LlWebResource >> url: anObject [
 
 { #category : 'accessing' }
 LlWebResource >> work [
-	^ work ifNil: [ work := LlAuthoredWork new ]
+	^ work
 ]
