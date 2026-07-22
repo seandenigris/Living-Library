@@ -18,6 +18,8 @@ Class {
 
 { #category : 'accessing' }
 LlYouTubeVideo class >> apiKey [
+	"See setter comment"
+	
 	^ ApiKey
 ]
 
